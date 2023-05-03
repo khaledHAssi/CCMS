@@ -165,7 +165,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         @endphp
         <a class="nav-link" data-toggle="dropdown" href="#">
           <img width="30" height="30" style="margin-top: -5px;object-fit: contain" src="{{ $src }}" class="img-circle elevation-2" alt="User Image">
-          {{-- {{ Auth::user()->name }} --}}
+          {{ Auth::user()->name }}
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <a href="#" class="dropdown-item">
@@ -264,8 +264,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                {{-- <a href="{{ route('admin.companies.trash') }}" class="nav-link"> --}}
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.companies.trash') }}" class="nav-link">
+                {{-- <a href="#" class="nav-link"> --}}
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                 {{ __('Trash') }}

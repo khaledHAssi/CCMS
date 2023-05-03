@@ -51,18 +51,21 @@ class CompanyController extends Controller
         // $slug = strtolower($request->name);
         // $slug = str_replace(' ', '-', $slug);
 
-        $slug = Str::slug($request->name);
-
-        $slugCount = Company::where('slug', 'like', $slug.'%')->count();
-
-        if($slugCount > 0) {
-            $slug = $slug . '-'.$slugCount;
-        }
+        //--------------------------------------------
+        // $slug = Str::slug($request->name);
+        
+        // $slugCount = Company::where('slug', 'like', $slug.'%')->count();
+        
+        // if($slugCount > 0) {
+        //     $slug = $slug . '-'.$slugCount;
+        // }
+        //--------------------------------------------
+        
         // dd($slugCount);
 
         Company::create([
             'name' => $request->name,
-            'slug' => $slug,
+            // 'slug' => $slug,
             'image' => $path,
             'description' => $request->description,
             'location' => $request->location,
@@ -129,6 +132,7 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         // File::delete(public_path())
+        
         Company::destroy($id);
         return redirect()->route('admin.companies.index')->with('msg', 'Company Deleted Successfully')->with('type', 'danger');
     }

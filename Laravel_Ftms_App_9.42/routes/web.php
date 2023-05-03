@@ -25,7 +25,13 @@ Route::prefix(LaravelLocalization::setLocale())->group(function() {
 
      Route::prefix('admin')->middleware(['auth','verified','check_user'])->name('admin.')->group(function(){
         Route::get('/', [AdminController::class, 'index'])->name('Admin.index');
+        
+        Route::get('companies/trash', [CompanyController::class, 'trash'])->name('companies.trash');
+        Route::get('companies/{id}/restore', [CompanyController::class, 'restore'])->name('companies.restore');
+        Route::delete('companies/{id}/forcedelete', [CompanyController::class, 'forcedelete'])->name('companies.forcedelete');
         Route::resource('companies',CompanyController::class);
+        
+
         Route::resource('courses',CourseController::class);
         Route::get('/users', [AdminController::class, 'ShowUsers'])->name('users.index');
     });
