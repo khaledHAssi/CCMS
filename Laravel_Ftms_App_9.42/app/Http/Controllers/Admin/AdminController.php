@@ -19,8 +19,28 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
-    public function ShowUsers(){
-        $users = User::all();
-        return view('users',['users'=>$users]);
+
+
+    public function settings(){
+        return view('admin.settings');
     }
+
+
+    public function settings_store(Request $request)
+    {
+        $logo = settings()->get('logo');//MisUnderstood
+        if($request->has('logo')) {
+            $logo = $request->file('logo')->store('uploads', 'custom');
+            settings()->set('logo', $logo);
+        }
+
+        settings()->save();
+
+        return redirect()->back();
+    }
+
+    // public function ShowUsers(){
+    //     $users = User::all();
+    //     return view('users',['users'=>$users]);
+    // }
 }
