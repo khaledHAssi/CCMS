@@ -45,10 +45,10 @@ Route::prefix(LaravelLocalization::setLocale())->group(function() {
     // Route::view('/', 'welcome');
     Route::name('ftms.')->group(function() {
         Route::get('/', [SiteController::class, 'index'])->name('index');
-        // Route::get('/company/{id}', [SiteController::class, 'company'])->name('company');
-        // Route::get('/company/course/{id}', [SiteController::class, 'course'])->name('course');
-        // Route::post('/company/course/{id}', [SiteController::class, 'course_apply'])->name('course_apply');
-        // Route::get('/company/course/cancel/{id}', [SiteController::class, 'course_cancel'])->name('course_cancel');
+        Route::get('/company/{id}', [SiteController::class, 'company'])->name('company');
+        Route::get('/company/course/{id}', [SiteController::class, 'course'])->name('course');
+        Route::post('/company/course/{id}', [SiteController::class, 'course_apply'])->name('course_apply');
+        Route::get('/company/course/cancel/{id}', [SiteController::class, 'course_cancel'])->name('course_cancel');
         // Route::get('expert/{id}', [SiteController::class, 'expert'])->name('expert');
         // Route::post('book-time', [SiteController::class, 'book_time'])->name('book_time');
         // Route::get('book-time-status/{id}', [SiteController::class, 'book_time_status'])->name('book_time_status');

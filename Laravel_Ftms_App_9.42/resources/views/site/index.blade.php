@@ -183,18 +183,20 @@
             {{-- {!! $company->description !!} --}}
             <div class="row">
                 <div class="owl-carousel companies-carousel">
-                    {{-- @foreach ($companies as $company)
+                    @foreach ($companies as $company)
                     <article class="blog-post">
                         <img src="{{ asset($company->image) }}" alt="">
                         <div class="content">
                             <h5>{{ $company->name }}</h5>
-                            <p>{{ Str::words(strip_tags($company->description), 10, '...') }}</p>
+ {{-- عشان يتعرف عتاقات الاتش تي ام ال على انها نصوص مش كلغة برمجة وهاد السطر بدل ما ينطبع العمود بالاتش تي ام ال تاعه بطبع الكلام بس--}}
+                       <p>{{ Str::words(strip_tags($company->description), 10, '...') }}</p>
                         </div>
                         <div class="p-4">
                             <a href="{{ route('ftms.company', $company->slug) }}" class="btn btn-brand w-100">Read More</a>
+                            {{-- <a href="#" class="btn btn-brand w-100">Read More</a> --}}
                         </div>
                     </article>
-                    @endforeach --}}
+                    @endforeach
 
                 </div>
             </div>

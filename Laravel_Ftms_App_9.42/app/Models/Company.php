@@ -13,8 +13,8 @@ class Company extends Model
     // protected $fillable = ['name', 'image', 'description', 'location']; // الي مسموح يتخزن على قاعدة البايانات
     protected $guarded = []; // الي ممنوع يتخزن على قاعدة البايانات
 
-    // public function courses()
-    // {
-    //     return $this->hasMany(Course::class);
-    // }
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
 }

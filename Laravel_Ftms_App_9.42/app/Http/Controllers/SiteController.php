@@ -22,12 +22,14 @@ class SiteController extends Controller
 {
     public function index()
     {
-        // $companies = Company::has('courses')->latest('id')->get();
+        // $companies = Company::whereHas('courses')->latest('id')->get();
+        // $companies = Company::all();
 
         //---------------------------------------------------------------------------------
-        // $companies = Company::whereHas('courses', function(Builder $query) {
-        //     $query->whereDate('start_date', '>=', date('Y-m-d') );
-        // })->latest('id')->get();
+        $companies = Company::whereHas('courses', function(Builder $query) {
+            $query->whereDate('start_date', '>=', date('Y-m-d') );
+            // عشان يعرض  الشركات اللي دوراتها ما بدت او اليوم بتبدا
+        })->latest('id')->get();
 
         // $experts = Expert::whereHas('available', function(Builder $query) {
         //     $query->where('status', 1 )->whereDate('date', '>=', date('Y-m-d') );
@@ -38,9 +40,11 @@ class SiteController extends Controller
 
         // dd($experts);
         // return view('site.index', compact('companies', 'experts'));
-        return view('site.index');
+        return view('site.index', compact('companies'));
+        // return view('site.index');
     }
 
+    // public function company($slug)
     public function company($slug)
     {
         $company = Company::with('courses')->whereSlug($slug)->firstOrFail();
