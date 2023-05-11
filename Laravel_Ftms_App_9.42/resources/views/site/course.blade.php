@@ -43,13 +43,15 @@
                         <h1>Apply To Our Course</h1>
                     </div>
                 </div>
+
                 <div class="col-md-8">
                     @if (Auth::check())
                     {{-- @dump(Auth::user()->applications()->where('course_id', $course->id)->count()) --}}
-                    @php
+                    {{-- @php
                         $ap = Auth::user()->applications()->where('course_id', $course->id)->first();
-                    @endphp
-                    @if ($ap)
+                    @endphp --}}
+                    {{-- @if ($ap) --}}
+                    @if (false)
                         <p>Your application under review, we will send a message when we approved it</p>
                         <a href="{{ route('ftms.course_cancel', $ap->id) }}" class="btn btn-brand">Cancel Request</a>
                     @else

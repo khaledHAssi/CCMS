@@ -11,16 +11,22 @@ class AppliedNotification extends Notification
 {
     use Queueable;
 
-    protected $application;
+    protected $name;
+    protected $course;
+    // protected $application;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($application)
+
+    // public function __construct($application)
+    public function __construct($name,$course)
     {
-        $this->application = $application;
+        // $this->application = $application;
+        $this->name = $name;
+        $this->course = $course;
     }
 
     /**
@@ -78,8 +84,12 @@ class AppliedNotification extends Notification
      */
     public function toArray($notifiable)
     {
+        // return [
+        //     'msg' => 'New Student '.$this->application->user->name.' Apply on ' . $this->application->course->name,
+        //     'url' => url('/applications')
+        // ];
         return [
-            'msg' => 'New Student '.$this->application->user->name.' Apply on ' . $this->application->course->name,
+            'msg' => 'New Student '.$this->name.' Apply on ' . $this->course,
             'url' => url('/applications')
         ];
     }
