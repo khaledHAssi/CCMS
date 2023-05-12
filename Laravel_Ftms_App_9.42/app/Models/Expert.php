@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Expert extends Model
 {
     use HasFactory;
+    
+    public function available()
+    {
+        return $this->hasMany(AvailableTime::class);
+    }
 }

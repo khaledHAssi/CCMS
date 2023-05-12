@@ -50,9 +50,9 @@ Route::prefix(LaravelLocalization::setLocale())->group(function() {
         Route::get('/company/course/{id}', [SiteController::class, 'course'])->name('course');
         Route::post('/company/course/{id}', [SiteController::class, 'course_apply'])->name('course_apply');
         Route::get('/company/course/cancel/{id}', [SiteController::class, 'course_cancel'])->name('course_cancel');
-        // Route::get('expert/{id}', [SiteController::class, 'expert'])->name('expert');
-        // Route::post('book-time', [SiteController::class, 'book_time'])->name('book_time');
-        // Route::get('book-time-status/{id}', [SiteController::class, 'book_time_status'])->name('book_time_status');
+        Route::get('expert/{id}', [SiteController::class, 'expert'])->name('expert');
+        Route::post('book-time', [SiteController::class, 'book_time'])->name('book_time');
+        Route::get('book-time-status/{id}', [SiteController::class, 'book_time_status'])->name('book_time_status');
 //
         // Route::get('evaluation/{id}', [SiteController::class, 'evaluation'])->name('evaluation')->middleware('auth');
         // Route::post('evaluation_applied/{id}', [SiteController::class, 'evaluation_applied'])->name('evaluation_applied')->middleware('auth');

@@ -31,16 +31,15 @@ class SiteController extends Controller
             // عشان يعرض  الشركات اللي دوراتها ما بدت او اليوم بتبدا
         })->latest('id')->get();
 
-        // $experts = Expert::whereHas('available', function(Builder $query) {
-        //     $query->where('status', 1 )->whereDate('date', '>=', date('Y-m-d') );
-        // })->latest('id')->get();
+        $experts = Expert::whereHas('available', function(Builder $query) {
+            $query->where('status', 1 )->whereDate('date', '>=', date('Y-m-d') );
+        })->latest('id')->get();
         //---------------------------------------------------------------------------------
         // $experts = DB::select("select * from experts");
         // })->latest('id')->dd();
 
         // dd($experts);
-        // return view('site.index', compact('companies', 'experts'));
-        return view('site.index', compact('companies'));
+        return view('site.index', compact('companies', 'experts'));
         // return view('site.index');
     }
 
@@ -61,7 +60,6 @@ class SiteController extends Controller
 
     public function course_apply(Request $request, $id)
     {
-        $course = Course::find($id);
         // dd($request->all());
         $application = Application::create([
             'company_id' => $request->company_id,
@@ -76,8 +74,7 @@ class SiteController extends Controller
         // dd($request->company_id);
         // dd($application);
 
-        // $user->notify( new AppliedNotification($application) );
-        $user->notify( new AppliedNotification($request->user()->name,$course->name) );
+        $user->notify( new AppliedNotification($application) );
 
         return redirect()->back()->with('msg', 'Your application has been submitted successfully');
     }
@@ -89,38 +86,38 @@ class SiteController extends Controller
         return view('site.expert', compact('expert'));
     }
 
-    // public function book_time(Request $request)
-    // {
-    //     $time = AvailableTime::findOrFail($request->time_id);
+    public function book_time(Request $request)
+    {
+        $time = AvailableTime::findOrFail($request->time_id);
 
-    //     // dd($time->price ? $time->price : $time->expert->hour_price);
-    //     $amount = $time->price ? $time->price : $time->expert->hour_price;
+        // dd($time->price ? $time->price : $time->expert->hour_price);
+        $amount = $time->price ? $time->price : $time->expert->hour_price;
 
-    //     $url = "https://eu-test.oppwa.com/v1/checkouts";
-    //     $data = "entityId=8a8294174b7ecb28014b9699220015ca" .
-    //                 "&amount=$amount" .
-    //                 "&currency=USD" .
-    //                 "&paymentType=DB";
+        $url = "https://eu-test.oppwa.com/v1/checkouts";
+        $data = "entityId=8a8294174b7ecb28014b9699220015ca" .
+                    "&amount=$amount" .
+                    "&currency=USD" .
+                    "&paymentType=DB";
 
-    //     $ch = curl_init();
-    //     curl_setopt($ch, CURLOPT_URL, $url);
-    //     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    //                 'Authorization:Bearer OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='));
-    //     curl_setopt($ch, CURLOPT_POST, 1);
-    //     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    //     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);// this should be set to true in production
-    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    //     $responseData = curl_exec($ch);
-    //     if(curl_errno($ch)) {
-    //         return curl_error($ch);
-    //     }
-    //     curl_close($ch);
-    //     $responseData = json_decode($responseData, true);
-    //     $id = $responseData['id'];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                    'Authorization:Bearer OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='));
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);// this should be set to true in production
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $responseData = curl_exec($ch);
+        if(curl_errno($ch)) {
+            return curl_error($ch);
+        }
+        curl_close($ch);
+        $responseData = json_decode($responseData, true);
+        $id = $responseData['id'];
 
-    //     return view('site.book_time', compact('time', 'id'));
+        return view('site.book_time', compact('time', 'id'));
 
-    // }
+    }
 
     // public function book_time_status(Request $request, $time_id)
     // {

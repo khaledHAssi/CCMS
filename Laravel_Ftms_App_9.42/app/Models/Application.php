@@ -9,4 +9,14 @@ class Application extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class)->withDefault();
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class)->withDefault();
+    }
 }

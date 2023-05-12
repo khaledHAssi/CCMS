@@ -1,0 +1,36 @@
+php artisan make:migration create_categories_table
+
+php artisan migrate
+
+php artisan migrate:status
+
+php artisan make:model Category
+
+php artisan make:controller CategoryController -r
+
+php artisan make:factory CategoryFactory
+
+php artisan make:seeder CategorySeeder
+
+php artisan route:list
+
+php artisan db:seed CategorySeeder
+
+php artisan make:model Admin -mcrfs
+
+php artisan make:controller Auth/AuthController
+
+php artisan make:middleware AgeCheck
+
+php artisan make:mail AdminWelcomeEmail --markdown=emails.admin_welcome_email
+
+php artisan make:mail UserWelcomeEmail --markdown=email.user_welcome_email
+
+
+php artisan make:migration add_image_to_users_table
+
+php artisan storage:link
+
+php artisan make:controller Auth/EmailVarificationController
+
+php artisan make:controller Auth/ResetPasswordController

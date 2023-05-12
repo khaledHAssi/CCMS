@@ -281,7 +281,7 @@
             </div>
             <div class="overlay"></div> --}}
             <div class="row justify-content-center">
-                {{-- @foreach ($experts as $expert)
+                @foreach ($experts as $expert)
                 <div class="col-lg-4 col-md-8">
                     <div class="team-member">
                         <div class="image">
@@ -293,7 +293,7 @@
                         <a class="btn btn-brand w-100" href="{{ route('ftms.expert', $expert->id) }}">Read More</a>
                     </div>
                 </div>
-                @endforeach --}}
+                @endforeach
 
             </div>
         </div>
