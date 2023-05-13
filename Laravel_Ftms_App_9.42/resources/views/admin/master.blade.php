@@ -9,6 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@yield('title', env('APP_NAME'))</title>
 
+
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -76,7 +77,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+
+        <div class="wrapper">
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -315,8 +317,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                {{-- <a href="{{ route('admin.evaluations.index') }}" class="nav-link"> --}}
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.evaluations.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     {{ __('All_Evaluations') }}
@@ -325,8 +326,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                {{-- <a href="{{ route('admin.evaluations.create') }}" class="nav-link"> --}}
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.evaluations.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     {{ __('Add New') }}

@@ -192,8 +192,7 @@
                        <p>{{ Str::words(strip_tags($company->description), 10, '...') }}</p>
                         </div>
                         <div class="p-4">
-                            {{-- <a href="{{ route('ftms.company', $company->slug) }}" class="btn btn-brand w-100">Read More</a> --}}
-                            <a href="{{ route('ftms.company', $company->id) }}" class="btn btn-brand w-100">Read More</a>
+                            <a href="{{ route('ftms.company', $company->slug) }}" class="btn btn-brand w-100">Read More</a>
                             {{-- <a href="#" class="btn btn-brand w-100">Read More</a> --}}
                         </div>
                     </article>

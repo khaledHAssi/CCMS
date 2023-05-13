@@ -46,8 +46,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function profile()
     {
-        return $this->hasOne(Profile::class, 'user_id')->withDefault(
-            ['status' => "No status available", 'fb' => "No facebook available", 'tw' => "No twitter available", 'li' => "No linkedin available"]
-        );
+        return $this->hasOne(Profile::class, 'user_id')->withDefault([
+            'status' => 'No Status Avialable'
+        ]);
+    }
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
     }
 }

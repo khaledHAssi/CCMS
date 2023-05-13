@@ -43,12 +43,9 @@ class SiteController extends Controller
         // return view('site.index');
     }
 
-    // public function company($slug)
-    public function company($id)
+    public function company($slug)
     {
-        // $company = Company::with('courses')->whereSlug($slug)->firstOrFail();
-        // return view('site.company', compact('company'));
-        $company = Company::with('courses')->findOrFail($id);
+        $company = Company::with('courses')->whereSlug($slug)->firstOrFail();
         return view('site.company', compact('company'));
     }
 
@@ -119,68 +116,68 @@ class SiteController extends Controller
 
     }
 
-    // public function book_time_status(Request $request, $time_id)
-    // {
-    //     // dd($request->all());
-    //     $time = AvailableTime::findOrFail($time_id);
+    public function book_time_status(Request $request, $time_id)
+    {
+        // dd($request->all());
+        $time = AvailableTime::findOrFail($time_id);
 
-    //     $resourcePath = $request->resourcePath;
+        $resourcePath = $request->resourcePath;
 
-    //     $url = "https://eu-test.oppwa.com$resourcePath";
-    //     $url .= "?entityId=8a8294174b7ecb28014b9699220015ca";
+        $url = "https://eu-test.oppwa.com$resourcePath";
+        $url .= "?entityId=8a8294174b7ecb28014b9699220015ca";
 
-    //     $ch = curl_init();
-    //     curl_setopt($ch, CURLOPT_URL, $url);
-    //     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    //                 'Authorization:Bearer OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='));
-    //     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-    //     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);// this should be set to true in production
-    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    //     $responseData = curl_exec($ch);
-    //     if(curl_errno($ch)) {
-    //         return curl_error($ch);
-    //     }
-    //     curl_close($ch);
-    //     $responseData = json_decode($responseData, true);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                    'Authorization:Bearer OGE4Mjk0MTc0YjdlY2IyODAxNGI5Njk5MjIwMDE1Y2N8c3k2S0pzVDg='));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);// this should be set to true in production
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $responseData = curl_exec($ch);
+        if(curl_errno($ch)) {
+            return curl_error($ch);
+        }
+        curl_close($ch);
+        $responseData = json_decode($responseData, true);
 
-    //     $id = $responseData['id'];
-    //     $amount = $responseData['amount'];
-    //     $code = $responseData['result']['code'];
+        $id = $responseData['id'];
+        $amount = $responseData['amount'];
+        $code = $responseData['result']['code'];
 
-    //     if($code == '000.100.110') {
+        if($code == '000.100.110') {
 
-    //         DB::beginTransaction();
-    //         try {
-    //             AvailableTime::find($time_id)->update(['status' => 0]);
+            DB::beginTransaction();
+            try {
+                AvailableTime::find($time_id)->update(['status' => 0]);
 
-    //             // send notifation to expert
+                // send notification to expert
 
-    //             Payment::create([
-    //                 'user_id' => Auth::id(),
-    //                 'time_id' => $time_id,
-    //                 'total' => $amount,
-    //                 'transaction_id' => $id
-    //             ]);
+                Payment::create([
+                    'user_id' => Auth::id(),
+                    'time_id' => $time_id,
+                    'total' => $amount,
+                    'transaction_id' => $id
+                ]);
 
-    //             DB::commit();
-    //         }catch(Exception $e) {
+                DB::commit();
+            }catch(Exception $e) {
 
-    //             DB::rollBack();
-    //             throw new Exception($e->getMessage());
-    //         }
+                DB::rollBack();
+                throw new Exception($e->getMessage());
+            }
 
-    //         return redirect()->route('ftms.expert', $time->expert_id)->with('msg', 'Session Booked Successfully');
+            return redirect()->route('ftms.expert', $time->expert_id)->with('msg', 'Session Booked Successfully');
 
-    //     }else {
+        }else {
 
-    //     }
-    // }
+        }
+    }
 
-    // public function course_cancel($id)
-    // {
-    //     Application::destroy($id);
-    //     return redirect()->back()->with('msg', 'Course Canceld Successfully');
-    // }
+    public function course_cancel($id)
+    {
+        Application::destroy($id);
+        return redirect()->back()->with('msg', 'Course Canceled Successfully');
+    }
 
     // public function evaluation($id)
     // {

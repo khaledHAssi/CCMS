@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
-           $table->uuid('id')->primary();
-            $table->string('type');
-            $table->morphs('notifiable');
-             $table->text('data');
-            $table->timestamp('read_at')->nullable();
+        Schema::create('payments', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id');
+            $table->foreignId('time_id');
+            $table->double('total');
+            $table->string('transaction_id');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('payments');
     }
 };

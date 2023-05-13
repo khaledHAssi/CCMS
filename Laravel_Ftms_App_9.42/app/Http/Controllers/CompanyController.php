@@ -51,21 +51,19 @@ class CompanyController extends Controller
         // $slug = strtolower($request->name);
         // $slug = str_replace(' ', '-', $slug);
 
-        //--------------------------------------------
-        // $slug = Str::slug($request->name);
+        $slug = Str::slug($request->name);
 
-        // $slugCount = Company::where('slug', 'like', $slug.'%')->count();
+        $slugCount = Company::where('slug', 'like', $slug.'%')->count();
 
-        // if($slugCount > 0) {
-        //     $slug = $slug . '-'.$slugCount;
-        // }
-        //--------------------------------------------
+        if($slugCount > 0) {
+            $slug = $slug . '-'.$slugCount;
+        }
 
         // dd($slugCount);
 
         Company::create([
             'name' => $request->name,
-            // 'slug' => $slug,
+            'slug' => $slug,
             'image' => $path,
             'description' => $request->description,
             'location' => $request->location,

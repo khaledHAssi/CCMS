@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class AvailableTime extends Model
 {
     use HasFactory;
-    
-    // protected $guarded = [];
+
+    protected $guarded = [];
 
     public function expert()
     {

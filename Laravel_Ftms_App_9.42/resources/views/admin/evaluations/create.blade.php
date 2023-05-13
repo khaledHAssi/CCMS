@@ -102,8 +102,8 @@
 
         let q = `<div>
                     <input type="text" name="questions[]" class="form-control mb-2" placeholder="Question"/>
-                    <span class="remove_question">-</span>
-                </div>`;
+                    <span class="remove_question">-</span> 
+                </div>`;//to use it bellow ("span_remove_question_class")
 
         $('.questions_wrapper').append(q);
 
@@ -112,7 +112,14 @@
     $('.questions_wrapper').on('click', '.remove_question', function() {
         $(this).parent().remove();
     })
-
+    /////////////////////////////////////////////////////////////////
+    // $('.remove_question').click(function (){                         //
+    //     $(this).parent().remove();                                   //
+    //     //remove btn is not exists when the page start loading So he did'nt defined HtmlJavaScriptButton script
+    //     //so We use question_wrapper to make it define the button task and to make it know that there is
+    //     // a button inside the question_wrapperDiv                       //
+    // })                                                                    //
+    ///////////////////////////////////////////////////////////////////////////
     // ES6
     // document.querySelector('#add_question').onclick = (e) => {
     //     e.preventDefault();
