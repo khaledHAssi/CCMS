@@ -115,7 +115,7 @@ class EvaluationController extends Controller
             foreach($request->questions as $idd => $q) {//cause he sent the question as an array
                 Question::create([
                     'question' => $q,
-                    'evaluation_id' => $evaluation->id
+                    'evaluation_id' => $evaluation->id//to link the question with evaluation id
                 ]);
                 // Question::updateOrCreate([
                 //     'id' => $idd,
@@ -138,10 +138,11 @@ class EvaluationController extends Controller
      */
     public function destroy($id)
     {
-        // $e = Evaluation::find($id);
-        // $e->questions()->delete();
-        // $e->delete();
-
+/*
+ * $e = Evaluation::find($id);
+ * $e->questions()->delete();
+ * $e->delete();
+*/
         Question::where('evaluation_id', $id)->delete();
         Evaluation::destroy($id);
 

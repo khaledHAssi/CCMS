@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="questions_wrapper">
-                    @foreach ($evaluation->questions as $q)
+                    @foreach ($evaluation->questions as $q){{--Question from the relation --}}
                     <div>
                         <input type="text" name="questions[{{ $q->id }}]" class="form-control mb-2" placeholder="Question" value="{{ $q->question }}" />
                         <span class="remove_question">-</span>

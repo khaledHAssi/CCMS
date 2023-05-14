@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('applied_evalutions', function (Blueprint $table) {
+        Schema::create('applied_evaluations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('evualtion_id');
+            $table->foreignId('evaluation_id');
             $table->text('data');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('applied_evalutions');
+        Schema::dropIfExists('applied_evaluations');
     }
 };

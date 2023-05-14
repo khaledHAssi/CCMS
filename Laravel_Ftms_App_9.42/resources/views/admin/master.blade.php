@@ -398,10 +398,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-file-signature"style="position:relative; left:4px" ></i>
-              <p style="font-size:small">
-                {{ __('Applied evaluations') }}
+            <a href="{{ route('admin.evaluations.applied') }}" style="font-size:small"class="nav-link">
+                <i class="nav-icon fas fa-file-signature"></i>
+              <p>
+            {{ __('Applied_Evaluations') }}
 
               </p>
             </a>

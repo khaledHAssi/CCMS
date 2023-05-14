@@ -22,7 +22,6 @@
                 @foreach (json_decode($applied->data, true) as $id => $answer)
                 <li><b>{{ getQuestionName($id) }} </b>: <i>{{ $answer }}</i></li>
                 @endforeach
-
             </ul>
             {{-- <table class="table table-bordered">
                 <thead>

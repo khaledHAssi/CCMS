@@ -179,33 +179,32 @@ class SiteController extends Controller
         return redirect()->back()->with('msg', 'Course Canceled Successfully');
     }
 
-    // public function evaluation($id)
-    // {
-    //     $evaluation = Evaluation::findOrFail($id);
+    public function evaluation($id)
+    {
+        $evaluation = Evaluation::findOrFail($id);
 
-    //     // if( date('d-m-Y') > '04-12-2022' ) {
-    //     //     dd('Expire');
-    //     // }
+        // if( date('d-m-Y') > '04-12-2022' ) {
+        //     dd('Expire');
+        // }
 
-    //     if($evaluation->type != Auth::user()->type && Auth::user()->type != 'super-admin') {
-    //         abort(403, 'You are not Authorize');
-    //     }
+        if($evaluation->type != Auth::user()->type && Auth::user()->type != 'super-admin') {
+            abort(403, 'You are not Authorize');
+        }
 
-    //     // dd(Auth::user());
+        // dd(Auth::user());
 
-    //     return view('site.evaluation', compact('evaluation'));
-    // }
+        return view('site.evaluation', compact('evaluation'));
+    }
 
-    // public function evaluation_applied(Request $request, $id)
-    // {
-    //     // dd($request->all());
-    //     AppliedEvaluation::create([
-    //         'user_id' => Auth::id(),
-    //         'evualtion_id' => $id,
-    //         'data' => json_encode($request->answer)
-    //     ]);
+    public function evaluation_applied(Request $request, $id)
+    {
+        AppliedEvaluation::create([
+            'user_id' => Auth::id(),
+            'evaluation_id' => $id,
+            'data' => json_encode($request->answer)
+        ]);
 
-    //     return redirect()->route('ftms.index');
-    // }
+        return redirect()->route('ftms.index');
+    }
 
 }
