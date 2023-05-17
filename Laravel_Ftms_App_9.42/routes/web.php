@@ -9,6 +9,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TestAPI;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -41,6 +42,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::get('evaluations/applied', [EvaluationController::class, 'applied'])->name('evaluations.applied');
         Route::get('evaluations/applied/{id}', [EvaluationController::class, 'applied_data'])->name('evaluations.applied_data');
         Route::resource('evaluations', EvaluationController::class);
+        Route::resource('students', StudentController::class);
 
     });
 

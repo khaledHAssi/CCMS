@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 13, 2023 at 03:47 PM
+-- Generation Time: May 17, 2023 at 04:16 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -38,15 +38,32 @@ CREATE TABLE IF NOT EXISTS `applications` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `applications`
+-- Table structure for table `applied_evaluations`
 --
 
-INSERT INTO `applications` (`id`, `company_id`, `user_id`, `course_id`, `reason`, `status`, `created_at`, `updated_at`) VALUES
-(4, 5, 21, 2, 'dsf hdf hjfd jksdfh', 0, '2023-05-13 05:44:01', '2023-05-13 05:44:01'),
-(3, 5, 21, 2, 'dsf hdf hjfd jksdfh', 0, '2023-05-13 05:43:44', '2023-05-13 05:43:44');
+DROP TABLE IF EXISTS `applied_evaluations`;
+CREATE TABLE IF NOT EXISTS `applied_evaluations` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `evaluation_id` bigint(20) UNSIGNED NOT NULL,
+  `data` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `applied_evaluations`
+--
+
+INSERT INTO `applied_evaluations` (`id`, `user_id`, `evaluation_id`, `data`, `created_at`, `updated_at`) VALUES
+(1, 23, 5, '{\"4\":\"Very Good\",\"5\":\"Very Good\"}', '2023-05-14 03:35:31', '2023-05-14 03:35:31'),
+(2, 23, 6, '{\"6\":\"Accepted\"}', '2023-05-14 04:07:58', '2023-05-14 04:07:58');
 
 -- --------------------------------------------------------
 
@@ -141,10 +158,7 @@ CREATE TABLE IF NOT EXISTS `companies` (
 INSERT INTO `companies` (`id`, `name`, `slug`, `image`, `description`, `location`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (3, 'Mohammed company', 'mohammed-company', 'uploads/7ThhNXp5qolfNwLOmo15KtJu0x0uHVIR1WoFtn5Q.png', '<p>jklhas jsdhalkj kj hasdkjha oiashefjk; ksajdfk&nbsp;</p>', 'dsh fa jhfdskalj jhsdj fa', '2023-05-08 07:51:42', '2023-05-08 07:52:23', NULL),
 (5, 'khaled assi company', 'khaled-assi', 'uploads/YsjdCwWxFcYeEFZ1d2aw1ka7GHflRmiprCDeyhp6.png', '<p>fdsfsfdsf sf sd fsd dfs ds dsf</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3401.746937685432!2d34.42946153164712!3d31.50363902497154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14fd7f80c0e03343%3A0x988b2aca0284c209!2z2YXYs9is2K8g2KfZhNmH2K_Yp9mK2Kk!5e0!3m2!1sar!2s!4v1683806913048!5m2!1sar!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '2023-05-09 07:44:10', '2023-05-11 09:12:29', NULL),
-(7, 'ghj', 'ghi', 'uploads/BYwki0Pi5rVcuq8XdI7GQYWkZVJdliWh9xXxzW6x.png', '<p>hyj hh fgjhj hj jgh fgj</p>', 'hgjf gjf jfg jhgfj', '2023-05-09 07:45:34', '2023-05-09 07:45:34', NULL),
-(8, 'AboZorTech', 'abozortech', 'uploads/mV7f0BTfo1rdKsGUjYPrI5LbK4WSOLkiHv9kr424.png', '<p>Its A huge company in palestine</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1179.7808842855807!2d34.4513026350782!3d31.488417561695094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14fd8126a199a955%3A0x9f616766e5c57cf6!2z2LTYsdmD2Kkg2KjZhNio2YQg2YTZhNi12YbYp9i52Kkg2YjYp9mE2KrYrNin2LHYqQ!5e1!3m2!1sar!2s!4v1683964278659!5m2!1sar!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '2023-05-13 04:51:37', '2023-05-13 04:51:37', NULL),
-(9, 'AboZorTech', 'abozortech-1', 'uploads/sk7m9rXb21PKfsbhas9IzOXrcCm8F0qLonIqARkL.png', '<p>&nbsp;sfa ds fds dgfdg d</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1179.7808842855807!2d34.4513026350782!3d31.488417561695094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14fd8126a199a955%3A0x9f616766e5c57cf6!2z2LTYsdmD2Kkg2KjZhNio2YQg2YTZhNi12YbYp9i52Kkg2YjYp9mE2KrYrNin2LHYqQ!5e1!3m2!1sar!2s!4v1683964278659!5m2!1sar!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '2023-05-13 05:00:48', '2023-05-13 05:00:48', NULL),
-(10, 'Ryder Per', 'ryder-per', 'uploads/NkQUqlVFjMkkVg8vl4mSNxQwWCFQ8YmrUdSHgzCW.png', '<p>dsffds&nbsp; d fsd fsd s f efd dfs&nbsp;</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1179.7808842855807!2d34.4513026350782!3d31.488417561695094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14fd8126a199a955%3A0x9f616766e5c57cf6!2z2LTYsdmD2Kkg2KjZhNio2YQg2YTZhNi12YbYp9i52Kkg2YjYp9mE2KrYrNin2LHYqQ!5e1!3m2!1sar!2s!4v1683964278659!5m2!1sar!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '2023-05-13 05:02:07', '2023-05-13 05:02:07', NULL);
+(8, 'AboZorTech', 'abozortech', 'uploads/mV7f0BTfo1rdKsGUjYPrI5LbK4WSOLkiHv9kr424.png', '<p>Its A huge company in palestine</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1179.7808842855807!2d34.4513026350782!3d31.488417561695094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14fd8126a199a955%3A0x9f616766e5c57cf6!2z2LTYsdmD2Kkg2KjZhNio2YQg2YTZhNi12YbYp9i52Kkg2YjYp9mE2KrYrNin2LHYqQ!5e1!3m2!1sar!2s!4v1683964278659!5m2!1sar!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', '2023-05-13 04:51:37', '2023-05-13 04:51:37', NULL);
 
 -- --------------------------------------------------------
 
@@ -173,8 +187,8 @@ CREATE TABLE IF NOT EXISTS `courses` (
 
 INSERT INTO `courses` (`id`, `company_id`, `supervisor_id`, `name`, `image`, `description`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES
 (1, 3, 23, 'Php', '', 'Php Course', '2023-12-05', '2024-01-11', NULL, NULL),
-(2, 5, 23, 'Asp.Net', '', 'sdjf hjfs', '2024-12-11', '2022-01-12', NULL, NULL),
-(3, 8, 23, 'Js', '', 'Java', '2024-12-11', '2022-01-12', NULL, NULL);
+(2, 5, 23, 'Asp.Net', '', 'sdjf hjfs', '2023-11-10', '2024-01-12', NULL, NULL),
+(3, 8, 23, 'Js', '', 'Java', '2023-12-11', '2024-01-12', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -190,7 +204,15 @@ CREATE TABLE IF NOT EXISTS `evaluations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `evaluations`
+--
+
+INSERT INTO `evaluations` (`id`, `name`, `type`, `created_at`, `updated_at`) VALUES
+(6, 'sfd', 'student', '2023-05-14 04:01:14', '2023-05-14 04:01:14'),
+(5, 'khaled', 'student', '2023-05-14 02:31:38', '2023-05-14 02:35:44');
 
 -- --------------------------------------------------------
 
@@ -339,7 +361,50 @@ INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `
 ('14239bb6-3f55-4a92-bf68-5ff91d01077d', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student gfds Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-13 05:36:43', '2023-05-13 05:36:43'),
 ('636edb39-e5d0-4d52-b87e-683dbfc60b2e', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student gfds Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-13 05:36:50', '2023-05-13 05:36:50'),
 ('d337e270-5be7-499c-9f32-4533347e91ce', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student gfds Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-13 05:43:45', '2023-05-13 05:43:45'),
-('3da819b1-af84-4780-b683-9c6177eb1200', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student gfds Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-13 05:44:01', '2023-05-13 05:44:01');
+('3da819b1-af84-4780-b683-9c6177eb1200', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student gfds Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-13 05:44:01', '2023-05-13 05:44:01'),
+('802f1a0e-185d-48b5-bd5a-2610f7f12560', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:06:22', '2023-05-16 08:06:22'),
+('cd56e933-8b08-404e-914e-dbb3fbd9b53b', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:13:09', '2023-05-16 08:13:09'),
+('ed85dfc7-3224-41d5-9fb0-8aa78eb3450e', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:13:57', '2023-05-16 08:13:57'),
+('c1686aba-7249-4728-8030-7c14927ffc35', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:14:31', '2023-05-16 08:14:31'),
+('b13884e3-a16c-4cb9-b8e7-3f446e6ef231', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:14:45', '2023-05-16 08:14:45'),
+('5d0990dc-43a5-4019-901b-56da19beb9ec', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:15:28', '2023-05-16 08:15:28'),
+('d3dd5974-473a-4e15-971b-189c2d3c72a0', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:15:52', '2023-05-16 08:15:52'),
+('b92e29fd-5960-46b2-9398-fd279e563f0e', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:16:15', '2023-05-16 08:16:15'),
+('5a5aea1b-232e-46f6-a8bf-11b35374c98d', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:17:32', '2023-05-16 08:17:32'),
+('e522d6fe-1e39-49a8-b23e-fb28e2f1b970', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:20:15', '2023-05-16 08:20:15'),
+('21b9eedc-b5b7-4207-a279-c043259e1526', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:20:30', '2023-05-16 08:20:30'),
+('ac49dc16-7f09-4d1b-b2a8-ef70691ca5d2', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:25:28', '2023-05-16 08:25:28'),
+('1895df85-5c65-482b-b294-8fc976e69383', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:25:34', '2023-05-16 08:25:34'),
+('3acd7c85-cbfd-4131-bb12-f7b675949dcb', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:25:41', '2023-05-16 08:25:41'),
+('97245f53-97dd-49c3-beb9-e3a8e4ebd305', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:25:42', '2023-05-16 08:25:42'),
+('aa816f63-bf9c-4f7b-a1a6-c43fc8932ae2', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:26:07', '2023-05-16 08:26:07'),
+('bafc1df1-291f-433b-bf41-1f4068052c55', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:26:25', '2023-05-16 08:26:25'),
+('cba1ee6b-bb4d-4ea3-9b39-51fc5f574c1f', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:26:29', '2023-05-16 08:26:29'),
+('c3903836-4d68-4abb-9750-6fa79a1dee8e', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:26:57', '2023-05-16 08:26:57'),
+('395c3c32-ea19-4f26-87a9-cab3946cc4ab', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 23, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 08:27:05', '2023-05-16 08:27:05'),
+('b2265d16-8b69-447c-8275-f263c5821ba3', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:10:53', '2023-05-16 12:10:53'),
+('a0db94ce-612f-4d26-82cc-1b82bb6dd1e6', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:24:31', '2023-05-16 12:24:31'),
+('da8fc337-bf2d-45d3-aebd-d2a89f1aa1fc', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:24:35', '2023-05-16 12:24:35'),
+('f4b863a6-c50b-4078-9a00-6e9688c263e2', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:24:38', '2023-05-16 12:24:38'),
+('cb632c69-43ad-44e3-b9a3-f6acfc916bb9', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:28:26', '2023-05-16 12:28:26'),
+('b703aef8-938f-473b-b45e-65124557e3e9', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:29:49', '2023-05-16 12:29:49'),
+('3c4239c5-54a6-4e8d-ba30-7f231ad3ddc9', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:29:52', '2023-05-16 12:29:52'),
+('2fbbbedd-a6d5-4519-9e6f-d766ebeab2b5', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:32:19', '2023-05-16 12:32:19'),
+('882fd6c0-c425-405b-9872-0165c779cd05', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:37:43', '2023-05-16 12:37:43'),
+('b23ec7b1-b927-4f0e-9479-b0760c6d5611', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:37:47', '2023-05-16 12:37:47'),
+('4c801036-759a-4c9d-81f2-124ed411ae6c', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:37:50', '2023-05-16 12:37:50'),
+('a9ce500b-f652-4384-98e5-c295df8ddf89', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:37:53', '2023-05-16 12:37:53'),
+('e39a5a43-5365-4f39-90c3-b4e09f6c5cdb', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:37:55', '2023-05-16 12:37:55'),
+('4adb0e4c-0fb7-4568-911c-85b741c0c3c1', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:38:01', '2023-05-16 12:38:01'),
+('37cfbcb5-c405-4390-9a30-bcb0239b802e', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:38:02', '2023-05-16 12:38:02'),
+('f19dcb54-413f-400f-a0b5-8c3588142f64', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:38:03', '2023-05-16 12:38:03'),
+('59ab3eca-603d-4adc-a6dc-d13726252789', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:38:06', '2023-05-16 12:38:06'),
+('821310f9-c8dd-40bd-80c7-c9f50118a624', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:41:03', '2023-05-16 12:41:03'),
+('95b3275e-031d-46fd-a29d-823386b9582e', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:41:21', '2023-05-16 12:41:21'),
+('48536e7c-3384-40a5-a6fc-97d364a713db', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:41:22', '2023-05-16 12:41:22'),
+('43f35a37-ceb6-4f2e-ad44-8b387973db86', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:45:27', '2023-05-16 12:45:27'),
+('41cf36a6-134a-4854-8d56-95381254650b', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:56:18', '2023-05-16 12:56:18'),
+('7f7382f1-2327-4851-9776-22ba0bb89e2e', 'App\\Notifications\\AppliedNotification', 'App\\Models\\User', 3, '{\"msg\":\"New Student khaled Apply on Asp.Net\",\"url\":\"http:\\/\\/127.0.0.1:8000\\/applications\"}', NULL, '2023-05-16 12:56:28', '2023-05-16 12:56:28');
 
 -- --------------------------------------------------------
 
@@ -436,18 +501,7 @@ CREATE TABLE IF NOT EXISTS `profiles` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `profiles_user_id_foreign` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `profiles`
---
-
-INSERT INTO `profiles` (`id`, `status`, `bio`, `fb`, `tw`, `li`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'aut iusto quasi nesciunt non', 'Omnis tempore asperiores magni nam architecto. Et earum vel possimus iusto. Dicta omnis ut quis fugit.', 'https://www.pfeffer.com/quisquam-et-incidunt-dolor-ipsam', 'http://www.lubowitz.biz/', 'http://dickens.net/quisquam-a-amet-culpa-consequuntur', 9, '2023-05-02 11:37:04', '2023-05-02 11:37:04'),
-(2, 'et et distinctio laudantium cupiditate', 'Sunt voluptatem sed itaque atque est. Suscipit est ex fugit omnis minus. Ipsa labore vitae quam sed repellat expedita. Maiores qui nam quidem qui. Molestiae aut asperiores ex.', 'http://www.moore.org/dignissimos-dolores-nemo-reprehenderit-ut-ipsum-eaque-ratione-aliquid', 'http://schmeler.com/', 'http://www.balistreri.info/assumenda-pariatur-incidunt-distinctio-atque-praesentium-non', 15, '2023-05-02 11:37:04', '2023-05-02 11:37:04'),
-(3, 'quisquam in maiores et sequi', 'Impedit nesciunt voluptas soluta commodi nemo qui dicta. Odio culpa ea odio reiciendis quo placeat rerum. Ad eius nihil excepturi.', 'http://bosco.com/', 'http://www.huel.com/enim-id-soluta-ratione-mollitia', 'https://www.mccullough.info/consequuntur-atque-ullam-sint-distinctio', 14, '2023-05-02 11:37:04', '2023-05-02 11:37:04'),
-(4, 'corporis alias reiciendis praesentium enim', 'Et quidem qui et dolorem quia consequatur quo. Et mollitia laborum voluptatum id libero labore ex. Non quae excepturi expedita id magnam.', 'http://hills.com/voluptatem-in-inventore-est-commodi-voluptate-saepe', 'http://moen.org/ipsum-ex-ut-commodi-cupiditate-nesciunt', 'http://blick.org/tempora-dolor-consequatur-pariatur-sunt-aliquid-voluptate-dolor', 10, '2023-05-02 11:37:04', '2023-05-02 11:37:04'),
-(5, 'ex est laudantium et minus', 'Beatae eos perspiciatis laborum modi. Sed nostrum eum omnis illo. Labore quia doloribus et sed repellat.', 'http://mcglynn.org/qui-ullam-nulla-eum-debitis-iusto-nisi-iste', 'http://www.douglas.com/nostrum-repellendus-nobis-eveniet-ex', 'http://www.terry.biz/ab-reprehenderit-velit-dolorum-in-hic-sunt-sit.html', 4, '2023-05-02 11:37:04', '2023-05-02 11:37:04');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -463,7 +517,16 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`id`, `question`, `evaluation_id`, `created_at`, `updated_at`) VALUES
+(4, 'sdf', 5, '2023-05-14 02:35:44', '2023-05-14 02:35:44'),
+(5, 'dfs sd', 5, '2023-05-14 02:35:44', '2023-05-14 02:35:44'),
+(6, 'sdf sdf', 6, '2023-05-14 04:01:14', '2023-05-14 04:01:14');
 
 -- --------------------------------------------------------
 
@@ -526,18 +589,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`),
   UNIQUE KEY `users_username_unique` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `phone`, `username`, `image`, `status`, `type`, `company_id`, `remember_token`, `channels`, `created_at`, `updated_at`) VALUES
-(25, 'Abo Naser', 'abonaser@gmail.com', NULL, '$2y$10$ychSLmz4ZEaLL339bxthvOZXkSO82p3yK80tM7I8T6z49agUIVVZO', '059 515 2883', 'abo_naser', NULL, 1, 'student', NULL, NULL, NULL, '2023-05-11 14:10:28', '2023-05-11 14:10:28'),
-(21, 'gfds', 'loda@gmail.com', '2023-05-02 11:37:04', '$2y$10$.xunjc4YcZUoBRmF88T65.Ov8J2X5pySJ1VQWvR04iRdkfl3xw5bq', '609-427-7814', 'fds', NULL, 1, 'student', NULL, NULL, NULL, '2023-05-02 11:40:44', '2023-05-02 11:40:44'),
-(22, 'khaled', 'assi@gmail.com', '2023-05-03 03:54:53', '$2y$10$Gbsnn71P43ompD4UBjXwy.neFEOgbz9PkmGfCBRkR0mw4MWRIdhKG', '928-800-3220', 'fdjsajn', NULL, 1, 'super-admin', NULL, NULL, NULL, '2023-05-03 03:54:45', '2023-05-03 03:54:53'),
-(23, 'Mohd', 'mohd@app.com', '2023-05-08 07:05:00', '$2y$10$aRNPiMKLVVTi3sS6wWkXoeHLQ1kYo7TNNJ3CSYQAfeuAgoAtkCvrK', '609-427-7814', 'mohad', NULL, 1, 'companySupervisor', 5, NULL, 'database,broadcast', '2023-05-08 07:03:26', '2023-05-08 07:05:00'),
-(24, 'Mohammed N Abozour', 'mo@gmail.com', '2023-05-11 08:55:27', '$2y$10$lj1K5t.W7hbN4S0Bq/uNQexMmBBecG.uHWbs01l7fnBgjZCakyIPK', '059 515 2883', 'mo_abozour', NULL, 1, 'super-admin', NULL, NULL, 'database,broadcast', '2023-05-11 08:54:26', '2023-05-11 08:55:27');
+(1, 'Abo Naser', 'abonaser@gmail.com', '2023-05-03 03:54:53', '$2y$10$ychSLmz4ZEaLL339bxthvOZXkSO82p3yK80tM7I8T6z49agUIVVZO', '059 515 2883', 'abo_naser', NULL, 1, 'student', NULL, NULL, 'database,broadcast', '2023-05-11 14:10:28', '2023-05-17 13:13:17'),
+(2, 'khaled', 'assi@gmail.coml', '2023-05-03 03:54:53', '$2y$10$Gbsnn71P43ompD4UBjXwy.neFEOgbz9PkmGfCBRkR0mw4MWRIdhKG', '928-800-3220', 'fdjsajn', NULL, 1, 'student', NULL, NULL, 'database,broadcast', '2023-05-03 03:54:45', '2023-05-17 12:05:44'),
+(3, 'Mohd', 'mohd@app.com', '2023-05-08 07:05:00', '$2y$10$aRNPiMKLVVTi3sS6wWkXoeHLQ1kYo7TNNJ3CSYQAfeuAgoAtkCvrK', '609-427-7814', 'mohad', NULL, 1, 'super-admin', 5, NULL, 'database,broadcast', '2023-05-08 07:03:26', '2023-05-08 07:05:00'),
+(4, 'Mohammed N Abozour', 'mo@gmail.com', '2023-05-11 08:55:27', '$2y$10$lj1K5t.W7hbN4S0Bq/uNQexMmBBecG.uHWbs01l7fnBgjZCakyIPK', '059 515 2883', 'mo_abozour', NULL, 1, 'super-admin', 3, NULL, 'database,broadcast', '2023-05-11 08:54:26', '2023-05-11 08:55:27');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
