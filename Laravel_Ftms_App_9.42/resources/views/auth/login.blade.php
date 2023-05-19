@@ -110,7 +110,8 @@
         .header {
             position: relative;
             text-align: center;
-            background: linear-gradient(60deg, #201f2b 0%, #db1430 100%);
+            /* background: linear-gradient(60deg, #201f2b 0%, #db1430 100%); */
+            background: #ff4d29;
             color: white;
 
             /*  */
@@ -257,7 +258,8 @@
         .login-box .user-box input:valid~label {
             top: -20px;
             right: 0;
-            color: #db1430;
+            /* color: #db1430; */
+            color: #ff4d29;
             font-size: 12px;
         }
 
@@ -280,13 +282,18 @@
         }
 
         .login-box button:hover {
-            background: #db1430;
+            /* background: #db1430; */
+            background: #ff4d29;
             color: #fff;
             border-radius: 5px;
-            box-shadow: 0 0 5px #db1430,
+            /* box-shadow: 0 0 5px #db1430,
                 0 0 25px #db1430,
                 0 0 50px #db1430,
-                0 0 100px #db1430;
+                0 0 100px #db1430; */
+            box-shadow: 0 0 5px #ff4d29,
+                0 0 25px #ff4d29,
+                0 0 50px #ff4d29,
+                0 0 100px #ff4d29;
         }
 
         .login-box button span {

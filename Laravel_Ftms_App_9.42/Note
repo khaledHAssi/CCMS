@@ -34,3 +34,5 @@ php artisan storage:link
 php artisan make:controller Auth/EmailVarificationController
 
 php artisan make:controller Auth/ResetPasswordController
+
+composer dump-autoload
