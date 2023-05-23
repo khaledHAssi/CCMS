@@ -102,7 +102,7 @@
 
         let q = `<div>
                     <input type="text" name="questions[]" class="form-control mb-2" placeholder="Question"/>
-                    <span class="remove_question">-</span> 
+                    <span class="remove_question">-</span>
                 </div>`;//to use it bellow ("span_remove_question_class")
 
         $('.questions_wrapper').append(q);

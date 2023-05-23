@@ -16,11 +16,6 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->string('question');
-            $table->string('a1')->nullable();
-            $table->string('a2')->nullable();
-            $table->string('a3')->nullable();
-            $table->string('a4')->nullable();
-            $table->string('a5')->nullable();
             $table->foreignId('evaluation_id');
             $table->timestamps();
         });
