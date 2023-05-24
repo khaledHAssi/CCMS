@@ -362,6 +362,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-users "></i>
+
+              <p>
+                {{ __('Users') }}
+                <i class="right fas fa-angle-left"></i>
+
+
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+                <li class="nav-item">
+                  <a href="{{route('admin.users.create')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add User</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.users.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>All User</p>
+                    </a>
+                  </li>
+              </ul>
+          </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -418,15 +445,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="{{route('admin.students.index')}}" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                {{ __('Students') }}
 
-              </p>
-            </a>
-          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

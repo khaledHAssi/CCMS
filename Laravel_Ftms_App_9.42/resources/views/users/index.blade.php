@@ -19,7 +19,8 @@
                     <tr  class="bg-dark text-white">
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Logo</th>
+                        <th>email</th>
+                        <th>phone</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -32,14 +33,17 @@
                     @else
 
                     @endif --}}
+
                     @forelse ($users as $user)
                         <tr>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
-                            <td><img width="80" src="{{ asset($user->image) }}" alt=""></td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->phone }}</td>
+                            {{-- <td><img width="80" src="{{ asset($user->image) }}" alt=""></td> --}}
                             <td>
-                                <a href="{{ route('admin.students.edit', $user) }}" class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> </a>
-                                <form class="d-inline" action="{{ route('admin.students.destroy', $user->id) }}" method="POST">
+                                <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> </a>
+                                <form class="d-inline" action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <button onclick="return confirm('Are you sure!?')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
