@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('available_times', function (Blueprint $table) {
             $table->id();
             $table->foreignId('expert_id');
+            $table->string('link')->nullable();
             $table->date('date');
             $table->time('hour_from');
             $table->time('hour_to');

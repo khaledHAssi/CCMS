@@ -84,6 +84,9 @@
                 </ul>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     class="btn btn-brand ms-lg-3">Contact</a>
+
+                <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal"
+                    class="btn btn-brand ms-lg-3">Login</a>
             </div>
         </div>
     </nav>
@@ -120,8 +123,9 @@
     </footer>
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- --------------------------------------------------- Modal--------------------------------------------------------- -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-body p-0">
@@ -156,12 +160,16 @@
                                     </div>
                                     <div class="col-12">
                                         <label for="exampleInputEmail1" class="form-label">Enter Message</label>
-                                        <textarea name="" placeholder="This is looking great and nice."
-                                            class="form-control" id="" rows="4"></textarea>
+                                        <textarea name="" placeholder="This is looking great and nice." class="form-control" id=""
+                                            rows="4"></textarea>
                                     </div>
 
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-brand">Send Message</button>
+                                    </div>
+                                    <div class="col-12">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal"
+                                            class="btn btn-brand ms-lg-3">Login</a>
                                     </div>
                                 </form>
                             </div>
@@ -173,7 +181,176 @@
         </div>
     </div>
 
+    <!-- --------------------------------------------------- Login Modal--------------------------------------------------------- -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="container-fluid">
+                        <div class="row gy-4">
+                            <div class="col-lg-4 col-sm-12 bg-cover"
+                                style="background-image: url({{ asset('siteassets/img/c2.jpg') }}); min-height:300px;">
+                                <div>
 
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <form class="p-lg-5 col-12 row g-3" method="POST" action="{{ route('login') }}">
+                                    @csrf
+
+                                    <div>
+                                        <h1>Login</h1>
+                                        <p>Sign in and complete your fun journey</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="email" class="form-label">Enter Your Email Address</label>
+                                        <input type="email" name="email" value="{{ old('email') }}"
+                                            class="form-control" id="email" aria-describedby="emailHelp">
+                                        @error('email')
+                                            <small>{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="exampleInputEmail1" class="form-label">Enter Your Password</label>
+                                        <input type="password" name="password" autocomplete="new-password"
+                                            aria-describedby="emailHelp" class="form-control">
+                                        @error('password')
+                                            <small>{{ $message }}</small>
+                                        @enderror
+                                        {{-- <textarea name="" placeholder="This is looking great and nice."
+                                            class="form-control" id="" rows="4"></textarea> --}}
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="remember"
+                                                id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                            <label class="form-check-label" for="remember">
+                                                {{ __('Remember Me') }}
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <button type="submit" class="btn btn-brand">Login</button>
+                                    </div>
+
+                                    <div class="col-10">
+                                        @if (Route::has('password.request'))
+                                            <a style="color: var(--brand);" href="{{ route('password.request') }}">
+                                                {{ __('forgot password') }}
+                                            </a>
+                                        @endif
+                                    </div>
+                                    <div class="col-12">
+                                        @if (Route::has('register'))
+                                            {{-- <a class="btn btn-brand" href="{{ route('register') }}">{{ __('Register') }}</a> --}}
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal"
+                                                class="btn btn-brand ms-lg-3">{{ __('Register') }}</a>
+                                        @endif
+                                    </div>
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- --------------------------------------------------- Modal--------------------------------------------------------- -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="container-fluid">
+                        <div class="row gy-4">
+                            <div class="col-lg-4 col-sm-12 bg-cover"
+                                style="background-image: url({{ asset('siteassets/img/c2.jpg') }}); min-height:300px;">
+                                <div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <form class="p-lg-5 col-12 row g-3" method="POST" action="{{ route('register') }}">
+                                    @csrf
+
+                                    <div>
+                                        <h1>Register</h1>
+                                        <p>Register in and join us for free</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="name" class="form-label">{{ __('Name') }}</label>
+                                        <input id="name" type="text"
+                                            class="form-control @error('name') is-invalid @enderror" name="name"
+                                            value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="phone" class="form-label">{{ __('Phone') }}</label>
+                                        <input id="phone" type="text"
+                                            class="form-control @error('phone') is-invalid @enderror" name="phone"
+                                            value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+
+                                        @error('phone')
+                                            <small>{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                        {{-- لهون مخلص --}}
+                                    <div class="col-12">
+                                        <label for="email" class="form-label">Enter Your Email Address</label>
+                                        <input type="email" name="email" value="{{ old('email') }}"
+                                            class="form-control" id="email" aria-describedby="emailHelp">
+                                        @error('email')
+                                            <small>{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="exampleInputEmail1" class="form-label">Enter Your Password</label>
+                                        <input type="password" name="password" autocomplete="new-password"
+                                            aria-describedby="emailHelp" class="form-control">
+                                        @error('password')
+                                            <small>{{ $message }}</small>
+                                        @enderror
+                                        {{-- <textarea name="" placeholder="This is looking great and nice."
+                                            class="form-control" id="" rows="4"></textarea> --}}
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="remember"
+                                                id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                            <label class="form-check-label" for="remember">
+                                                {{ __('Remember Me') }}
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <button type="submit" class="btn btn-brand">Register</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <script src="{{ asset('siteassets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('siteassets/js/bootstrap.bundle.min.js') }}"></script>
