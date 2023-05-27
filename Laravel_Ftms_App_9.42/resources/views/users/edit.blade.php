@@ -13,10 +13,7 @@
         <div class="card-body">
             <h1>{{ $title }}</h1>
             <form action="{{ route('admin.users.update', $user) }}" method="POST" enctype="multipart/form-data">
-<<<<<<< HEAD
                 @csrf
-=======
->>>>>>> 16c9398aa83f1295c36d9636cba217b80a516e0e
                 @method('put')
                 <div class="card-body">
                     @if ($errors->any())
@@ -57,7 +54,7 @@
 
                 <div class="mb-3">
                     <label for="password">password</label>
-                    <input id="password" name="password" type="text"  class="form-control @error('password') is-invalid @enderror " value="{{ old('password', $user->password) }}" />
+                    <input id="password" name="password" type="text"  class="form-control @error('password') is-invalid @enderror " value="{{ old('password') }}" />
                     @error('password')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
@@ -108,10 +105,6 @@
                     @enderror
 
                 </div>
-
-
-
-
 
 
                 <button class="btn btn-success px-5"><i class="fas fa-save"></i> Edit</button>

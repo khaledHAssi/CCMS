@@ -11,15 +11,17 @@ use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
-    public function index (){
+    public function index()
+    {
         $users = User::get();
-        return view('users.index' , ['users' =>$users]);
+        return view('users.index', ['users' => $users]);
     }
-    public function create(){
+    public function create()
+    {
         return view('users.create');
     }
-    public function show(){
-
+    public function show()
+    {
     }
     public function store(Request $request)
     // public function store(Request $request)
@@ -29,23 +31,23 @@ class UserController extends Controller
 
         // $request->file()->move();
         $validator =
-        $request->validate([
-            'username' => 'required|string|min:3|max:20|',
-            'name' => 'required|string|min:3|max:20|',
-            'phone' => 'nullable|numeric|digits:12|',
-            'status' => 'nullable|string|in:on',
-            'email' => 'required|string|email',
-            // 'image' => 'required|image|mimes:jpg,png|max:3024',
-            'password' => [
-                'required', 'string',
-                Password::min(8)
-                ->numbers()
-                // ->letters()
-                // ->symbols()
-                    // ->mixedCase()
-                    // ->uncompromised()
-            ],
-        ]);
+            $request->validate([
+                'username' => 'required|string|min:3|max:20|',
+                'name' => 'required|string|min:3|max:20|',
+                'phone' => 'nullable|numeric|digits:12|',
+                'status' => 'nullable|string|in:on',
+                'email' => 'required|string|email',
+                // 'image' => 'required|image|mimes:jpg,png|max:3024',
+                'password' => [
+                    'required', 'string',
+                    Password::min(8)
+                        ->numbers()
+                    ->letters()
+                    ->symbols()
+                    ->mixedCase()
+                    ->uncompromised()
+                ],
+            ]);
 
 
         $user->name = $request->input('name');
@@ -56,9 +58,9 @@ class UserController extends Controller
         $user->password = Hash::make($request->input($request->input('password')));
         $user->created_at = $request->input('created_at');
         $user->updated_at = $request->input('updated_at');
-        if($request->status){
+        if ($request->status) {
             $user->status = 1;
-             }
+        }
 
         if ($request->hasFile('user_image')) {
             $userImage = $request->file('user_image');
@@ -86,27 +88,27 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     // public function update(StudentRequest $request, User $user)
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
 
         $validator =
-        $request->validate([
-            'username' => 'required|string|min:3|max:20|',
-            'name' => 'required|string|min:3|max:20|',
-            'phone' => 'nullable|numeric|digits:12|',
-            'status' => 'nullable|string|in:on',
-            'email' => 'required|string|email',
-            'image' => 'nullable|image|mimes:jpg,png|max:1024',
-            'password' => [
-                'required', 'string',
-                Password::min(8)
-                ->numbers()
-                // ->letters()
-                // ->symbols()
-                    // ->mixedCase()
-                    // ->uncompromised()
-            ],
-        ]);
+            $request->validate([
+                'username' => 'required|string|min:3|max:20|',
+                'name' => 'required|string|min:3|max:20|',
+                'phone' => 'nullable|numeric|digits:12|',
+                'status' => 'nullable|string|in:on',
+                'email' => 'required|string|email',
+                'image' => 'nullable|image|mimes:jpg,png|max:1024',
+                'password'=> [
+                    'nullable','string',
+                    Password::min(8)
+                    ->letters()
+                    ->numbers()
+                    ->symbols()
+                    ->mixedCase()
+                    ->uncompromised()
+                 ],
+            ]);
 
 
         $user = User::findOrFail($id);
@@ -116,22 +118,25 @@ class UserController extends Controller
         $user->phone = $request->input('phone');
         $user->email = $request->input('email');
         $user->type = $request->input('type');
-        $user->password = Hash::make($request->input($request->input('password')));
-        if($request->status){
+        if($request->has('password')){
+            $user->password = Hash::make($request->input('password'));
+        }
+
+        if ($request->status) {
             $user->status = 1;
-             }
+        }
 
         if ($request->hasFile('user_image')) {
             if ($user->image != null) {
                 Storage::delete($user->image);
-
+            }
             $userImage = $request->file('user_image');
             $imageName = time() . '_image' . $user->name . '.' . $userImage->getClientOriginalExtension();
             $userImage->storePubliclyAs('users', $imageName, ['disk' => 'public']);
             $user->image = 'users/' . $imageName;
-        }}
+        }
 
-            $user->save();
+        $user->save();
         return redirect()->route('admin.users.index')->with('msg', 'Company Updated Successfully')->with('type', 'warning');
     }
     public function destroy($id)
@@ -141,11 +146,10 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
         $user->delete();
-        if ($user->image !=null) {
+        if ($user->image != null) {
             Storage::delete($user->image);
         }
 
         return redirect()->route('admin.users.index')->with('msg', 'Company Deleted Successfully')->with('type', 'danger');
     }
-
 }
