@@ -18,29 +18,34 @@ class UserController extends Controller
     public function create(){
         return view('users.create');
     }
+    public function show(){
 
+    }
     public function store(Request $request)
     // public function store(Request $request)
     {
+
+        $user = new User;
+
         // $request->file()->move();
         $validator =
-          $request->validate([
+        $request->validate([
             'username' => 'required|string|min:3|max:20|',
             'name' => 'required|string|min:3|max:20|',
             'phone' => 'nullable|numeric|digits:12|',
+            'status' => 'nullable|string|in:on',
             'email' => 'required|string|email',
             // 'image' => 'required|image|mimes:jpg,png|max:3024',
             'password' => [
                 'required', 'string',
                 Password::min(8)
-                    ->numbers()
-                    // ->letters()
-                    // ->symbols()
+                ->numbers()
+                // ->letters()
+                // ->symbols()
                     // ->mixedCase()
                     // ->uncompromised()
             ],
         ]);
-        $user = new User;
 
 
         $user->name = $request->input('name');
@@ -51,6 +56,9 @@ class UserController extends Controller
         $user->password = Hash::make($request->input($request->input('password')));
         $user->created_at = $request->input('created_at');
         $user->updated_at = $request->input('updated_at');
+        if($request->status){
+            $user->status = 1;
+             }
 
         if ($request->hasFile('user_image')) {
             $userImage = $request->file('user_image');
@@ -64,8 +72,9 @@ class UserController extends Controller
     }
     public function edit($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::find($id);
         // dd($user);
+        $users = User::all();
         return view('users.edit')->with('user', $user);
     }
 
@@ -80,20 +89,49 @@ class UserController extends Controller
     public function update(Request $request,$id)
     {
 
-
-
-
-
-        $user = User::find($id);
-
-        $user->update([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'status' => $request->status,
+        $validator =
+        $request->validate([
+            'username' => 'required|string|min:3|max:20|',
+            'name' => 'required|string|min:3|max:20|',
+            'phone' => 'nullable|numeric|digits:12|',
+            'status' => 'nullable|string|in:on',
+            'email' => 'required|string|email',
+            'image' => 'nullable|image|mimes:jpg,png|max:1024',
+            'password' => [
+                'required', 'string',
+                Password::min(8)
+                ->numbers()
+                // ->letters()
+                // ->symbols()
+                    // ->mixedCase()
+                    // ->uncompromised()
+            ],
         ]);
 
+
+        $user = User::findOrFail($id);
+
+        $user->name = $request->input('name');
+        $user->username = $request->input('username');
+        $user->phone = $request->input('phone');
+        $user->email = $request->input('email');
+        $user->type = $request->input('type');
+        $user->password = Hash::make($request->input($request->input('password')));
+        if($request->status){
+            $user->status = 1;
+             }
+
+        if ($request->hasFile('user_image')) {
+            if ($user->image != null) {
+                Storage::delete($user->image);
+
+            $userImage = $request->file('user_image');
+            $imageName = time() . '_image' . $user->name . '.' . $userImage->getClientOriginalExtension();
+            $userImage->storePubliclyAs('users', $imageName, ['disk' => 'public']);
+            $user->image = 'users/' . $imageName;
+        }}
+
+            $user->save();
         return redirect()->route('admin.users.index')->with('msg', 'Company Updated Successfully')->with('type', 'warning');
     }
     public function destroy($id)
@@ -102,8 +140,8 @@ class UserController extends Controller
 
 
         $user = User::findOrFail($id);
-        $deleted = $user->delete();
-        if ($deleted) {
+        $user->delete();
+        if ($user->image !=null) {
             Storage::delete($user->image);
         }
 

@@ -104,11 +104,11 @@
 
 
                 <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
+                    <label for="exampleInputFile">Add Img</label>
                     <div class="input-group">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="exampleInputFile" name="user_image">
-                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                            <label class="custom-file-label" for="exampleInputFile">Choose Img</label>
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,10 @@
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div> --}}
-
+                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                    <input type="checkbox" class="custom-control-input"id="status"name="status">
+                    <label class="custom-control-label" for="status">User Active Status</label>
+                </div>
 
                 <button class="btn btn-success px-5"><i class="fas fa-save"></i> Add</button>
 
@@ -158,6 +161,7 @@
         });
     </script>
 @endsection
+
 @stop
 
 

@@ -43,6 +43,8 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::get('evaluations/applied/{id}', [EvaluationController::class, 'applied_data'])->name('evaluations.applied_data');
         Route::resource('evaluations', EvaluationController::class);
         Route::resource('users', UserController::class);
+        Route::resource('courses', CourseController::class);
+        Route::get('users/sknlk/slkngjo/ksda/{id}', [UserController::class , 'show']);
 
     });
 
