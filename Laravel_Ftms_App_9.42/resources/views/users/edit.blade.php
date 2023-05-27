@@ -13,7 +13,7 @@
     <div class="card mt-4">
         <div class="card-body">
             <h1>{{ $title }}</h1>
-            <form action="{{ route('admin.students.update', $user) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.users.update', $user) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('put')
 

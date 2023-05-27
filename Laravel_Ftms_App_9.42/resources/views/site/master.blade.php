@@ -85,8 +85,23 @@
                 <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     class="btn btn-brand ms-lg-3">Contact</a>
 
-                <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal"
-                    class="btn btn-brand ms-lg-3">Login</a>
+                @if (!Auth::check())
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal"
+                        class="btn btn-brand ms-lg-3">Login</a>
+                @else
+
+                    <a href="{{ route('logout') }}" data-bs-toggle="modal"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
+                        class="btn btn-brand ms-lg-3" >
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                    </form>
+                @endif
+
+
+
+
             </div>
         </div>
     </nav>
@@ -217,8 +232,6 @@
                                         @error('password')
                                             <small>{{ $message }}</small>
                                         @enderror
-                                        {{-- <textarea name="" placeholder="This is looking great and nice."
-                                            class="form-control" id="" rows="4"></textarea> --}}
                                     </div>
 
                                     <div class="col-12">
@@ -245,9 +258,8 @@
                                     </div>
                                     <div class="col-12">
                                         @if (Route::has('register'))
-                                            {{-- <a class="btn btn-brand" href="{{ route('register') }}">{{ __('Register') }}</a> --}}
                                             <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal"
-                                                class="btn btn-brand ms-lg-3">{{ __('Register') }}</a>
+                                                class="btn btn-brand ms-lg-3" style="width: 100%">{{ __('Register') }}</a>
                                         @endif
                                     </div>
 
@@ -263,8 +275,8 @@
     </div>
 
 
-    <!-- --------------------------------------------------- Modal--------------------------------------------------------- -->
-    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <!-- --------------------------------------------------- Register Modal--------------------------------------------------------- -->
+    {{-- <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
@@ -278,16 +290,16 @@
                                 </div>
                             </div>
                             <div class="col-lg-8">
-                                <form class="p-lg-5 col-12 row g-3" method="POST" action="{{ route('register') }}">
+                                <form class="p-lg-5 col-12 row g-3">
                                     @csrf
 
                                     <div>
                                         <h1>Register</h1>
-                                        <p>Register in and join us for free</p>
+                                        <p>Register and join us for free</p>
                                     </div>
                                     <div class="col-6">
-                                        <label for="name" class="form-label">{{ __('Name') }}</label>
-                                        <input id="name" type="text"
+                                        <label for="reg_name" class="form-label">{{ __('Name') }}</label>
+                                        <input id="reg_name" type="text"
                                             class="form-control @error('name') is-invalid @enderror" name="name"
                                             value="{{ old('name') }}" required autocomplete="name" autofocus>
 
@@ -298,8 +310,20 @@
                                         @enderror
                                     </div>
                                     <div class="col-6">
-                                        <label for="phone" class="form-label">{{ __('Phone') }}</label>
-                                        <input id="phone" type="text"
+                                        <label for="reg_username" class="form-label">{{ __('Username') }}</label>
+                                        <input id="reg_username" type="text"
+                                            class="form-control @error('username') is-invalid @enderror" name="username"
+                                            value="{{ old('username') }}" autocomplete="username" autofocus>
+
+                                        @error('username')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="reg_phone" class="form-label">{{ __('Phone') }}</label>
+                                        <input id="reg_phone" type="text"
                                             class="form-control @error('phone') is-invalid @enderror" name="phone"
                                             value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
@@ -307,39 +331,36 @@
                                             <small>{{ $message }}</small>
                                         @enderror
                                     </div>
-                                        {{-- لهون مخلص --}}
                                     <div class="col-12">
-                                        <label for="email" class="form-label">Enter Your Email Address</label>
-                                        <input type="email" name="email" value="{{ old('email') }}"
-                                            class="form-control" id="email" aria-describedby="emailHelp">
+                                        <label for="reg_email" class="form-label">{{ __('Email Address') }}</label>
+                                        <input id="reg_email" type="email" name="email" value="{{ old('email') }}"
+                                            class="form-control @error('email') is-invalid @enderror" aria-describedby="emailHelp" required autocomplete="email">
                                         @error('email')
-                                            <small>{{ $message }}</small>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                     </div>
-                                    <div class="col-12">
-                                        <label for="exampleInputEmail1" class="form-label">Enter Your Password</label>
-                                        <input type="password" name="password" autocomplete="new-password"
-                                            aria-describedby="emailHelp" class="form-control">
+                                    <div class="col-6">
+                                        <label for="reg_password" class="form-label">{{ __('password') }}</label>
+                                        <input id="reg_password" type="password" name="password" required autocomplete="new-password"
+                                            aria-describedby="passwordHelp" class="form-control @error('password') is-invalid @enderror">
+
                                         @error('password')
-                                            <small>{{ $message }}</small>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
-                                        {{-- <textarea name="" placeholder="This is looking great and nice."
-                                            class="form-control" id="" rows="4"></textarea> --}}
                                     </div>
 
-                                    <div class="col-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="remember"
-                                                id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                            <label class="form-check-label" for="remember">
-                                                {{ __('Remember Me') }}
-                                            </label>
-                                        </div>
+                                    <div class="col-6">
+                                        <label for="password-confirm" class="form-label">{{ __('Confirm Password') }}</label>
+                                        <input id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password"
+                                            aria-describedby="confirmpasswordHelp" class="form-control">
                                     </div>
 
                                     <div class="col-2">
-                                        <button type="submit" class="btn btn-brand">Register</button>
+                                        <button type="submit" class="btn btn-brand">{{ __('Register') }}</button>
                                     </div>
 
                                 </form>
@@ -350,7 +371,7 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <script src="{{ asset('siteassets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('siteassets/js/bootstrap.bundle.min.js') }}"></script>
