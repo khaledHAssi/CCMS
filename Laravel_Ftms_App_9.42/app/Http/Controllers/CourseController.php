@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
 {
@@ -14,6 +19,8 @@ class CourseController extends Controller
     public function index()
     {
         //
+        $courses = Course::all();
+        return response()->view('admin.courses.index',compact('courses'));
     }
 
     /**
@@ -24,6 +31,11 @@ class CourseController extends Controller
     public function create()
     {
         //
+        $courses = Course::all();
+        $users = DB::select('SELECT `id`, `name` FROM `users` WHERE `type` = "companySupervisor"');
+        $companies = DB::select('SELECT `id`, `name` FROM `companies` ');
+        return response()->view('admin.courses.create',compact(['users','companies','courses']));
+
     }
 
     /**
@@ -35,6 +47,37 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         //
+        $validator =
+        $request->validate([
+             'name' => 'required|string|min:3|max:20|',
+             'image' => 'nullable|image|mimes:jpg,png|max:1024',
+
+        ]);
+        $course = new Course;
+
+        $course->company_id = $request->input('company_id');
+        $course->supervisor_id = $request->input('supervisor_id');
+        $course->name = $request->input('name');
+
+
+        $course->description = $request->input('description');
+        $course->start_date = $request->input('start_date');
+        $course->end_date = $request->input('end_date');
+
+
+        if ($request->hasFile('course_image')) {
+            if ($course->image != null) {
+                Storage::delete($course->image);
+            }
+            $CourseImg = $request->file('course_image');
+            $imageName = time() . '_image' . $course->name . '.' . $CourseImg->getClientOriginalExtension();
+            $CourseImg->storePubliclyAs('courses', $imageName, ['disk' => 'public']);
+            $course->image = 'courses/' . $imageName;
+        }
+
+            $course->save();
+        return redirect()->route('admin.courses.index')->with('msg', 'Company Updated Successfully')->with('type', 'warning');
+
     }
 
     /**
@@ -57,8 +100,11 @@ class CourseController extends Controller
     public function edit($id)
     {
         //
-    }
-
+        $course = Course::find($id);
+        // dd($course->supervisor_id);
+        $users = DB::select('SELECT `id`, `name` FROM `users` WHERE `type` = "companySupervisor"');
+        $companies = DB::select('SELECT `id`, `name` FROM `companies` ');
+        return response()->view('admin.courses.edit',compact(['course','users','companies']));}
     /**
      * Update the specified resource in storage.
      *
@@ -68,6 +114,37 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator =
+        $request->validate([
+             'name' => 'required|string|min:3|max:20|',
+             'image' => 'nullable|image|mimes:jpg,png|max:1024',
+
+        ]);
+        $course = Course::findOrFail($id);
+
+        $course->company_id = $request->input('company_id');
+        $course->supervisor_id = $request->input('supervisor_id');
+        $course->name = $request->input('name');
+
+
+        $course->description = $request->input('description');
+        $course->start_date = $request->input('start_date');
+        $course->end_date = $request->input('end_date');
+
+
+        if ($request->hasFile('course_image')) {
+            if ($course->image != null) {
+                Storage::delete($course->image);
+            }
+            $CourseImg = $request->file('course_image');
+            $imageName = time() . '_image' . $course->name . '.' . $CourseImg->getClientOriginalExtension();
+            $CourseImg->storePubliclyAs('courses', $imageName, ['disk' => 'public']);
+            $course->image = 'courses/' . $imageName;
+        }
+
+            $course->save();
+        return redirect()->route('admin.courses.index')->with('msg', 'Company Updated Successfully')->with('type', 'warning');
+
         //
     }
 
@@ -80,5 +157,12 @@ class CourseController extends Controller
     public function destroy($id)
     {
         //
+        $course = Course::findOrFail($id);
+        $course->delete();
+        if ($course->image !=null) {
+            Storage::delete($course->image);
+        }
+        return redirect()->route('admin.courses.index')->with('msg', 'Company Deleted Successfully')->with('type', 'danger');
+
     }
 }

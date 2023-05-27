@@ -18,6 +18,7 @@
                 <thead>
                     <tr  class="bg-dark text-white">
                         <th>ID</th>
+                        <th>PersonalPhoto</th>
                         <th>Name</th>
                         <th>email</th>
                         <th>phone</th>
@@ -37,6 +38,14 @@
                     @forelse ($users as $user)
                         <tr>
                             <td>{{ $user->id }}</td>
+@if($user->image)
+                        <td>
+                        <img class="img-circle img-bordered-sm" height="65" width="65"
+                                src="{{ Storage::url($user->image) }}" alt="user image">
+                        </td>
+@else
+<td style="color:red;">No Pic</td>
+@endif
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->phone }}</td>

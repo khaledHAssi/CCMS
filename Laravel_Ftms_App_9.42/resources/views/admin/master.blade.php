@@ -278,29 +278,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
 
+
+
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-laptop-code"></i>
+              <i class="nav-icon fab fa-wpforms"></i>
               <p>
                 {{ __('Courses') }}
+
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.courses.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
-                {{ __('Active_Page') }}
+                    {{ __('All_Courses') }}
+
                 </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.courses.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
-                {{ __('Inactive_Page') }}
-                </p>
+                    {{ __('AddCourse') }}
+                    </p>
                 </a>
               </li>
             </ul>
@@ -415,6 +419,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
 
+      </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file-alt"></i>
