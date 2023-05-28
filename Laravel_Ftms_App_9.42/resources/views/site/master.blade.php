@@ -258,7 +258,7 @@
                                     </div>
                                     <div class="col-12">
                                         @if (Route::has('register'))
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal"
+                                            <a href="{{ route('register') }}" 
                                                 class="btn btn-brand ms-lg-3" style="width: 100%">{{ __('Register') }}</a>
                                         @endif
                                     </div>
