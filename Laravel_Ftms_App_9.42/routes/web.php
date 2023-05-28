@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EvaluationController;
@@ -33,11 +34,11 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
         Route::post('/settings', [AdminController::class, 'settings_store'])->name('settings_store');
 
-        Route::get('companies/trash', [CompanyController::class, 'trash'])->name('companies.trash');
+    Route::get('companies/trash', [CompanyController::class, 'trash'])->name('companies.trash');
         Route::get('companies/{id}/restore', [CompanyController::class, 'restore'])->name('companies.restore');
         Route::delete('companies/{id}/forcedelete', [CompanyController::class, 'forcedelete'])->name('companies.forcedelete');
         Route::resource('companies', CompanyController::class);
-
+        Route::resource('applications',ApplicationController::class);
         Route::resource('courses', CourseController::class);
         Route::get('evaluations/applied', [EvaluationController::class, 'applied'])->name('evaluations.applied');
         Route::get('evaluations/applied/{id}', [EvaluationController::class, 'applied_data'])->name('evaluations.applied_data');

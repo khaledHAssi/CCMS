@@ -71,7 +71,7 @@ class SiteController extends Controller
         // dd($request->company_id);
         // dd($application);
 
-        $user->notify( new AppliedNotification($application) );
+        $user->notify(new AppliedNotification($application) );
 
         return redirect()->back()->with('msg', 'Your application has been submitted successfully');
     }
