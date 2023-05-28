@@ -5,9 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\AvailableTimeController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
@@ -38,8 +40,9 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::get('companies/{id}/restore', [CompanyController::class, 'restore'])->name('companies.restore');
         Route::delete('companies/{id}/forcedelete', [CompanyController::class, 'forcedelete'])->name('companies.forcedelete');
         Route::resource('companies', CompanyController::class);
-        Route::resource('applications',ApplicationController::class);
         Route::resource('courses', CourseController::class);
+        Route::resource('experts', ExpertController::class);
+        Route::resource('AvailableTimes', AvailableTimeController::class);
         Route::get('evaluations/applied', [EvaluationController::class, 'applied'])->name('evaluations.applied');
         Route::get('evaluations/applied/{id}', [EvaluationController::class, 'applied_data'])->name('evaluations.applied_data');
         Route::resource('evaluations', EvaluationController::class);
@@ -48,6 +51,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::get('users/sknlk/slkngjo/ksda/{id}', [UserController::class , 'show']);
 
     });
+    Route::resource('applications',ApplicationController::class);
 
 
     Route::name('ftms.')->group(function () {
@@ -64,15 +68,15 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
 
     });
 
-
-    Auth::routes(['verify' => true]);
+    Route::get('send-notify', [NotifyController::class, 'send']);
+    Route::get('notify/{id}', [NotifyController::class, 'notify'])->name('mark-read');
+Route::get('read-notify', [NotifyController::class, 'read'])->name('ReadNotification');
+Auth::routes(['verify' => true]);
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 });
 
 
-Route::get('send-notify', [NotifyController::class, 'send']);
-Route::get('read-notify', [NotifyController::class, 'read']);
-Route::get('notify/{id}', [NotifyController::class, 'notify'])->name('mark-read');
+
 
 Route::get('posts_api', [TestAPI::class, 'posts_api']);

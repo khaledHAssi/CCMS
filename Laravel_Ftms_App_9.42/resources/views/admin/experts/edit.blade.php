@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @php
-    $title = "Edit Course"
+    $title = "Edit Expert"
 @endphp
 
 @section('title', $title)
@@ -49,13 +49,13 @@
     <div class="card mt-4">
         <div class="card-body">
             <h1>{{ $title }}</h1>
-            <form action="{{ route('admin.courses.update', $course) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.experts.update', $expert) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('put')
 
                 <div class="mb-3">
                     <label for="name">Name</label>
-                    <input id="name" name="name" type="text" placeholder="Name" class="form-control @error('name') is-invalid @enderror " value="{{ old('name', $course->name) }}" />
+                    <input id="name" name="name" type="text" placeholder="Name" class="form-control @error('name') is-invalid @enderror " value="{{ old('name', $expert->name) }}" />
                     @error('name')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
@@ -65,7 +65,7 @@
                     <label for="exampleInputFile">Edit Img</label>
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile" name="course_image">
+                            <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
                             <label class="custom-file-label" for="exampleInputFile">Choose img</label>
                         </div>
                     </div>
@@ -73,22 +73,12 @@
 
 
 
-                <div class="mb-3">
-                    <label for="supervisor_id">SuperVisor Id</label>
-                    <select name="supervisor_id" class="form-control @error('supervisor_id') is-invalid @enderror">
-                        @foreach ($users as $user)
-                        <option @selected($user->id==$course->supervisor_id) value="{{$user->id}}">{{$user->id .' - '. $user->name}}</option>
-                        @endforeach
-                    </select>
-                    @error('supervisor_id')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
-                </div>
+
                 <div class="mb-3">
                     <label for="company_id">Company id</label>
                     <select name="company_id" class="form-control @error('company_id') is-invalid @enderror">
                         @foreach ($companies as $company)
-                        <option @selected($company->id==$course->company_id) value="{{$company->id}}">{{$company->id .' - '. $company->name}}</option>
+                        <option @selected($company->id==$expert->company_id) value="{{$company->id}}">{{$company->id .' - '. $company->name}}</option>
                         @endforeach
                     </select>
                     @error('company_id')
@@ -100,32 +90,15 @@
 
 
                 <div class="mb-3">
-                    <label for="description">Description</label>
-                    <input id="description" name="description" type="text" placeholder="Name" class="form-control @error('description') is-invalid @enderror " value="{{ old('description', $course->description) }}" />
-                    @error('description')
+                    <label for="hour_price">Hour price</label>
+                    <input id="hour_price" name="hour_price" type="text" placeholder="Name" class="form-control @error('hour_price') is-invalid @enderror " value="{{ old('hour_price', $expert->hour_price) }}" />
+                    @error('hour_price')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
 
                 </div>
 
 
-                <div class="mb-3">
-                    <label for="start_date">Start Date</label>
-                    <input id="start_date" name="start_date" type="date" placeholder="Name" class="form-control @error('start_date') is-invalid @enderror " value="{{ old('start_date', $course->start_date) }}" />
-                    @error('start_date')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
-
-                </div>
-
-                <div class="mb-3">
-                    <label for="end_date">End Date</label>
-                    <input id="end_date" name="end_date" type="date" placeholder="Name" class="form-control @error('end_date') is-invalid @enderror " value="{{ old('end_date', $course->end_date) }}" />
-                    @error('end_date')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
-
-                </div>
 
 
 

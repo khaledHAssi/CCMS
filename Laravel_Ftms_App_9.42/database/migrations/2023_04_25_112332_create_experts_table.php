@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('company_id');
             $table->string('name');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->double('hour_price', 10, 2);
             $table->timestamps();
         });

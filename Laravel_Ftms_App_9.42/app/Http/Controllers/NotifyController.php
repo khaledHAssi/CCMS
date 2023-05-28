@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\User;
 use App\Notifications\AppliedNotification;
 use Illuminate\Http\Request;
@@ -24,7 +25,9 @@ class NotifyController extends Controller
     public function read()
     {
         $user = Auth::user();
-
+    //  $applications =$user->notifications->implode('id',',');
+        // $notifications = Notification::latest('id')->get();
+        // return view('notifications', compact(['user','notifications']));
         return view('notifications', compact('user'));
     }
 

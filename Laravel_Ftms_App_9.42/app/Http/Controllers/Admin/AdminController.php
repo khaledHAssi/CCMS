@@ -18,7 +18,7 @@ class AdminController extends Controller
 
         //     App::setLocale($lang);
         // }
-    $notifications = Notification::paginate(env('PAGINATION_Notification_COUNT'));
+    $notifications = Notification::latest('id')->paginate(env('PAGINATION_Notification_COUNT'));
 
 
     $jsondata = [];
@@ -30,19 +30,7 @@ class AdminController extends Controller
         );
         array_push($jsondata,$mdsai);
     }
-    // $data =
 
-    // $object = new stdClass();
-    // foreach ($jsondata as $key => $value)
-    // {
-    //     $object = $value;
-    // }
-    // $notify = $notifications->toJson();
-    // dd($notify);
-        // $k =$notifications->toJson();
-        // $h =$k->object;
-    // dd($notifications[0]['data']);
-    // dd($jsondata);
 
     return response()->view('admin.index',compact('jsondata'));
     }
@@ -67,8 +55,4 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    // public function ShowUsers(){
-    //     $users = User::all();
-    //     return view('users',['users'=>$users]);
-    // }
 }

@@ -17,7 +17,7 @@ class ApplicationController extends Controller
         //
 
         $applications =Application::all();
-        return response()->view('admin.ApplicationIndex',compact('applications'));
+        return response()->view('admin.applications.index',compact('applications'));
     }
 
     /**

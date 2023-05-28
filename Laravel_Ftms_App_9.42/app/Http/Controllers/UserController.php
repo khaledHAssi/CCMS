@@ -41,7 +41,7 @@ class UserController extends Controller
                 'password' => [
                     'required', 'string',
                     Password::min(8)
-                        ->numbers()
+                    ->numbers()
                     ->letters()
                     ->symbols()
                     ->mixedCase()
@@ -145,8 +145,8 @@ class UserController extends Controller
 
 
         $user = User::findOrFail($id);
-        $user->delete();
-        if ($user->image != null) {
+       $deleted = $user->delete();
+        if ($user->image != null & $deleted) {
             Storage::delete($user->image);
         }
 

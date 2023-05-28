@@ -74,23 +74,22 @@
 
                 <div class="mb-3">
                     <label for="supervisor_id">SuperVisor Id</label>
-                    <select name="supervisor_id" class="form-control @error('supervisor_id') is-invalid @enderror">
+                    <select name="supervisor_id"id="supervisor_id" class="form-control @error('supervisor_id') is-invalid @enderror">
                         @foreach ($users as $user)
-                        @foreach ($courses as $course)
 
-                        @endforeach
-                        <option @selected($user->id==$course->supervisor_id) value="{{$user->id}}">{{$user->id .' - '. $user->name}}</option>
+                        <option  value="{{$user->id}}">{{$user->id .' - '. $user->name}}</option>
                         @endforeach
                     </select>
                     @error('supervisor_id')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
+
                 <div class="mb-3">
                     <label for="company_id">Company id</label>
                     <select name="company_id" class="form-control @error('company_id') is-invalid @enderror">
                         @foreach ($companies as $company)
-                        <option @selected($company->id==$course->company_id) value="{{$company->id}}">{{$company->id .' - '. $company->name}}</option>
+                        <option value="{{$company->id}}">{{$company->id .' - '. $company->name}}</option>
                         @endforeach
                     </select>
                     @error('company_id')
@@ -113,7 +112,7 @@
 
                 <div class="mb-3">
                     <label for="start_date">Start Date</label>
-                    <input id="start_date" name="start_date" type="text" placeholder="Name" class="form-control @error('start_date') is-invalid @enderror " />
+                    <input id="start_date" name="start_date" type="date" placeholder="Name" class="form-control @error('start_date') is-invalid @enderror " />
                     @error('start_date')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
@@ -122,7 +121,7 @@
 
                 <div class="mb-3">
                     <label for="end_date">End Date</label>
-                    <input id="end_date" name="end_date" type="text" placeholder="Name" class="form-control @error('end_date') is-invalid @enderror "  />
+                    <input id="end_date" name="end_date" type="date" placeholder="Name" class="form-control @error('end_date') is-invalid @enderror "  />
                     @error('end_date')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
@@ -132,7 +131,7 @@
 
 
 
-                <button class="btn btn-success px-5"><i class="fas fa-save"></i> Edit</button>
+                <button class="btn btn-success px-5"><i class="fas fa-save"></i> Add</button>
 
             </form>
         </div>

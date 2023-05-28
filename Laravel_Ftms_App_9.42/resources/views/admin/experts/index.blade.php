@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', 'All Courses')
+@section('title', 'All Experts')
 
 @section('content')
 
@@ -13,44 +13,38 @@
                 <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
             @endif
 
-            <h1>All Courses</h1>
+            <h1>All Experts</h1>
             <table class="table table-bordered">
                 <thead>
                     <tr  class="bg-dark text-white">
                         <th>ID</th>
-                        <th>Course Img</th>
-                        <th>Company Id</th>
-                        <th>SuperVisor Id</th>
+                        <th>Expert Img</th>
                         <th>Name</th>
-                        <th>Description</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
+                        <th>Company Id&Name</th>
+                        <th>Hour Price</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    @forelse ($courses as $course)
+                    @forelse ($experts as $expert)
                         <tr>
-                            <td>{{ $course->id }}</td>
-                    @if($course->image)
+                            <td>{{ $expert->id }}</td>
+                    @if($expert->image)
                             <td>
                             <img class="img-circle img-bordered-sm" height="65" width="65"
-                                    src="{{ Storage::url($course->image) }}" alt="course image">
+                                    src="{{ Storage::url($expert->image) }}" alt="expert image">
                             </td>
                     @else
                             <td style="color:red;">No Pic</td>
                     @endif
-                            <td>{{ $course->company->id }} - {{ $course->company->name }}</td>
-                            <td>{{ $course->user->id }} - <span style="font-size:90%">{{ $course->user->name }}</span></td>
-                            <td>{{ $course->name }}</td>
-                            <td>{{ $course->description }}</td>
-                            <td>{{ $course->start_date }}</td>
-                            <td>{{ $course->end_date }}</td>
+                            <td>{{ $expert->name }}</td>
+                            <td>{{ $expert->company_id}} - {{ $expert->company->name }}</td>
+                            <td>{{ $expert->hour_price }}</td>
 
                             <td>
-                                <a href="{{ route('admin.courses.edit', $course) }}" class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> </a>
-                                <form class="d-inline" action="{{ route('admin.courses.destroy', $course->id) }}" method="POST">
+                                <a href="{{ route('admin.experts.edit', $expert) }}" class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> </a>
+                                <form class="d-inline" action="{{ route('admin.experts.destroy', $expert->id) }}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <button onclick="return confirm('Are you sure!?')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>

@@ -8,9 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Expert extends Model
 {
     use HasFactory;
-    
-    public function available()
+    protected  $guarded = [] ;
+    public function AvailableTime()
     {
         return $this->hasMany(AvailableTime::class);
+    }
+    public function company()
+    {
+        return $this->belongsTo(Company::class)->withDefault();
     }
 }

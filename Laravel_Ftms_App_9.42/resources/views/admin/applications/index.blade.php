@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', 'All Companies')
+@section('title', 'All Applications')
 
 @section('content')
 
@@ -13,7 +13,7 @@
                 <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
             @endif
 
-            <h1>All Companies</h1>
+            <h1>All Application</h1>
             <table class="table table-bordered">
                 <thead>
                     <tr  class="bg-dark text-white">
@@ -32,7 +32,7 @@
 
                     @forelse ($applications as $application)
                         <tr>
-                            <td>{{ $application->id }}</td>
+                            <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $application->company_id }}</td>
                             <td>{{ $application->user_id }}</td>
                             <td>{{ $application->course_id }}</td>

@@ -20,6 +20,7 @@ class CourseController extends Controller
     {
         //
         $courses = Course::all();
+        $data = $courses->load('company','User');
         return response()->view('admin.courses.index',compact('courses'));
     }
 
@@ -31,10 +32,9 @@ class CourseController extends Controller
     public function create()
     {
         //
-        $courses = Course::all();
-        $users = DB::select('SELECT `id`, `name` FROM `users` WHERE `type` = "companySupervisor"');
-        $companies = DB::select('SELECT `id`, `name` FROM `companies` ');
-        return response()->view('admin.courses.create',compact(['users','companies','courses']));
+        $users = DB::select('SELECT * FROM `users` WHERE `type` = "companySupervisor"');
+        $companies = DB::select('SELECT * FROM `companies`');
+        return response()->view('admin.courses.create',compact(['users','companies']));
 
     }
 
@@ -56,19 +56,16 @@ class CourseController extends Controller
         $course = new Course;
 
         $course->company_id = $request->input('company_id');
-        $course->supervisor_id = $request->input('supervisor_id');
         $course->name = $request->input('name');
 
 
         $course->description = $request->input('description');
         $course->start_date = $request->input('start_date');
         $course->end_date = $request->input('end_date');
+        $course->supervisor_id = $request->input('supervisor_id');
 
 
         if ($request->hasFile('course_image')) {
-            if ($course->image != null) {
-                Storage::delete($course->image);
-            }
             $CourseImg = $request->file('course_image');
             $imageName = time() . '_image' . $course->name . '.' . $CourseImg->getClientOriginalExtension();
             $CourseImg->storePubliclyAs('courses', $imageName, ['disk' => 'public']);
