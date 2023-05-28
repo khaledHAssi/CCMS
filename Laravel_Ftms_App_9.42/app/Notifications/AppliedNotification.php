@@ -81,7 +81,7 @@ class AppliedNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'msg' => 'New Student '.$this->application->user->name.' Apply on ' . $this->application->course->name,
+            'msg' => 'New Student '.$this->application->user->name.' Applied on ' . $this->application->course->name,
             'url' => url('/applications')
         ];
     }

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class NotifyController extends Controller
 {
+
     public function send()
     {
         // return 'eeee';

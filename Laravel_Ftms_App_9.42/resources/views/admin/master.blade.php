@@ -127,28 +127,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
       <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
+
+      <li class="nav-item dropdown" >
+        <a class="nav-link" data-toggle="dropdown"  href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <span class="badge badge-warning navbar-badge">5</span>
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
+        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right" style="overflow: hidden">
+          <span class="dropdown-header">5 Notifications</span>
+
+          {{-- <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <i class="fas fa-envelope mr-2"></i> 4 new messages
             <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
+          </a> --}}
+          @yield('notification')
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
@@ -226,7 +219,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('admin.index')}}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 {{ __('main.Dashboard') }}
@@ -378,7 +371,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <ul class="nav nav-treeview">
-              
+
               <li class="nav-item">
                   <a href="{{route('admin.users.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -421,7 +414,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
       </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('admin.applications.index')}}" class="nav-link">
               <i class="nav-icon fas fa-file-alt"></i>
               <p>
                 {{ __('Applications') }}
