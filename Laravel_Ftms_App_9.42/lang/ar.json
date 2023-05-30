@@ -2,11 +2,12 @@
     "Dashboard":"الرئيسية",
     "Companies": "شركات",
     "Courses": "كورسات",
-    "Evalutions": "تقييمات",
+    "Users": "المستخدمين",
+    "Evaluations": "التقييمات",
     "Tasks": "مهام",
     "Experts": "خبراء",
     "Applications": "تطبيقات",
-    "Applied_Evaluations": "تقييم",
+    "Evaluations Answers": "اخصائيات التقييم ",
     "Appointments": "مواعيد",
     "Students": "الطلاب",
     "All_Companies": "كل الشركات",
@@ -14,7 +15,7 @@
     "Trash": "سلة المهملات",
     "Active_Page": "صفحة فعالة",
     "Inactive_Page": "صفحة غير فعالة",
-    "All_Evaluations": "كل التقييمات",
-    "AvailableTimes": "الاوقات المتاحة"
+    "All Evaluations": "كل التقييمات",
+    "Available Times": "الاوقات المتاحة"
 
 }

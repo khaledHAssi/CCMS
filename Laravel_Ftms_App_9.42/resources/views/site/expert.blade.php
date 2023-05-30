@@ -32,7 +32,7 @@
                             <th>Price</th>
                             <th>Book</th>
                         </tr>
-                        @foreach ($expert->available as $item)
+                        @foreach ($expert->AvailableTime as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->date }}</td>

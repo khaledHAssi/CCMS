@@ -21,5 +21,9 @@ class Company extends Model
     {
         return $this->hasMany(Expert::class);
     }
+    public function evaluations()
+    {
+        return $this->hasMany(Evaluation::class);
+    }
 
 }

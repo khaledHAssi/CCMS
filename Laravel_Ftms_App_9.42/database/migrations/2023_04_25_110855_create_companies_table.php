@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug')->nullable()->unique();//without nullable cant run the migration
             $table->string('image')->nullable();
             $table->text('description');
             $table->text('location')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('experts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id');
+            $table->foreignId('company_id')->constrained();
             $table->string('name');
             $table->string('image')->nullable();
             $table->double('hour_price', 10, 2);

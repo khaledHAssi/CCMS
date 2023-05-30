@@ -324,36 +324,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fab fa-wpforms"></i>
-                                <p>
-                                    {{ __('Evalutions') }}
-
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.evaluations.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            {{ __('All_Evaluations') }}
-
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.evaluations.create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            {{ __('Add New') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-calendar-check"></i>
                                 <p>
                                     {{ __('Tasks') }}
@@ -409,6 +379,58 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-tie"></i>
+                                <span style="font-size: 16px">
+                                    {{ __('Evaluation Answers') }}
+
+                                </span>
+                                <i class="right fas fa-angle-left"></i>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.evaluationAnswer.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ _('All Answers') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.evaluationAnswer.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ _('Add Answer') }}</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-tie"></i>
+                                <p>
+                                    {{ __('Evaluations') }}
+
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.evaluation.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ _('All Evaluations') }}</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.evaluation.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ _('Add Evaluation') }}</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-tie"></i>
                                 <p>
                                     {{ __('Experts') }}
 
@@ -431,11 +453,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
+
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-tie"></i>
                                 <p>
-                                    {{ __('AvailableTimes') }}
+                                    {{ __('Available Times') }}
 
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
@@ -465,17 +488,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     {{ __('Applications') }}
 
                                 </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.evaluations.applied') }}"
-                                style="font-size:19px; position: relative;"class="nav-link">
-                                <i style="font-size: 22px ;position: relative; left: 3.5px;"
-                                    class="nav-icon fas fa-file-signature"></i>
-                                <span>
-                                    {{ __('Applied_Evaluations') }}
-
-                                </span>
                             </a>
                         </li>
 

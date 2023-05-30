@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('appoinments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('expert_id');
-            $table->foreignId('avialble_time_id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('expert_id')->constrained();
+            $table->foreignId('availabletime_id')->constrained('availabletime','id');
             $table->string('payment_status');
             $table->double('price');
             $table->timestamps();

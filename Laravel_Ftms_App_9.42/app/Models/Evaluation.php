@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Evaluation extends Model
 {
     use HasFactory;
-    protected $guarded =[];
+    protected $guarded = [];
 
-    public function questions(){
-        return $this->hasMany(Question::class);
-    }
+    public function company(){
+        return $this->belongsTo(Company::class);
+        }
+
+
 }

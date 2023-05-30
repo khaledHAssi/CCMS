@@ -8,25 +8,23 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
+
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->enum('type', ['student', 'company'])->default('student');
+            $table->foreignId('company_id')->constrained();
+            $table->string('title');
+            $table->string('question');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('evaluations');
     }

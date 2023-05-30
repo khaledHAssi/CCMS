@@ -8,6 +8,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\AvailableTimeController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\EvaluationAnswerController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\NotifyController;
@@ -42,10 +43,10 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::resource('companies', CompanyController::class);
         Route::resource('courses', CourseController::class);
         Route::resource('experts', ExpertController::class);
+        Route::resource('evaluation',EvaluationController::class);
+        Route::resource('evaluationAnswer',EvaluationAnswerController::class);
+
         Route::resource('AvailableTimes', AvailableTimeController::class);
-        Route::get('evaluations/applied', [EvaluationController::class, 'applied'])->name('evaluations.applied');
-        Route::get('evaluations/applied/{id}', [EvaluationController::class, 'applied_data'])->name('evaluations.applied_data');
-        Route::resource('evaluations', EvaluationController::class);
         Route::resource('users', UserController::class);
         Route::resource('courses', CourseController::class);
         Route::get('users/sknlk/slkngjo/ksda/{id}', [UserController::class , 'show']);
@@ -63,8 +64,6 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::get('expert/{id}', [SiteController::class, 'expert'])->name('expert');
         Route::post('book-time', [SiteController::class, 'book_time'])->name('book_time');
         Route::get('book-time-status/{id}', [SiteController::class, 'book_time_status'])->name('book_time_status');
-        Route::get('evaluation/{id}', [SiteController::class, 'evaluation'])->name('evaluation')->middleware('auth');
-        Route::post('evaluation_applied/{id}', [SiteController::class, 'evaluation_applied'])->name('evaluation_applied')->middleware('auth');
 
     });
 

@@ -31,7 +31,9 @@ class SiteController extends Controller
             // عشان يعرض  الشركات اللي دوراتها ما بدت او اليوم بتبدا
         })->latest('id')->get();
 
-        $experts = Expert::whereHas('available', function(Builder $query) {
+        // $experts = Expert::whereHas('available', function(Builder $query) {
+            // dd(Expert::whereHas('AvailableTime'));
+        $experts = Expert::whereHas('AvailableTime', function(Builder $query) {
             $query->where('status', 1 )->whereDate('date', '>=', date('Y-m-d') );
         })->latest('id')->get();
         //---------------------------------------------------------------------------------
@@ -179,32 +181,6 @@ class SiteController extends Controller
         return redirect()->back()->with('msg', 'Course Canceled Successfully');
     }
 
-    public function evaluation($id)
-    {
-        $evaluation = Evaluation::findOrFail($id);
 
-        // if( date('d-m-Y') > '04-12-2022' ) {
-        //     dd('Expire');
-        // }
-
-        if($evaluation->type != Auth::user()->type && Auth::user()->type != 'super-admin') {
-            abort(403, 'You are not Authorize');
-        }
-
-        // dd(Auth::user());
-
-        return view('site.evaluation', compact('evaluation'));
-    }
-
-    public function evaluation_applied(Request $request, $id)
-    {
-        AppliedEvaluation::create([
-            'user_id' => Auth::id(),
-            'evaluation_id' => $id,
-            'data' => json_encode($request->answer)
-        ]);
-
-        return redirect()->route('ftms.index');
-    }
 
 }

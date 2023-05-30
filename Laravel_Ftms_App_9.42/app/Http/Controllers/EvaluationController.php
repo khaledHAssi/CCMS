@@ -2,164 +2,113 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AppliedEvaluation;
 use App\Models\Evaluation;
-use App\Models\Question;
+use App\Models\EvaluationAnswer;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class EvaluationController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $evaluations = Evaluation::latest('id')->paginate(env('PAGINATION_COUNT'));
-
-        return view('admin.evaluations.index', compact('evaluations'));
+        //
+       $evaluation = Evaluation::all();
+        return response()->view('admin.Evaluation.index' , ['evaluation' => $evaluation]);
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('admin.evaluations.create');
+        //
+
+       $evaluation = Evaluation::all();
+        $companies = DB::select('SELECT `id`, `name` FROM `companies` ');
+        ;
+       return response()->view('admin.Evaluation.create' , ['evaluation' => $evaluation , 'companies'=>$companies]);
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+            //
+            $validator = validator($request->all(),[
+                'title' => 'required|string|max:30',
+                'question' => 'required',
 
-        $request->validate([
-            'name' => 'required',
-            'type' => 'required'
-        ]);
+            ]);
 
-        $evaluation = Evaluation::create([
-            'name' => $request->name,
-            'type' => $request->type,
-        ]);
-
-        if($request->has('questions')) {
-            foreach($request->questions as $q) {
-                Question::create([
-                    'question' => $q,
-                    'evaluation_id' => $evaluation->id
-                ]);
+            if (!$validator->fails()) {
+                $evaluation = new Evaluation();
+                $evaluation->title = $request->input('title');
+                $evaluation->question = $request->input('question');
+                $evaluation->company_id = $request->input('company_id');
+                $save = $evaluation->save();
             }
-        }
 
-        return redirect()->route('admin.evaluations.index')->with('msg', 'Evaluation Created Successfully')->with('type', 'success');
+            return redirect()->route('admin.evaluation.index');
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Evaluation $evaluation)
     {
         //
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $evaluation = Evaluation::find($id);
 
-        return view('admin.evaluations.edit', compact('evaluation'));
+        $evaluation = Evaluation::findOrFail($id);
+        $companies = DB::select('SELECT `id`, `name` FROM `companies` ');
+        // $evaluations = DB::select('SELECT * FROM `evaluations` ');
+
+        return response()->view('admin.evaluation.edit' , ['evaluation' => $evaluation,'companies'=>$companies]);
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
-
-        $evaluation = Evaluation::find($id);
-
-        $request->validate([
-            'name' => 'required',
-            'type' => 'required'
+        //
+        $validator = validator($request->all() , [
+            'title' => 'required|string|max:30',
+            'question' => 'required',
+            'company_id' => 'required',
         ]);
+        if (!$validator->fails()) {  // يعني لو التحقق نجح وما قشل احقظلي البيانات وهكذا
+            $evaluation = Evaluation::findOrFail($id);
+            $evaluation->title = $request->input('title');
 
-        $evaluation->update([
-            'name' => $request->name,
-            'type' => $request->type,
-        ]);
+            $evaluation->question = $request->input('question');
+            $evaluation->company_id = $request->input('company_id');
+            $save = $evaluation->save();
 
-        if($request->has('questions')) {
-            Question::where('evaluation_id', $id)->delete();
-
-            foreach($request->questions as $idd => $q) {//cause he sent the question as an array
-                Question::create([
-                    'question' => $q,
-                    'evaluation_id' => $evaluation->id//to link the question with evaluation id
-                ]);
-                // Question::updateOrCreate([
-                //     'id' => $idd,
-                //     'evaluation_id' => $id
-                // ], [
-                //     'question' => $q
-                // ]);
-            }
         }
-
-        return redirect()->route('admin.evaluations.index')->with('msg', 'Evaluation Updated Successfully')->with('type', 'info');
-
+        return redirect()->route('admin.evaluation.index');
     }
+
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-/*
- * $e = Evaluation::find($id);
- * $e->questions()->delete();
- * $e->delete();
-*/
-        Question::where('evaluation_id', $id)->delete();
-        Evaluation::destroy($id);
+        //
+        $deleted = Evaluation::destroy($id);
+        return redirect()->back();
 
-
-        return redirect()->route('admin.evaluations.index')->with('msg', 'Evaluation Deleted Successfully')->with('type', 'danger');
-    }
-
-    public function applied()
-    {
-        $applied = AppliedEvaluation::with('user', 'evaluation')->latest('id')->paginate(env('PAGINATION_COUNT'));
-        return view('admin.evaluations.applied', compact('applied'));
-    }
-
-    public function applied_data($id)
-    {
-        $applied = AppliedEvaluation::with('user', 'evaluation')->findOrFail($id);
-        return view('admin.evaluations.applied_data', compact('applied'));
     }
 }
