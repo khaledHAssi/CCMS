@@ -46,9 +46,11 @@ class AvailableTimeController extends Controller
     {
         $validator = $request->validate([
         "link" => 'nullable|url',
+        "expert_id" => 'required',
+        "date" => 'required|date',
         'price'=>'required|numeric',
-        'hour_to'=>'required',
-        'hour_from'=>'required',
+        'hour_to'=>'required|numeric',
+        'hour_from'=>'required|numeric',
     ]);
 
         $availableTime = new AvailableTime ;
@@ -105,9 +107,11 @@ class AvailableTimeController extends Controller
      {
         $validator = $request->validate([
             "link" => 'nullable|url',
+            "expert_id" => 'required',
+            "date" => 'required|date',
             'price'=>'required|numeric',
-            'hour_to'=>'required',
-            'hour_from'=>'required',
+            'hour_to'=>'required|numeric',
+            'hour_from'=>'required|numeric',
         ]);
         $availableTime = AvailableTime::findOrFail($id);
         $availableTime->expert_id = $request->input('expert_id');

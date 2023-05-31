@@ -49,7 +49,7 @@ class AnswerController extends Controller
     {
         //
         $validator = validator($request->all(),[
-
+            'solution'=>'required'
         ]);
 
         if (!$validator->fails()) {
@@ -100,7 +100,7 @@ class AnswerController extends Controller
     {
         //
         $validator = validator($request->all(),[
-
+            'solution'=>'required'
         ]);
 
         if (!$validator->fails()) {

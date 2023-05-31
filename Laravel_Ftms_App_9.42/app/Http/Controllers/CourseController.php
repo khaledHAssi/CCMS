@@ -50,6 +50,11 @@ class CourseController extends Controller
         $validator =
         $request->validate([
              'name' => 'required|string|min:3|max:20|',
+             'description' => 'required|string',
+             'start_date' => 'required|date',
+             'end_date' => 'required|date',
+             'company_id' => 'required',
+             'supervisor_id' => 'required',
              'image' => 'nullable|image|mimes:jpg,png|max:1024',
 
         ]);
@@ -114,7 +119,12 @@ class CourseController extends Controller
         $validator =
         $request->validate([
              'name' => 'required|string|min:3|max:20|',
+             'description' => 'required|string',
+             'start_date' => 'required|date',
+             'end_date' => 'required|date',
              'image' => 'nullable|image|mimes:jpg,png|max:1024',
+             'company_id' => 'required',
+             'supervisor_id' => 'required',
 
         ]);
         $course = Course::findOrFail($id);

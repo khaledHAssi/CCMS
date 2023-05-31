@@ -42,6 +42,12 @@ class CompanyController extends Controller
     // public function store(Request $request)
     {
         // $request->file()->move();
+        $validator =
+        $request->validate([
+             'name' => 'required|string|min:3|max:20|',
+             'description' => 'required|string|',
+             'image' => 'nullable|image|mimes:jpg,png|max:1024',
+        ]);
         $path = $request->file('image')->store('/uploads', 'custom');
 
         // $company = new Company();

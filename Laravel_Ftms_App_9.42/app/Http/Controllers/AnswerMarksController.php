@@ -45,6 +45,7 @@ class AnswerMarksController extends Controller
     {
         //
         $validator = validator($request->all(),[
+            'student_mark'=>'required|min:1|max:100'
         ]);
 
         if (!$validator->fails()) {
@@ -97,6 +98,7 @@ class AnswerMarksController extends Controller
         //
         $answer_marks = AnswerMarks::findOrFail($id);
         $validator = validator($request->all(),[
+            'student_mark'=>'required|min:1|max:100'
         ]);
 
         if (!$validator->fails()) {
