@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', 'All Students')
+@section('title', 'All Users')
 
 @section('content')
 
@@ -13,7 +13,7 @@
                 {{-- <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div> --}}
             {{-- @endif --}}
 
-            <h1>All Students</h1>
+            <h1>All Users</h1>
             <table class="table table-bordered">
                 <thead>
                     <tr  class="bg-dark text-white">

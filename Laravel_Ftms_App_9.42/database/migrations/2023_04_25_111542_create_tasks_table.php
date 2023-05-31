@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('manager_id')->constrained('users','id');
-            $table->text('description');
-            $table->date('deadline');
-            $table->boolean('status')->default(1);
+            $table->foreignId('company_id')->constrained('companies','id');
+            $table->foreignId('course_id')->constrained('courses','id');
+            $table->text('question');
+            $table->integer('main_mark');
             $table->timestamps();
         });
     }

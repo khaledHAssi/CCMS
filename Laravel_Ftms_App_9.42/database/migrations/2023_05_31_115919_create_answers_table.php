@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('available_times', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('expert_id')->constrained();
-            $table->string('link')->nullable();
-            $table->date('date');
-            $table->time('hour_from');
-            $table->time('hour_to');
-            $table->boolean('status')->default(1);
-            $table->double('price', 10, 2)->nullable();
+            $table->foreignId('task_id')->constrained('tasks','id');
+            $table->foreignId('user_id')->constrained('users','id');
+            $table->string('solution');
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('available_times');
+        Schema::dropIfExists('answers');
     }
 };
