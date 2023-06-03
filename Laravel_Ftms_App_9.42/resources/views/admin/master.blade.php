@@ -260,102 +260,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.companies.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-laptop-house"></i>
                                 <p>
-                                    {{ __('main.Companies') }}
-                                    <i class="right fas fa-angle-left"></i>
+                                    {{ __('Companies') }}
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.companies.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            {{ __('All_Companies') }}
-                                        </p>
 
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.companies.create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            {{ __('Add_New') }}
-
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.companies.trash') }}" class="nav-link">
-                                        {{-- <a href="#" class="nav-link"> --}}
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            {{ __('Trash') }}
-
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
 
 
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.courses.index') }}" class="nav-link">
                                 <i class="nav-icon fab fa-wpforms"></i>
                                 <p>
                                     {{ __('Courses') }}
 
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
+                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.courses.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            {{ __('All_Courses') }}
 
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.courses.create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            {{ __('Add New') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-tie"></i>
-                                <span style="font-size: 16px">
-                                    {{ __('Evaluation Answers') }}
-
-                                </span>
-                                <i class="right fas fa-angle-left"></i>
-                            </a>
-                            <ul class="nav nav-treeview">
-
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.evaluationAnswer.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('All Answers') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.evaluationAnswer.create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('Add Answer') }}</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -375,39 +301,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.evaluation.create') }}" class="nav-link">
+                                    <a href="{{ route('admin.evaluationAnswer.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('Add Evaluation') }}</p>
+                                        <p>{{ _('All Answers') }}</p>
                                     </a>
                                 </li>
+
                             </ul>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-tie"></i>
-                                <p>
-                                    {{ __('Answers') }}
 
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.answers.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('Answers') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.answers.create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('Add Answer') }}</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-tie"></i>
@@ -425,13 +328,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <p>{{ _('Tasks') }}</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.tasks.create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('Add Task') }}</p>
-                                    </a>
-                                </li>
+
+                                        <li class="nav-item">
+                                            <a href="{{ route('admin.answers.index') }}" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>{{ _('Answers') }}</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('admin.answer_marks.index') }}" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>{{ _('Answers mark') }}</p>
+                                            </a>
+                                        </li>
                             </ul>
+
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -447,43 +358,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <li class="nav-item">
                                     <a href="{{ route('admin.experts.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('All_Experts') }}</p>
+                                        <p>{{ _('Experts') }}</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.experts.create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('Add_Expert') }}</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-tie"></i>
-                                <p>
-                                    {{ __('Available Times') }}
-
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-
                                 <li class="nav-item">
                                     <a href="{{ route('admin.AvailableTimes.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('All_AvailableTimes') }}</p>
+                                        <p>{{ _('AvailableTimes') }}</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.AvailableTimes.create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('Add_AvailableTime') }}</p>
-                                    </a>
-                                </li>
+
                             </ul>
                         </li>
+
+
 
                         </li>
                         <li class="nav-item">

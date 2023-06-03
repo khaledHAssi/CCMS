@@ -15,13 +15,12 @@
                 <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
             @endif
 
-<<<<<<< HEAD
-            <h1>Companies</h1>
             <table class="table table-bordered">
-=======
             <h1>All Companies</h1>
+            <a href="{{ route('admin.companies.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
+            class="btn btn-success mr-5">{{ __('Add New') }}</a>
+
             <table id="example" class="table table-bordered table-hover">
->>>>>>> 5e83af04c7df8bcb9f54713671a160e2e1bbe347
                 <thead>
                     <tr  class="bg-dark text-white">
                         <th>ID</th>
