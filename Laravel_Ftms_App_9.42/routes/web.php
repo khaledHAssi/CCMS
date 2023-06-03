@@ -40,7 +40,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
         Route::post('/settings', [AdminController::class, 'settings_store'])->name('settings_store');
 
-    Route::get('companies/trash', [CompanyController::class, 'trash'])->name('companies.trash');
+        Route::get('companies/trash', [CompanyController::class, 'trash'])->name('companies.trash');
         Route::get('companies/{id}/restore', [CompanyController::class, 'restore'])->name('companies.restore');
         Route::delete('companies/{id}/forcedelete', [CompanyController::class, 'forcedelete'])->name('companies.forcedelete');
         Route::resource('companies', CompanyController::class);
@@ -49,16 +49,15 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::resource('answers', AnswerController::class);
         Route::resource('answer_marks', AnswerMarksController::class);
         Route::resource('experts', ExpertController::class);
-        Route::resource('evaluation',EvaluationController::class);
-        Route::resource('evaluationAnswer',EvaluationAnswerController::class);
+        Route::resource('evaluation', EvaluationController::class);
+        Route::resource('evaluationAnswer', EvaluationAnswerController::class);
 
         Route::resource('AvailableTimes', AvailableTimeController::class);
         Route::resource('users', UserController::class);
         Route::resource('courses', CourseController::class);
-        Route::get('users/sknlk/slkngjo/ksda/{id}', [UserController::class , 'show']);
-
+        Route::get('users/sknlk/slkngjo/ksda/{id}', [UserController::class, 'show']);
     });
-    Route::resource('applications',ApplicationController::class);
+    Route::resource('applications', ApplicationController::class);
 
 
     Route::name('ftms.')->group(function () {
@@ -70,13 +69,13 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::get('expert/{id}', [SiteController::class, 'expert'])->name('expert');
         Route::post('book-time', [SiteController::class, 'book_time'])->name('book_time');
         Route::get('book-time-status/{id}', [SiteController::class, 'book_time_status'])->name('book_time_status');
-
+        Route::get('site-profile', [SiteController::class, 'site_profile'])->name('site_profile');
     });
 
     Route::get('send-notify', [NotifyController::class, 'send']);
     Route::get('notify/{id}', [NotifyController::class, 'notify'])->name('mark-read');
-Route::get('read-notify', [NotifyController::class, 'read'])->name('ReadNotification');
-Auth::routes(['verify' => true]);
+    Route::get('read-notify', [NotifyController::class, 'read'])->name('ReadNotification');
+    Auth::routes(['verify' => true]);
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 });

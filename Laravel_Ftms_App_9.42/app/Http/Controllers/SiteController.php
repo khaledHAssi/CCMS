@@ -181,6 +181,9 @@ class SiteController extends Controller
         return redirect()->back()->with('msg', 'Course Canceled Successfully');
     }
 
-
+    public function site_profile()
+    {
+        return view('site.profile');
+    }
 
 }
