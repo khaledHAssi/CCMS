@@ -33,8 +33,8 @@ class CompanyRequest extends FormRequest
         return [
             'name' => ['required', 'min:2', 'string'],
             'image' => [$req, 'image', 'mimes:png,jpg,jpeg,svg', 'max:2048'],
-            'description' => ['required', new TextLength(5)]
-            // 'description' => 'required'
+            'description' => ['required', new TextLength(5)],
+            'location' => ['starts_with:<iframe src="https://www.google.com/maps','ends_with:</iframe>'],
         ];
     }
 }

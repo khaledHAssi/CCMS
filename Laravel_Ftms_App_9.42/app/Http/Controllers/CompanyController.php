@@ -39,14 +39,8 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(CompanyRequest $request)
-    // public function store(Request $request)
     {
-        // $request->file()->move();
         $path = $request->file('image')->store('/uploads', 'custom');
-
-        // $company = new Company();
-        // $company->name = $request->name;
-        // $company->save();
 
         // $slug = strtolower($request->name);
         // $slug = str_replace(' ', '-', $slug);
@@ -59,8 +53,6 @@ class CompanyController extends Controller
             $slug = $slug . '-'.$slugCount;
         }
 
-        // dd($slugCount);
-
         Company::create([
             'name' => $request->name,
             'slug' => $slug,
@@ -69,7 +61,7 @@ class CompanyController extends Controller
             'location' => $request->location,
         ]);
 
-        return redirect('admin/companies')->with('msg', 'Company Created Successfully')->with('type', 'success');
+        return redirect()->route('admin.companies.index')->with('msg', 'Company Created Successfully')->with('type', 'success');
     }
 
     /**

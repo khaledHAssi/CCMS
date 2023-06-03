@@ -168,15 +168,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     @php
                         $name = Auth::user()->name ?? '';
                         $src = 'https://ui-avatars.com/api/?background=random&name=' . $name;
-
+                        
                         if (Auth::user()->image) {
                             $img = Auth::user()->image;
-                            $src = asset('uploads/' . $img);
+                            $src = asset('public/uploads/' . $img); //public\storage\users
                         }
                     @endphp
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <img width="30" height="30" style="margin-top: -5px;object-fit: contain"
-                            src="{{ $src }}" class="img-circle elevation-2" alt="User Image">
+
+                        <img class="img-circle img-bordered-sm elevation-2" height="38" width="38"
+                            style="margin-top: -5px; " src="{{ Storage::url(Auth::user()->image) }}" alt="user image">
                         {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
@@ -248,7 +249,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
 
-                        {{-- li -> menu-open | a -> active --}}
+                        <li class="nav-item">
+                            <a href="{{ route('admin.users.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users "></i>
+                                <p>
+                                    {{ __('Users') }}
+
+                                </p>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -344,33 +353,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Inactive Page</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-users "></i>
-
-                                <p>
-                                    {{ __('Users') }}
-                                    <i class="right fas fa-angle-left"></i>
-
-
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.users.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>All User</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.users.create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Add User</p>
                                     </a>
                                 </li>
                             </ul>

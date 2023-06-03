@@ -26,13 +26,13 @@
 
                 </div>
 
+                <img width="100" class="rounded float-start" src="{{ asset($company->image) }}" alt="">
                 <div class="mb-3">
                     <label for="image">Image</label>
                     <input id="image" name="image" type="file" class="form-control @error('image') is-invalid @enderror " />
                     @error('image')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
-                    <img width="80" src="{{ asset($company->image) }}" alt="">
                 </div>
 
                 <div class="mb-3">
@@ -51,7 +51,7 @@
                     @enderror
                 </div>
 
-                <button class="btn btn-success px-5"><i class="fas fa-save"></i> Add</button>
+                <button class="btn btn-success px-5"><i class="fas fa-save"></i> save</button>
 
             </form>
         </div>

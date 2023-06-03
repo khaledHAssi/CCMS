@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('availableTime', function (Blueprint $table) {
+        Schema::create('available_times', function (Blueprint $table) {
             $table->id();
             $table->foreignId('expert_id')->constrained();
             $table->string('link')->nullable();

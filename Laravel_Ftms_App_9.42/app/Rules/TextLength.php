@@ -27,7 +27,7 @@ class TextLength implements Rule
     public function passes($attribute, $value)
     {
         // dd(str_word_count(strip_tags($value)));
-        return str_word_count(strip_tags($value)) >= $this->count;
+        return str_word_count(strip_tags($value)) >= $this->count; 
     }
 
     /**
@@ -37,6 +37,7 @@ class TextLength implements Rule
      */
     public function message()
     {
-        return 'من فضلك اكتبلك كمان كلمتين زيادة';
+        // return 'من فضلك أكمل عدد الكلمات الى عشرة كلمات';
+        return  __('Please complete the number of words to ten words');
     }
 }

@@ -37,7 +37,7 @@ class UserController extends Controller
                 'phone' => 'nullable|numeric|digits:12|',
                 'status' => 'nullable|string|in:on',
                 'email' => 'required|string|email',
-                // 'image' => 'required|image|mimes:jpg,png|max:3024',
+                'user_image' => 'required|image|mimes:jpg,png|max:1024',
                 'password' => [
                     'required', 'string',
                     Password::min(8)
@@ -49,7 +49,7 @@ class UserController extends Controller
                 ],
             ]);
 
-
+// dd($request->status);
         $user->name = $request->input('name');
         $user->username = $request->input('username');
         $user->phone = $request->input('phone');
@@ -58,8 +58,11 @@ class UserController extends Controller
         $user->password = Hash::make($request->input($request->input('password')));
         $user->created_at = $request->input('created_at');
         $user->updated_at = $request->input('updated_at');
-        if ($request->status) {
+        
+        if ($request->status == 'on') {
             $user->status = 1;
+        }else{
+            $user->status = 0;
         }
 
         if ($request->hasFile('user_image')) {
@@ -122,8 +125,10 @@ class UserController extends Controller
             $user->password = Hash::make($request->input('password'));
         }
 
-        if ($request->status) {
+        if ($request->status == 'on') {
             $user->status = 1;
+        }else{
+            $user->status = 0;
         }
 
         if ($request->hasFile('user_image')) {

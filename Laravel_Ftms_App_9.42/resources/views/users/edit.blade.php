@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @php
-    $title = "Edit Students"
+    $title = "Edit Users"
 @endphp
 
 @section('title', $title)
@@ -15,7 +15,7 @@
             <form action="{{ route('admin.users.update', $user) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('put')
-                <div class="card-body">
+                {{-- <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert"
@@ -28,10 +28,8 @@
                                 @endforeach
                             </ul>
                         </div>
-                </div>
-                @endif
-
-                @csrf
+                    @endif
+                </div> --}}
 
                 <div class="mb-3">
                     <label for="name">Name</label>
@@ -61,13 +59,14 @@
 
                 </div>
                 <div class="mb-3">
-                    <label for="type">Type</label>
+                    <label for="type">Type</label> 
+                    {{-- ['student', 'companyManager', 'companySupervisor', 'doctor', 'super-admin'] --}}
                     <select name="type" class="form-control @error('type') is-invalid @enderror">
-                        <option @selected(old('type') == 'Student') value="student">Student</option>
-                        <option @selected(old('type') == 'companySupervisor') value="companySupervisor">CompanySupervisor</option>
-                        <option @selected(old('type') == 'companyManager') value="companyManager">CompanyManager</option>
-                        <option @selected(old('type') == 'super-admin') value="super-admin">SuperAdmin</option>
-                        <option @selected(old('type') == 'doctor') value="doctor">Doctor</option>
+                        <option @selected($user->type == 'student' || old('type') == 'student') value="student">Student</option>
+                        <option @selected($user->type == 'companySupervisor' || old('type') == 'companySupervisor') value="companySupervisor">CompanySupervisor</option>
+                        <option @selected($user->type == 'companyManager' || old('type') == 'companyManager') value="companyManager">CompanyManager</option>
+                        <option @selected($user->type == 'super-admin' || old('type') == 'super-admin') value="super-admin">SuperAdmin</option>
+                        <option @selected($user->type == 'doctor' || old('type') == 'doctor') value="doctor">Doctor</option>
                     </select>
                     @error('type')
                         <small class="invalid-feedback">{{ $message }}</small>
@@ -92,7 +91,9 @@
                 </div>
 
                 <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                    <input type="checkbox" class="custom-control-input"id="status"name="status">
+                    <input type="checkbox" @if ($user->status == 1)
+                    checked
+                    @endif class="custom-control-input" id="status" name="status">
                     <label class="custom-control-label" for="status">User Active Status</label>
                 </div>
 

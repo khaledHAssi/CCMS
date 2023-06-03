@@ -1,5 +1,5 @@
 {
-    "Dashboard":"الرئيسية",
+    "Dashboard": "الرئيسية",
     "Companies": "شركات",
     "Courses": "كورسات",
     "Users": "المستخدمين",
@@ -16,6 +16,7 @@
     "Active_Page": "صفحة فعالة",
     "Inactive_Page": "صفحة غير فعالة",
     "All Evaluations": "كل التقييمات",
-    "Available Times": "الاوقات المتاحة"
+    "Available Times": "الاوقات المتاحة",
+    "Please complete the number of words to ten words": "من فضلك أكمل عدد الكلمات الى عشرة كلمات"
 
 }
