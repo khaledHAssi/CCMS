@@ -20,7 +20,10 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Evaluation Answers</h1>
+              <h1 class="m-0">Evaluation answers</h1>
+              <a href="{{ route('admin.evaluationAnswer.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
+              class="btn btn-success mr-5">{{ __('Add New') }}</a>
+
             </div><!-- /.col -->
           </div><!-- /.row -->
         <div class="row">

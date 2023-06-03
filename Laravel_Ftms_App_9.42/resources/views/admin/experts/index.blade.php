@@ -14,6 +14,9 @@
             @endif
 
             <h1>All Experts</h1>
+            <a href="{{ route('admin.experts.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
+            class="btn btn-success mr-5">{{ __('Add New') }}</a>
+
             <table class="table table-bordered">
                 <thead>
                     <tr  class="bg-dark text-white">
