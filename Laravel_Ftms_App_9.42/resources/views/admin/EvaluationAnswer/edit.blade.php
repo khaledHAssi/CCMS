@@ -18,16 +18,19 @@
                         @csrf
                         <div class="card-body">
                             @if ($errors->any())
-                            <div class="alert alert-danger alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <h5><i class="icon fas fa-ban"></i> validation errors</h5>
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                              </div>
-                            @endif
+                                <div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">×</button>
+                                    <h5><i class="icon fas fa-ban"></i>validation error</h5>
+
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                        </div>
+                        @endif
 
                             <div class="form-group">
                                 <label>select your evaluation</label>
@@ -48,7 +51,6 @@
                                 <input type="number" class="form-control" name="answer_type" id="answer_type"
                                 value="{{old('answer_type') ?? $evaluationAnswer->answer_type}}"    placeholder="answer_type">
                             </div>
-                        </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer">

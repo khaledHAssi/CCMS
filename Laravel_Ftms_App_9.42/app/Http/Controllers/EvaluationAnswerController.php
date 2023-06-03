@@ -43,7 +43,7 @@ class EvaluationAnswerController extends Controller
             //
             $validator = validator($request->all(),[
                 'reason' => 'required|string|max:30',
-                'answer_type' => 'required',
+                'answer_type' => 'required|numeric|min:1|max:100',
                 'evaluation_id'=>'required',
             ]);
 
@@ -88,7 +88,7 @@ class EvaluationAnswerController extends Controller
 
         $validator = validator($request->all() , [
             'reason' => 'required|string|max:30',
-            'answer_type' => 'required',
+            'answer_type' => 'required|numeric|min:1|max:100',
             'evaluation_id'=>'required',
         ]);
         if (!$validator->fails()) {  // يعني لو التحقق نجح وما قشل احقظلي البيانات وهكذا

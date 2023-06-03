@@ -47,6 +47,8 @@ class ExpertController extends Controller
         $validator =
         $request->validate([
              'name' => 'required|string|min:3|max:20|',
+             'hour_price' => 'required|numeric|min:5|max:20|',
+             'company_id' => 'required',
              'image' => 'nullable|image|mimes:jpg,png|max:1024',
 
         ]);
@@ -110,6 +112,8 @@ class ExpertController extends Controller
         $validator =
         $request->validate([
              'name' => 'required|string|min:3|max:20|',
+             'hour_price' => 'required|numeric|min:5|max:20|',
+             'company_id' => 'required',
              'image' => 'nullable|image|mimes:jpg,png|max:1024',
 
         ]);

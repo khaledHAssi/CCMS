@@ -40,8 +40,9 @@ class EvaluationController extends Controller
     {
             //
             $validator = validator($request->all(),[
-                'title' => 'required|string|max:30',
+                'title' => 'required|string|max:50',
                 'question' => 'required',
+                'company_id' => 'required',
 
             ]);
 
@@ -84,9 +85,10 @@ class EvaluationController extends Controller
     {
         //
         $validator = validator($request->all() , [
-            'title' => 'required|string|max:30',
+            'title' => 'required|string|max:50',
             'question' => 'required',
             'company_id' => 'required',
+
         ]);
         if (!$validator->fails()) {  // يعني لو التحقق نجح وما قشل احقظلي البيانات وهكذا
             $evaluation = Evaluation::findOrFail($id);

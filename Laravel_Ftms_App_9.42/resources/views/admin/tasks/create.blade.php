@@ -9,12 +9,12 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Create </h3>
+                        <h3 class="card-title">Create Task</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
 
-                    <form method="POST" action="{{ route('admin.evaluation.store')}}">
+                    <form method="POST" action="{{ route('admin.tasks.store')}}">
                     <form>
                         @csrf
                         <div class="card-body">
@@ -43,15 +43,32 @@
                                     <small class="invalid-feedback">{{ $message }}</small>
                                 @enderror
                             </div>
+                            <div class="mb-3">
+                                <label for="course_id">Course Id</label>
+                                <select name="course_id"id="course_id" class="form-control @error('course_id') is-invalid @enderror">
+                                    @foreach ($courses as $course)
 
-                            <div class="form-group">
-                                <label for="title">title</label>
-                                <input type="text" class="form-control" name="title" placeholder="Enter title">
+                                    <option  value="{{$course->id}}">{{$course->id .' - '. $course->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('course_id')
+                                    <small class="invalid-feedback">{{ $message }}</small>
+                                @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="title">question</label>
-                                <input type="text" class="form-control" name="question" placeholder="Enter question">
-                              </div>
+
+
+                        <div class="form-group">
+                            <label for="Question">Question</label>
+                            <input type="text" class="form-control" name="question" placeholder="Enter question">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" name="title" placeholder="Enter title">
+                        </div>
+                        <div class="form-group">
+                               <label for="main_mark">Main Mark</label>
+                               <input type="number" class="form-control" name="main_mark" placeholder="Enter main_mark">
+                        </div>
                         </div>
                         <!-- /.card-body -->
 

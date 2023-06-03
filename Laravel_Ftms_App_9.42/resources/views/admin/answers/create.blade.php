@@ -9,12 +9,12 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Create </h3>
+                        <h3 class="card-title">Add answers</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
 
-                    <form method="POST" action="{{ route('admin.evaluation.store')}}">
+                    <form method="POST" action="{{ route('admin.answers.store')}}">
                     <form>
                         @csrf
                         <div class="card-body">
@@ -32,26 +32,36 @@
                             @endif
 
                             <div class="mb-3">
-                                <label for="company_id">Company Id</label>
-                                <select name="company_id"id="company_id" class="form-control @error('company_id') is-invalid @enderror">
-                                    @foreach ($companies as $company)
+                                <label for="task_id">Task id</label>
+                                <select name="task_id"id="task_id" class="form-control @error('task_id') is-invalid @enderror">
+                                    @foreach ($tasks as $task)
 
-                                    <option  value="{{$company->id}}">{{$company->id .' - '. $company->name}}</option>
+                                    <option  value="{{$task->id}}">{{$task->id .' - '. $task->title}}</option>
                                     @endforeach
                                 </select>
-                                @error('company_id')
+                                @error('task_id')
+                                    <small class="invalid-feedback">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="user_id">User id</label>
+                                <select name="user_id"id="user_id" class="form-control @error('user_id') is-invalid @enderror">
+                                    @foreach ($users as $user)
+
+                                    <option  value="{{$user->id}}">{{$user->id .' - '. $user->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('user_id')
                                     <small class="invalid-feedback">{{ $message }}</small>
                                 @enderror
                             </div>
 
-                            <div class="form-group">
-                                <label for="title">title</label>
-                                <input type="text" class="form-control" name="title" placeholder="Enter title">
-                            </div>
-                            <div class="form-group">
-                                <label for="title">question</label>
-                                <input type="text" class="form-control" name="question" placeholder="Enter question">
-                              </div>
+
+                        <div class="form-group">
+                            <label for="solution">solution</label>
+                            <input type="text" class="form-control" name="solution" placeholder="Enter solution">
+                        </div>
+
                         </div>
                         <!-- /.card-body -->
 
