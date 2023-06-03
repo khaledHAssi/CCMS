@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('company_id')->constrained('companies','id');
-            $table->foreignId('course_id')->constrained('courses','id');
+            $table->string('title');
             $table->text('question');
             $table->integer('main_mark');
             $table->timestamps();

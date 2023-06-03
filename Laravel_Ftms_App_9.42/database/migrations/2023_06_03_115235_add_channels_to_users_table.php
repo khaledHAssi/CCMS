@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('tasks', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('title')->after('course_id');
+            $table->string('channels',50)->default('database,proadcast')->after('remember_token');
 
         });
     }
@@ -27,8 +27,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('tasks', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
+            $table->dropColumn('channels');
+
         });
     }
 };
