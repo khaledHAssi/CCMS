@@ -168,11 +168,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     @php
                         $name = Auth::user()->name ?? '';
                         $src = 'https://ui-avatars.com/api/?background=random&name=' . $name;
-
-                        if (Auth::user()->image) {
-                            $img = Auth::user()->image;
-                            $src = asset('public/uploads/' . $img); //public\storage\users
-                        }
                     @endphp
                     <a class="nav-link" data-toggle="dropdown" href="#">
 

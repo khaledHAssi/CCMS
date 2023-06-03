@@ -97,13 +97,24 @@
                                 <small class="invalid-feedback">{{ $message }}</small>
                             @enderror
                         </div>
+                        <div class="mb-3">
+                            <label for="doctor_id">Expert id</label>
+                            <select name="doctor_id" class="form-control @error('doctor_id') is-invalid @enderror">
+                                @foreach ($doctors as $doctor)
+                                    <option value="{{ $doctor->id }}">{{ $doctor->id . ' - ' . $doctor->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('doctor_id')
+                                <small class="invalid-feedback">{{ $message }}</small>
+                            @enderror
+                        </div>
 
 
 
 
                         <div class="mb-3">
                             <label for="hour_price">Hour Price</label>
-                            <input id="hour_price" name="hour_price" type="text" placeholder="Enter your hour price "
+                            <input id="hour_price" name="hour_price" type="numeric" placeholder="Enter your hour price "
                                 class="form-control @error('hour_price') is-invalid @enderror " />
                             @error('hour_price')
                                 <small class="invalid-feedback">{{ $message }}</small>

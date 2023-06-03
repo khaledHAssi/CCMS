@@ -58,7 +58,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->input($request->input('password')));
         $user->created_at = $request->input('created_at');
         $user->updated_at = $request->input('updated_at');
-        
+
         if ($request->status == 'on') {
             $user->status = 1;
         }else{

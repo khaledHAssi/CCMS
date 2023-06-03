@@ -86,6 +86,18 @@
                     @enderror
                 </div>
 
+                <div class="mb-3">
+                    <label for="doctor_id">Expert id</label>
+                    <select name="doctor_id" class="form-control @error('doctor_id') is-invalid @enderror">
+                        @foreach ($doctors as $doctor)
+                            <option  @selected($doctor->id==$expert->doctor_id) value="{{ $doctor->id }}">{{ $doctor->id . ' - ' . $doctor->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('doctor_id')
+                        <small class="invalid-feedback">{{ $message }}</small>
+                    @enderror
+                </div>
+
 
 
 

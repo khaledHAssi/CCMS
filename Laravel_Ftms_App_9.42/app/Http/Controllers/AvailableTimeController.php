@@ -49,8 +49,8 @@ class AvailableTimeController extends Controller
         "expert_id" => 'required',
         "date" => 'required|date',
         'price'=>'required|numeric',
-        'hour_to'=>'required|numeric',
-        'hour_from'=>'required|numeric',
+        'hour_to'=>'required|',
+        'hour_from'=>'required|',
     ]);
 
         $availableTime = new AvailableTime ;
@@ -110,8 +110,8 @@ class AvailableTimeController extends Controller
             "expert_id" => 'required',
             "date" => 'required|date',
             'price'=>'required|numeric',
-            'hour_to'=>'required|numeric',
-            'hour_from'=>'required|numeric',
+            'hour_to'=>'required|date',
+            'hour_from'=>'required|date',
         ]);
         $availableTime = AvailableTime::findOrFail($id);
         $availableTime->expert_id = $request->input('expert_id');

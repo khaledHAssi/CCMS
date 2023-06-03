@@ -15,7 +15,7 @@
             <form action="{{ route('admin.users.update', $user) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('put')
-                {{-- <div class="card-body">
+                <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert"
@@ -29,7 +29,7 @@
                             </ul>
                         </div>
                     @endif
-                </div> --}}
+                </div>
 
                 <div class="mb-3">
                     <label for="name">Name</label>
@@ -46,6 +46,9 @@
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="exampleInputFile" name="user_image">
                             <label class="custom-file-label" for="exampleInputFile">Choose img</label>
+                            @error('user_image')
+                            <small class="invalid-feedback">{{ $message }}</small>
+                        @enderror
                         </div>
                     </div>
                 </div>
@@ -59,7 +62,7 @@
 
                 </div>
                 <div class="mb-3">
-                    <label for="type">Type</label> 
+                    <label for="type">Type</label>
                     {{-- ['student', 'companyManager', 'companySupervisor', 'doctor', 'super-admin'] --}}
                     <select name="type" class="form-control @error('type') is-invalid @enderror">
                         <option @selected($user->type == 'student' || old('type') == 'student') value="student">Student</option>

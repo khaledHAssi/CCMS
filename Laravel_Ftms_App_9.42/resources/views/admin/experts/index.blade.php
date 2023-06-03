@@ -24,6 +24,7 @@
                         <th>Expert Img</th>
                         <th>Name</th>
                         <th>Company Id&Name</th>
+                        <th>Expert Id&Name</th>
                         <th>Hour Price</th>
                         <th>Actions</th>
                     </tr>
@@ -41,8 +42,14 @@
                     @else
                             <td style="color:red;">No Pic</td>
                     @endif
-                            <td>{{ $expert->name }}</td>
+
+                    <td>{{ $expert->name }}</td>
                             <td>{{ $expert->company_id}} - {{ $expert->company->name }}</td>
+                            @foreach ($users as $user)
+                        @if ($expert->doctor_id == $user->id)
+                            <td>{{ $expert->doctor_id}} - {{ $user->name }}</td>
+                        @endif
+                            @endforeach
                             <td>{{ $expert->hour_price }}</td>
 
                             <td>

@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @php
-    $title = "Add New Student"
+    $title = "Add user"
 @endphp
 
 @section('title', $title)
@@ -83,7 +83,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="email">email</label>
-                    <input id="email" name="email" type="text" placeholder="User Name" class="form-control @error('email') is-invalid @enderror " value="{{ old('email') }}" />
+                    <input id="email" name="email" type="text" placeholder="User email" class="form-control @error('email') is-invalid @enderror " value="{{ old('email') }}" />
                     @error('email')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
@@ -97,8 +97,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input id="password" name="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror " value="{{ old('password') }}" />
-
+                    <input id="password" name="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror "  />
                 </div>
 
 
@@ -107,7 +106,7 @@
                     <label for="exampleInputFile">Add Img</label>
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile" name="user_image">
+                            <input type="file" class="custom-file-input" id="exampleInputFile" name="user_image" @error('user_image') is-invalid @enderror>
                             <label class="custom-file-label" for="exampleInputFile">Choose Img</label>
                         </div>
                     </div>
@@ -125,18 +124,8 @@
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
-                {{-- <div class="mb-3">
-                    <label for="type">Status
-                    </label>
-                    <select name="status" class="form-control @error('status') is-invalid @enderror">
-                        <option @selected(old('type') == '0') value="0" style="color: green">Active</option>
-                        <option @selected(old('type') == '1') value="1" style="color: red">Not Active</option>
 
-                    </select>
-                    @error('status')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
-                </div> --}}
+                </div>
                 <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                     <input type="checkbox" class="custom-control-input"id="status"name="status">
                     <label class="custom-control-label" for="status">User Active Status</label>

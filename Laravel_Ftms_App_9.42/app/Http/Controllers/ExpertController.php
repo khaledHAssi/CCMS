@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expert;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -18,8 +19,9 @@ class ExpertController extends Controller
     {
         //
         $experts = Expert::all();
+        $users = User::all();
 
-        return response()->view('admin.experts.index',compact('experts'));
+        return response()->view('admin.experts.index',compact(['experts','users']));
     }
 
     /**
@@ -30,8 +32,9 @@ class ExpertController extends Controller
     public function create()
     {
         $companies = DB::select('SELECT `id`,`name` FROM `companies`');
+        $doctors = DB::select('SELECT `id`,`name` FROM `users` Where `type` like "doctor"');
 
-        return view('admin.experts.create',compact('companies'));
+        return response()->view('admin.experts.create',compact(['companies','doctors']));
 
     }
 
@@ -47,7 +50,7 @@ class ExpertController extends Controller
         $validator =
         $request->validate([
              'name' => 'required|string|min:3|max:20|',
-             'hour_price' => 'required|numeric|min:5|max:20|',
+             'hour_price' => 'required|numeric|min:5|max:100|',
              'company_id' => 'required',
              'image' => 'nullable|image|mimes:jpg,png|max:1024',
 
@@ -55,6 +58,7 @@ class ExpertController extends Controller
 
         $expert = new Expert ;
         $expert->company_id = $request->input('company_id');
+        $expert->doctor_id = $request->input('doctor_id');
         $expert->name = $request->input('name');
         $expert->hour_price = $request->input('hour_price');
 
@@ -95,7 +99,9 @@ class ExpertController extends Controller
         $expert = Expert::find($id);
         // dd($expert->supervisor_id);
         $companies = DB::select('SELECT `id`, `name` FROM `companies` ');
-        return response()->view('admin.experts.edit',compact(['expert','companies']));
+        $doctors = DB::select('SELECT `id`,`name` FROM `users` Where `type` like "doctor"');
+
+        return response()->view('admin.experts.edit',compact(['expert','companies','doctors']));
     }
 
     /**
@@ -112,14 +118,16 @@ class ExpertController extends Controller
         $validator =
         $request->validate([
              'name' => 'required|string|min:3|max:20|',
-             'hour_price' => 'required|numeric|min:5|max:20|',
+             'hour_price' => 'required|numeric|min:5|max:100|',
              'company_id' => 'required',
+             'doctor_id' => 'required',
              'image' => 'nullable|image|mimes:jpg,png|max:1024',
 
         ]);
 
         $expert->name = $request->input('name');
         $expert->hour_price = $request->input('hour_price');
+        $expert->doctor_id = $request->input('doctor_id');
         $expert->company_id = $request->input('company_id');
 
 

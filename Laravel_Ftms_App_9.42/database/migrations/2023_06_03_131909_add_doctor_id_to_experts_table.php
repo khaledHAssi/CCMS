@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('experts', function (Blueprint $table) {
             //
-            $table->string('channels',50)->default('database,broadcast')->after('remember_token');
+            $table->foreignId('doctor_id')->after('company_id')->constrained('users','id')->cascadeOnDelete();
 
         });
     }
@@ -27,10 +27,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('experts', function (Blueprint $table) {
             //
-            $table->dropColumn('channels');
-
+            $table->dropColumn('doctor_id');
         });
     }
 };
