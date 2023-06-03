@@ -40,8 +40,7 @@ class CompanyController extends Controller
      */
     public function store(CompanyRequest $request)
     {
-<<<<<<< HEAD
-=======
+
         // $request->file()->move();
         $validator =
         $request->validate([
@@ -49,7 +48,7 @@ class CompanyController extends Controller
              'description' => 'required|string|',
              'image' => 'nullable|image|mimes:jpg,png|max:1024',
         ]);
->>>>>>> 5e83af04c7df8bcb9f54713671a160e2e1bbe347
+
         $path = $request->file('image')->store('/uploads', 'custom');
 
         // $slug = strtolower($request->name);
