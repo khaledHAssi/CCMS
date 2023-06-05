@@ -78,6 +78,12 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
     Auth::routes(['verify' => true]);
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+
+
+
+    Route::prefix('user-dash')->middleware(['auth', 'verified', 'check_user'])->name('user_dash.')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('index');
+    });
 });
 
 
