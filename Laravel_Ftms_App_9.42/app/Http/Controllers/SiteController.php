@@ -12,6 +12,7 @@ use App\Models\Course;
 use App\Models\Evaluation;
 use App\Models\Expert;
 use App\Models\Payment;
+use App\Models\Profile;
 use Exception;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -183,7 +184,11 @@ class SiteController extends Controller
 
     public function site_profile()
     {
-        return view('site.profile');
+
+        $user = User::findOrFail(Auth::id());
+
+        $user->load('profile');
+        return view('site.profile',compact('user'));
     }
 
 }

@@ -13,8 +13,11 @@
 @stop
 
 @section('content')
-
-    <section class="bg-light" id="reviews">
+<br>
+<br><br>
+<br><br>
+<br>
+    <section style="background-color: blue; padding: 10px" id="reviews">
         <div class="container">
             <h1 class="text-white">{{ $course->name }}</h1>
         </div>
@@ -25,10 +28,16 @@
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-7 py-5">
-                    {!! $course->description !!}
+               <h3>Description:</h3>
+               <br>     {!! $course->description !!}
                 </div>
                 <div class="col-lg-4">
-                    <img src="{{ asset($course->image) }}" alt="">
+                                        <br>
+                                        <br>
+                    <img class="rounded-circle" width="500" height="400" src="{{ Storage::url($course->image) }}" alt="">
+                    <br>
+                    <br>
+                    <br>
                 </div>
             </div>
         </div>
@@ -39,6 +48,8 @@
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="intro">
+                    <br>
+
                         <h6>Need This?</h6>
                         <h1>Apply To Our Course</h1>
                     </div>
@@ -79,11 +90,14 @@
                                 </div>
                                 <div class="col-6"></div>
                             </div>
-                            <div class="text-end">
-                                <button class="btn px-5 btn-brand">Apply</button>
+                            <div  style="background-color:blue ;text-align: center">
+                                <button class="btn px-5 " style="color:white;" >Apply</button>
                             </div>
                         </form>
                     @endif
+                        <br>
+                        <br>
+                        <br>
 
                     @else
                     <p>Please go to <a href="{{ route('login') }}">login</a> first</p>

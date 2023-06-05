@@ -6,8 +6,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="{{asset('siteassets/imgFinanze/favicon.ico')}}" rel="icon">
 
-    <!-- Bootstrap CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{asset('siteassets/lib/animate/animate.min.css')}}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('siteassets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('siteassets/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('siteassets/css/owl.theme.default.min.css') }}">
@@ -32,8 +48,13 @@
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70">
+      <!-- Spinner Start -->
+      <div id="spinner"
+      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+      <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+  </div>
     <!-- TOP NAV -->
-    <div class="top-nav" id="home">
+    {{-- <div class="top-nav" id="home">
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-auto">
@@ -48,16 +69,78 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
+       <!-- Navbar Start -->
+       <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
+        <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
+            <div class="col-lg-6 px-5 text-start">
+                <small><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</small>
+                <small class="ms-4"><i class="fa fa-clock text-primary me-2"></i>9.00 am - 9.00 pm</small>
+            </div>
+            <div class="col-lg-6 px-5 text-end">
+                <small><i class="fa fa-envelope text-primary me-2"></i>info@example.com</small>
+                <small class="ms-4"><i class="fa fa-phone-alt text-primary me-2"></i>+012 345 6789</small>
+            </div>
+        </div>
 
-    <!-- BOTTOM NAV -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('ftms.index') }}">Prixima<span class="dot">.</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+            <a href="{{ route('ftms.index') }}" class="navbar-brand ms-4 ms-lg-0">
+                <h1  class="display-5 text-primary m-0">Finanza</h1>
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto p-4 p-lg-0">
+                    <a href="{{ route('ftms.index') }}" class="nav-item nav-link active">Home</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="service.html" class="nav-item nav-link">Services</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu border-light m-0">
+                            <a href="project.html" class="dropdown-item">Projects</a>
+                            <a href="feature.html" class="dropdown-item">Features</a>
+                            <a href="team.html" class="dropdown-item">Team Member</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="404.html" class="dropdown-item">404 Page</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    @if (!Auth::check())
+                    <a href="{{route('login')}}"class="nav-item nav-link">Login</a>
+                @else
+
+                    {{-- <a href="{{ route('logout') }}" data-bs-toggle="modal"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
+                        class="nav-item nav-link" >
+                        <i class="fas fa-sign-out-alt mr-2" ></i>Logout</a> --}}
+                        <a href="{{ route('ftms.site_profile') }}" class="nav-item nav-link" >
+                        Profile
+                    </a>
+                @endif
+
+                </div>
+                <div class="d-none d-lg-flex ms-2">
+                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="">
+                        <small class="fab fa-facebook-f text-primary"></small>
+                    </a>
+                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="">
+                        <small class="fab fa-twitter text-primary"></small>
+                    </a>
+                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="">
+                        <small class="fab fa-linkedin-in text-primary"></small>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- BOTTOM NAV -->
+    {{-- <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -85,60 +168,34 @@
                 <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     class="btn btn-brand ms-lg-3">Contact</a>
 
-                @if (!Auth::check())
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal"
-                        class="btn btn-brand ms-lg-3">Login</a>
-                @else
-
-                    <a href="{{ route('logout') }}" data-bs-toggle="modal"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
-                        class="btn btn-brand ms-lg-3" >
-                        <i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                        @csrf
-                    </form>
-                @endif
 
 
 
 
             </div>
         </div>
-    </nav>
+    </nav> --}}
 
     @yield('content')
 
-    <footer>
-        <div class="footer-top text-center">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center">
-                        <h4 class="navbar-brand">Prixima<span class="dot">.</span></h4>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                            classical Latin literature from</p>
-                        <div class="col-auto social-icons">
-                            <a href="#"><i class='bx bxl-facebook'></i></a>
-                            <a href="#"><i class='bx bxl-twitter'></i></a>
-                            <a href="#"><i class='bx bxl-instagram'></i></a>
-                            <a href="#"><i class='bx bxl-pinterest'></i></a>
-                        </div>
-                        <div class="col-auto conditions-section">
-                            <a href="#">privacy</a>
-                            <a href="#">terms</a>
-                            <a href="#">disclaimer</i></a>
-                        </div>
-                    </div>
-                </div>
+  <!-- Copyright Start -->
+  <div class="container-fluid copyright py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a
+                href="https://themewagon.com">ThemeWagon</a>
             </div>
         </div>
-        <div class="footer-bottom text-center">
-            <p class="mb-0">Copyright vicpra 2022. All rights Reserved</p> Distributed By <a
-                hrefs="https://themewagon.com">ThemeWagon</a>
-        </div>
-    </footer>
+    </div>
+</div>
 
 
-    <!-- --------------------------------------------------- Modal--------------------------------------------------------- -->
+    {{-- <!-- --------------------------------------------------- Modal--------------------------------------------------------- -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -194,10 +251,10 @@
 
             </div>
         </div>
-    </div>
-
-    <!-- --------------------------------------------------- Login Modal--------------------------------------------------------- -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    </div> --}}
+{{-- ------------------------------EndOurLastModal -------------------------------------------------------}}
+    <!-- ---------------------------------------------------OurLastLoginModal--------------------------------------------------------- -->
+    {{-- <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-body p-0">
@@ -272,8 +329,8 @@
 
             </div>
         </div>
-    </div>
-
+    </div> --}}
+    {{-- ------------------------------------------End Our Last Model --}}
 
     <!-- --------------------------------------------------- Register Modal--------------------------------------------------------- -->
     {{-- <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -377,6 +434,15 @@
     <script src="{{ asset('siteassets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('siteassets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('siteassets/js/app.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('siteassets/lib/wow/wow.min.js')}}"></script>
+    <script src="{{asset('siteassets/lib/easing/easing.min.js')}}"></script>
+    <script src="{{asset('siteassets/lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{asset('siteassets/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('siteassets/lib/counterup/counterup.min.js')}}"></script>
+    <script src="{{asset('siteassets/js/main.js')}}"></script>
+
     @yield('scripts')
 </body>
 

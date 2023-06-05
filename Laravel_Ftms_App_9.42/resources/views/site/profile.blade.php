@@ -6,8 +6,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="{{ asset('siteassets/imgFinanze/favicon.ico') }}" rel="icon">
 
-    <!-- Bootstrap CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset('siteassets/lib/animate/animate.min.css') }}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('siteassets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('siteassets/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('siteassets/css/owl.theme.default.min.css') }}">
@@ -26,357 +42,266 @@
             min-height: 55px;
         }
 
-        /* ---------------------------------- */
-        .timeline-panel {
-            /* width: 50%; */
-            /* float: right; */
-            max-height: 165px;
-            border: 1px solid #eee;
-            background: #fff;
-            border-radius: 3px;
-            padding: 20px;
-            position: relative;
-            /* bottom: 126px; */
-            /* left: 564px; */
-            -webkit-box-shadow: 0 1px 20px 1px rgb(69 65 78 / 70%);
-            -moz-box-shadow: 0 1px 20px 1px rgba(69, 65, 78, .06);
-            box-shadow: 0 1px 20px 0px rgb(69 65 78 / 24%);
-            /* display: flex; */
-            justify-content: center;
+        .socialDetails {
+            font-size: 30px;
+            background-color: rgba(128, 128, 128, 0.104);
+            border-radius: 50px;
+            color: blue;
         }
-
-        .timeline-panel-2 {
-            /* width: 50%; */
-            max-height: 165px;
-            /* float: left; */
-            border: 1px solid #eee;
-            background: #fff;
-            border-radius: 3px;
-            padding: 20px;
-            position: relative;
-            /* bottom: 126px; */
-            /* left: -83px; */
-            -webkit-box-shadow: 0 1px 20px 1px rgb(69 65 78 / 70%);
-            -moz-box-shadow: 0 1px 20px 1px rgba(69, 65, 78, .06);
-            box-shadow: 0 1px 20px 0px rgb(69 65 78 / 24%);
-            /* display: flex; */
-            justify-content: center;
-            /* margin-top: 60px; */
-        }
-
-        .card {
-            position: relative;
-            display: -ms-flexbox;
-            display: flex;
-            -ms-flex-direction: column;
-            flex-direction: column;
-            min-width: 0;
-            word-wrap: break-word;
-            background-color: #fff;
-            background-clip: border-box;
-            border: 1px solid rgba(0, 0, 0, .125);
-            border-radius: .25rem;
-        }
-
-        .card-stats .icon-big.icon-primary {
-            background: #1572e8;
-        }
-
-        .row.parent1 {
-            margin-top: -141px;
-        }
-
-        a.btn.btn-secondary.btn-block {
-            background-color: #ff4d29;
-            border: none;
-            width: 100%;
-            margin-left: -14px;
-        }
-
-        .view-profile1 {
-            margin: 40px !important;
-            color: orange;
-            margin-left: 31px;
-        }
-
-        i.fa-solid.fa-user,
-        .fa-envelope,
-        .fa-mobile-retro,
-        .fa-heart {
-            color: #ff4d29;
+        .details{
+            margin-left: 0em !important;
+            position: relative !important;
+            right: 5em;
+            top: -.7em;
         }
     </style>
 
+    @yield('styles')
 
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70">
-    <!-- TOP NAV -->
-    <div class="top-nav" id="home">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-auto">
-                    <p> <i class='bx bxs-envelope'></i> info@example.com</p>
-                    <p> <i class='bx bxs-phone-call'></i> 123 456-7890</p>
-                </div>
-                <div class="col-auto social-icons">
-                    <a href="#"><i class='bx bxl-facebook'></i></a>
-                    <a href="#"><i class='bx bxl-twitter'></i></a>
-                    <a href="#"><i class='bx bxl-instagram'></i></a>
-                    <a href="#"><i class='bx bxl-pinterest'></i></a>
-                </div>
+
+
+    <div class="container-fluid px-0 wow fadeIn " data-wow-delay="0.1s">
+        <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
+            <div class="col-lg-6 px-5 text-start">
+                <small><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</small>
+                <small class="ms-4"><i class="fa fa-clock text-primary me-2"></i>9.00 am - 9.00 pm</small>
+            </div>
+            <div class="col-lg-6 px-5 text-end">
+                <small><i class="fa fa-envelope text-primary me-2"></i>info@example.com</small>
+                <small class="ms-4"><i class="fa fa-phone-alt text-primary me-2"></i>+012 345 6789</small>
             </div>
         </div>
-    </div>
 
-    <!-- BOTTOM NAV -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('ftms.index') }}">Prixima<span class="dot">.</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+            <a href="{{ route('ftms.index') }}" class="navbar-brand ms-4 ms-lg-0">
+                <h1 class="display-5 text-primary m-0">Finanza</h1>
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#portfolio">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#team">Team</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#reviews">Reviews</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
-                    </li>
-                </ul>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    class="btn btn-brand ms-lg-3">Contact</a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto p-4 p-lg-0">
+                    <a href="{{ route('ftms.index') }}" class="nav-item nav-link active">Home</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a href="service.html" class="nav-item nav-link">Services</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu border-light m-0">
+                            <a href="project.html" class="dropdown-item">Projects</a>
+                            <a href="feature.html" class="dropdown-item">Features</a>
+                            <a href="team.html" class="dropdown-item">Team Member</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="404.html" class="dropdown-item">404 Page</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    @if (!Auth::check())
+                        <a href="{{ route('login') }}"class="nav-item nav-link">Login</a>
+                    @else
+                        {{-- <a href="{{ route('logout') }}" data-bs-toggle="modal"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
+                    class="nav-item nav-link" >
+                    <i class="fas fa-sign-out-alt mr-2" ></i>Logout</a> --}}
+                        <a href="{{ route('ftms.site_profile') }}" class="nav-item nav-link">
+                            Profile
+                        </a>
+                    @endif
 
-
-
+                </div>
+                <div class="d-none d-lg-flex ms-2">
+                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="">
+                        <small class="fab fa-facebook-f text-primary"></small>
+                    </a>
+                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="">
+                        <small class="fab fa-twitter text-primary"></small>
+                    </a>
+                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="">
+                        <small class="fab fa-linkedin-in text-primary"></small>
+                    </a>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
 
-
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <!-- SLIDER -->
     <!-- ABOUT -->
     <section id="about">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-5 py-5">
-                    <div class="row">
 
-                        <div class="col-12">
-                            <div class="info-box">
-                                <div class="btn btn-icon "><i style="font-size: 50px; line-height: 1px;"
-                                        class="fa-solid fa-user"></i></div>
-                                <div class="ms-4">
-                                    <h5>Student Name</h5>
-                                    <p>Abdalrahman Alhalaq</p>
-                                </div>
+                <div class="container-xxl py-5 ">
+                    <div class="container">
+                        <div class="row g-4 align-items-end mb-4 ">
+                            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                                <img class="img-fluid float-right  mb-3" style="height: 600px"
+                                    src="{{ Storage::url(Auth::user()->image) }}" alt="">
                             </div>
-                        </div>
-                        <div class="col-12 mt-4">
-                            <div class="info-box">
-                                <div class="btn btn-icon "><i style="font-size: 50px; line-height: 1px;"
-                                        class="fa-solid fa-envelope"></i></div>
-
-
-                                <div class="ms-4">
-                                    <h5>Student Email</h5>
-                                    <p>Aboood@gmail.com</p>
+                            <div class="col-lg-6 wow fadeInUp details" data-wow-delay="0.3s">
+                                <div style="display:flex;">
+                                    <h4 -  style="margin-left:0px;">Name:</h4>
+                                    <h5 style="margin-left:0px;margin-top: 1.5% ">
+                                         - {{ Auth::user()->name }}
+                                    </h5>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-12 mt-4">
-                            <div class="info-box">
-                                <div class="btn btn-icon "><i style="font-size: 50px; line-height: 1px;"
-                                        class="fa-solid fa-mobile-retro"></i></div>
-                                <div class="ms-4">
-                                    <h5>Student Mobile</h5>
-                                    <p>+972-595577243</p>
+                                <div style="display:flex;">
+                                    <h4 -  style="margin-left:0px;">Email:</h4>
+                                    <h5 style="margin-left:0px;margin-top: 1.5% ">
+                                         - {{ Auth::user()->email }}
+                                    </h5>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-12 mt-4">
-                            <div class="info-box">
-                                <div class="btn btn-icon "><i style="font-size: 50px; line-height: 1px;"
-                                        class="fa-solid fa-heart"></i></div>
-                                <div class="ms-4">
-                                    <h5>Social Midea</h5>
-                                    <div class="col-auto social-icons" style="margin-left: -7px;">
-                                        <a href="#"><i style="font-size: 20px;  line-height: 1px; color: black;"
+                                <div style="display:flex;">
+                                    <h4 -  style="margin-left:0px;">Phone: </h4>
+                                    <h5 style="margin-left:0px;margin-top: 1.5% ">
+                                         - +{{ Auth::user()->phone }}
+                                    </h5>
+                                </div>
+                                <div class="social">
+                                    <h4 style="margin-bottom: 14px;">Social Midea</h4>
+                                    @if (Auth::user()->profile == null)
+                                        <h6 class="text-danger">Your profile is not completed </h6>
+                                    @else
+                                        <a href="{{ Auth::user()->profile->fb ?? '' }}">
+                                            <i style="font-size: 30px; background-color: rgba(128, 128, 128, 0.104);border-radius: 50px;   color: blue;"
                                                 class="bx bxl-facebook"></i></a>
-                                        <a href="#"><i
-                                                style="font-size: 20px; margin-left: 0px; line-height: 1px; color: black;"class="bx bxl-twitter"></i></a>
-                                        <a href="#"><i
-                                                style="font-size: 20px; margin-left: 0px; line-height: 1px; color: black;"class="bx bxl-instagram"></i></a>
-                                        <a href="#"><i
-                                                style="font-size: 20px; margin-left: 0px; line-height: 1px; color: black;"
-                                                class="bx bxl-pinterest"></i></a>
+                                        <a href="{{ Auth::user()->profile->tw ?? '' }}"><i
+                                                style=""class="bx bxl-twitter socialDetails"></i></a>
+                                        <a href="{{ Auth::user()->profile->in ?? '' }}"><i
+                                                class=" socialDetails bx bxl-instagram"></i></a>
+                                        <a href="{{ Auth::user()->profile->li ?? '' }}"><i
+                                                class=" socialDetails bx bxl-linkedin"></i></a>
+                                </div>
+                                    @endif
+                                <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3" style="margin-top: 15px">Edit</p>
+                                <div class="border rounded p-4">
+                                    <nav>
+                                        <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                                            <button class="nav-link fw-semi-bold active" id="nav-story-tab"
+                                                data-bs-toggle="tab" data-bs-target="#nav-story" type="button"
+                                                role="tab" aria-controls="nav-story"
+                                                aria-selected="true">Story</button>
+                                            <button class="nav-link fw-semi-bold" id="nav-mission-tab"
+                                                data-bs-toggle="tab" data-bs-target="#nav-mission" type="button"
+                                                role="tab" aria-controls="nav-mission"
+                                                aria-selected="false">Mission</button>
+                                            <button class="nav-link fw-semi-bold" id="nav-vision-tab"
+                                                data-bs-toggle="tab" data-bs-target="#nav-vision" type="button"
+                                                role="tab" aria-controls="nav-vision"
+                                                aria-selected="false">Vision</button>
+                                        </div>
+                                    </nav>
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-story" role="tabpanel"
+                                            aria-labelledby="nav-story-tab">
+                                            <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit.
+                                                Aliqu diam
+                                                amet diam et eos labore.</p>
+                                            <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam
+                                                et eos labore.
+                                                Clita erat ipsum et lorem et sit</p>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-mission" role="tabpanel"
+                                            aria-labelledby="nav-mission-tab">
+                                            <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit.
+                                                Aliqu diam
+                                                amet diam et eos labore.</p>
+                                            <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam
+                                                et eos labore.
+                                                Clita erat ipsum et lorem et sit</p>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-vision" role="tabpanel"
+                                            aria-labelledby="nav-vision-tab">
+                                            <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit.
+                                                Aliqu diam
+                                                amet diam et eos labore.</p>
+                                            <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam
+                                                et eos labore.
+                                                Clita erat ipsum et lorem et sit</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                        <div class="border rounded p-4 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="row g-4">
+                                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                                    <div class="h-100">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
+                                                <i class="fa fa-times text-white"></i>
+                                            </div>
+                                            <div class="ps-3">
+                                                <h4>No Hidden Cost</h4>
+                                                <span>Clita erat ipsum lorem sit sed stet duo justo</span>
+                                            </div>
+                                            <div class="border-end d-none d-lg-block"></div>
+                                        </div>
+                                        <div class="border-bottom mt-4 d-block d-lg-none"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                                    <div class="h-100">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
+                                                <i class="fa fa-users text-white"></i>
+                                            </div>
+                                            <div class="ps-3">
+                                                <h4>Dedicated Team</h4>
+                                                <span>Clita erat ipsum lorem sit sed stet duo justo</span>
+                                            </div>
+                                            <div class="border-end d-none d-lg-block"></div>
+                                        </div>
+                                        <div class="border-bottom mt-4 d-block d-lg-none"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+                                    <div class="h-100">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
+                                                <i class="fa fa-phone text-white"></i>
+                                            </div>
+                                            <div class="ps-3">
+                                                <h4>24/7 Available</h4>
+                                                <span>Clita erat ipsum lorem sit sed stet duo justo</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="view-profile1" style="margin:20px;color: orange">
-                        <a href="#" class="btn btn-secondary btn-block">Edit</a>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <img style="     margin: 76px;" src="{{ asset('siteassets/img/about.png') }}" alt="">
                 </div>
             </div>
 
         </div>
     </section>
-    <div class="container">
-        <div class="row parent1">
-            <div class="col">
-                <section id="description">
-                    <div class="container">
-                        <div class="timeline-panel">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">Discription</h4>
-                                <p><small class="text-muted"><i class="flaticon-message"></i> 11 hours ago via
-                                        ...</small></p>
-                            </div>
-                            <div class="timeline-body">
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                    Consonantia, there live the blind texts.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="col">
-                <section id="evaluation">
-                    <div class="container">
-                        <div class="timeline-panel-2">
-                            <div class="timeline-heading">
-                                <h4 class="timeline-title">Evaluation</h4>
-                                <p><small class="text-muted"><i class="flaticon-message"></i> 71 hours ago via
-                                        ...</small></p>
-                            </div>
-                            <div class="timeline-body">
-                                <p>compony / course / <strong>70%</strong>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <section id="course">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-md-3">
-                        <div class="card card-stats card-round">
-                            <div class="card-body ">
-                                <div class="row ">
-                                    <div class="col-icon">
-                                        <img style="width: 57%;"src="./img/icon1.png" alt="">
-                                    </div>
-                                    <div class="col col-stats  ml-sm-0">
-                                        <h5 class="card-category">C#</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="card card-stats card-round">
-                            <div class="card-body ">
-                                <div class="row ">
-                                    <div class="col-icon">
-                                        <img style="  width: 57%;"src="./img/icon1.png" alt="">
-                                    </div>
-                                    <div class="col col-stats  ml-sm-0">
-                                        <h5 class="card-category">ASP</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="card card-stats card-round">
-                            <div class="card-body ">
-                                <div class="row ">
-                                    <div class="col-icon">
-                                        <img style="  width: 57%;"src="./img/icon1.png" alt="">
-                                    </div>
-                                    <div class="col col-stats  ml-sm-0">
-                                        <h5 class="card-category">LARAVEL</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <div class="card card-stats card-round">
-                            <div class="card-body ">
-                                <div class="row ">
-                                    <div class="col-icon">
-                                        <img style="  width: 57%;"src="./img/icon1.png" alt="">
-                                    </div>
-                                    <div class="col col-stats  ml-sm-0">
-                                        <h5 class="card-category">PHP</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+
+
+
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a
+                        href="https://themewagon.com">ThemeWagon</a>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
-    <!-- MILESTONE -->
-
-
-
-    <footer>
-        <div class="footer-top text-center">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center">
-                        <h4 class="navbar-brand">Prixima<span class="dot">.</span></h4>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                            classical Latin literature from</p>
-                        <div class="col-auto social-icons">
-                            <a href="#"><i class='bx bxl-facebook'></i></a>
-                            <a href="#"><i class='bx bxl-twitter'></i></a>
-                            <a href="#"><i class='bx bxl-instagram'></i></a>
-                            <a href="#"><i class='bx bxl-pinterest'></i></a>
-                        </div>
-                        <div class="col-auto conditions-section">
-                            <a href="#">privacy</a>
-                            <a href="#">terms</a>
-                            <a href="#">disclaimer</i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom text-center">
-            <p class="mb-0">Copyright vicpra 2022. All rights Reserved</p> Distributed By <a
-                hrefs="https://themewagon.com">ThemeWagon</a>
-        </div>
-    </footer>
-
     <script src="{{ asset('siteassets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('siteassets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('siteassets/js/owl.carousel.min.js') }}"></script>
