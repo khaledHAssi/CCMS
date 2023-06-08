@@ -70,7 +70,7 @@
 
                 <div class="mb-3">
                     <label for="link">Meet Link</label>
-                    <input id="link" name="link" type="text" placeholder="Link" class="form-control @error('link') is-invalid @enderror "  />
+                    <input id="link" name="link" type="text" placeholder="Link" class="form-control @error('link') is-invalid @enderror "value="{{ old('link', $AvailableTime->link) }}"  />
                     @error('link')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
@@ -98,7 +98,7 @@
 
                 <div class="mb-3">
                     <label for="date">Date</label>
-                    <input id="date" name="date" type="date" placeholder="Enter your hour price " class="form-control @error('date') is-invalid @enderror " />
+                    <input id="date" value="{{ old('date', $AvailableTime->date) }}" name="date" type="date" placeholder="Enter your hour price " class="form-control @error('date') is-invalid @enderror " />
                     @error('date')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
@@ -107,7 +107,7 @@
 
                 <div class="mb-3">
                     <label for="hour_from">Hour From</label>
-                    <input id="hour_from" name="hour_from" type="time" placeholder="Enter your hour price " class="form-control @error('hour_from') is-invalid @enderror " />
+                    <input id="hour_from" value="{{ old('link', $AvailableTime->hour_from) }}" name="hour_from" type="time" placeholder="Enter your hour price " class="form-control @error('hour_from') is-invalid @enderror " />
                     @error('hour_from')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
@@ -115,7 +115,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="hour_to">Hour to</label>
-                    <input id="hour_to" name="hour_to" type="time" placeholder="Enter your hour price " class="form-control @error('hour_to') is-invalid @enderror " />
+                    <input id="hour_to"value="{{ old('link', $AvailableTime->hour_to) }}" name="hour_to" type="time" placeholder="Enter your hour price " class="form-control @error('hour_to') is-invalid @enderror " />
                     @error('hour_to')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
@@ -125,11 +125,19 @@
 
                 <div class="mb-3">
                     <label for="price">Hour Price</label>
-                    <input id="price" name="price" type="text" placeholder="Your Hour Price" class="form-control @error('price') is-invalid @enderror "  />
+                    <input id="price" name="price" value="{{ old('link', $AvailableTime->price) }}"type="text" placeholder="Your Hour Price" class="form-control @error('price') is-invalid @enderror "  />
                     @error('price')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
+
+                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                    <input type="checkbox" @if ($AvailableTime->status == 1)
+                    checked
+                    @endif class="custom-control-input" id="status" name="status">
+                    <label class="custom-control-label" for="status">Booked?</label>
+                </div>
+                <br>
 
 
 
@@ -149,7 +157,13 @@
 
 
 @section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.3.1/tinymce.min.js" integrity="sha512-eV68QXP3t5Jbsf18jfqT8xclEJSGvSK5uClUuqayUbF5IRK8e2/VSXIFHzEoBnNcvLBkHngnnd3CY7AFpUhF7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<script>
+    tinymce.init({
+        selector: '.myeditor'
+    })
+</script>
 
     <script src="{{ asset('adminassets\plugins\bs-custom-file-input\bs-custom-file-input.min.js') }}"></script>
     <script>

@@ -478,11 +478,11 @@
                         <h4 class="mb-0">{{ $expert->name }}</h4>
                     </a >
 
-                        <div class="team-social d-flex">
+                    <div class="team-social d-flex">
                             <a class="btn btn-square rounded-circle mx-1" href=""><i
-                                    class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square rounded-circle mx-1" href=""><i
+                                class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square rounded-circle mx-1" href=""><i
                                     class="fab fa-instagram"></i></a>
 
                                 </div>

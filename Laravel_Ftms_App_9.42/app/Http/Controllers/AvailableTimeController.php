@@ -120,6 +120,11 @@ class AvailableTimeController extends Controller
         $availableTime->price = $request->input('price');
         $availableTime->hour_from = $request->input('hour_from');
         $availableTime->hour_to = $request->input('hour_to');
+    if ($request->status == 'on') {
+        $availableTime->status = 1;
+    }else{
+        $availableTime->status = 0;
+        }
         $availableTime->save();
         return redirect()->route('admin.AvailableTimes.index')->with('msg', 'AvailableTimes Updated Successfully')->with('type', 'warning');
 

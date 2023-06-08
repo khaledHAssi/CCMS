@@ -3,20 +3,26 @@
 @section('title', 'Book Time - ' . env('APP_NAME'))
 
 @section('content')
-
-    <section class="bg-light" id="reviews">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    <section class="bg-black" id="reviews">
         <div class="container">
-            <h1 class="text-white">Booking Session with ({{ $time->expert->name }})</h1>
+            <h1 class="text-white " style="padding: 50px">Booking Session with ({{ $time->expert->name }})</h1>
         </div>
     </section>
     <!-- ABOUT -->
+
     <section id="about">
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-7 py-5">
                     <script src="https://eu-test.oppwa.com/v1/paymentWidgets.js?checkoutId={{ $id }}"></script>
                     <form action="{{ route('ftms.book_time_status', $time->id) }}" class="paymentWidgets"
-                        data-brands="VISA MASTER AMEX ARGENCARD MADA">
+                        data-brands="VISA MASTER">
                     </form>
                 </div>
             </div>

@@ -53,25 +53,9 @@
       class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
       <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
   </div>
-    <!-- TOP NAV -->
-    {{-- <div class="top-nav" id="home">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-auto">
-                    <p> <i class='bx bxs-envelope'></i> info@example.com</p>
-                    <p> <i class='bx bxs-phone-call'></i> 123 456-7890</p>
-                </div>
-                <div class="col-auto social-icons">
-                    <a href="#"><i class='bx bxl-facebook'></i></a>
-                    <a href="#"><i class='bx bxl-twitter'></i></a>
-                    <a href="#"><i class='bx bxl-instagram'></i></a>
-                    <a href="#"><i class='bx bxl-pinterest'></i></a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
+
        <!-- Navbar Start -->
-       <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
+       <div class="container-fluid  px-0 wow fadeIn" data-wow-delay="0.1s">
         <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
             <div class="col-lg-6 px-5 text-start">
                 <small><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</small>

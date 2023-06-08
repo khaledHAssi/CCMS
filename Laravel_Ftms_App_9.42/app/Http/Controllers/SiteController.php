@@ -23,8 +23,6 @@ class SiteController extends Controller
 {
     public function index()
     {
-        // $companies = Company::whereHas('courses')->latest('id')->get();
-        // $companies = Company::all();
 
         //---------------------------------------------------------------------------------
         $companies = Company::whereHas('courses', function(Builder $query) {
@@ -32,18 +30,13 @@ class SiteController extends Controller
             // عشان يعرض  الشركات اللي دوراتها ما بدت او اليوم بتبدا
         })->latest('id')->get();
 
-        // $experts = Expert::whereHas('available', function(Builder $query) {
-            // dd(Expert::whereHas('AvailableTime'));
+
         $experts = Expert::whereHas('AvailableTime', function(Builder $query) {
             $query->where('status', 1 )->whereDate('date', '>=', date('Y-m-d') );
         })->latest('id')->get();
         //---------------------------------------------------------------------------------
-        // $experts = DB::select("select * from experts");
-        // })->latest('id')->dd();
 
-        // dd($experts);
         return view('site.index', compact('companies', 'experts'));
-        // return view('site.index');
     }
 
     public function company($slug)
@@ -60,29 +53,20 @@ class SiteController extends Controller
 
     public function course_apply(Request $request, $id)
     {
-        // dd($request->all());
         $application = Application::create([
             'company_id' => $request->company_id,
             'user_id' => $request->user()->id,
             'course_id' => $id,
             'reason' => $request->reason
         ]);
-
         $user = User::where('company_id', $request->company_id)->first();
-
-        // dd($user);
-        // dd($request->company_id);
-        // dd($application);
-
         $user->notify(new AppliedNotification($application) );
-
         return redirect()->back()->with('msg', 'Your application has been submitted successfully');
     }
 
     public function expert($id)
     {
         $expert = Expert::findOrFail($id);
-
         return view('site.expert', compact('expert'));
     }
 
@@ -154,13 +138,15 @@ class SiteController extends Controller
                 AvailableTime::find($time_id)->update(['status' => 0]);
 
                 // send notification to expert
-
+                if(Auth::user()){
                 Payment::create([
                     'user_id' => Auth::id(),
                     'time_id' => $time_id,
                     'total' => $amount,
                     'transaction_id' => $id
-                ]);
+                ]);}else{
+                    return redirect('login');
+                }
 
                 DB::commit();
             }catch(Exception $e) {
@@ -168,7 +154,6 @@ class SiteController extends Controller
                 DB::rollBack();
                 throw new Exception($e->getMessage());
             }
-
             return redirect()->route('ftms.expert', $time->expert_id)->with('msg', 'Session Booked Successfully');
 
         }else {
@@ -189,6 +174,9 @@ class SiteController extends Controller
 
         $user->load('profile');
         return view('site.profile',compact('user'));
+    }
+    public function authError(){
+        return view('auth.error');
     }
 
 }

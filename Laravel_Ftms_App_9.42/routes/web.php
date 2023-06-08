@@ -70,6 +70,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::post('book-time', [SiteController::class, 'book_time'])->name('book_time');
         Route::get('book-time-status/{id}', [SiteController::class, 'book_time_status'])->name('book_time_status');
         Route::get('site-profile', [SiteController::class, 'site_profile'])->name('site_profile');
+        Route::get('Authentication-Error', [SiteController::class, 'authError'])->name('AuthenticateError');
     });
 
     Route::get('send-notify', [NotifyController::class, 'send']);

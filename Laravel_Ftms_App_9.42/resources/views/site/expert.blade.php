@@ -18,11 +18,15 @@
                 </div>
                 <div class="col-12">
                     <div class="intro">
+                        <br>     <br>
+
                         <h6>Need Session?</h6>
                         <h1>This is Available Times For Me</h1>
                     </div>
                 </div>
                 <div class="col-md-8">
+                    <br>
+                    <br>     <br>
                     <table class="table">
                         <tr>
                             <th>#</th>
@@ -33,6 +37,8 @@
                             <th>Book</th>
                         </tr>
                         @foreach ($expert->AvailableTime as $item)
+                        @if($item->status == 1)
+
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->date }}</td>
@@ -47,8 +53,14 @@
                                     </form>
                                 </td>
                             </tr>
+                            @endif
                         @endforeach
+
                     </table>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
 
                 </div>
             </div>
