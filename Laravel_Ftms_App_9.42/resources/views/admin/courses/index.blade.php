@@ -45,13 +45,14 @@
                             <td style="color:red;">No Pic</td>
                     @endif
                             <td>{{ $course->company->id }} - {{ $course->company->name }}</td>
-                            <td>{{ $course->user->id }} - <span style="font-size:90%">{{ $course->user->name }}</span></td>
+
+                           <td>{{ $course->user->id }} - {{$course->user->name}}</td>
                             <td>{{ $course->name }}</td>
                             <td>{{ $course->description }}</td>
                             <td>{{ $course->start_date }}</td>
                             <td>{{ $course->end_date }}</td>
 
-                            <td>
+                            <td style="display: flex;">
                                 <a href="{{ route('admin.courses.edit', $course) }}" class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> </a>
                                 <form class="d-inline" action="{{ route('admin.courses.destroy', $course->id) }}" method="POST">
                                 @csrf

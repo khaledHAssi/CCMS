@@ -49,6 +49,7 @@ class UserController extends Controller
                 ],
             ]);
 
+
 // dd($request->status);
         $user->name = $request->input('name');
         $user->username = $request->input('username');
@@ -101,7 +102,7 @@ class UserController extends Controller
                 'phone' => 'nullable|numeric|digits:12|',
                 'status' => 'nullable|string|in:on',
                 'email' => 'required|string|email',
-                'image' => 'nullable|image|mimes:jpg,png|max:1024',
+                'user_image' => 'required|image|mimes:jpg,png|max:1024',
                 'password'=> [
                     'nullable','string',
                     Password::min(8)

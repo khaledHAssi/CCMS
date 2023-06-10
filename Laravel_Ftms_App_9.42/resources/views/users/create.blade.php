@@ -115,9 +115,11 @@
                     <label for="type">Type</label>
                     <select name="type" class="form-control @error('type') is-invalid @enderror">
                         <option @selected(old('type') == 'Student') value="student">Student</option>
-                        <option @selected(old('type') == 'companySupervisor') value="companySupervisor">CompanySupervisor</option>
-                        <option @selected(old('type') == 'companyManager') value="companyManager">CompanyManager</option>
-                        <option @selected(old('type') == 'super-admin') value="super-admin">SuperAdmin</option>
+                      {{-- access --}}
+                      <option @selected(old('type') == 'companySupervisor') value="companySupervisor">CompanySupervisor</option>
+                      <option @selected(old('type') == 'companyManager') value="companyManager">CompanyManager</option>
+                      <option @selected(old('type') == 'super-admin') value="super-admin">SuperAdmin</option>
+                      {{-- access --}}
                         <option @selected(old('type') == 'doctor') value="doctor">Doctor</option>
                     </select>
                     @error('type')

@@ -227,19 +227,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Sidebar -->
             <div class="sidebar">
 
-                <!-- Sidebar Menu -->
+                <!--Menu-->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+                        <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="{{ route('admin.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     {{ __('main.Dashboard') }}
-                                    {{-- {{ __('Dashboard', [], 'ar') }} --}}
-                                    {{-- @lang('Dashboard') --}}
                                 </p>
                             </a>
                         </li>
@@ -379,8 +376,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
 
-
-                        <li class="nav-item">
+                        {{-- Appointments Btn For The Future --}}
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-calendar-alt"></i>
                                 <p>
@@ -388,20 +385,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
 
 
                 </nav>
-                <!-- /.sidebar-menu -->
+                <!--SidebarMenu -->
             </div>
-            <!-- /.sidebar -->
+            <!--Sidebar -->
         </aside>
 
-        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper - page content -->
         <div class="content-wrapper">
             @yield('content')
         </div>
-        <!-- /.content-wrapper -->
+        <!-- End -->
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -411,22 +408,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <p>Sidebar content</p>
             </div>
         </aside>
-        <!-- /.control-sidebar -->
+        <!-- control-sidebar -->
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <!-- To the right -->
             <div class="float-right d-none d-sm-inline">
                 Anything you want
             </div>
-            <!-- Default to the left -->
+            <!-- wanna make it to the setting controller  -->
             <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
             reserved.
         </footer>
     </div>
     <!-- ./wrapper -->
 
-    <!-- REQUIRED SCRIPTS -->
 
     <!-- jQuery -->
     <script src="{{ asset('adminassets/plugins/jquery/jquery.min.js') }}"></script>

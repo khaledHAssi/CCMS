@@ -12,7 +12,7 @@ class Course extends Model
 
     public function User()
     {
-        return $this->belongsTo(User::class)->withDefault();
+        return $this->belongsTo(User::class,'supervisor_id')->withDefault();
 
     }
     public function Company()

@@ -44,11 +44,11 @@
                     <label for="exampleInputFile">Edit Img</label>
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile" name="user_image">
+                            <input type="file" class="custom-file-input @error('user_image') is-invalid @enderror" id="exampleInputFile" name="user_image">
                             <label class="custom-file-label" for="exampleInputFile">Choose img</label>
                             @error('user_image')
                             <small class="invalid-feedback">{{ $message }}</small>
-                        @enderror
+                            @enderror
                         </div>
                     </div>
                 </div>

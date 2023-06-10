@@ -280,7 +280,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-tie"></i>
+                                <i class="nav-icon fas fa-star-half-alt"></i>
                                 <p>
                                     {{ __('Evaluations') }}
 
@@ -291,7 +291,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                 <li class="nav-item">
                                     <a href="{{ route('admin.evaluation.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="fas fa-list-ul nav-icon"></i>
                                         <p>{{ _('All Evaluations') }}</p>
                                     </a>
                                 </li>
@@ -308,7 +308,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-tie"></i>
+                                <i class="nav-icon fas fa-tasks"></i>
                                 <p>
                                     {{ __('Tasks') }}
 

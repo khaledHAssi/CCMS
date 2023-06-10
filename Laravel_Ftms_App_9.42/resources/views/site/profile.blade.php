@@ -49,11 +49,11 @@
             color: blue;
         }
         .container{
-            display: flex ! important ; 
+
         }
         .details{
             margin-left: 0em !important;
-            
+
         }
     </style>
 
@@ -137,7 +137,8 @@
 
                 <div class="container-xxl py-5 ">
                     <div class="container">
-                        <div class="row g-4 align-items-end mb-4 ">
+                        <div class="row g-4 align-items-end mb-4 flex">
+
                             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                                 <img class="img-fluid float-right rounded-3 mb-3" style="height: 600px;"
                                     src="{{ Storage::url(Auth::user()->image) }}" alt="">

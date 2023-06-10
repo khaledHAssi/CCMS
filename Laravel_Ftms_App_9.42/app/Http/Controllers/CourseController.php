@@ -20,7 +20,7 @@ class CourseController extends Controller
     {
         //
         $courses = Course::all();
-        $data = $courses->load('company','User');
+        $courses = $courses->load('company','user');
         return response()->view('admin.courses.index',compact('courses'));
     }
 
