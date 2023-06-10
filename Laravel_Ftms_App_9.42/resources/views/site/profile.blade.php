@@ -48,11 +48,12 @@
             border-radius: 50px;
             color: blue;
         }
+        .container{
+            display: flex ! important ; 
+        }
         .details{
             margin-left: 0em !important;
-            position: relative !important;
-            right: 5em;
-            top: -.7em;
+            
         }
     </style>
 
@@ -128,11 +129,6 @@
     </div>
 
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <!-- SLIDER -->
     <!-- ABOUT -->
     <section id="about">
@@ -143,7 +139,7 @@
                     <div class="container">
                         <div class="row g-4 align-items-end mb-4 ">
                             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <img class="img-fluid float-right  mb-3" style="height: 600px"
+                                <img class="img-fluid float-right rounded-3 mb-3" style="height: 600px;"
                                     src="{{ Storage::url(Auth::user()->image) }}" alt="">
                             </div>
                             <div class="col-lg-6 wow fadeInUp details" data-wow-delay="0.3s">
