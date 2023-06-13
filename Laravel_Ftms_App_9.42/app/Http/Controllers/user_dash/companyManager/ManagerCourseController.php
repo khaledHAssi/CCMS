@@ -17,6 +17,12 @@ class ManagerCourseController extends Controller
         $courses = $courses->load('company','user');
         return response()->view('user_dash.companyManager.courses.index',compact(['courses']));
     }
+    public function course_details(){
+        // $students = courseStudent::all();
+
+        // return response()->view('user_dash.companyManager.courses.course_details',compact(['students']));
+        return response()->view('user_dash.companyManager.courses.course_details');
+    }
     public function create(Request $request){
         $courses = Course::all();
         $users = DB::select('SELECT * FROM `users` WHERE `type` = "companySupervisor"');
@@ -54,7 +60,7 @@ class ManagerCourseController extends Controller
             $imageName = time() . '_image' . $course->name . '.' . $CourseImg->getClientOriginalExtension();
             $CourseImg->storePubliclyAs('courses', $imageName, ['disk' => 'public']);
             $course->image = 'courses/' . $imageName;
-        }
+        }else{}
 
             $course->save();
         return redirect()->route('user_dash.cmCourses.index')->with('msg', 'Course Updated Successfully')->with('type', 'warning');
@@ -147,5 +153,6 @@ class ManagerCourseController extends Controller
         return redirect()->route('user_dash.cmCourses.index')->with('msg', 'Company Deleted Successfully')->with('type', 'danger');
 
     }
+
 }
 

@@ -15,15 +15,16 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id');//the buyer of the session
             $table->foreignId('time_id');
-            $table->double('total');
+            $table->double('total');//total price of the payment operation
             $table->string('transaction_id');
             $table->timestamps();
         });
     }
 
-    /**
+
+/**
      * Reverse the migrations.
      *
      * @return void

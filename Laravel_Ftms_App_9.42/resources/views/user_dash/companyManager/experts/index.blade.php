@@ -17,6 +17,9 @@
             <a href="{{ route('user_dash.cmExperts.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
             class="btn btn-success mr-5">{{ __('Add New') }}</a>
 
+            <a href="{{ route('user_dash.cmAvailableTimes.index') }}" style="margin-bottom: 5px;margin-top: 5px;;"
+            class="btn btn-success mr-5">{{ __('AvailableTimes') }}</a>
+
             <table class="table table-bordered">
                 <thead>
                     <tr  class="bg-dark text-white">

@@ -18,9 +18,11 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestAPI;
+use App\Http\Controllers\user_dash\companyManager\ManagerAvailableTimeController;
 use App\Http\Controllers\user_dash\companyManager\ManagerCourseController;
 use App\Http\Controllers\user_dash\companyManager\ManagerCompanyController;
 use App\Http\Controllers\user_dash\companyManager\ManagerExpertController;
+use App\Http\Controllers\user_dash\companyManager\ManagerUsersController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -64,11 +66,15 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
     Route::resource('applications', ApplicationController::class);
 
     Route::prefix('user_dash')->middleware(['auth'])->name('user_dash.')->group(function () {
+        Route::resource('cmUsers', ManagerUsersController::class);
+        Route::resource('cmAvailableTimes', ManagerAvailableTimeController::class);
         Route::resource('cmCourses', ManagerCourseController::class);
         Route::resource('cmCompany', ManagerCompanyController::class);
         Route::resource('cmExperts', ManagerExpertController::class);
         Route::view('user_dash.master','user_dash.master')->name('master');
+        Route::get('course_details',[ManagerCourseController::class,'course_details'])->name('master');
     });
+
     Route::name('ftms.')->group(function () {
         Route::get('/', [SiteController::class, 'index'])->name('index');
         Route::get('/company/{id}', [SiteController::class, 'company'])->name('company');
@@ -91,9 +97,9 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
 
 
 
-    Route::prefix('user-dash')->middleware(['auth', 'verified', 'check_user'])->name('user_dash.')->group(function () {
-        Route::get('/', [AdminController::class, 'index'])->name('index');
-    });
+    // Route::prefix('user-dash')->middleware(['auth', 'verified', 'check_user'])->name('user_dash.')->group(function () {
+    //     Route::get('/', [AdminController::class, 'index'])->name('index');
+    // });
 });
 
 

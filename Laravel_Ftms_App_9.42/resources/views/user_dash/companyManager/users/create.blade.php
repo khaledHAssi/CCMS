@@ -1,7 +1,7 @@
-@extends('user_dash.master')
+@extends('admin.master')
 
 @php
-    $title = "Add Course"
+    $title = "Add user"
 @endphp
 
 @section('title', $title)
@@ -64,99 +64,92 @@
                     </div>
             </div>
             @endif
-            <form action="{{ route('user_dash.cmCourses.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('user_dash.cmUsers.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-3">
                     <label for="name">Name</label>
-                    <input id="name" name="name" type="text" placeholder="Name" class="form-control @error('name') is-invalid @enderror "  />
+                    <input id="name" name="name" type="text" placeholder="Name" class="form-control @error('name') is-invalid @enderror " value="{{ old('name') }}" />
                     @error('name')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <label for="username">username</label>
+                    <input id="username" name="username" type="text" placeholder="User Name" class="form-control @error('username') is-invalid @enderror " value="{{ old('username') }}" />
+                    @error('username')
+                        <small class="invalid-feedback">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="email">email</label>
+                    <input id="email" name="email" type="text" placeholder="User email" class="form-control @error('email') is-invalid @enderror " value="{{ old('email') }}" />
+                    @error('email')
+                        <small class="invalid-feedback">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="phone">phone</label>
+                    <input id="phone" name="phone" type="text" placeholder="Phone" class="form-control @error('phone') is-invalid @enderror " value="{{ old('phone') }}" />
+                    @error('phone')
+                        <small class="invalid-feedback">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror "  />
+                </div>
+
+
 
                 <div class="form-group">
                     <label for="exampleInputFile">Add Img</label>
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile" name="course_image">
-                            <label class="custom-file-label" for="exampleInputFile">Choose img</label>
+                            <input type="file" class="custom-file-input" id="exampleInputFile" name="user_image" @error('user_image') is-invalid @enderror>
+                            <label class="custom-file-label" for="exampleInputFile">Choose Img</label>
                         </div>
                     </div>
                 </div>
-
-
-
                 <div class="mb-3">
-                    <label for="supervisor_id">SuperVisor Id</label>
-                    <select name="supervisor_id"id="supervisor_id" class="form-control @error('supervisor_id') is-invalid @enderror">
-                        @foreach ($users as $user)
-
-                        <option  value="{{$user->id}}">{{$user->id .' - '. $user->name}}</option>
-                        @endforeach
+                    <label for="type">Type</label>
+                    <select name="type" class="form-control @error('type') is-invalid @enderror">
+                      {{-- access --}}
+                      <option @selected(old('type') == 'companySupervisor') value="companySupervisor">CompanySupervisor</option>
+                      {{-- access --}}
+                        <option @selected(old('type') == 'doctor') value="doctor">Doctor</option>
                     </select>
-                    @error('supervisor_id')
+                    @error('type')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
 
-
-
-            <input type="text" hidden id="company_id" value="{{Auth::user()->company_id}}" class="form-control" name="company_id"/>
-
-                <div class="mb-3">
-                    <label for="description">Description</label>
-                    <input id="description" name="description" type="text" placeholder="Name" class="form-control @error('description') is-invalid @enderror " />
-                    @error('description')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
-
                 </div>
-
-
-
-                <div class="mb-3">
-                    <label for="start_date">Start Date</label>
-                    <input id="start_date" name="start_date" type="date" placeholder="Name" class="form-control @error('start_date') is-invalid @enderror " />
-                    @error('start_date')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
-
-                </div>
-
-                <div class="mb-3">
-                    <label for="end_date">End Date</label>
-                    <input id="end_date" name="end_date" type="date" placeholder="Name" class="form-control @error('end_date') is-invalid @enderror "  />
-                    @error('end_date')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
-
-                </div>
-
                 <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                     <input type="checkbox" class="custom-control-input"id="status"name="status">
-                    <label class="custom-control-label" for="status">Course Active Status</label>
+                    <label class="custom-control-label" for="status">User Active Status</label>
                 </div>
 
                 <button class="btn btn-success px-5"><i class="fas fa-save"></i> Add</button>
+
+
+
+
 
             </form>
         </div>
     </div>
   </div>
 </div>
-
-@stop
-
-
 @section('scripts')
-
-
     <script src="{{ asset('adminassets\plugins\bs-custom-file-input\bs-custom-file-input.min.js') }}"></script>
     <script>
         $(function() {
             bsCustomFileInput.init();
         });
     </script>
+@endsection
 
 @stop
+
+

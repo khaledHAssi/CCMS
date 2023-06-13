@@ -59,11 +59,12 @@
                             @endif
 
                             <td style="display: flex;">
-                                <a href="{{ route('user_dash.cmCourses.edit', $course) }}" class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> </a>
+                                <a href="" class="btn btn-warning btn-sm"  style="margin-left: 5px"> <i class="fas fa-info-circle"></i> </a>
+                                <a href="{{ route('user_dash.cmCourses.edit', $course) }}" style="margin-left: 5px" class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> </a>
                                 <form class="d-inline" action="{{ route('user_dash.cmCourses.destroy', $course->id) }}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <button onclick="return confirm('Are you sure!?')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                <button style="margin-left: 5px" onclick="return confirm('Are you sure!?')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                 </form>
                             </td>
                         </tr>

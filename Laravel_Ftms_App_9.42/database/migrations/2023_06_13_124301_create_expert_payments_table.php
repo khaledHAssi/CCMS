@@ -17,13 +17,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('expert_id')->constrained()->cascadeOnDelete();
             $table->foreignId('payment_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('available_time_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('available_time_id')->constrained('available_times')->cascadeOnDelete();
             $table->text('note');
             $table->timestamps();
 
+            //completed the model relationships
 
-            // --------------------------------
-            //complited the model relationships 
         });
     }
 

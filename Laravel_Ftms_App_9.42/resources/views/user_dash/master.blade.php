@@ -242,13 +242,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.users.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-users "></i>
+                            <a href="{{ route('user_dash.cmUsers.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-laptop-house"></i>
                                 <p>
                                     {{ __('Users') }}
-
                                 </p>
                             </a>
+
                         </li>
 
                         <li class="nav-item">
@@ -260,6 +260,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
 
                         </li>
+
 
 
 
@@ -354,7 +355,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.AvailableTimes.index') }}" class="nav-link">
+                                    <a href="{{ route('user_dash.cmAvailableTimes.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>{{ _('AvailableTimes') }}</p>
                                     </a>

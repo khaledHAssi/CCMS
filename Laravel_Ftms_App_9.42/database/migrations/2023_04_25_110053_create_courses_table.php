@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('company_id')->constrained();
             $table->foreignId('supervisor_id')->constrained('users','id');
             $table->string('name');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->text('description')->nullable();
             $table->date('start_date');
             $table->date('end_date');
