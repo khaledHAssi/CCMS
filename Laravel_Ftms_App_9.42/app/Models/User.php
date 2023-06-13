@@ -49,6 +49,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Profile::class);
     }
+    public function Experts()
+    {
+        return $this->hasMany(Expert::class , 'doctor_id');
+    }
+
 
     public function applications()
     {

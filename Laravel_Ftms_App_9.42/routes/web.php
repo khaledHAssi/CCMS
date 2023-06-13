@@ -18,6 +18,9 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestAPI;
+use App\Http\Controllers\user_dash\companyManager\ManagerCourseController;
+use App\Http\Controllers\user_dash\companyManager\ManagerCompanyController;
+use App\Http\Controllers\user_dash\companyManager\ManagerExpertController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -57,9 +60,15 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::resource('courses', CourseController::class);
         Route::get('users/sknlk/slkngjo/ksda/{id}', [UserController::class, 'show']);
     });
+
     Route::resource('applications', ApplicationController::class);
 
-
+    Route::prefix('user_dash')->middleware(['auth'])->name('user_dash.')->group(function () {
+        Route::resource('cmCourses', ManagerCourseController::class);
+        Route::resource('cmCompany', ManagerCompanyController::class);
+        Route::resource('cmExperts', ManagerExpertController::class);
+        Route::view('user_dash.master','user_dash.master')->name('master');
+    });
     Route::name('ftms.')->group(function () {
         Route::get('/', [SiteController::class, 'index'])->name('index');
         Route::get('/company/{id}', [SiteController::class, 'company'])->name('company');

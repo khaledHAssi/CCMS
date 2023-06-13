@@ -1,60 +1,36 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\user_dash\companyManager;
 
+use App\Http\Controllers\Controller;
 use App\Models\Course;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
-class CourseController extends Controller
+class ManagerCourseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-        $courses = Course::all();
+    public function index(){
+        $courses = Course::where('company_id' , '=',Auth::user()->company_id)->Get();
+
         $courses = $courses->load('company','user');
-
-        return response()->view('admin.courses.index',compact('courses'));
+        return response()->view('user_dash.companyManager.courses.index',compact(['courses']));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function create(Request $request){
+        $courses = Course::all();
         $users = DB::select('SELECT * FROM `users` WHERE `type` = "companySupervisor"');
-        $companies = DB::select('SELECT * FROM `companies`');
-        return response()->view('admin.courses.create',compact(['users','companies']));
-
+        return response()->view('user_dash.companyManager.courses.create',compact(['courses','users']));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
         $validator =
         $request->validate([
              'name' => 'required|string|min:3|max:20|',
              'description' => 'required|string',
              'start_date' => 'required|date',
              'end_date' => 'required|date',
-             'company_id' => 'required',
+                'status' => 'nullable|string|in:on',
+                'company_id' => 'required',
              'supervisor_id' => 'required',
              'image' => 'nullable|image|mimes:jpg,png|max:1024',
 
@@ -63,13 +39,15 @@ class CourseController extends Controller
 
         $course->company_id = $request->input('company_id');
         $course->name = $request->input('name');
-
-
         $course->description = $request->input('description');
         $course->start_date = $request->input('start_date');
         $course->end_date = $request->input('end_date');
         $course->supervisor_id = $request->input('supervisor_id');
-
+    if ($request->status == 'on') {
+        $course->status = 1;
+    }else{
+        $course->status = 0;
+    }
 
         if ($request->hasFile('course_image')) {
             $CourseImg = $request->file('course_image');
@@ -79,16 +57,9 @@ class CourseController extends Controller
         }
 
             $course->save();
-        return redirect()->route('admin.courses.index')->with('msg', 'Company Updated Successfully')->with('type', 'warning');
+        return redirect()->route('user_dash.cmCourses.index')->with('msg', 'Course Updated Successfully')->with('type', 'warning');
 
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
@@ -107,7 +78,7 @@ class CourseController extends Controller
         // dd($course->supervisor_id);
         $users = DB::select('SELECT `id`, `name` FROM `users` WHERE `type` = "companySupervisor"');
         $companies = DB::select('SELECT `id`, `name` FROM `companies` ');
-        return response()->view('admin.courses.edit',compact(['course','users','companies']));}
+        return response()->view('user_dash.companyManager.courses.edit',compact(['course','users','companies']));}
     /**
      * Update the specified resource in storage.
      *
@@ -124,16 +95,19 @@ class CourseController extends Controller
              'start_date' => 'required|date',
              'end_date' => 'required|date',
              'image' => 'nullable|image|mimes:jpg,png|max:1024',
-             'company_id' => 'required',
+             'status' => 'nullable|string|in:on',
              'supervisor_id' => 'required',
 
         ]);
         $course = Course::findOrFail($id);
 
-        $course->company_id = $request->input('company_id');
         $course->supervisor_id = $request->input('supervisor_id');
         $course->name = $request->input('name');
-
+        if ($request->status == 'on') {
+            $course->status = 1;
+        }else{
+            $course->status = 0;
+        }
 
         $course->description = $request->input('description');
         $course->start_date = $request->input('start_date');
@@ -151,7 +125,7 @@ class CourseController extends Controller
         }
 
             $course->save();
-        return redirect()->route('admin.courses.index')->with('msg', 'Company Updated Successfully')->with('type', 'warning');
+        return redirect()->route('user_dash.cmCourses.index')->with('msg', 'Company Updated Successfully')->with('type', 'warning');
 
         //
     }
@@ -170,7 +144,8 @@ class CourseController extends Controller
         if ($course->image !=null) {
             Storage::delete($course->image);
         }
-        return redirect()->route('admin.courses.index')->with('msg', 'Company Deleted Successfully')->with('type', 'danger');
+        return redirect()->route('user_dash.cmCourses.index')->with('msg', 'Company Deleted Successfully')->with('type', 'danger');
 
     }
 }
+
