@@ -48,10 +48,10 @@
             border-radius: 50px;
             color: blue;
         }
-        .container{
 
-        }
-        .details{
+        .container {}
+
+        .details {
             margin-left: 0em !important;
 
         }
@@ -105,8 +105,8 @@
                     @else
                         <a href="{{ route('logout') }}" data-bs-toggle="modal"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
-                                class="nav-item nav-link" >
-                        </i>Logout</a>
+                            class="nav-item nav-link">
+                            </i>Logout</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
                         </form>
@@ -145,21 +145,21 @@
                             </div>
                             <div class="col-lg-6 wow fadeInUp details" data-wow-delay="0.3s">
                                 <div style="display:flex;">
-                                    <h4 -  style="margin-left:0px;">Name:</h4>
+                                    <h4 - style="margin-left:0px;">Name:</h4>
                                     <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                         - {{ Auth::user()->name }}
+                                        - {{ Auth::user()->name }}
                                     </h5>
                                 </div>
                                 <div style="display:flex;">
-                                    <h4 -  style="margin-left:0px;">Email:</h4>
+                                    <h4 - style="margin-left:0px;">Email:</h4>
                                     <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                         - {{ Auth::user()->email }}
+                                        - {{ Auth::user()->email }}
                                     </h5>
                                 </div>
                                 <div style="display:flex;">
-                                    <h4 -  style="margin-left:0px;">Phone: </h4>
+                                    <h4 - style="margin-left:0px;">Phone: </h4>
                                     <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                         - +{{ Auth::user()->phone }}
+                                        - +{{ Auth::user()->phone }}
                                     </h5>
                                 </div>
                                 <div class="social">
@@ -177,8 +177,12 @@
                                         <a href="{{ Auth::user()->profile->li ?? '' }}"><i
                                                 class=" socialDetails bx bxl-linkedin"></i></a>
                                 </div>
-                                    @endif
-                                <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3" style="margin-top: 15px">Edit</p>
+                                @endif
+                                <!-- Button trigger modal -->
+
+                                <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3"
+                                    style="margin-top: 15px" data-bs-toggle="modal" data-bs-target="#settingProfile">
+                                    Edit</p>
                                 <div class="border rounded p-4">
                                     <nav>
                                         <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
@@ -283,8 +287,6 @@
     </section>
 
 
-
-
     <div class="container-fluid copyright py-4">
         <div class="container">
             <div class="row">
@@ -299,10 +301,197 @@
             </div>
         </div>
     </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="settingProfile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="settingProfileLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="settingProfileLabel">Edit Profile Information</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                {{-- {{ route('admin.users.store') }} --}}
+
+                <div class="modal-body">
+
+
+                    <div class="border rounded p-4">
+                        <nav>
+                            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                                <button class="nav-link fw-semi-bold active" id="nav-user-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-user" type="button" role="tab"
+                                    aria-controls="nav-user" aria-selected="true">user information</button>
+                                <button class="nav-link fw-semi-bold" id="nav-profile-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-profile" type="button" role="tab"
+                                    aria-controls="nav-profile" aria-selected="false">profile information</button>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-user" role="tabpanel"
+                                aria-labelledby="nav-user-tab">
+
+                                <form action="#" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="container row g-3">
+                                        <div class="col-6 mb-3">
+                                            <label for="inputModalName" class="form-label">Name</label>
+                                            <input id="inputModalName" name="name" type="text"
+                                                placeholder="Enter Your Name"
+                                                class="form-control @error('name') is-invalid @enderror "
+                                                value="{{ old('name') }}" />
+                                            @error('name')
+                                                <small class="invalid-feedback">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="inputModalEmail" class="form-label">Email</label>
+                                            <input id="inputModalEmail" name="email" type="email"
+                                                placeholder="Enter Your email"
+                                                class="form-control @error('email') is-invalid @enderror "
+                                                value="{{ old('email') }}" />
+                                            @error('email')
+                                                <small class="invalid-feedback">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="inputModalusername" class="form-label">UserName</label>
+                                            <input id="inputModalusername" name="username" type="text"
+                                                placeholder="userName"
+                                                class="form-control @error('username') is-invalid @enderror "
+                                                value="{{ old('username') }}" />
+                                            @error('username')
+                                                <small class="invalid-feedback">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="inputModalphone" class="form-label">phone</label>
+                                            <input id="inputModalphone" name="phone" type="text"
+                                                placeholder="Phone"
+                                                class="form-control @error('phone') is-invalid @enderror "
+                                                value="{{ old('phone') }}" />
+                                            @error('phone')
+                                                <small class="invalid-feedback">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12 mb-3">
+                                            <label for="inputModalimage" class="form-label">Choose Image</label>
+                                            <input id="inputModalimage" name="user_image" type="file"
+                                                class="form-control @error('user_image') is-invalid @enderror "
+                                                value="{{ old('user_image') }}" />
+                                            @error('user_image')
+                                                <small class="invalid-feedback">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                aria-labelledby="nav-profile-tab">
+
+
+                                @if (Auth::user()->profile == null)
+                                    <h6 class="text-danger">Your profile is not completed </h6>
+                                    <form action="#" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="container row g-3">
+                                            <div class="col-12 mb-3">
+                                                <label for="inputModalCreatebio" class="form-label">Bio</label>
+                                                <textarea id="inputModalCreatebio" name="createbio" type="text"
+                                                    placeholder="Enter Your bio"
+                                                    class="form-control @error('createbio') is-invalid @enderror "
+                                                    value="{{ old('createbio') }}" ></textarea>
+                                                @error('createbio')
+                                                    <small class="invalid-feedback">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <label for="inputModalCreatefb" class="form-label">facebook</label>
+                                                <input id="inputModalCreatefb" name="createfb" type="text"
+                                                    placeholder="Enter Your facebook url"
+                                                    class="form-control @error('createfb') is-invalid @enderror "
+                                                    value="{{ old('createfb') }}" />
+                                                @error('createfb')
+                                                    <small class="invalid-feedback">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <label for="inputModalCreatetw" class="form-label">twitter</label>
+                                                <input id="inputModalCreatetw" name="createtw" type="text"
+                                                    placeholder="Enter Your twitter url"
+                                                    class="form-control @error('createtw') is-invalid @enderror "
+                                                    value="{{ old('createtw') }}" />
+                                                @error('createtw')
+                                                    <small class="invalid-feedback">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <label for="inputModalCreatein" class="form-label">instagram</label>
+                                                <input id="inputModalCreatein" name="createin" type="text"
+                                                    placeholder="Enter Your instagram url"
+                                                    class="form-control @error('createin') is-invalid @enderror "
+                                                    value="{{ old('createin') }}" />
+                                                @error('createin')
+                                                    <small class="invalid-feedback">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <label for="inputModalCreateli" class="form-label">linkedin</label>
+                                                <input id="inputModalCreateli" name="createli" type="text"
+                                                    placeholder="Enter Your linkedin url"
+                                                    class="form-control @error('createli') is-invalid @enderror "
+                                                    value="{{ old('createli') }}" />
+                                                @error('createli')
+                                                    <small class="invalid-feedback">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                @else
+                                    <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit.
+                                        Aliqu diam
+                                        amet diam et eos labore.</p>
+                                    <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam
+                                        et eos labore.
+                                        Clita erat ipsum et lorem et sit</p>
+                                @endif
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- script --}}
     <script src="{{ asset('siteassets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('siteassets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('siteassets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('siteassets/js/app.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('siteassets/lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('siteassets/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('siteassets/lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('siteassets/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('siteassets/lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ asset('siteassets/js/main.js') }}"></script>
 </body>
 
 </html>
