@@ -233,7 +233,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="{{ route('admin.index') }}" class="nav-link">
+                            <a href="{{ route('user_dash.master') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     {{ __('main.Dashboard') }}
@@ -252,7 +252,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.companies.index') }}" class="nav-link">
+                            <a href="{{ route('user_dash.cmCompany.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-laptop-house"></i>
                                 <p>
                                     {{ __('Companies') }}
@@ -264,7 +264,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.courses.index') }}" class="nav-link">
+                            <a href="{{ route('user_dash.cmCourses.index') }}" class="nav-link">
                                 <i class="nav-icon fab fa-wpforms"></i>
                                 <p>
                                     {{ __('Courses') }}
@@ -348,7 +348,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <ul class="nav nav-treeview">
 
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.experts.index') }}" class="nav-link">
+                                    <a href="{{ route('user_dash.cmExperts.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>{{ _('Experts') }}</p>
                                     </a>

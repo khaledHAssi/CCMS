@@ -13,6 +13,10 @@ class Expert extends Model
     {
         return $this->hasMany(AvailableTime::class);
     }
+    public function User()
+    {
+        return $this->belongsTo(User::class, 'doctor_id')->withDefault();
+    }
     public function company()
     {
         return $this->belongsTo(Company::class)->withDefault();
