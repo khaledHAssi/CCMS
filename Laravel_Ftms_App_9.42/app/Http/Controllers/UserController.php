@@ -24,7 +24,6 @@ class UserController extends Controller
     {
     }
     public function store(Request $request)
-    // public function store(Request $request)
     {
 
         $user = new User;
@@ -41,16 +40,16 @@ class UserController extends Controller
                 'password' => [
                     'required', 'string',
                     Password::min(8)
-                    ->numbers()
-                    ->letters()
-                    ->symbols()
-                    ->mixedCase()
-                    ->uncompromised()
+                        ->numbers()
+                        ->letters()
+                        ->symbols()
+                        ->mixedCase()
+                        ->uncompromised()
                 ],
             ]);
 
 
-// dd($request->status);
+        // dd($request->status);
         $user->name = $request->input('name');
         $user->username = $request->input('username');
         $user->phone = $request->input('phone');
@@ -62,7 +61,7 @@ class UserController extends Controller
 
         if ($request->status == 'on') {
             $user->status = 1;
-        }else{
+        } else {
             $user->status = 0;
         }
 
@@ -103,15 +102,15 @@ class UserController extends Controller
                 'status' => 'nullable|string|in:on',
                 'email' => 'required|string|email',
                 'user_image' => 'required|image|mimes:jpg,png|max:1024',
-                'password'=> [
-                    'nullable','string',
+                'password' => [
+                    'nullable', 'string',
                     Password::min(8)
-                    ->letters()
-                    ->numbers()
-                    ->symbols()
-                    ->mixedCase()
-                    ->uncompromised()
-                 ],
+                        ->letters()
+                        ->numbers()
+                        ->symbols()
+                        ->mixedCase()
+                        ->uncompromised()
+                ],
             ]);
 
 
@@ -122,13 +121,13 @@ class UserController extends Controller
         $user->phone = $request->input('phone');
         $user->email = $request->input('email');
         $user->type = $request->input('type');
-        if($request->has('password')){
+        if ($request->has('password')) {
             $user->password = Hash::make($request->input('password'));
         }
 
         if ($request->status == 'on') {
             $user->status = 1;
-        }else{
+        } else {
             $user->status = 0;
         }
 
@@ -151,7 +150,7 @@ class UserController extends Controller
 
 
         $user = User::findOrFail($id);
-       $deleted = $user->delete();
+        $deleted = $user->delete();
         if ($user->image != null & $deleted) {
             Storage::delete($user->image);
         }

@@ -14,6 +14,7 @@ use App\Http\Controllers\EvaluationAnswerController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\NotifyController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
@@ -86,6 +87,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::get('book-time-status/{id}', [SiteController::class, 'book_time_status'])->name('book_time_status');
         Route::get('site-profile', [SiteController::class, 'site_profile'])->name('site_profile');
         Route::get('Authentication-Error', [SiteController::class, 'authError'])->name('AuthenticateError');
+        Route::put('site-profile/update-user/{id}', [ProfileController::class, 'update_user_profile'])->name('site-profile.update_user_profile');
     });
 
     Route::get('send-notify', [NotifyController::class, 'send']);

@@ -333,7 +333,9 @@
                             <div class="tab-pane fade show active" id="nav-user" role="tabpanel"
                                 aria-labelledby="nav-user-tab">
 
-                                <form action="#" method="POST" enctype="multipart/form-data">
+                                {{-- form updata user information --}}
+                                {{-- <form action="#" method="POST" enctype="multipart/form-data"> --}}
+                                <form>
                                     @csrf
                                     <div class="container row g-3">
                                         <div class="col-6 mb-3">
@@ -341,7 +343,7 @@
                                             <input id="inputModalName" name="name" type="text"
                                                 placeholder="Enter Your Name"
                                                 class="form-control @error('name') is-invalid @enderror "
-                                                value="{{ old('name') }}" />
+                                                value="{{ Auth::user()->name }}" />
                                             @error('name')
                                                 <small class="invalid-feedback">{{ $message }}</small>
                                             @enderror
@@ -351,7 +353,7 @@
                                             <input id="inputModalEmail" name="email" type="email"
                                                 placeholder="Enter Your email"
                                                 class="form-control @error('email') is-invalid @enderror "
-                                                value="{{ old('email') }}" />
+                                                value="{{ Auth::user()->email }}" />
                                             @error('email')
                                                 <small class="invalid-feedback">{{ $message }}</small>
                                             @enderror
@@ -361,7 +363,7 @@
                                             <input id="inputModalusername" name="username" type="text"
                                                 placeholder="userName"
                                                 class="form-control @error('username') is-invalid @enderror "
-                                                value="{{ old('username') }}" />
+                                                value="{{ Auth::user()->username }}" />
                                             @error('username')
                                                 <small class="invalid-feedback">{{ $message }}</small>
                                             @enderror
@@ -371,7 +373,7 @@
                                             <input id="inputModalphone" name="phone" type="text"
                                                 placeholder="Phone"
                                                 class="form-control @error('phone') is-invalid @enderror "
-                                                value="{{ old('phone') }}" />
+                                                value="{{ Auth::user()->phone }}" />
                                             @error('phone')
                                                 <small class="invalid-feedback">{{ $message }}</small>
                                             @enderror
@@ -386,7 +388,8 @@
                                                 <small class="invalid-feedback">{{ $message }}</small>
                                             @enderror
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                        <button type="button" onclick="updateUser({{ Auth::user()->id }})"
+                                            class="btn btn-primary">Save changes</button>
                                     </div>
                                 </form>
 
@@ -397,15 +400,14 @@
 
                                 @if (Auth::user()->profile == null)
                                     <h6 class="text-danger">Your profile is not completed </h6>
-                                    <form action="#" method="POST" enctype="multipart/form-data">
+                                    {{-- <form action="#" method="PUT" enctype="multipart/form-data"> --}}
+                                    <form>
                                         @csrf
                                         <div class="container row g-3">
                                             <div class="col-12 mb-3">
                                                 <label for="inputModalCreatebio" class="form-label">Bio</label>
-                                                <textarea id="inputModalCreatebio" name="createbio" type="text"
-                                                    placeholder="Enter Your bio"
-                                                    class="form-control @error('createbio') is-invalid @enderror "
-                                                    value="{{ old('createbio') }}" ></textarea>
+                                                <textarea id="inputModalCreatebio" name="createbio" type="text" placeholder="Enter Your bio"
+                                                    class="form-control @error('createbio') is-invalid @enderror " value="{{ old('createbio') }}"></textarea>
                                                 @error('createbio')
                                                     <small class="invalid-feedback">{{ $message }}</small>
                                                 @enderror
@@ -478,6 +480,41 @@
             </div>
         </div>
     </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+    <script>
+        function showMessage(icon, message) {
+            Swal.fire({
+                icon: icon,
+                title: message,
+                showConfirmButton: false,
+                timer: 3500
+            });
+        }
+
+        function updateUser(id) {
+
+            axios.put(`/site-profile/update-user/${id}`, {
+                    name: document.getElementById('inputModalName').value,
+                    email: document.getElementById('inputModalEmail').value,
+                    // title: document.getElementById('title').value,
+                    // active: document.getElementById('active').checked
+                })
+                .then(function(response) {
+                    // window.location.href = '/cms/admin/categories'
+                    // showMessage('success', response.data.message);
+                    showMessage('success', "response.data.id");
+                    console.log(response).data;
+                    alert('Success');
+                })
+                .catch(function(error) {
+                    // showMessage('error', error.response.data.message);
+                    showMessage('error', error.response.data.id);
+                    alert('Error');
+                })
+        }
+    </script>
 
     {{-- script --}}
     <script src="{{ asset('siteassets/js/jquery.min.js') }}"></script>
