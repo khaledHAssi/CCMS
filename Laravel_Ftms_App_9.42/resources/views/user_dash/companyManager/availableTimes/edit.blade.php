@@ -1,4 +1,4 @@
-@extends('user_dash.master')
+@extends('user_dash.companyManager.master')
 
 @php
     $title = "Edit Expert"
@@ -49,7 +49,7 @@
     <div class="card mt-4">
         <div class="card-body">
             <h1>{{ $title }}</h1>
-            <form action="{{ route('admin.AvailableTimes.update', $AvailableTime) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('user_dash.cmAvailableTimes.update', $AvailableTime) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="card-body">

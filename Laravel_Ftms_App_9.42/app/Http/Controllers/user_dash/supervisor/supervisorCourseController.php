@@ -1,19 +1,42 @@
 <?php
 
-namespace App\Http\Controllers\user_dash\companyManager;
+namespace App\Http\Controllers\user_dash\supervisor;
 
 use App\Http\Controllers\Controller;
-use App\Models\Application;
 use Illuminate\Http\Request;
 
-class ManagerApplicationController extends Controller
+class supervisorCourseController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         //
+        return view('user_dash.supervisor.index');
 
-        $applications =Application::all();
-        return response()->view('user_dash.supervisor.applications.index',compact('applications'));
+    }
+    public function master()
+    {
+        //
+        return view('user_dash.supervisor.master');
+    }
+    public function students()
+    {
+        //
+        return view('user_dash.supervisor.students');
+    }
+    public function course_details()
+    {
+        //
+        return view('user_dash.supervisor.courses.course_details');
+    }
+    public function courses()
+    {
+        //
+        return view('user_dash.supervisor.courses.index');
     }
 
     /**
@@ -81,5 +104,4 @@ class ManagerApplicationController extends Controller
     {
         //
     }
-
 }

@@ -1,4 +1,4 @@
-@extends('user_dash.master')
+@extends('user_dash.supervisor.master')
 
 @section('title', 'All Applications')
 
@@ -41,9 +41,9 @@
                             <td>
                                 <a href="#" class="btn btn-success btn-sm"> <i class="fas fa-check-circle"></i> </a>
                                 <form class="d-inline" action="#" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button onclick="return confirm('Are you sure!?')" class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i></button>
+                                    @csrf
+                                    @method('delete')
+                                    <button onclick="return confirm('Are you sure!?')" class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i></button>
                                 </form>
                             </td>
                         </tr>

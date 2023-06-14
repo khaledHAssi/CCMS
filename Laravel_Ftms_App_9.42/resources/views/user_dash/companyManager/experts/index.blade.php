@@ -1,4 +1,4 @@
-@extends('user_dash.master')
+@extends('user_dash.companyManager.master')
 
 @section('title', 'All Experts')
 

@@ -32,10 +32,20 @@ class LoginController extends Controller
         if(Auth::user()->type == 'student'){
             // return redirect()->intended('/');
             return '/';
-        }else {
-            // return redirect()->intended('/admin');
-            return '/admin';
         }
+        elseif(Auth::user()->type == 'companyManager'){
+            // return redirect()->intended('/');
+            return '/en/user_dash/cm';
+        }
+        elseif(Auth::user()->type == 'companySupervisor'){
+            // return redirect()->intended('/');
+            return redirect('/en/user_dash/supervisor');
+        }
+        elseif(Auth::user()->type == 'super-admin'){
+            // return redirect()->intended('/admin');
+            return '/en/admin';
+        }
+        // else{}
     }
 
     /**

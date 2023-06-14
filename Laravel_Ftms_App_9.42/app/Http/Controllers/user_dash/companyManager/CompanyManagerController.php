@@ -3,17 +3,18 @@
 namespace App\Http\Controllers\user_dash\companyManager;
 
 use App\Http\Controllers\Controller;
-use App\Models\Application;
 use Illuminate\Http\Request;
 
-class ManagerApplicationController extends Controller
+class CompanyManagerController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        //
-
-        $applications =Application::all();
-        return response()->view('user_dash.supervisor.applications.index',compact('applications'));
+        return view('user_dash.companyManager.index');
     }
 
     /**
@@ -81,5 +82,4 @@ class ManagerApplicationController extends Controller
     {
         //
     }
-
 }

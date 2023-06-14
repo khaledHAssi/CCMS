@@ -1,4 +1,4 @@
-@extends('user_dash.master')
+@extends('user_dash.companyManager.master')
 
 @php
     $title = 'Add Expert';
@@ -86,7 +86,7 @@
 
 
 
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="company_id">Company id</label>
                             <select name="company_id" class="form-control @error('company_id') is-invalid @enderror">
                                 @foreach ($companies as $company)
@@ -96,7 +96,9 @@
                             @error('company_id')
                                 <small class="invalid-feedback">{{ $message }}</small>
                             @enderror
-                        </div>
+                        </div> --}}
+                        <input type="text" hidden id="company_id" value="{{Auth::user()->company_id}}" class="form-control" name="company_id"/>
+
                         <div class="mb-3">
                             <label for="doctor_id">Expert id</label>
                             <select name="doctor_id" class="form-control @error('doctor_id') is-invalid @enderror">

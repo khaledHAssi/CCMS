@@ -214,8 +214,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
         </nav>
         <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
+               <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
@@ -233,7 +232,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="{{ route('user_dash.master') }}" class="nav-link">
+                            <a href="{{ route('user_dash.supervisor.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     {{ __('main.Dashboard') }}
@@ -241,155 +240,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="{{ route('user_dash.cmUsers.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-laptop-house"></i>
-                                <p>
-                                    {{ __('Users') }}
-                                </p>
-                            </a>
-
-                        </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('user_dash.cmCompany.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-laptop-house"></i>
-                                <p>
-                                    {{ __('Companies') }}
-                                </p>
-                            </a>
-
-                        </li>
-
-
-
-
-                        <li class="nav-item">
-                            <a href="{{ route('user_dash.cmCourses.index') }}" class="nav-link">
-                                <i class="nav-icon fab fa-wpforms"></i>
+                            <a href="{{ route('user_dash.supervisor.sCourses') }}" class="nav-link">
+                                <i class="nav-icon fas fa-graduation-cap"></i>
                                 <p>
                                     {{ __('Courses') }}
-
-                                 </p>
-                            </a>
-
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-tie"></i>
-                                <p>
-                                    {{ __('Evaluations') }}
-
-                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.evaluation.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('All Evaluations') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.evaluationAnswer.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('All Answers') }}</p>
-                                    </a>
-                                </li>
-
-                            </ul>
                         </li>
-
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-tie"></i>
-                                <p>
-                                    {{ __('Tasks') }}
-
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.tasks.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('Tasks') }}</p>
-                                    </a>
-                                </li>
-
-                                        <li class="nav-item">
-                                            <a href="{{ route('admin.answers.index') }}" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>{{ _('Answers') }}</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ route('admin.answer_marks.index') }}" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>{{ _('Answers mark') }}</p>
-                                            </a>
-                                        </li>
-                            </ul>
-
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-tie"></i>
-                                <p>
-                                    {{ __('Experts') }}
-
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-
-                                <li class="nav-item">
-                                    <a href="{{ route('user_dash.cmExperts.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('Experts') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('user_dash.cmAvailableTimes.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('AvailableTimes') }}</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-
-
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('applications.index') }}" class="nav-link">
+                            <a href="{{ route('user_dash.supervisor.sApplications.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-file-alt"></i>
                                 <p>
                                     {{ __('Applications') }}
-
                                 </p>
                             </a>
                         </li>
 
-                        {{-- Appointments Btn For The Future --}}
-                        {{-- <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-calendar-alt"></i>
-                                <p>
-                                    {{ __('Appointments') }}
-
-                                </p>
-                            </a>
-                        </li> --}}
 
 
-                </nav>
                 <!--SidebarMenu -->
             </div>
             <!--Sidebar -->

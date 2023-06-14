@@ -39,9 +39,9 @@
                                                 value="{{ $email ?? old('email') }}" required autocomplete="email"
                                                 autofocus>
                                                 <br>
-                                                <input id="password" type="password" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                                <input id="password" placeholder="New password" type="password" class="form-control form-control-user @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                                                 <br>
-                                                <input id="password-confirm" type="password" class="form-control form-control-user" name="password_confirmation" required autocomplete="new-password">
+                                                <input placeholder="Confirm password" id="password-confirm" type="password" class="form-control form-control-user" name="password_confirmation" required autocomplete="new-password">
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>

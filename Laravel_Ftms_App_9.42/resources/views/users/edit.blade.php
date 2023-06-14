@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('admin.companyManager.master')
 
 @php
     $title = "Edit Users"
