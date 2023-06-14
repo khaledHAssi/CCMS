@@ -335,7 +335,7 @@
 
                                 {{-- form updata user information --}}
                                 {{-- <form action="#" method="POST" enctype="multipart/form-data"> --}}
-                                <form>
+                                <form enctype="multipart/form-data">
                                     @csrf
                                     <div class="container row g-3">
                                         <div class="col-6 mb-3">
@@ -388,8 +388,8 @@
                                                 <small class="invalid-feedback">{{ $message }}</small>
                                             @enderror
                                         </div>
-                                        <button type="button" onclick="updateUser({{ Auth::user()->id }})"
-                                            class="btn btn-primary">Save changes</button>
+                                        <button type="button" onclick="updateUser()" class="btn btn-primary">Save
+                                            changes</button>
                                     </div>
                                 </form>
 
@@ -398,8 +398,8 @@
                                 aria-labelledby="nav-profile-tab">
 
 
-                                @if (Auth::user()->profile == null)
-                                    <h6 class="text-danger">Your profile is not completed </h6>
+                                {{-- @if (Auth::user()->profile == null)
+                                @endif --}}
                                     {{-- <form action="#" method="PUT" enctype="multipart/form-data"> --}}
                                     <form>
                                         @csrf
@@ -407,62 +407,40 @@
                                             <div class="col-12 mb-3">
                                                 <label for="inputModalCreatebio" class="form-label">Bio</label>
                                                 <textarea id="inputModalCreatebio" name="createbio" type="text" placeholder="Enter Your bio"
-                                                    class="form-control @error('createbio') is-invalid @enderror " value="{{ old('createbio') }}"></textarea>
-                                                @error('createbio')
-                                                    <small class="invalid-feedback">{{ $message }}</small>
-                                                @enderror
+                                                    class="form-control" value="{{Auth::user()->profile->bio ?? ''}}">{{Auth::user()->profile->bio ?? ''}}</textarea>
                                             </div>
                                             <div class="col-6 mb-3">
                                                 <label for="inputModalCreatefb" class="form-label">facebook</label>
                                                 <input id="inputModalCreatefb" name="createfb" type="text"
                                                     placeholder="Enter Your facebook url"
-                                                    class="form-control @error('createfb') is-invalid @enderror "
-                                                    value="{{ old('createfb') }}" />
-                                                @error('createfb')
-                                                    <small class="invalid-feedback">{{ $message }}</small>
-                                                @enderror
+                                                    class="form-control"
+                                                    value="{{ Auth::user()->profile->fb  ?? ''}}" />
                                             </div>
                                             <div class="col-6 mb-3">
                                                 <label for="inputModalCreatetw" class="form-label">twitter</label>
                                                 <input id="inputModalCreatetw" name="createtw" type="text"
                                                     placeholder="Enter Your twitter url"
-                                                    class="form-control @error('createtw') is-invalid @enderror "
-                                                    value="{{ old('createtw') }}" />
-                                                @error('createtw')
-                                                    <small class="invalid-feedback">{{ $message }}</small>
-                                                @enderror
+                                                    class="form-control"
+                                                    value="{{ Auth::user()->profile->tw  ?? ''}}" />
                                             </div>
                                             <div class="col-6 mb-3">
                                                 <label for="inputModalCreatein" class="form-label">instagram</label>
                                                 <input id="inputModalCreatein" name="createin" type="text"
                                                     placeholder="Enter Your instagram url"
-                                                    class="form-control @error('createin') is-invalid @enderror "
-                                                    value="{{ old('createin') }}" />
-                                                @error('createin')
-                                                    <small class="invalid-feedback">{{ $message }}</small>
-                                                @enderror
+                                                    class="form-control"
+                                                    value="{{ Auth::user()->profile->in  ?? ''}}" />
                                             </div>
                                             <div class="col-6 mb-3">
                                                 <label for="inputModalCreateli" class="form-label">linkedin</label>
                                                 <input id="inputModalCreateli" name="createli" type="text"
                                                     placeholder="Enter Your linkedin url"
-                                                    class="form-control @error('createli') is-invalid @enderror "
-                                                    value="{{ old('createli') }}" />
-                                                @error('createli')
-                                                    <small class="invalid-feedback">{{ $message }}</small>
-                                                @enderror
+                                                    class="form-control"
+                                                    value="{{ Auth::user()->profile->li  ?? ''}}" />
                                             </div>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                            <button type="button" onclick="updateProfile()" class="btn btn-primary">Save changes</button>
                                         </div>
                                     </form>
-                                @else
-                                    <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit.
-                                        Aliqu diam
-                                        amet diam et eos labore.</p>
-                                    <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam
-                                        et eos labore.
-                                        Clita erat ipsum et lorem et sit</p>
-                                @endif
+                               
 
 
 
@@ -480,10 +458,22 @@
             </div>
         </div>
     </div>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
     <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
         function showMessage(icon, message) {
             Swal.fire({
                 icon: icon,
@@ -493,26 +483,79 @@
             });
         }
 
-        function updateUser(id) {
+        function updateUser() {
 
-            axios.put(`/site-profile/update-user/${id}`, {
-                    name: document.getElementById('inputModalName').value,
-                    email: document.getElementById('inputModalEmail').value,
-                    // title: document.getElementById('title').value,
-                    // active: document.getElementById('active').checked
-                })
+            const img = document.getElementById('inputModalimage').files[0];
+            console.log(img);
+            var datacontent = new FormData();
+            datacontent.append('name', document.getElementById('inputModalName').value);
+            datacontent.append('email', document.getElementById('inputModalEmail').value);
+            datacontent.append('username', document.getElementById('inputModalusername').value);
+            datacontent.append('phone', document.getElementById('inputModalphone').value);
+            if (img != null) {
+                datacontent.append('image', img);
+            }
+
+            var config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            };
+
+            axios.post(`/site-profile/update-user`, datacontent, config)
                 .then(function(response) {
-                    // window.location.href = '/cms/admin/categories'
-                    // showMessage('success', response.data.message);
-                    showMessage('success', "response.data.id");
-                    console.log(response).data;
-                    alert('Success');
+                    if (response.data.data.errors != null) {
+                        var errors = response.data.data.errors;
+                        for (var key in errors) {
+                            Toast.fire({
+                                icon: response.data.status,
+                                title: errors[key][0],
+                            });
+                        }
+                    } else {
+                        showMessage('success', response.data.message);
+                        window.location.reload();
+                    }
+
                 })
                 .catch(function(error) {
-                    // showMessage('error', error.response.data.message);
-                    showMessage('error', error.response.data.id);
-                    alert('Error');
+                    showMessage('error', error.message);
                 })
+
+        }
+
+        function updateProfile() {
+
+            axios.post(`/site-profile/update-profile`, {
+                bio: document.getElementById('inputModalCreatebio').value,
+                facebook: document.getElementById('inputModalCreatefb').value,
+                twitter: document.getElementById('inputModalCreatetw').value,
+                linkedin: document.getElementById('inputModalCreateli').value,
+                instagram: document.getElementById('inputModalCreatein').value
+            })
+                .then(function(response) {
+                    if (response.data.data.errors != null) {
+                        var errors = response.data.data.errors;
+                        for (var key in errors) {
+                            Toast.fire({
+                                icon: response.data.status,
+                                title: errors[key][0],
+                            });
+                        }
+                    } else {
+                        showMessage('success', response.data.message);
+                        window.location.reload();
+                    }
+
+                })
+                .catch(function(error) {
+                    Toast.fire({
+                                icon: 'error',
+                                title: error.message,
+                    });
+                    console.log(error);
+                })
+
         }
     </script>
 

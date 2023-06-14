@@ -55,7 +55,7 @@ class ExpertController extends Controller
              'image' => 'nullable|image|mimes:jpg,png|max:1024',
 
         ]);
-
+        
         $expert = new Expert ;
         $expert->company_id = $request->input('company_id');
         $expert->doctor_id = $request->input('doctor_id');
