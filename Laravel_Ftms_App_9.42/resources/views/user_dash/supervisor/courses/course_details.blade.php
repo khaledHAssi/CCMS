@@ -1,6 +1,6 @@
-@extends('user_dash.master')
+@extends('user_dash.supervisor.master')
 
-@section('title', 'Companies')
+@section('title', 'Courses')
 
 @section('content')
   <!-- DataTables -->

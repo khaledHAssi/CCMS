@@ -19,6 +19,12 @@ class ManagerCompanyController extends Controller
         return view('user_dash.companyManager.companies.index', compact('company'));
     }
 
+    public function master()
+    {
+        return view('user_dash.master');
+    }
+
+
     public function edit($id)
     {
         $company = Company::find($id);
