@@ -1,6 +1,6 @@
-@extends('user_dash.master')
+@extends('user_dash.companyManager.master')
 
-@section('title', 'Companies')
+@section('title', 'Course Details')
 
 @section('content')
   <!-- DataTables -->
@@ -17,6 +17,81 @@
 
             <table class="table table-bordered">
             <h1>Your Course</h1>
+            <tr>
+                <div class="container-xxl py-5 ">
+                    <div class="container">
+                        <div class="row g-4 align-items-end mb-4 flex">
+
+                            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                               {{-- <img class="img-circle img-bordered-sm" height="65" width="65"
+                        src="{{ Storage::url($course->image) }}" alt="user image"> --}}
+                            </div>
+                            <div class="col-lg-6 wow fadeInUp details" data-wow-delay="0.3s">
+                                <div style="display:flex;">
+                                    <h4 - style="margin-left:0px;">Name:</h4>
+                                    <h5 style="margin-left:0px;margin-top: 1.5% ">
+                                        {{-- {{$course->name}} --}}
+                                    </h5>
+                                </div>
+                                <div style="display:flex;">
+                                    <h4 - style="margin-left:0px;">company:</h4>
+                                    <h5 style="margin-left:0px;margin-top: 1.5% ">
+                                        {{-- {{$course->company_nameOrId}} --}}
+                                    </h5>
+                                </div>
+                                <div style="display:flex;">
+                                    <h4 - style="margin-left:0px;">status: </h4>
+                                    <h5 style="margin-left:0px;margin-top: 1.5% ">
+                                        {{-- {{$course->status}} --}}
+
+                                    </h5>
+                                </div>
+                                <div style="display:flex;">
+                                    <h4 - style="margin-left:0px;">Supervisor: </h4>
+                                    <h5 style="margin-left:0px;margin-top: 1.5% ">
+                                        {{-- {{$course->Supervisor_nameOrId}} --}}
+
+                                    </h5>
+                                </div>
+                                <div style="display:flex;">
+                                    <h4 - style="margin-left:0px;">Description: </h4>
+                                    <h5 style="margin-left:0px;margin-top: 1.5% ">
+                                        {{-- {{$course->description}} --}}
+
+                                    </h5>
+                                </div>
+                                <div style="display:flex;">
+                                    <h4 - style="margin-left:0px;">Start date: </h4>
+                                    <h5 style="margin-left:0px;margin-top: 1.5% ">
+                                        {{-- {{$course->start_date}} --}}
+
+                                    </h5>
+                                </div>
+                                <div style="display:flex;">
+                                    <h4 - style="margin-left:0px;">End date: </h4>
+                                    <h5 style="margin-left:0px;margin-top: 1.5% ">
+                                        {{-- {{$course->end_date}} --}}
+
+                                    </h5>
+                                </div>
+
+                                <!-- Button trigger modal -->
+
+
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                    {{-- <td>{{ $loop->index + 1}}</td> --}}
+                    {{-- <td>{{ $student->name }}</td> --}}
+                {{-- <td>{{ $student->email }}</td> --}}
+                {{-- <td>{{ $student->phone }}</td> --}}
+                {{-- <td>{{ $student->created_at }}</td> --}}
+                <td>
+                    {{-- <a href="{{ route('user_dash.cmExperts.destroy', $student->id) }}" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i> </a> --}}
+                </td>
+            </tr>
 
             <table id="example" class="table table-bordered table-hover">
                 <thead>
@@ -39,81 +114,6 @@
                                 ********************************
                         --}}
 
-                        <tr>
-                            <div class="container-xxl py-5 ">
-                                <div class="container">
-                                    <div class="row g-4 align-items-end mb-4 flex">
-
-                                        <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                                           {{-- <img class="img-circle img-bordered-sm" height="65" width="65"
-                                    src="{{ Storage::url($course->image) }}" alt="user image"> --}}
-                                        </div>
-                                        <div class="col-lg-6 wow fadeInUp details" data-wow-delay="0.3s">
-                                            <div style="display:flex;">
-                                                <h4 - style="margin-left:0px;">Name:</h4>
-                                                <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                                    {{-- {{$course->name}} --}}
-                                                </h5>
-                                            </div>
-                                            <div style="display:flex;">
-                                                <h4 - style="margin-left:0px;">company:</h4>
-                                                <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                                    {{-- {{$course->company_nameOrId}} --}}
-                                                </h5>
-                                            </div>
-                                            <div style="display:flex;">
-                                                <h4 - style="margin-left:0px;">status: </h4>
-                                                <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                                    {{-- {{$course->status}} --}}
-
-                                                </h5>
-                                            </div>
-                                            <div style="display:flex;">
-                                                <h4 - style="margin-left:0px;">Supervisor: </h4>
-                                                <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                                    {{-- {{$course->Supervisor_nameOrId}} --}}
-
-                                                </h5>
-                                            </div>
-                                            <div style="display:flex;">
-                                                <h4 - style="margin-left:0px;">Description: </h4>
-                                                <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                                    {{-- {{$course->description}} --}}
-
-                                                </h5>
-                                            </div>
-                                            <div style="display:flex;">
-                                                <h4 - style="margin-left:0px;">Start date: </h4>
-                                                <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                                    {{-- {{$course->start_date}} --}}
-
-                                                </h5>
-                                            </div>
-                                            <div style="display:flex;">
-                                                <h4 - style="margin-left:0px;">End date: </h4>
-                                                <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                                    {{-- {{$course->end_date}} --}}
-
-                                                </h5>
-                                            </div>
-
-                                            <!-- Button trigger modal -->
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-
-                                {{-- <td>{{ $loop->index + 1}}</td> --}}
-                                {{-- <td>{{ $student->name }}</td> --}}
-                            {{-- <td>{{ $student->email }}</td> --}}
-                            {{-- <td>{{ $student->phone }}</td> --}}
-                            {{-- <td>{{ $student->created_at }}</td> --}}
-                            <td>
-                                {{-- <a href="{{ route('user_dash.cmExperts.destroy', $student->id) }}" class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i> </a> --}}
-                            </td>
-                        </tr>
 
                 </tbody>
             </table>

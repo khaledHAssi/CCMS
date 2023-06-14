@@ -39,7 +39,7 @@ of Simple CSS Waves-->
 
                                         <div class="form-group">
                                             <label>{{ __('Password') }}</label>
-                                            <input type="password" name="password" autocomplete="new-password"
+                                            <input type="password" name="password"
                                                 class="form-control form-control-user" id="password"
                                                 placeholder="Password">
 

@@ -21,7 +21,7 @@ class ManagerCompanyController extends Controller
 
     public function master()
     {
-        return view('user_dash.master');
+        return view('user_dash.companyManager.master');
     }
 
 

@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('user_dash.companyManager.master')
 
 @php
     $title = "Add user"
@@ -129,8 +129,10 @@
                     <input type="checkbox" class="custom-control-input"id="status"name="status">
                     <label class="custom-control-label" for="status">User Active Status</label>
                 </div>
+                <div>
 
-                <button class="btn btn-success px-5"><i class="fas fa-save"></i> Add</button>
+                    <button class="btn btn-success px-5"><i class="fas fa-save"></i> Add</button>
+                </div>
 
 
 

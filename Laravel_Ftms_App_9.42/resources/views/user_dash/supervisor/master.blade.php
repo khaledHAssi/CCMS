@@ -240,14 +240,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="{{ route('user_dash.supervisor.sStudents') }}" class="nav-link">
-                                <i class="nav-icon fas fa-user-circle"></i>
-                                <p>
-                                    {{ __('Students') }}
-                                </p>
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="{{ route('user_dash.supervisor.sCourses') }}" class="nav-link">
                                 <i class="nav-icon fas fa-graduation-cap"></i>

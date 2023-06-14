@@ -17,6 +17,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('adminassets/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
+    <link rel="stylesheet" href="{{asset('adminassets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('adminassets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+
     <link rel="stylesheet" href="{{ asset('adminassets/dist/css/adminlte.min.css') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
@@ -233,7 +236,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="{{ route('user_dash.master') }}" class="nav-link">
+                            <a href="{{ route('user_dash.cmmaster') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     {{ __('main.Dashboard') }}
@@ -277,6 +280,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
                         <li class="nav-item">
+
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-tie"></i>
                                 <p>
@@ -285,7 +289,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            {{-- <ul class="nav nav-treeview">
 
                                 <li class="nav-item">
                                     <a href="{{ route('admin.evaluation.index') }}" class="nav-link">
@@ -300,11 +304,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </a>
                                 </li>
 
-                            </ul>
+                            </ul> --}}
                         </li>
 
 
-                        <li class="nav-item">
+
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-tie"></i>
                                 <p>
@@ -322,21 +327,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </a>
                                 </li>
 
-                                        <li class="nav-item">
-                                            <a href="{{ route('admin.answers.index') }}" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>{{ _('Answers') }}</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ route('admin.answer_marks.index') }}" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>{{ _('Answers mark') }}</p>
-                                            </a>
-                                        </li>
+
                             </ul>
 
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-tie"></i>

@@ -18,7 +18,6 @@
                     <tr  class="bg-dark text-white">
                         <th>ID</th>
                         <th>Course Img</th>
-                        <th>SuperVisor Id</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Start Date</th>
@@ -41,7 +40,6 @@
                             <td style="color:red;">No Pic</td>
                     @endif
 
-                           <td>{{ $course->user->id }} - {{$course->user->name}}</td>
                             <td>{{ $course->name }}</td>
                             <td>{{ $course->description }}</td>
                             <td>{{ $course->start_date }}</td>

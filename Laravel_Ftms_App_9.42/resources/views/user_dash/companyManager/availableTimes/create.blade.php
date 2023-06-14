@@ -1,4 +1,4 @@
-@extends('user_dash.master')
+@extends('user_dash.companyManager.master')
 
 @php
     $title = "Add AvailableTime"
@@ -49,7 +49,7 @@
     <div class="card mt-4">
         <div class="card-body">
             <h1>{{ $title }}</h1>
-            <form action="{{ route('admin.AvailableTimes.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('user_dash.cmAvailableTimes.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-3">
@@ -66,6 +66,7 @@
                 <div class="mb-3">
                     <label for="expert_id">Expert id</label>
                     <select name="expert_id" class="form-control @error('expert_id') is-invalid @enderror">
+
                         @foreach ($experts as $expert)
                         <option  value="{{$expert->id}}">{{$expert->id .' - '. $expert->name}}</option>
                         @endforeach

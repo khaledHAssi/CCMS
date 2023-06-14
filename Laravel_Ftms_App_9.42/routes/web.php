@@ -19,6 +19,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestAPI;
+use App\Http\Controllers\user_dash\companyManager\CompanyManagerController;
 use App\Http\Controllers\user_dash\companyManager\ManagerApplicationController;
 use App\Http\Controllers\user_dash\companyManager\ManagerAvailableTimeController;
 use App\Http\Controllers\user_dash\companyManager\ManagerCourseController;
@@ -43,7 +44,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::prefix(LaravelLocalization::setLocale())->group(function () {
 
 
-    Route::prefix('admin')->middleware(['auth', 'verified', 'check_user'])->name('admin.')->group(function () {
+    Route::prefix('admin')->middleware(['auth', 'verified', 'check_admin'])->name('admin.')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('index');
         Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
         Route::post('/settings', [AdminController::class, 'settings_store'])->name('settings_store');
@@ -68,29 +69,31 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
 
     Route::resource('applications', ApplicationController::class);
 
-    Route::prefix('user_dash')->middleware(['auth'])->name('user_dash.')->group(function () {
-        Route::get('',[ManagerCompanyController::class,'master'])->name('master');
-        Route::resource('cmUsers', ManagerUsersController::class);
-        Route::resource('cmAvailableTimes', ManagerAvailableTimeController::class);
-        Route::resource('cmCourses', ManagerCourseController::class);
-        Route::resource('cmCompany', ManagerCompanyController::class);
-        Route::resource('cmExperts', ManagerExpertController::class);
-        Route::resource('cmApplications', ManagerApplicationController::class);
-        Route::get('course_details',[ManagerCourseController::class,'course_details'])->name('course_details');
+    Route::prefix('user_dash')->middleware(['auth', 'verified'])->name('user_dash.')->group(function () {
+        // if (Auth::user()->type=="companyManager"){
+        Route::prefix('/cm')->name('cm')->middleware('check_companyManager')->group(function () {
+            Route::get('/', [CompanyManagerController::class, 'index'])->name('index');
+            Route::get('/master', [ManagerCompanyController::class, 'master'])->name('master');
+            Route::resource('Users', ManagerUsersController::class);
+            Route::resource('AvailableTimes', ManagerAvailableTimeController::class);
+            Route::resource('Courses', ManagerCourseController::class);
+            Route::resource('Company', ManagerCompanyController::class);
+            Route::resource('Experts', ManagerExpertController::class);
+            Route::resource('Applications', ManagerApplicationController::class);
+            Route::get('course_details', [ManagerCourseController::class, 'course_details'])->name('course_details');
+        });
+    // }
 
-        Route::prefix('supervisor')->middleware(['auth'])->name('supervisor.')->group(function () {
+        Route::prefix('supervisor')->name('supervisor.')->middleware('check_supervisor')->group(function () {
 
             Route::resource('sApplications', ManagerApplicationController::class);
             Route::resource('', supervisorCourseController::class);
-            Route::get('/master',[supervisorCourseController::class,'master'])->name('master');
-            Route::get('/sStudents',[supervisorCourseController::class,'students'])->name('sStudents');
-            Route::get('/sCourses',[supervisorCourseController::class,'courses'])->name('sCourses');
-            Route::get('/sCourse_details',[supervisorCourseController::class,'course_details'])->name('sCourse_details');
-
+            Route::get('/master', [supervisorCourseController::class, 'master'])->name('master');
+            Route::get('/sCourses', [supervisorCourseController::class, 'courses'])->name('sCourses');
+            Route::get('/sCourse_details', [supervisorCourseController::class, 'course_details'])->name('sCourse_details');
         });
-
     });
-
+    //change ftms to example name
     Route::name('ftms.')->group(function () {
         Route::get('/', [SiteController::class, 'index'])->name('index');
         Route::get('/company/{id}', [SiteController::class, 'company'])->name('company');

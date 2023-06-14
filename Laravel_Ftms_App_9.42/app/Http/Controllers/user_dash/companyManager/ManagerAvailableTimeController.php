@@ -88,7 +88,7 @@ class ManagerAvailableTimeController extends Controller
         $AvailableTime = AvailableTime::find($id);
         $experts = Expert::all();
         // dd($AvailableTime);
-        return response()->view('user_dash.cmAvailableTimes.edit',compact(['experts','AvailableTime']));
+        return response()->view('user_dash.companyMAnager.AvailableTimes.edit',compact(['experts','AvailableTime']));
     }
 
     /**
@@ -121,7 +121,7 @@ class ManagerAvailableTimeController extends Controller
         $availableTime->status = 0;
         }
         $availableTime->save();
-        return redirect()->route('admin.AvailableTimes.index')->with('msg', 'AvailableTimes Updated Successfully')->with('type', 'warning');
+        return redirect()->route('user_dash.cmAvailableTimes.index')->with('msg', 'AvailableTimes Updated Successfully')->with('type', 'warning');
 
     }
 
