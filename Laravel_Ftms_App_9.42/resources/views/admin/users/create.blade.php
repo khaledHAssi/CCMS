@@ -1,4 +1,4 @@
-@extends('admin.companyManager.master')
+@extends('admin.master')
 
 @php
     $title = "Add user"
@@ -114,7 +114,6 @@
                 <div class="mb-3">
                     <label for="type">Type</label>
                     <select name="type" class="form-control @error('type') is-invalid @enderror">
-                        <option @selected(old('type') == 'Student') value="student">Student</option>
                       {{-- access --}}
                       <option @selected(old('type') == 'companySupervisor') value="companySupervisor">CompanySupervisor</option>
                       <option @selected(old('type') == 'companyManager') value="companyManager">CompanyManager</option>
@@ -123,6 +122,18 @@
                         <option @selected(old('type') == 'doctor') value="doctor">Doctor</option>
                     </select>
                     @error('type')
+                        <small class="invalid-feedback">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="company_id">Company</label>
+                    <select name="company_id" class="form-control @error('company_id') is-invalid @enderror">
+                        @foreach ($companies as $company)
+                        <option  value="{{$company->id}}">{{$company->id}} - {{$company->name}}</option>
+                        @endforeach
+
+                    </select>
+                    @error('company_id')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>

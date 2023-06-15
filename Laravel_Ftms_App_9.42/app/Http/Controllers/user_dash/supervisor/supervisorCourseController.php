@@ -14,20 +14,14 @@ class supervisorCourseController extends Controller
      */
     public function index()
     {
-        //
         return view('user_dash.supervisor.index');
-
     }
     public function master()
     {
         //
         return view('user_dash.supervisor.master');
     }
-    public function students()
-    {
-        //
-        return view('user_dash.supervisor.students');
-    }
+
     public function course_details()
     {
         //

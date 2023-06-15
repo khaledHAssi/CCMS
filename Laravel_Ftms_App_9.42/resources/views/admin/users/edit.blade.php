@@ -1,4 +1,4 @@
-@extends('admin.companyManager.master')
+@extends('admin.master')
 
 @php
     $title = "Edit Users"
@@ -65,13 +65,24 @@
                     <label for="type">Type</label>
                     {{-- ['student', 'companyManager', 'companySupervisor', 'doctor', 'super-admin'] --}}
                     <select name="type" class="form-control @error('type') is-invalid @enderror">
-                        <option @selected($user->type == 'student' || old('type') == 'student') value="student">Student</option>
                         <option @selected($user->type == 'companySupervisor' || old('type') == 'companySupervisor') value="companySupervisor">CompanySupervisor</option>
                         <option @selected($user->type == 'companyManager' || old('type') == 'companyManager') value="companyManager">CompanyManager</option>
                         <option @selected($user->type == 'super-admin' || old('type') == 'super-admin') value="super-admin">SuperAdmin</option>
                         <option @selected($user->type == 'doctor' || old('type') == 'doctor') value="doctor">Doctor</option>
                     </select>
                     @error('type')
+                        <small class="invalid-feedback">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="company_id">Company</label>
+                    <select name="company_id" class="form-control @error('company_id') is-invalid @enderror">
+                        @foreach ($companies as $company)
+                        <option @selected($company->id==$user->company_id)  value="{{$company->id}}">{{$company->id}} - {{$company->name}}</option>
+                        @endforeach
+
+                    </select>
+                    @error('company_id')
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>

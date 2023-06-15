@@ -13,7 +13,7 @@ class ManagerApplicationController extends Controller
         //
 
         $applications =Application::all();
-        return response()->view('user_dash.supervisor.applications.index',compact('applications'));
+        return response()->view('user_dash.companyManager.applications.index',compact('applications'));
     }
 
     /**

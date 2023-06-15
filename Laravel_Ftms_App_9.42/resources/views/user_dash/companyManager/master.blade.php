@@ -17,8 +17,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('adminassets/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('adminassets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{asset('adminassets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('adminassets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('adminassets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('adminassets/dist/css/adminlte.min.css') }}">
 
@@ -179,7 +180,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="{{route('ftms.site_profile')}}" class="dropdown-item">
+                        <a href="{{ route('ftms.site_profile') }}" class="dropdown-item">
                             <i class="fas fa-user mr-2"></i> Profile
                         </a>
 
@@ -236,7 +237,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="{{ route('user_dash.cmmaster') }}" class="nav-link">
+                            <a href="{{ route('user_dash.cmCompany.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     {{ __('main.Dashboard') }}
@@ -254,18 +255,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         </li>
 
-                        <li class="nav-item">
-                            <a href="{{ route('user_dash.cmCompany.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-laptop-house"></i>
-                                <p>
-                                    {{ __('Companies') }}
-                                </p>
-                            </a>
-
-                        </li>
-
-
-
 
                         <li class="nav-item">
                             <a href="{{ route('user_dash.cmCourses.index') }}" class="nav-link">
@@ -273,7 +262,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <p>
                                     {{ __('Courses') }}
 
-                                 </p>
+                                </p>
                             </a>
 
                         </li>

@@ -81,6 +81,8 @@
                         <small class="invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
+                <input type="text" hidden id="company_id" value="{{Auth::user()->company_id}}" class="form-control" name="company_id"/>
+
                 <div class="mb-3">
                     <label for="email">email</label>
                     <input id="email" name="email" type="text" placeholder="User email" class="form-control @error('email') is-invalid @enderror " value="{{ old('email') }}" />

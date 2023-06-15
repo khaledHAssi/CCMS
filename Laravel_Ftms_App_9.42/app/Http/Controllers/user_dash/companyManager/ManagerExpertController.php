@@ -20,9 +20,9 @@ class ManagerExpertController extends Controller
     public function index()
     {
         //
-        $experts = Expert::where('company_id','=',Auth::user()->company_id)->get();
+        $experts = Expert::where('company_id', '=', Auth::user()->company_id)->get();
         $experts = $experts->load('User');
-        return response()->view('user_dash.companyManager.experts.index',compact('experts'));
+        return response()->view('user_dash.companyManager.experts.index', compact('experts'));
     }
 
     /**
@@ -32,11 +32,11 @@ class ManagerExpertController extends Controller
      */
     public function create()
     {
-        $companies = DB::select('SELECT `id`,`name` FROM `companies`');
-        $doctors = DB::select('SELECT `id`,`name` FROM `users` Where `type` like "doctor"');
+        $doctors = User::where('company_id', Auth::user()->company_id)
+            ->where('type', 'doctor')
+            ->get();
 
-        return response()->view('user_dash.companyManager.experts.create',compact(['companies','doctors']));
-
+        return response()->view('user_dash.companyManager.experts.create', compact('doctors'));
     }
 
     /**
@@ -49,15 +49,15 @@ class ManagerExpertController extends Controller
     {
         //
         $validator =
-        $request->validate([
-             'name' => 'required|string|min:3|max:20|',
-             'hour_price' => 'required|numeric|min:5|',
-             'company_id' => 'required',
-             'image' => 'nullable|image|mimes:jpg,png|max:1024',
+            $request->validate([
+                'name' => 'required|string|min:3|max:20|',
+                'hour_price' => 'required|numeric|min:5|',
+                'company_id' => 'required',
+                'image' => 'nullable|image|mimes:jpg,png|max:1024',
 
-        ]);
+            ]);
 
-        $expert = new Expert ;
+        $expert = new Expert;
         $expert->company_id = $request->input('company_id');
         $expert->doctor_id = $request->input('doctor_id');
         $expert->name = $request->input('name');
@@ -74,7 +74,6 @@ class ManagerExpertController extends Controller
 
         $expert->save();
         return redirect()->route('user_dash.cmExperts.index')->with('msg', 'Experts Updated Successfully')->with('type', 'warning');
-
     }
 
     /**
@@ -96,13 +95,11 @@ class ManagerExpertController extends Controller
      */
     public function edit($id)
     {
-        //
         $expert = Expert::find($id);
-        // dd($expert->supervisor_id);
-        $companies = DB::select('SELECT `id`, `name` FROM `companies` ');
-        $doctors = DB::select('SELECT `id`,`name` FROM `users` Where `type` like "doctor"');
-
-        return response()->view('user_dash.companyManager.experts.create',compact(['expert','companies','doctors']));
+        $doctors = User::where('company_id', Auth::user()->company_id)
+        ->where('type', 'doctor')
+        ->get();
+        return response()->view('user_dash.companyManager.experts.edit', compact(['expert', 'doctors']));
     }
 
     /**
@@ -117,19 +114,17 @@ class ManagerExpertController extends Controller
         //
         $expert = Expert::findOrFail($id);
         $validator =
-        $request->validate([
-             'name' => 'required|string|min:3|max:20|',
-             'hour_price' => 'required|numeric|min:5|max:100|',
-             'company_id' => 'required',
-             'doctor_id' => 'required',
-             'image' => 'nullable|image|mimes:jpg,png|max:1024',
+            $request->validate([
+                'name' => 'required|string|min:3|max:20|',
+                'hour_price' => 'required|numeric|min:5|',
+                'doctor_id' => 'required',
+                'image' => 'nullable|image|mimes:jpg,png|max:1024',
 
-        ]);
+            ]);
 
         $expert->name = $request->input('name');
         $expert->hour_price = $request->input('hour_price');
         $expert->doctor_id = $request->input('doctor_id');
-        $expert->company_id = $request->input('company_id');
 
 
 
@@ -144,9 +139,8 @@ class ManagerExpertController extends Controller
             $expert->image = 'experts/' . $imageName;
         }
 
-            $expert->save();
+        $expert->save();
         return redirect()->route('user_dash.cmExperts.index')->with('msg', 'Company Updated Successfully')->with('type', 'warning');
-
     }
 
     /**
@@ -160,10 +154,9 @@ class ManagerExpertController extends Controller
         //
         $expert = Expert::findOrFail($id);
         $expert->delete();
-        if ($expert->image !=null) {
+        if ($expert->image != null) {
             Storage::delete($expert->image);
         }
         return redirect()->route('user_dash.cmExperts.index')->with('msg', 'Company Deleted Successfully')->with('type', 'danger');
-
     }
 }

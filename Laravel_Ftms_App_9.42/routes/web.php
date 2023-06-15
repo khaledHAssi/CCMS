@@ -19,7 +19,6 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestAPI;
-use App\Http\Controllers\user_dash\companyManager\CompanyManagerController;
 use App\Http\Controllers\user_dash\companyManager\ManagerApplicationController;
 use App\Http\Controllers\user_dash\companyManager\ManagerAvailableTimeController;
 use App\Http\Controllers\user_dash\companyManager\ManagerCourseController;
@@ -72,15 +71,17 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
     Route::prefix('user_dash')->middleware(['auth', 'verified'])->name('user_dash.')->group(function () {
         // if (Auth::user()->type=="companyManager"){
         Route::prefix('/cm')->name('cm')->middleware('check_companyManager')->group(function () {
-            Route::get('/', [CompanyManagerController::class, 'index'])->name('index');
-            Route::get('/master', [ManagerCompanyController::class, 'master'])->name('master');
+            Route::get('/', [ManagerCompanyController::class, 'index'])->name('index');
+            // Route::get('/master', [ManagerCompanyController::class, 'master'])->name('master');
             Route::resource('Users', ManagerUsersController::class);
             Route::resource('AvailableTimes', ManagerAvailableTimeController::class);
+            Route::get('/AvailableTimes/createWithId/{id}', [ManagerAvailableTimeController::class, 'createWithId'])->name('AvailableTimes.createWithId');
             Route::resource('Courses', ManagerCourseController::class);
             Route::resource('Company', ManagerCompanyController::class);
             Route::resource('Experts', ManagerExpertController::class);
             Route::resource('Applications', ManagerApplicationController::class);
             Route::get('course_details', [ManagerCourseController::class, 'course_details'])->name('course_details');
+
         });
     // }
 

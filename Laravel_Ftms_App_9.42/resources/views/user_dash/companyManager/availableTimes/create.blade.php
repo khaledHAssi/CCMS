@@ -45,7 +45,7 @@
 @section('content')
 
 <div class="content">
-  <div class="container-fluid">
+<div class="container-fluid">
     <div class="card mt-4">
         <div class="card-body">
             <h1>{{ $title }}</h1>
@@ -61,24 +61,7 @@
                 </div>
 
 
-
-
-                <div class="mb-3">
-                    <label for="expert_id">Expert id</label>
-                    <select name="expert_id" class="form-control @error('expert_id') is-invalid @enderror">
-
-                        @foreach ($experts as $expert)
-                        <option  value="{{$expert->id}}">{{$expert->id .' - '. $expert->name}}</option>
-                        @endforeach
-                    </select>
-                    @error('expert_id')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
-                </div>
-
-
-
-
+                <input type="text" hidden id="company_id" value="{{$id}}" class="form-control" name="expert_id"/>
 
 
                 <div class="mb-3">
