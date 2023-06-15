@@ -14,14 +14,13 @@
             @endif
 
             <h1>All times</h1>
-            <a href="{{ route('user_dash.cmAvailableTimes.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
-            class="btn btn-success mr-5">{{ __('Add New') }}</a>
 
             <table class="table table-bordered">
                 <thead>
                     <tr  class="bg-dark text-white">
                         <th>ID</th>
-                        <th>Expert id</th>
+                        <th>Expert & id</th>
+                        <th>Price</th>
                         <th>Meet Link</th>
                         <th>Date</th>
                         <th>Hour From</th>
@@ -37,6 +36,7 @@
 
 
                             <td>{{ $time->expert->id }} - {{ $time->expert->name }}</td>
+                            <td>{{ $time->price }}</td>
                             <td>
                             @if ($time->link != null )
 

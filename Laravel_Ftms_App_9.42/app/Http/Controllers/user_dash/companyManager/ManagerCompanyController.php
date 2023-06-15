@@ -16,20 +16,20 @@ class ManagerCompanyController extends Controller
     {
         $company = Company::findOrFail(Auth::user()->company_id);
         //زي متغير عملها بالenv
-        return view('user_dash.companyManager.companies.index', compact('company'));
+        return view('user_dash.companyManager.index' , compact('company'));
     }
 
-    public function master()
-    {
-        return view('user_dash.companyManager.master');
-    }
+    // public function master()
+    // {
+    //     return view('user_dash.companyManager.master');
+    // }
 
 
     public function edit($id)
     {
         $company = Company::find($id);
 
-        return view('user_dash.companyManager.companies.edit')->with('company', $company);
+        return view('user_dash.companyManager.edit' , compact('company'));
     }
 
     public function create(){}

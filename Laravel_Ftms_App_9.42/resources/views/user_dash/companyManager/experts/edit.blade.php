@@ -49,7 +49,7 @@
     <div class="card mt-4">
         <div class="card-body">
             <h1>{{ $title }}</h1>
-            <form action="{{ route('admin.experts.update', $expert) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('user_dash.cmExperts.update', $expert) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('put')
 
@@ -74,17 +74,6 @@
 
 
 
-                <div class="mb-3">
-                    <label for="company_id">Company id</label>
-                    <select name="company_id" class="form-control @error('company_id') is-invalid @enderror">
-                        @foreach ($companies as $company)
-                        <option @selected($company->id==$expert->company_id) value="{{$company->id}}">{{$company->id .' - '. $company->name}}</option>
-                        @endforeach
-                    </select>
-                    @error('company_id')
-                        <small class="invalid-feedback">{{ $message }}</small>
-                    @enderror
-                </div>
 
                 <div class="mb-3">
                     <label for="doctor_id">Expert id</label>

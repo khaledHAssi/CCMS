@@ -22,9 +22,9 @@
                                 <th>ID</th>
                                 <th>PersonalPhoto</th>
                                 <th>Name</th>
-                                <th>email</th>
+                                <th>type</th>
+                                <th>Email</th>
                                 <th>phone</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,20 +42,11 @@
                                         <td style="color:red;">No Pic</td>
                                     @endif
                                     <td>{{ $user->name }}</td>
+                                    <td>{{ $user->type }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->phone }}</td>
                                     {{-- <td><img width="80" src="{{ asset($user->image) }}" alt=""></td> --}}
-                                    <td>
-                                        <a href="{{ route('user_dash.cmUsers.edit', $user) }}" class="btn btn-primary btn-sm">
-                                            <i class="fas fa-edit"></i> </a>
-                                        <form class="d-inline" action="{{ route('user_dash.cmUsers.destroy', $user->id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('delete')
-                                            <button onclick="return confirm('Are you sure!?')"
-                                                class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                        </form>
-                                    </td>
+
                                 </tr>
                             @empty
                                 <tr>

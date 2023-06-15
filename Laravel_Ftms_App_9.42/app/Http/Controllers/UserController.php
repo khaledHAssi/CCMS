@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -14,11 +15,12 @@ class UserController extends Controller
     public function index()
     {
         $users = User::get();
-        return view('users.index', ['users' => $users]);
+        return view('admin.users.index', ['users' => $users]);
     }
     public function create()
     {
-        return view('users.create');
+        $companies = DB::select('SELECT `id`,`name` FROM `companies`');
+        return view('admin.users.create',compact('companies'));
     }
     public function show()
     {
@@ -35,6 +37,7 @@ class UserController extends Controller
                 'name' => 'required|string|min:3|max:20|',
                 'phone' => 'nullable|numeric|digits:12|',
                 'status' => 'nullable|string|in:on',
+                'company_id' => 'required',
                 'email' => 'required|string|email',
                 'user_image' => 'required|image|mimes:jpg,png|max:1024',
                 'password' => [
@@ -55,6 +58,7 @@ class UserController extends Controller
         $user->phone = $request->input('phone');
         $user->email = $request->input('email');
         $user->type = $request->input('type');
+        $user->company_id = $request->input('company_id');
         $user->password = Hash::make($request->input($request->input('password')));
         $user->created_at = $request->input('created_at');
         $user->updated_at = $request->input('updated_at');
@@ -79,8 +83,8 @@ class UserController extends Controller
     {
         $user = User::find($id);
         // dd($user);
-        $users = User::all();
-        return view('users.edit')->with('user', $user);
+        $companies = DB::select('SELECT `id`,`name` FROM `companies`');
+        return view('admin.users.edit',compact('companies','user'));
     }
 
     /**
@@ -101,7 +105,8 @@ class UserController extends Controller
                 'phone' => 'nullable|numeric|digits:12|',
                 'status' => 'nullable|string|in:on',
                 'email' => 'required|string|email',
-                'user_image' => 'required|image|mimes:jpg,png|max:1024',
+                'company_id' => 'required',
+                'user_image' => 'nullable|image|mimes:jpg,png|max:1024',
                 'password' => [
                     'nullable', 'string',
                     Password::min(8)
@@ -120,6 +125,7 @@ class UserController extends Controller
         $user->username = $request->input('username');
         $user->phone = $request->input('phone');
         $user->email = $request->input('email');
+        $user->company_id = $request->input('company_id');
         $user->type = $request->input('type');
         if ($request->has('password')) {
             $user->password = Hash::make($request->input('password'));
