@@ -63,7 +63,7 @@ class ProfileController extends Controller
         if ($saved) {
             return response()->json([
                 "status" => 'success',
-                "message" => "Post update successfully",
+                "message" => "Your information updated successfully",
                 "data" => [
                     "status" =>  $saved
                 ]
@@ -71,7 +71,7 @@ class ProfileController extends Controller
         } else {
             return response()->json([
                 "status" => 'error',
-                "message" => "Post update failed",
+                "message" => "Your information update failed",
                 "data" => [
                     "status" =>  $saved
                 ]
@@ -119,7 +119,7 @@ class ProfileController extends Controller
         if ($saved) {
             return response()->json([
                 "status" => 'success',
-                "message" => "Profile update successfully",
+                "message" => "Profile updated successfully",
                 "data" => [
                     "status" =>  $saved
                 ]
