@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('fb')->nullable();//facebook
             $table->string('tw')->nullable();//twitter
             $table->string('li')->nullable();//linkedin
-            $table->string('in')->nullable();//linkedin
+            $table->string('in')->nullable();//instagram
             $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
             // $table->string('image')->nullable();
             $table->timestamps();
