@@ -51,7 +51,7 @@ class ManagerExpertController extends Controller
         $validator =
         $request->validate([
              'name' => 'required|string|min:3|max:20|',
-             'hour_price' => 'required|numeric|min:5|max:100|',
+             'hour_price' => 'required|numeric|min:5|',
              'company_id' => 'required',
              'image' => 'nullable|image|mimes:jpg,png|max:1024',
 

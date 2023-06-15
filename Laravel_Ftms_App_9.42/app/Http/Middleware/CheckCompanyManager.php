@@ -17,7 +17,7 @@ class CheckCompanyManager
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->type != 'companyManager') {return redirect()->back();}
+        // if (Auth::user()->type != 'companyManager') {return redirect()->back();}
         return $next($request);
     }
 }

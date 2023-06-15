@@ -100,7 +100,7 @@
                         <input type="text" hidden id="company_id" value="{{Auth::user()->company_id}}" class="form-control" name="company_id"/>
 
                         <div class="mb-3">
-                            <label for="doctor_id">Expert id</label>
+                            <label for="doctor_id">Doctor</label>
                             <select name="doctor_id" class="form-control @error('doctor_id') is-invalid @enderror">
                                 @foreach ($doctors as $doctor)
                                     <option value="{{ $doctor->id }}">{{ $doctor->id . ' - ' . $doctor->name }}</option>
