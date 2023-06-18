@@ -18,21 +18,22 @@ class AdminController extends Controller
 
         //     App::setLocale($lang);
         // }
-    $notifications = Notification::latest('id')->paginate(env('PAGINATION_Notification_COUNT'));
+        
+       //---------------------------------------------------------------- 
+    // $notifications = Notification::latest('id')->paginate(env('PAGINATION_Notification_COUNT'));
+    // $jsondata = [];
+    // foreach($notifications as $item){
+    //     $data = json_decode($item->data , true);
+    //     $mdsai = array(
+    //         'data' => $data,
+    //         'id' => $item->id,
+    //     );
+    //     array_push($jsondata,$mdsai);
+    // }
+    // ,compact('jsondata')
 
 
-    $jsondata = [];
-    foreach($notifications as $item){
-        $data = json_decode($item->data , true);
-        $mdsai = array(
-            'data' => $data,
-            'id' => $item->id,
-        );
-        array_push($jsondata,$mdsai);
-    }
-
-
-    return response()->view('admin.index',compact('jsondata'));
+    return response()->view('admin.index');
     }
 
 
