@@ -27,8 +27,6 @@ class ManagerAvailableTimeController extends Controller
      */
     public function create()
     {
-        //
-
     }
 
     /**

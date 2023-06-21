@@ -263,7 +263,7 @@
         </div>
     </div>
     <!-- Facts End -->
-{{--
+    {{--
     <section id="services" class="text-center bg-light">
         <div class="container">
             <div class="row">
@@ -328,59 +328,60 @@
             </div>
         </div>
     </section> --}}
-   <!-- Features Start -->
-   <div class="container-xxl feature py-5">
-    <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Why Choosing Us!</p>
-                <h1 class="display-5 mb-4">Few Reasons Why People Choosing Us!</h1>
-                <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
-                    eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
-                </p>
-                <a class="btn btn-primary py-3 px-5" href="">Explore More</a>
-            </div>
-            <div class="col-lg-6">
-                <div class="row g-4 align-items-center">
-                    <div class="col-md-6">
-                        <div class="row g-4">
-                            <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
-                                <div class="feature-box border rounded p-4">
-                                    <i class="fa fa-check fa-3x text-primary mb-3"></i>
-                                    <h4 class="mb-3">Fast Executions</h4>
-                                    <p class="mb-3">Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
-                                        justo erat amet</p>
-                                    <a class="fw-semi-bold" href="">Read More <i
-                                            class="fa fa-arrow-right ms-1"></i></a>
+    <!-- Features Start -->
+    <div class="container-xxl feature py-5">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Why Choosing Us!</p>
+                    <h1 class="display-5 mb-4">Few Reasons Why People Choosing Us!</h1>
+                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
+                        eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
+                    </p>
+                    <a class="btn btn-primary py-3 px-5" href="">Explore More</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-6">
+                            <div class="row g-4">
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
+                                    <div class="feature-box border rounded p-4">
+                                        <i class="fa fa-check fa-3x text-primary mb-3"></i>
+                                        <h4 class="mb-3">Fast Executions</h4>
+                                        <p class="mb-3">Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
+                                            justo erat amet</p>
+                                        <a class="fw-semi-bold" href="">Read More <i
+                                                class="fa fa-arrow-right ms-1"></i></a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
-                                <div class="feature-box border rounded p-4">
-                                    <i class="fa fa-check fa-3x text-primary mb-3"></i>
-                                    <h4 class="mb-3">Guide & Support</h4>
-                                    <p class="mb-3">Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
-                                        justo erat amet</p>
-                                    <a class="fw-semi-bold" href="">Read More <i
-                                            class="fa fa-arrow-right ms-1"></i></a>
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
+                                    <div class="feature-box border rounded p-4">
+                                        <i class="fa fa-check fa-3x text-primary mb-3"></i>
+                                        <h4 class="mb-3">Guide & Support</h4>
+                                        <p class="mb-3">Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
+                                            justo erat amet</p>
+                                        <a class="fw-semi-bold" href="">Read More <i
+                                                class="fa fa-arrow-right ms-1"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.7s">
-                        <div class="feature-box border rounded p-4">
-                            <i class="fa fa-check fa-3x text-primary mb-3"></i>
-                            <h4 class="mb-3">Financial Secure</h4>
-                            <p class="mb-3">Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo
-                                erat amet</p>
-                            <a class="fw-semi-bold" href="">Read More <i class="fa fa-arrow-right ms-1"></i></a>
+                        <div class="col-md-6 wow fadeIn" data-wow-delay="0.7s">
+                            <div class="feature-box border rounded p-4">
+                                <i class="fa fa-check fa-3x text-primary mb-3"></i>
+                                <h4 class="mb-3">Financial Secure</h4>
+                                <p class="mb-3">Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo
+                                    erat amet</p>
+                                <a class="fw-semi-bold" href="">Read More <i
+                                        class="fa fa-arrow-right ms-1"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Features End -->
+    <!-- Features End -->
 
     {{-- <section id="Companies">
         <div class="container">
@@ -423,28 +424,28 @@
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Our partners</p>
                 <h1 class="display-5 mb-5">Our Companies</h1>
-                <p class="mx-auto">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius, provident! Quasi sit ipsam voluptatibus magnam amet sequi? Distinctio neque incidunt, esse, pariatur aspernatur quidem qui corrupti, asperiores quo quam minima?</p>
+                <p class="mx-auto">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius, provident! Quasi sit
+                    ipsam voluptatibus magnam amet sequi? Distinctio neque incidunt, esse, pariatur aspernatur quidem qui
+                    corrupti, asperiores quo quam minima?</p>
             </div>
 
             <div class="owl-carousel project-carousel wow fadeInUp" data-wow-delay="0.3s">
                 @foreach ($companies as $company)
-
-                <div class="project-item pe-5 pb-5">
+                    <div class="project-item pe-5 pb-5">
                         <div class="project-img mb-3">
                             <img class="img-fluid rounded" src="{{ asset($company->image) }}" alt="">
-                            <a href="{{ route('ftms.company', $company->slug) }}"><i class="fa fa-link fa-3x text-primary"></i></a>
+                            <a href="{{ route('ftms.company', $company->slug) }}"><i
+                                    class="fa fa-link fa-3x text-primary"></i></a>
                         </div>
                         <br>
                         <div class="project-title">
-                            <h4 class="mb-0" >{{ $company->name }}</h4>
+                            <h4 class="mb-0">{{ $company->name }}</h4>
                             <p class="mb-0">{{ Str::words(strip_tags($company->description), 10, '...') }}</p>
-    {{-- عشان يتعرف عتاقات الاتش تي ام ال على انها نصوص مش كلغة برمجة وهاد السطر بدل ما ينطبع العمود بالاتش تي ام ال تاعه بطبع الكلام بس --}}
+                            {{-- عشان يتعرف عتاقات الاتش تي ام ال على انها نصوص مش كلغة برمجة وهاد السطر بدل ما ينطبع العمود بالاتش تي ام ال تاعه بطبع الكلام بس --}}
 
-                              </div>
+                        </div>
                     </div>
-
-
-                    @endforeach
+                @endforeach
 
 
 
@@ -454,49 +455,47 @@
     <!-- Companies End -->
 
 
-  <!-- Team Start -->
-  <div class="container-xxl py-5">
-    <div class="container">
-        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-            <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Our Expert</p>
-            <h1 class="display-5 mb-5">Experts</h1>
-        </div>
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+    <!-- Team Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">Our Expert</p>
+                <h1 class="display-5 mb-5">Experts</h1>
+            </div>
+            <div class="wow fadeInUp owl-carousel project-carousel" data-wow-delay="0.1s">
 
                 @foreach ($experts as $expert)
-                <div class="team-item" >
-                    {{-- <span>${{ $expert->hour_price }} per hour</span> --}}
-                @if ($expert->image)
-                        <img class="img-fluid rounded"
-                            src="{{ Storage::url($expert->image) }}" alt="expert image">
-                @else
-                    <p style="color:red;">No Pic</p>
-                @endif
-                <div class="team-text">
-                    <a  class="btn btn-brand w-100"  href="{{ route('ftms.expert', $expert->id) }}">
-                        <h4 class="mb-0">{{ $expert->name }}</h4>
-                    </a >
+                    <div class="team-item">
+                        {{-- <span>${{ $expert->hour_price }} per hour</span> --}}
+                        @if ($expert->image)
+                            <img class="img-fluid rounded" src="{{ Storage::url($expert->image) }}" alt="expert image">
+                        @else
+                            <p style="color:red;">No Pic</p>
+                        @endif
+                        <div class="team-text">
+                            <a class="btn btn-brand w-100" href="{{ route('ftms.expert', $expert->id) }}">
+                                <h4 class="mb-0">{{ $expert->name }}</h4>
+                            </a>
 
-                    <div class="team-social d-flex">
-                            <a class="btn btn-square rounded-circle mx-1" href=""><i
-                                class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
+                            <div class="team-social d-flex">
                                 <a class="btn btn-square rounded-circle mx-1" href=""><i
-                                    class="fab fa-instagram"></i></a>
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square rounded-circle mx-1" href=""><i
+                                        class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square rounded-circle mx-1" href=""><i
+                                        class="fab fa-instagram"></i></a>
 
-                                </div>
+                            </div>
 
-                         </div>
+                        </div>
 
                     </div>
-                    @endforeach
-                </div>
+                @endforeach
             </div>
 
         </div>
     </div>
-<!-- Team End -->
+    <!-- Team End -->
 
 
 

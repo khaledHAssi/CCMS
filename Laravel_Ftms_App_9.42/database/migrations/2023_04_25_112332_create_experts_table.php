@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('experts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained();
+            $table->foreignId('company_id')->constrained()->nullable();
             $table->foreignId('doctor_id')->constrained('users','id')->cascadeOnDelete()->after('name');
             $table->string('name');
             $table->string('image')->nullable();

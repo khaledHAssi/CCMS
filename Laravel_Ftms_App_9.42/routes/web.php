@@ -25,6 +25,7 @@ use App\Http\Controllers\user_dash\companyManager\ManagerCourseController;
 use App\Http\Controllers\user_dash\companyManager\ManagerCompanyController;
 use App\Http\Controllers\user_dash\companyManager\ManagerExpertController;
 use App\Http\Controllers\user_dash\companyManager\ManagerUsersController;
+use App\Http\Controllers\user_dash\doctor\DashboardDoctorController;
 use App\Http\Controllers\user_dash\supervisor\supervisorCourseController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -93,6 +94,22 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
             Route::get('/sCourses', [supervisorCourseController::class, 'courses'])->name('sCourses');
             Route::get('/sCourse_details', [supervisorCourseController::class, 'course_details'])->name('sCourse_details');
         });
+        Route::prefix('doctor')->name('doctor.')->group(function () {
+            Route::resource('/dash', DashboardDoctorController::class);
+            Route::get('dash/expert/index', [DashboardDoctorController::class, 'expertIndex'])->name('dash.expertIndex');
+            Route::get('dash/expert/create', [DashboardDoctorController::class, 'expertCreate'])->name('dash.expertCreate');
+            Route::post('dash/expert/', [DashboardDoctorController::class, 'expertStore'])->name('dash.expertStore');
+            Route::get('dash/expert/edit/{dash}', [DashboardDoctorController::class, 'expertEdit'])->name('dash.expertEdit');
+            Route::put('dash/expert/{dash}', [DashboardDoctorController::class, 'expertUpdate'])->name('dash.expertUpdate');
+            Route::delete('dash/expert/{dash}', [DashboardDoctorController::class, 'expertDestroy'])->name('dash.expertDestroy');
+            Route::get('dash/availableTime/index', [DashboardDoctorController::class, 'availableTimeIndex'])->name('dash.AvailableTimeIndex');
+            Route::post('dash/availableTimeStore/', [DashboardDoctorController::class, 'availableTimeStore'])->name('dash.availableTimeStore');
+            Route::get('dash/availableTime/Create/{id}', [DashboardDoctorController::class, 'availableTimeCreate'])->name('dash.availableTimeCreate');
+            Route::put('dash/availableTimeUpdate/{dash}', [DashboardDoctorController::class, 'availableTimeUpdate'])->name('dash.availableTimeUpdate');
+            Route::get('dash/availableTime/edit/{dash}', [DashboardDoctorController::class, 'availableTimeEdit'])->name('dash.AvailableTimeEdit');
+            Route::delete('dash/availableTime/{dash}', [DashboardDoctorController::class, 'availableTimeDestroy'])->name('dash.availableTimeDestroy');
+
+    });
     });
     //change ftms to example name
     Route::name('ftms.')->group(function () {
