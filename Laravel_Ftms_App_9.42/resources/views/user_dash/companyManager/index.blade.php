@@ -1,4 +1,4 @@
-@extends('user_dash.doctor.master')
+@extends('user_dash.companyManager.master')
 
 @section('title', 'Companies')
 <style>

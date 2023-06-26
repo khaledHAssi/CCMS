@@ -73,7 +73,6 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         // if (Auth::user()->type=="companyManager"){
         Route::prefix('/cm')->name('cm')->middleware('check_companyManager')->group(function () {
             Route::get('/', [ManagerCompanyController::class, 'index'])->name('index');
-            // Route::get('/master', [ManagerCompanyController::class, 'master'])->name('master');
             Route::resource('Users', ManagerUsersController::class);
             Route::resource('AvailableTimes', ManagerAvailableTimeController::class);
             Route::get('/AvailableTimes/createWithId/{id}', [ManagerAvailableTimeController::class, 'createWithId'])->name('AvailableTimes.createWithId');
@@ -146,6 +145,5 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
 
 Route::get('posts_api', [TestAPI::class, 'posts_api']);
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes(['verify' => true]);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');

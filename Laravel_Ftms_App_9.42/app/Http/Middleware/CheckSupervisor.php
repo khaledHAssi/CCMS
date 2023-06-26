@@ -17,7 +17,7 @@ class CheckSupervisor
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->type != 'CheckSupervisor') {return redirect()->back();}
+        if (Auth::user()->type != 'companySupervisor') {return redirect()->back();}
         return $next($request);
     }
 }

@@ -4,9 +4,14 @@
 
 @section('content')
 
+    <section style="background-color: blue; padding: 10px" id="reviews">
+        <div class="container">
+            <h1 class="text-white">Expert</h1>
+        </div>
+    </section>
     <section class="bg-light" id="reviews">
         <div class="container">
-            <h1 class="text-white">{{ $expert->name }}</h1>
+            <h1 class="text-primary text-center" style="padding: 50px">{{ $expert->name }}</h1>
         </div>
     </section>
 

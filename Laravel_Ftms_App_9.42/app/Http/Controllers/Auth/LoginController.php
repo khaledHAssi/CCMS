@@ -40,9 +40,8 @@ class LoginController extends Controller
             return '/en/user_dash/supervisor';
         }
         else{
-            return redirect()->intended('/');
+            return '';
         }
-        // else{}
     }
 
     /**
