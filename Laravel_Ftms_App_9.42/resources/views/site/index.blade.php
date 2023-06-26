@@ -476,7 +476,7 @@
                             <a class="btn btn-brand w-100" href="{{ route('ftms.expert', $expert->id) }}">
                                 <h4 class="mb-0">{{ $expert->name }}</h4>
                             </a>
-
+            {{-- Add Social media to expert cards  --}}
                             <div class="team-social d-flex">
                                 <a class="btn btn-square rounded-circle mx-1" href=""><i
                                         class="fab fa-facebook-f"></i></a>

@@ -35,7 +35,7 @@ class SiteController extends Controller
             $query->where('status', 1 )->whereDate('date', '>=', date('Y-m-d') );
         })->latest('id')->get();
         //---------------------------------------------------------------------------------
-
+        //{{-- Wanna Add Social media to expert cards  --}}
         return view('site.index', compact('companies', 'experts'));
     }
 

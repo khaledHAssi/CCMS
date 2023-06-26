@@ -1,5 +1,9 @@
 @extends('layouts.app')
-
+<style>
+    body {
+        overflow: hidden;
+    }
+</style>
 @section('content')
 <body>
 
