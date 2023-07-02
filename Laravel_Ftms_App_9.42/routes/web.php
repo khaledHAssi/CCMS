@@ -130,6 +130,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
     Route::get('send-notify', [NotifyController::class, 'send']);
     Route::get('notify/{id}', [NotifyController::class, 'notify'])->name('mark-read');
     Route::get('read-notify', [NotifyController::class, 'read'])->name('ReadNotification');
+
     Auth::routes(['verify' => true]);
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');

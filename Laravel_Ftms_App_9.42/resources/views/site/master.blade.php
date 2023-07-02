@@ -58,18 +58,18 @@
        <div class="container-fluid  px-0 wow fadeIn" data-wow-delay="0.1s">
         <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
             <div class="col-lg-6 px-5 text-start">
-                <small><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</small>
-                <small class="ms-4"><i class="fa fa-clock text-primary me-2"></i>9.00 am - 9.00 pm</small>
+                <small><i class="fa fa-map-marker-alt text-primary me-2"></i>{{env('APP_LOCATION')}}</small>
+                <small class="ms-4"><i class="fa fa-clock text-primary me-2"></i>{{env('APP_SCHEDULE')}}</small>
             </div>
             <div class="col-lg-6 px-5 text-end">
-                <small><i class="fa fa-envelope text-primary me-2"></i>info@example.com</small>
-                <small class="ms-4"><i class="fa fa-phone-alt text-primary me-2"></i>+012 345 6789</small>
+                <small><i class="fa fa-envelope text-primary me-2"></i>{{env('APP_CONTACT_EMAIL')}}</small>
+                <small class="ms-4"><i class="fa fa-phone-alt text-primary me-2"></i>+{{env('APP_CONTACT_PHONE')}}</small>
             </div>
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
             <a href="{{ route('ftms.index') }}" class="navbar-brand ms-4 ms-lg-0">
-                <h1  class="display-5 text-primary m-0">Finanza</h1>
+                <h1  class="display-5 text-primary m-0" style="font-size:1em">CorpratesCoursesManagmentSystem</h1>
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
                 data-bs-target="#navbarCollapse">
@@ -121,59 +121,14 @@
     </div>
     <!-- Navbar End -->
 
-    <!-- BOTTOM NAV -->
-    {{-- <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
-        <div class="container">
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#portfolio">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#team">Team</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#reviews">Reviews</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
-                    </li>
-                </ul>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    class="btn btn-brand ms-lg-3">Contact</a>
-
-
-
-
-
-            </div>
-        </div>
-    </nav> --}}
 
     @yield('content')
 
   <!-- Copyright Start -->
   <div class="container-fluid copyright py-4">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
-            </div>
-            <div class="col-md-6 text-center text-md-end">
-                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a
-                href="https://themewagon.com">ThemeWagon</a>
-            </div>
+            <div class="text-center text-md-start mb-3 mb-md-0">
+                &copy; <a class="border-bottom" href="#">{{env('APP_NAME')}}</a>, All Right Reserved.
         </div>
     </div>
 </div>
