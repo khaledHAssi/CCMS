@@ -3,20 +3,20 @@
 @section('title', 'Book Time - ' . env('APP_NAME'))
 
 @section('content')
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-    <section class="bg-black" id="reviews">
+
+    <section style="background-color: blue; padding: 10px" id="reviews">
         <div class="container">
-            <h1 class="text-white " style="padding: 50px">Booking Session with ({{ $time->expert->name }})</h1>
+            <h1 class="text-white">Book time</h1>
+        </div>
+    </section>
+    <section class="bg-light" id="reviews">
+        <div class="container">
+            <h1 class="text-primary text-center" style="padding: 50px">Booking Session with {{ $time->expert->name }}</h1>
         </div>
     </section>
     <!-- ABOUT -->
 
-    <section id="about">
+    <section id="about" class="bg-light">
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-7 py-5">

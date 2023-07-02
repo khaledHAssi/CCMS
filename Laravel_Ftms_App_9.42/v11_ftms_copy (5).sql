@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 15, 2023 at 10:18 AM
+-- Generation Time: Jun 26, 2023 at 02:17 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `available_times` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `available_times_expert_id_foreign` (`expert_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `available_times`
@@ -151,7 +151,9 @@ CREATE TABLE IF NOT EXISTS `available_times` (
 INSERT INTO `available_times` (`id`, `expert_id`, `link`, `date`, `hour_from`, `hour_to`, `status`, `price`, `created_at`, `updated_at`) VALUES
 (2, 3, NULL, '2026-07-16', '21:03:00', '05:19:00', 1, 427.00, '2023-06-14 08:11:49', '2023-06-14 08:11:49'),
 (6, 4, NULL, '2026-02-22', '14:22:00', '14:33:00', 1, 12.00, '2023-06-14 08:10:07', '2023-06-14 08:10:07'),
-(7, 4, NULL, '2025-03-25', '07:09:00', '18:18:00', 1, 123.00, '2023-06-14 08:10:54', '2023-06-14 08:12:24');
+(7, 6, 'https://meet.google.com/gqf-veoa-thg', '2030-02-14', '23:28:00', '09:35:00', 0, 100.00, '2023-06-14 08:10:54', '2023-06-18 11:49:39'),
+(9, 6, NULL, '2025-10-15', '21:57:00', '06:40:00', 0, 369.00, '2023-06-18 11:41:28', '2023-06-21 09:24:32'),
+(12, 6, NULL, '2025-04-24', '13:16:00', '17:57:00', 0, 330.00, '2023-06-18 11:43:01', '2023-06-21 09:26:44');
 
 -- --------------------------------------------------------
 
@@ -179,8 +181,8 @@ CREATE TABLE IF NOT EXISTS `companies` (
 --
 
 INSERT INTO `companies` (`id`, `name`, `slug`, `image`, `description`, `location`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'khaled', 'sydney-william', 'uploads/1FMZfXN6Zyj1mlWH8gnmXfDRd6EqBEVQ4rUkBhCs.jpg', '<p>khaled hassuna Abo Assi</p>\r\n<p>&nbsp;</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1179.7808842855807!2d34.4513026350782!3d31.488417561695094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14fd8126a199a955%3A0x9f616766e5c57cf6!2z2LTYsdmD2Kkg2KjZhNio2YQg2YTZhNi12YbYp9i52Kkg2YjYp9mE2KrYrNin2LHYqQ!5e1!3m2!1sar!2s!4v1683964278659!5m2!1sar!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, '2023-05-31 09:43:39', '2023-06-15 06:50:15'),
-(2, 'abozor', 'zgboz', 'uploads/W8Tjp2Vt2EjKzWZ4XTCTbbhHW9xbjOmUx9UBDzEQ.png', 'welcome to ur company', NULL, NULL, NULL, NULL);
+(1, 'khaled', 'sydney-william', 'uploads/w9TnDrIAnuaIuk9TVKSoP2HN78Bci2Z2p1kSq1rD.png', '<p>khaled hassuna Abo Assi</p>\r\n<p>&nbsp;</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1179.7808842855807!2d34.4513026350782!3d31.488417561695094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14fd8126a199a955%3A0x9f616766e5c57cf6!2z2LTYsdmD2Kkg2KjZhNio2YQg2YTZhNi12YbYp9i52Kkg2YjYp9mE2KrYrNin2LHYqQ!5e1!3m2!1sar!2s!4v1683964278659!5m2!1sar!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, '2023-05-31 09:43:39', '2023-06-21 09:11:15'),
+(2, 'abozor', 'zgboz', 'uploads/Ts3dk2FUnrsmSCSN59cAATP1Bkkvd3v8pt0KyM7u.jpg', '<p>welcome to our company we&nbsp; are a company provide tech information&nbsp;</p>', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1179.7808842855807!2d34.4513026350782!3d31.488417561695094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14fd8126a199a955%3A0x9f616766e5c57cf6!2z2LTYsdmD2Kkg2KjZhNio2YQg2YTZhNi12YbYp9i52Kkg2YjYp9mE2KrYrNin2LHYqQ!5e1!3m2!1sar!2s!4v1683964278659!5m2!1sar!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', NULL, NULL, '2023-06-21 09:10:57');
 
 -- --------------------------------------------------------
 
@@ -275,7 +277,7 @@ INSERT INTO `evaluation_answers` (`id`, `evaluation_id`, `answer_type`, `reason`
 DROP TABLE IF EXISTS `experts`;
 CREATE TABLE IF NOT EXISTS `experts` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `company_id` bigint(20) UNSIGNED NOT NULL,
+  `company_id` bigint(20) UNSIGNED DEFAULT NULL,
   `doctor_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -285,16 +287,16 @@ CREATE TABLE IF NOT EXISTS `experts` (
   PRIMARY KEY (`id`),
   KEY `experts_company_id_foreign` (`company_id`),
   KEY `experts_doctor_id_foreign` (`doctor_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `experts`
 --
 
 INSERT INTO `experts` (`id`, `company_id`, `doctor_id`, `name`, `image`, `hour_price`, `created_at`, `updated_at`) VALUES
-(4, 1, 2, 'khaled', 'experts/1686740482_imagekhaled.jpg', 12.00, '2023-06-14 08:01:22', '2023-06-14 08:01:22'),
+(4, 1, 7, 'khaled', 'experts/1686740482_imagekhaled.jpg', 15.00, '2023-06-14 08:01:22', '2023-06-18 11:15:33'),
 (3, 2, 2, 'khaled assi.', 'experts/1686740967_imagekhaled assi..png', 32.00, '2023-06-10 16:06:36', '2023-06-14 08:09:27'),
-(5, 1, 2, 'Hashim Morris', NULL, 18.00, '2023-06-15 06:52:32', '2023-06-15 06:52:32');
+(6, NULL, 7, 'hhh', 'experts/1687098503_imagehhh.jpg', 66.00, '2023-06-18 11:28:23', '2023-06-18 11:28:23');
 
 -- --------------------------------------------------------
 
@@ -428,6 +430,13 @@ CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
   PRIMARY KEY (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `password_reset_tokens`
+--
+
+INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
+('mohd@app.com', '$2y$10$6DPp2kpyNwHjonVPvPGxNe5Vr43MZ0YvL6YIT2tI3S3nhqDC83Egi', '2023-06-21 09:36:30');
+
 -- --------------------------------------------------------
 
 --
@@ -444,7 +453,7 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `payments`
@@ -457,7 +466,9 @@ INSERT INTO `payments` (`id`, `user_id`, `time_id`, `total`, `transaction_id`, `
 (4, 1, 1, 100, '8ac7a4a18893cc1d018897080b10173e', '2023-06-07 15:04:29', '2023-06-07 15:04:29'),
 (5, 1, 1, 100, '8ac7a4a08893d40f0188970885b67019', '2023-06-07 15:04:59', '2023-06-07 15:04:59'),
 (6, 1, 1, 100, '8ac7a49f8893cc1d01889709437d261d', '2023-06-07 15:05:48', '2023-06-07 15:05:48'),
-(7, 1, 2, 108, '8ac7a4a18893cc1d0188970d6f2822d4', '2023-06-07 15:10:21', '2023-06-07 15:10:21');
+(7, 1, 2, 108, '8ac7a4a18893cc1d0188970d6f2822d4', '2023-06-07 15:10:21', '2023-06-07 15:10:21'),
+(8, 7, 9, 369, '8ac7a49f88dad0c10188dde9d63c78a1', '2023-06-21 09:24:32', '2023-06-21 09:24:32'),
+(9, 7, 12, 330, '8ac7a4a288dad2c60188ddebdcc976f8', '2023-06-21 09:26:44', '2023-06-21 09:26:44');
 
 -- --------------------------------------------------------
 
@@ -582,7 +593,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`),
   UNIQUE KEY `users_username_unique` (`username`),
   KEY `users_company_id_foreign` (`company_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -591,7 +602,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `phone`, `username`, `image`, `status`, `type`, `company_id`, `remember_token`, `channels`, `created_at`, `updated_at`) VALUES
 (7, 'khaled', 'mohd@app.com', '2023-06-03 14:01:03', '$2y$10$fW4wJ/2LpQT3SCmUf.bpfuc.qFopkPQgtrTYNFDcDj1hViqwubqgO', '123456789123', 'khaledhassuna.assi', 'users/1686671819_imagekhaled.png', 1, 'super-admin', 1, 'RtUenBPCdCpD4J2wbhSdAmAaHZ3RCaTW1NL9zyqIFloEbvP6xVdt01SSufl5', 'database,broadcast', '2023-06-13 11:10:52', '2023-06-14 06:56:23'),
 (8, 'Ahmed Langley', 'qytumoboh@mailinator.com', NULL, '$2y$10$aJDkW/dtNkvP4rqIw70ZX.JiOxjBmbGwzXGTqsfooqIUNNFCc0gom', '123456789123', 'fsl;ja', NULL, 1, 'companySupervisor', NULL, NULL, 'database,broadcast', NULL, '2023-06-13 11:59:22'),
-(2, 'ters', 'tes@app.com', '2023-06-03 14:01:03', '$2y$10$qfOhnkooBLsOzyC3eoNGH.TA8m8SxxQSwDGdgbptbETOZ3HR/6Mve', '0597243636', 'test', NULL, 1, 'doctor', NULL, NULL, 'database,broadcast', '2023-06-03 13:59:02', '2023-06-03 14:01:03');
+(2, 'ters', 'tes@app.com', '2023-06-03 14:01:03', '$2y$10$qfOhnkooBLsOzyC3eoNGH.TA8m8SxxQSwDGdgbptbETOZ3HR/6Mve', '0597243636', 'test', NULL, 1, 'doctor', NULL, NULL, 'database,broadcast', '2023-06-03 13:59:02', '2023-06-03 14:01:03'),
+(11, 'Mohammed N Abozour', 'mo@gmail.com', '2023-06-15 07:48:26', '$2y$10$9W1mcsnFtCUhHbnccslvLOmlMylI02D30962Hn97XsXpoXjQD18lG', '970595152883', 'mo_abozour', 'users/1686826141_imageMohammed N Abozour.JPG', 1, 'super-admin', 2, NULL, 'database,broadcast', '2023-06-15 07:48:17', '2023-06-15 07:49:01'),
+(12, 'Abo Naser', 'abonaser@gmail.com', NULL, '$2y$10$bH92apimrjdBDpr..47oMOVknaTVvfsHsUT7gNGwd9srirTIIIg.S', '970595152883', 'abo_naser', NULL, 1, 'student', NULL, NULL, 'database,broadcast', '2023-06-18 11:05:10', '2023-06-18 11:05:10');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

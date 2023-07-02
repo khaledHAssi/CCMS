@@ -28,20 +28,20 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    
     public function redirectTo(){
-        if(Auth::user()->type == 'student'){
-            return redirect()->intended('/');
+        if(Auth::user()->type == 'super-admin'){
+            return '/en/admin';
         }
         elseif(Auth::user()->type == 'companyManager'){
             return '/en/user_dash/cm';
         }
         elseif(Auth::user()->type == 'companySupervisor'){
-            return redirect('/en/user_dash/supervisor');
+            return '/en/user_dash/supervisor';
         }
-        elseif(Auth::user()->type == 'super-admin'){
-            return redirect()->route('admin.index');
+        else{
+            return '';
         }
-        // else{}
     }
 
     /**
@@ -52,4 +52,5 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-}}
+    }
+}

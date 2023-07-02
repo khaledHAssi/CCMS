@@ -16,7 +16,7 @@ class ManagerCompanyController extends Controller
     {
         $company = Company::findOrFail(Auth::user()->company_id);
         //زي متغير عملها بالenv
-        return view('user_dash.companyManager.index' , compact('company'));
+        return response()->view('user_dash.companyManager.index' , compact('company'));
     }
 
     // public function master()
