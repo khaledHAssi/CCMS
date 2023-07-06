@@ -35,7 +35,7 @@
                         <tr>
                             <td>{{ $company->id }}</td>
                             <td>{{ $company->name }}</td>
-                            <td><img width="100rem" class="rounded float-start" src="{{ asset($company->image) }}" alt=""></td>
+                            <td><img width="150rem" class="rounded float-start" src="{{ asset($company->image) }}" alt=""></td>
                             <td>
                                 <a href="{{ route('admin.companies.edit', $company) }}" class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> </a>
                                 <form class="d-inline" action="{{ route('admin.companies.destroy', $company->id) }}" method="POST">

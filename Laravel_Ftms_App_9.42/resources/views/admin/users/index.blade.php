@@ -35,7 +35,7 @@
                                     <td>{{ $user->id }}</td>
                                     @if ($user->image)
                                         <td>
-                                            <img class="img-circle img-bordered-sm" height="65" width="65"
+                                            <img class="img-circle img-bordered-sm img-profile" height="100" width="60%"
                                                 src="{{ Storage::url($user->image) }}" alt="user image">
                                         </td>
                                     @else

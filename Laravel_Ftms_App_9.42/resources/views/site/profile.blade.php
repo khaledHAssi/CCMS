@@ -64,21 +64,23 @@
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70">
 
 
-    <div class="container-fluid px-0 wow fadeIn " data-wow-delay="0.1s">
+
+       <!-- Navbar Start -->
+       <div class="container-fluid  px-0 wow fadeIn" data-wow-delay="0.1s">
         <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
             <div class="col-lg-6 px-5 text-start">
-                <small><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</small>
-                <small class="ms-4"><i class="fa fa-clock text-primary me-2"></i>9.00 am - 9.00 pm</small>
+                <small><i class="fa fa-map-marker-alt text-primary me-2"></i>{{env('APP_LOCATION')}}</small>
+                <small class="ms-4"><i class="fa fa-clock text-primary me-2"></i>{{env('APP_SCHEDULE')}}</small>
             </div>
             <div class="col-lg-6 px-5 text-end">
-                <small><i class="fa fa-envelope text-primary me-2"></i>info@example.com</small>
-                <small class="ms-4"><i class="fa fa-phone-alt text-primary me-2"></i>+012 345 6789</small>
+                <small><i class="fa fa-envelope text-primary me-2"></i>{{env('APP_CONTACT_EMAIL')}}</small>
+                <small class="ms-4"><i class="fa fa-phone-alt text-primary me-2"></i>+{{env('APP_CONTACT_PHONE')}}</small>
             </div>
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
             <a href="{{ route('ftms.index') }}" class="navbar-brand ms-4 ms-lg-0">
-                <h1 class="display-5 text-primary m-0">Finanza</h1>
+                <h1  class="display-5 text-primary m-0" style="font-size:1em">CorpratesCoursesManagmentSystem</h1>
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
                 data-bs-target="#navbarCollapse">
@@ -87,19 +89,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="{{ route('ftms.index') }}" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
-                    <a href="service.html" class="nav-item nav-link">Services</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu border-light m-0">
-                            <a href="project.html" class="dropdown-item">Projects</a>
-                            <a href="feature.html" class="dropdown-item">Features</a>
-                            <a href="team.html" class="dropdown-item">Team Member</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item">404 Page</a>
-                        </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
                     @if (!Auth::check())
                         <a href="{{ route('login') }}"class="nav-item nav-link">Login</a>
                     @else
@@ -189,50 +179,21 @@
                                             <button class="nav-link fw-semi-bold active" id="nav-story-tab"
                                                 data-bs-toggle="tab" data-bs-target="#nav-story" type="button"
                                                 role="tab" aria-controls="nav-story"
-                                                aria-selected="true">Story</button>
-                                            <button class="nav-link fw-semi-bold" id="nav-mission-tab"
-                                                data-bs-toggle="tab" data-bs-target="#nav-mission" type="button"
-                                                role="tab" aria-controls="nav-mission"
-                                                aria-selected="false">Mission</button>
-                                            <button class="nav-link fw-semi-bold" id="nav-vision-tab"
-                                                data-bs-toggle="tab" data-bs-target="#nav-vision" type="button"
-                                                role="tab" aria-controls="nav-vision"
-                                                aria-selected="false">Vision</button>
+                                                aria-selected="true">Bio</button>
                                         </div>
                                     </nav>
                                     <div class="tab-content" id="nav-tabContent">
                                         <div class="tab-pane fade show active" id="nav-story" role="tabpanel"
                                             aria-labelledby="nav-story-tab">
-                                            <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit.
-                                                Aliqu diam
-                                                amet diam et eos labore.</p>
-                                            <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam
-                                                et eos labore.
+                                            <p class="mb-0">{{Auth::user()->profile->bio}}.
                                                 Clita erat ipsum et lorem et sit</p>
                                         </div>
-                                        <div class="tab-pane fade" id="nav-mission" role="tabpanel"
-                                            aria-labelledby="nav-mission-tab">
-                                            <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit.
-                                                Aliqu diam
-                                                amet diam et eos labore.</p>
-                                            <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam
-                                                et eos labore.
-                                                Clita erat ipsum et lorem et sit</p>
-                                        </div>
-                                        <div class="tab-pane fade" id="nav-vision" role="tabpanel"
-                                            aria-labelledby="nav-vision-tab">
-                                            <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit.
-                                                Aliqu diam
-                                                amet diam et eos labore.</p>
-                                            <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam
-                                                et eos labore.
-                                                Clita erat ipsum et lorem et sit</p>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="border rounded p-4 wow fadeInUp" data-wow-delay="0.1s">
+                        {{-- <div class="border rounded p-4 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="row g-4">
                                 <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
                                     <div class="h-100">
@@ -278,7 +239,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -440,7 +401,7 @@
                                             <button type="button" onclick="updateProfile()" class="btn btn-primary">Save changes</button>
                                         </div>
                                     </form>
-                               
+
 
 
 

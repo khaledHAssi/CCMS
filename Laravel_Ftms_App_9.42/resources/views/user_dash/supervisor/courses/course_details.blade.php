@@ -3,6 +3,16 @@
 @section('title', 'Courses')
 
 @section('content')
+<style>
+    .Headers4 {
+    margin-left:0px;margin-right:10px;
+    font-weight: 600;
+}
+.Headers5
+{
+    margin-left:0px;margin-top: 1.1%!important;
+}
+</style>
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('adminassets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('adminassets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -16,7 +26,6 @@
             @endif
 
             <table class="table table-bordered">
-            <h1>Your Course</h1>
 
             <table id="example" class="table table-bordered table-hover">
                 <thead>
@@ -25,6 +34,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Added at</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -42,60 +52,68 @@
                         <tr>
                             <div class="container-xxl py-5 ">
                                 <div class="container">
+                            <h1>Your Course</h1>
+                                <br>
                                     <div class="row g-4 align-items-end mb-4 flex">
 
                                         <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                                           {{-- <img class="img-circle img-bordered-sm" height="65" width="65"
-                                    src="{{ Storage::url($course->image) }}" alt="user image"> --}}
+                                           <img class="img-circle " height="400" width="400"
+                                    src="{{ Storage::url($course->image) }}" alt="user image">
                                         </div>
-                                        <div class="col-lg-6 wow fadeInUp details" data-wow-delay="0.3s">
+                                        <div class="col-lg-6 wow fadeInUp details" style="position: relative;top:-2em;bottom: 1em;" data-wow-delay="0.3s">
                                             <div style="display:flex;">
-                                                <h4 - style="margin-left:0px;">Name:</h4>
-                                                <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                                    {{-- {{$course->name}} --}}
+                                                <h4 class="Headers4">Name: </h4>
+                                                <h5 class="Headers5">
+                                                    {{$course->name}}
                                                 </h5>
                                             </div>
                                             <div style="display:flex;">
-                                                <h4 - style="margin-left:0px;">company:</h4>
-                                                <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                                    {{-- {{$course->company_nameOrId}} --}}
+                                                <h4 class="Headers4">Company: </h4>
+                                                <h5 class="Headers5">
+                                                    {{$course->company_id}} -
+                                                        {{$company->name}}
                                                 </h5>
                                             </div>
                                             <div style="display:flex;">
-                                                <h4 - style="margin-left:0px;">status: </h4>
-                                                <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                                    {{-- {{$course->status}} --}}
+                                                <h4 class="Headers4">Status: </h4>
+                                                <h5 class="Headers5">
+                                                    {{$course->status}}
 
                                                 </h5>
                                             </div>
                                             <div style="display:flex;">
-                                                <h4 - style="margin-left:0px;">Supervisor: </h4>
-                                                <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                                    {{-- {{$course->Supervisor_nameOrId}} --}}
+                                                <h4 class="Headers4">Supervisor: </h4>
+                                                <h5 class="Headers5">
+                                                    {{$course->supervisor_id}} - {{Auth::user()->name}}
+                                                </h5>
+                                            </div>
+                                            <div style="display:flex;">
+                                                <h4 class="Headers4">Description: </h4>
+                                                <h5 class="Headers5">
+                                                    {{$course->description}}
 
                                                 </h5>
                                             </div>
                                             <div style="display:flex;">
-                                                <h4 - style="margin-left:0px;">Description: </h4>
-                                                <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                                    {{-- {{$course->description}} --}}
+                                                <h4 class="Headers4">Start date: </h4>
+                                                <h5 class="Headers5">
+                                                    {{$course->start_date}}
 
                                                 </h5>
                                             </div>
                                             <div style="display:flex;">
-                                                <h4 - style="margin-left:0px;">Start date: </h4>
-                                                <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                                    {{-- {{$course->start_date}} --}}
-
+                                                <h4 class="Headers4">End date: </h4>
+                                                <h5 class="Headers5">
+                                                    {{$course->end_date}}
                                                 </h5>
                                             </div>
                                             <div style="display:flex;">
-                                                <h4 - style="margin-left:0px;">End date: </h4>
-                                                <h5 style="margin-left:0px;margin-top: 1.5% ">
-                                                    {{-- {{$course->end_date}} --}}
-
+                                                <h4 class="Headers4">Student Count: </h4>
+                                                <h5 class="Headers5">
+                                                    35
                                                 </h5>
                                             </div>
+
 
                                             <!-- Button trigger modal -->
 
@@ -103,7 +121,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
+                                    <td>1</td>
+                                    <td>Mohammed</td>
+                                    <td>Mohd@gmail.com</td>
+                                    <td>972597246383</td>
+                                    <td>2024-11-15</td>
+                                </div>
 
                                 {{-- <td>{{ $loop->index + 1}}</td> --}}
                                 {{-- <td>{{ $student->name }}</td> --}}

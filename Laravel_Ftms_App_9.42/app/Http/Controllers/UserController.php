@@ -39,7 +39,7 @@ class UserController extends Controller
                 'status' => 'nullable|string|in:on',
                 'company_id' => 'required',
                 'email' => 'required|string|email',
-                'user_image' => 'required|image|mimes:jpg,png|max:1024',
+                'user_image' => 'required|image|mimes:jpg,png',
                 'password' => [
                     'required', 'string',
                     Password::min(8)
@@ -106,7 +106,7 @@ class UserController extends Controller
                 'status' => 'nullable|string|in:on',
                 'email' => 'required|string|email',
                 'company_id' => 'required',
-                'user_image' => 'nullable|image|mimes:jpg,png|max:1024',
+                'user_image' => 'nullable|image|mimes:jpg,png|',
                 'password' => [
                     'nullable', 'string',
                     Password::min(8)

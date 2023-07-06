@@ -26,6 +26,7 @@ use App\Http\Controllers\user_dash\companyManager\ManagerCompanyController;
 use App\Http\Controllers\user_dash\companyManager\ManagerExpertController;
 use App\Http\Controllers\user_dash\companyManager\ManagerUsersController;
 use App\Http\Controllers\user_dash\doctor\DashboardDoctorController;
+use App\Http\Controllers\user_dash\supervisor\SupervisorManagerApplicationController;
 use App\Http\Controllers\user_dash\supervisor\supervisorCourseController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -87,10 +88,11 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
 
         Route::prefix('supervisor')->name('supervisor.')->middleware('check_supervisor')->group(function () {
 
-            Route::resource('sApplications', ManagerApplicationController::class);
+            Route::resource('sApplications', SupervisorManagerApplicationController::class);
             Route::resource('', supervisorCourseController::class);
             Route::get('/master', [supervisorCourseController::class, 'master'])->name('master');
             Route::get('/sCourses', [supervisorCourseController::class, 'courses'])->name('sCourses');
+            Route::get('/courses/{id}', [supervisorCourseController::class , 'show'])->name('courses.show');
             Route::get('/sCourse_details', [supervisorCourseController::class, 'course_details'])->name('sCourse_details');
         });
         Route::prefix('doctor')->name('doctor.')->group(function () {

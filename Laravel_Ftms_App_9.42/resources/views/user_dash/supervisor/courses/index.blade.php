@@ -28,7 +28,7 @@
                 </thead>
                 <tbody>
 
-                    {{-- @forelse ($courses as $course)
+                    @forelse ($courses as $course)
                         <tr>
                             <td>{{ $course->id }}</td>
                     @if($course->image)
@@ -52,21 +52,15 @@
                             <td style="color:red">closed</td>
                             @endif
 
-                            <td style="display: flex;">
-                                <a href="{{ route('user_dash.cmCourses.edit', $course) }}" style="margin-left: 5px" class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> </a>
-                                <a href="{{route('user_dash.supervisor.sCourse_details')}}" class="btn btn-warning btn-sm"  style="margin-left: 5px"> <i class="fas fa-info-circle"></i> </a>
-                                <form class="d-inline" action="{{ route('user_dash.cmCourses.destroy', $course->id) }}" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button style="margin-left: 5px" onclick="return confirm('Are you sure!?')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                            </form>
+                            <td>
+                                <a href="{{route('user_dash.supervisor.courses.show',$course->id)}}" class="btn btn-warning btn-sm"  style="margin-left: 5px"> <i class="fas fa-info-circle"></i> </a>
                         </td>
                         </tr>
                         @empty
                         <tr>
                             <td colspan="3">No Data Found</td>
                         </tr>
-                    @endforelse --}}
+                    @endforelse
                 </tbody>
             </table>
         </div>

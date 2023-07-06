@@ -3,34 +3,17 @@
 namespace App\Http\Controllers\user_dash\supervisor;
 
 use App\Http\Controllers\Controller;
-use App\Models\Company;
-use App\Models\Course;
-use App\Models\User;
+use App\Models\Application;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class supervisorCourseController extends Controller
+class SupervisorManagerApplicationController     extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('user_dash.supervisor.index');
-    }
-    public function master()
-    {
         //
-        return view('user_dash.supervisor.master');
-    }
 
-
-    public function courses()
-    {
-        $courses = Course::where('supervisor_id','=',Auth::user()->id)->get();
-        return view('user_dash.supervisor.courses.index')->with('courses',$courses);
+        $applications =Application::all();
+        return response()->view('user_dash.supervisor.applications.index',compact('applications'));
     }
 
     /**
@@ -62,13 +45,7 @@ class supervisorCourseController extends Controller
      */
     public function show($id)
     {
-        $course = Course::find($id);
-
-        if ($course->supervisor_id == Auth::id()) {
-            $company = Company::where('id', Auth::user()->company_id)->first('name');
-
-            return view('user_dash.supervisor.courses.course_details', compact('course', 'company'));
-        }
+        //
     }
 
     /**
@@ -104,4 +81,5 @@ class supervisorCourseController extends Controller
     {
         //
     }
+
 }
