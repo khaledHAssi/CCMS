@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('available_time_id')->constrained('available_times')->cascadeOnDelete();
             $table->boolean('payment_status');
             $table->integer('price');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->timestamps();
 
             //completed the model relationships

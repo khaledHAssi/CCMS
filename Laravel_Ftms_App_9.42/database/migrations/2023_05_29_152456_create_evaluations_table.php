@@ -14,9 +14,10 @@ return new class extends Migration
 
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained();
             $table->string('title');
             $table->string('question');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }

@@ -24,16 +24,21 @@ class Course extends Model
         return $this->hasMany(Application::class);
     }
 
-    //----------------- ManyToMany relationship ---------------------
-
-    public function _students()
+    public function evaluations()
     {
-        return $this->hasMany(Course_user::class, 'course_id', 'id');
+        return $this->hasMany(Evaluation::class);
     }
 
-    public function students()
+    //----------------- ManyToMany relationship ---------------------
+
+    public function _course_students()
     {
-        return $this->belongsToMany(User::class, Course_user::class, 'course_id', 'user_id');
+        return $this->hasMany(Course_student::class, 'course_id', 'id');
+    }
+
+    public function course_students()
+    {
+        return $this->belongsToMany(User::class, Course_student::class, 'course_id', 'user_id');
     }
 
     //----------------------------------------------------------------

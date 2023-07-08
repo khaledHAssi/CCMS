@@ -4,6 +4,8 @@ php artisan migrate
 
 php artisan migrate:status
 
+php artisan migrate:rollback --path=database/migrations/2023_06_03_115235_add_channels_to_users_table.php
+
 php artisan make:model Category
 
 php artisan make:controller CategoryController -r

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('status')->default(1);
             $table->enum('type', ['student', 'companyManager', 'companySupervisor', 'doctor', 'super-admin'])->default('student');
             $table->foreignId('company_id')->nullable()->constrained();
+            $table->string('channels',50)->default('database,broadcast');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('image')->nullable();
             $table->text('description')->nullable();
+            $table->enum('status' ,['pending_progressing', 'in_progress', 'finished', 'closed'])->default('pending_progressing');
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();

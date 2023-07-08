@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Company extends Model
 {
-    use HasFactory, SoftDeletes ;
+    use HasFactory, SoftDeletes;
 
     // protected $fillable = ['name', 'image', 'description', 'location']; // الي مسموح يتخزن على قاعدة البايانات
     protected $guarded = []; // الي ممنوع يتخزن على قاعدة البايانات
@@ -22,13 +22,22 @@ class Company extends Model
         return $this->hasMany(Expert::class);
     }
 
-    public function evaluations()
-    {
-        return $this->hasMany(Evaluation::class);
-    }
-
     public function applications()
     {
         return $this->hasMany(Application::class);
     }
+
+    //----------------- ManyToMany relationship ---------------------
+    public function _company_evaluations()
+    {
+        return $this->hasMany(Company_evaluations::class, 'company_id', 'id');
+    }
+
+    public function company_evaluations()
+    {
+        return $this->belongsToMany(Evaluation::class, Company_evaluations::class, 'company_id', 'evaluation_id');
+    }
+    //----------------------------------------------------------------
+
+
 }

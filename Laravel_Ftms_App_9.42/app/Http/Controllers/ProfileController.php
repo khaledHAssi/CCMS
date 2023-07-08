@@ -83,11 +83,11 @@ class ProfileController extends Controller
     {
         $id = Auth::user()->id;
         $valid = Validator::make($request->all(), [
-            'bio' => 'required|string|min:20|max:400|',
-            'facebook' => 'required|string|url',
-            'twitter' => 'required|string|url',
-            'linkedin' => 'required|string|url',
-            'instagram' => 'required|string|url'
+            'bio' => 'nullable|string|min:20|max:400|',
+            'facebook' => 'nullable|string|url',
+            'twitter' => 'nullable|string|url',
+            'linkedin' => 'nullable|string|url',
+            'instagram' => 'nullable|string|url'
         ]);
 
         if ($valid->fails()) {
@@ -112,7 +112,7 @@ class ProfileController extends Controller
         $profile->li = $request->input('linkedin');
         $profile->in = $request->input('instagram');
         $profile->user_id = $id;
-        $profile->status = 1;
+        // $profile->status = 1;
         $saved = $profile->save();
 
 

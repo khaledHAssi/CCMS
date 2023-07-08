@@ -23,18 +23,18 @@ class RelationController extends Controller
 
     //-----------------test ManyToMany relationship to course and student ---------------------
     
-    public function course_students(){
+    public function course_students($id){
 
-        $data = Course::where('id', '=', 3)->get();
-        $new = $data->load('students');
-        return $new;
+        $data = Course::where('id', '=', $id)->get();
+        $dataWithRelation = $data->load('course_students');
+        return $dataWithRelation;
     }
     
-    public function student_courses(){
+    public function student_courses($id){
     
-        $data = User::where('id', '=', 3)->get();
-        $new = $data->load('student_courses');
-        return $new;
+        $data = User::where('id', '=', $id)->get();
+        $dataWithRelation = $data->load('student_courses');
+        return $dataWithRelation;
     }
 
     //----------------------------------------------------------------

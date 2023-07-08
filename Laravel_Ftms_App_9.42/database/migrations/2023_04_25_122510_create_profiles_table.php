@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('status')->nullable();
+            $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
             $table->text('bio')->nullable();//
             $table->string('fb')->nullable();//facebook
             $table->string('tw')->nullable();//twitter
             $table->string('li')->nullable();//linkedin
             $table->string('in')->nullable();//instagram
-            $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
+            // $table->string('status')->nullable();
             // $table->string('image')->nullable();
             $table->timestamps();
         });
