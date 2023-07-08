@@ -15,6 +15,11 @@ class Application extends Model
         return $this->belongsTo(User::class)->withDefault();
     }
 
+    public function company()
+    {
+        return $this->belongsTo(Company::class)->withDefault();
+    }
+    
     public function course()
     {
         return $this->belongsTo(Course::class)->withDefault();

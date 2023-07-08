@@ -42,6 +42,12 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 // Route::get('/profile', [RelationController::class , 'profile']);
+
+//---------------test relationship --------------------
+Route::get('/course_students', [RelationController::class , 'course_students']);
+Route::get('/student_courses', [RelationController::class , 'student_courses']);
+//------------------------------------------------------
+
 Route::prefix(LaravelLocalization::setLocale())->group(function () {
 
 

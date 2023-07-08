@@ -15,4 +15,10 @@ class AvailableTime extends Model
     {
         return $this->belongsTo(Expert::class)->withDefault();
     }
+
+    // Check this method
+    public function payment()
+    {
+        return $this->hasOne(Expert_payment::class,'payment_id');
+    }
 }

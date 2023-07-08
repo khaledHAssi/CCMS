@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Expert extends Model
 {
     use HasFactory;
-    protected  $guarded = [] ;
+    protected  $guarded = [];
     public function AvailableTime()
     {
         return $this->hasMany(AvailableTime::class);
@@ -21,4 +21,18 @@ class Expert extends Model
     {
         return $this->belongsTo(Company::class)->withDefault();
     }
+
+    //----------------- ManyToMany relationship ---------------------
+
+    public function _payments()
+    {
+        return $this->hasMany(Expert_payment::class, 'expert_id', 'id');
+    }
+
+    public function payments()
+    {
+        return $this->belongsToMany(Payment::class, Expert_payment::class, 'expert_id', 'payment_id');
+    }
+
+    //----------------------------------------------------------------
 }

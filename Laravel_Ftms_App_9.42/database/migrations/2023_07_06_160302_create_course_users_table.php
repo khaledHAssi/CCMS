@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('appoinments', function (Blueprint $table) {
+        Schema::create('course_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('expert_id')->constrained();
-            $table->foreignId('availabletime_id')->constrained('availabletime','id');
-            $table->string('payment_status');
-            $table->double('price');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('course_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('application_id')->constrained('available_times')->cascadeOnDelete();
+            $table->integer('student_mark')->max('100');
+            $table->text('note');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appoinments');
+        Schema::dropIfExists('course_users');
     }
 };
