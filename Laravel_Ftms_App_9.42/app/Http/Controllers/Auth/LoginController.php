@@ -28,7 +28,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-    
+
     public function redirectTo(){
         if(Auth::user()->type == 'super-admin'){
             return '/en/admin';
@@ -38,6 +38,9 @@ class LoginController extends Controller
         }
         elseif(Auth::user()->type == 'companySupervisor'){
             return '/en/user_dash/supervisor';
+        }
+        elseif(Auth::user()->type == 'doctor'){
+            return 'en/user_dash/doctor/dash';
         }
         else{
             return '';

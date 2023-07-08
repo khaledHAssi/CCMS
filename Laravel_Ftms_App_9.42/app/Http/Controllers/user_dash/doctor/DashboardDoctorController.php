@@ -4,12 +4,14 @@ namespace App\Http\Controllers\user_dash\doctor;
 
 use App\Http\Controllers\Controller;
 use App\Models\AvailableTime;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Models\Expert;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
 class DashboardDoctorController extends Controller
 {
     /**
@@ -26,8 +28,11 @@ class DashboardDoctorController extends Controller
     public function expertIndex()
     {
         $experts = Expert::where('doctor_id', '=', Auth::user()->id)->get();
+        $companyIds = $experts->pluck('company_id')->filter();
+
+        $companiesName = Company::whereIn('id', $companyIds)->pluck('name');
         $experts = $experts->load('User');
-        return response()->view('user_dash.doctor.experts.index', compact('experts'));
+        return response()->view('user_dash.doctor.experts.index', compact('experts','companiesName'));
     }
 
     public function availableTimeIndex()
@@ -42,21 +47,23 @@ class DashboardDoctorController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response`
      */
     public function create()
     {
         //
     }
-    public function availableTimeCreate(string $id)
+    public function availableTimeCreate($id, $company_id = null)
     {
-        return view('user_dash.doctor.availableTimes.create', compact('id'));
+        $expertId = $id;
+        $companyId = $company_id;
+
+        return view('user_dash.doctor.availableTimes.create', compact('expertId', 'companyId'));
     }
     public function expertCreate()
     {
         $experts = DB::select('SELECT `id`,`name` FROM `users` Where `type` like "doctor"');
-        return response()->view('user_dash.doctor.experts.create',compact('experts'));
-
+        return response()->view('user_dash.doctor.experts.create', compact('experts'));
     }
     /**
      * Store a newly created resource in storage.
@@ -72,7 +79,7 @@ class DashboardDoctorController extends Controller
     public function availableTimeStore(Request $request)
     {
         $validator = $request->validate([
-            "link" => 'nullable|url',
+            'link' => $request->input('company_id') ? 'nullable|url' : 'required|url',
             "expert_id" => 'required',
             "date" => 'required|date',
             'price' => 'required|numeric',
@@ -81,8 +88,9 @@ class DashboardDoctorController extends Controller
         ]);
 
         $availableTime = new AvailableTime;
-        $availableTime->expert_id = $request->input('expert_id');
+        $expert = Expert::get('company_id');
         $availableTime->link = $request->input('link');
+        $availableTime->expert_id = $request->input('expert_id');
         $availableTime->date = $request->input('date');
         $availableTime->price = $request->input('price');
         $availableTime->hour_from = $request->input('hour_from');
@@ -100,14 +108,14 @@ class DashboardDoctorController extends Controller
     {
         //
         $validator =
-        $request->validate([
-             'name' => 'required|string|min:3|max:20|',
-             'hour_price' => 'required|numeric|min:5|',
-             'image' => 'required|image|mimes:jpg,png|',
+            $request->validate([
+                'name' => 'required|string|min:3|max:20|',
+                'hour_price' => 'required|numeric|min:5|',
+                'image' => 'required|image|mimes:jpg,png|',
 
-        ]);
+            ]);
 
-        $expert = new Expert ;
+        $expert = new Expert;
         $expert->doctor_id = Auth::user()->id;
         $expert->name = $request->input('name');
         $expert->hour_price = $request->input('hour_price');
@@ -123,7 +131,6 @@ class DashboardDoctorController extends Controller
 
         $expert->save();
         return redirect()->route('admin.experts.index')->with('msg', 'Experts Updated Successfully')->with('type', 'warning');
-
     }
     /**
      * Display the specified resource.
@@ -177,12 +184,12 @@ class DashboardDoctorController extends Controller
         //
         $expert = Expert::findOrFail($id);
         $validator =
-        $request->validate([
-            'name' => 'required|string|min:3|max:20|',
-            'hour_price' => 'required|numeric|min:5|',
-            'image' => 'required|image|mimes:jpg,png',
+            $request->validate([
+                'name' => 'required|string|min:3|max:20|',
+                'hour_price' => 'required|numeric|min:5|',
+                'image' => 'required|image|mimes:jpg,png',
 
-        ]);
+            ]);
 
         $expert->name = $request->input('name');
         $expert->hour_price = $request->input('hour_price');
@@ -227,7 +234,7 @@ class DashboardDoctorController extends Controller
             $availableTime->status = 0;
         }
         $availableTime->save();
-        return redirect()->route('user_dash.doctor.dash.availableTimeUpdate')->with('msg', 'AvailableTimes Updated Successfully')->with('type', 'warning');
+        return redirect()->route('user_dash.doctor.dash.AvailableTimeIndex')->with('msg', 'AvailableTimes Updated Successfully')->with('type', 'warning');
     }
     /**
      * Remove the specified resource from storage.

@@ -23,6 +23,7 @@
                                 <th>Price</th>
                                 <th>Meet Link</th>
                                 <th>Date</th>
+                                <th>status</th>
                                 <th>Hour From</th>
                                 <th>Hour to</th>
                                 <th>Actions</th>
@@ -43,9 +44,15 @@
                                         @endif
                                     </td>
                                     <td>{{ $time->date }}</td>
+                                    @if($time->status == '1')
+                                    <td class="text-danger">
+                                        Booked</td>
+                                    @else
+                                   <td class="text-success">Available</td>
+                                    @endif
                                     <td>{{ $time->hour_from }}</td>
                                     <td>{{ $time->hour_to }}</td>
-
+                                        @if($time->status =='0')
                                     <td>
                                         <a href="{{ route('user_dash.doctor.dash.AvailableTimeEdit', $time) }}"
                                             class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> </a>
@@ -58,6 +65,10 @@
                                                 class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                         </form>
                                     </td>
+                                    @else
+                                    <td class="text-danger">Booked Time</td>
+
+                                    @endif
                                 </tr>
                             @empty
                                 <tr>

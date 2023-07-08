@@ -55,6 +55,9 @@
             margin-left: 0em !important;
 
         }
+        .Information{
+            margin-left:0px;margin-top: .8%;
+                }
     </style>
 
     @yield('styles')
@@ -127,7 +130,7 @@
 
                 <div class="container-xxl py-5 ">
                     <div class="container">
-                        <div class="row g-4 align-items-end mb-4 flex">
+                        <div class="row g-4 align-items-end mb-4 flex " >
 
                             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                                 <img class="img-fluid float-right rounded-3 mb-3" style="height: 600px;"
@@ -136,24 +139,24 @@
                             <div class="col-lg-6 wow fadeInUp details" data-wow-delay="0.3s">
                                 <div style="display:flex;">
                                     <h4 - style="margin-left:0px;">Name:</h4>
-                                    <h5 style="margin-left:0px;margin-top: 1.5% ">
+                                    <h5 class="Information">
                                         - {{ Auth::user()->name }}
                                     </h5>
                                 </div>
                                 <div style="display:flex;">
                                     <h4 - style="margin-left:0px;">Email:</h4>
-                                    <h5 style="margin-left:0px;margin-top: 1.5% ">
+                                    <h5 class="Information">
                                         - {{ Auth::user()->email }}
                                     </h5>
                                 </div>
                                 <div style="display:flex;">
                                     <h4 - style="margin-left:0px;">Phone: </h4>
-                                    <h5 style="margin-left:0px;margin-top: 1.5% ">
+                                    <h5 class="Information">
                                         - +{{ Auth::user()->phone }}
                                     </h5>
                                 </div>
                                 <div class="social">
-                                    <h4 style="margin-bottom: 14px;">Social Midea</h4>
+                                    <h4 style="margin-bottom: 14px;">Social media</h4>
                                     @if (Auth::user()->profile == null)
                                         <h6 class="text-danger">Your profile is not completed </h6>
                                     @else
@@ -173,7 +176,9 @@
                                 <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3"
                                     style="margin-top: 15px" data-bs-toggle="modal" data-bs-target="#settingProfile">
                                     Edit</p>
+                                    @if(Auth::user()->profile != null )
                                 <div class="border rounded p-4">
+
                                     <nav>
                                         <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
                                             <button class="nav-link fw-semi-bold active" id="nav-story-tab"
@@ -185,12 +190,33 @@
                                     <div class="tab-content" id="nav-tabContent">
                                         <div class="tab-pane fade show active" id="nav-story" role="tabpanel"
                                             aria-labelledby="nav-story-tab">
-                                            <p class="mb-0">{{Auth::user()->profile->bio}}.
-                                                Clita erat ipsum et lorem et sit</p>
+
+                                            <p class="mb-0">{{Auth::user()->profile->bio}}</p>
                                         </div>
 
                                     </div>
                                 </div>
+                                @else
+                                <div class="border rounded p-4">
+
+                                    <nav>
+                                        <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                                            <button class="nav-link fw-semi-bold active" id="nav-story-tab"
+                                                data-bs-toggle="tab" data-bs-target="#nav-story" type="button"
+                                                role="tab" aria-controls="nav-story"
+                                                aria-selected="true">Bio</button>
+                                        </div>
+                                    </nav>
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-story" role="tabpanel"
+                                            aria-labelledby="nav-story-tab">
+
+                                            <p class="mb-0 text-danger">Your profile is not completed</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         {{-- <div class="border rounded p-4 wow fadeInUp" data-wow-delay="0.1s">

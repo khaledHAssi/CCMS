@@ -68,6 +68,7 @@ class Kernel extends HttpKernel
         'check_user'=>  \App\Http\Middleware\CheckUserType::class,
         'check_admin'=>  \App\Http\Middleware\CheckAdmin::class,
         'check_supervisor'=>  \App\Http\Middleware\CheckSupervisor::class,
+        'CheckDoctor'=>  \App\Http\Middleware\CheckDoctor::class,
         'check_companyManager'=>  \App\Http\Middleware\CheckCompanyManager::class,
      /**** OTHER MIDDLEWARE ****/
      'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,

@@ -30,7 +30,19 @@
         <!-- /.widget-user -->
 
 
+        <div class="card card-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header text-white" style="background: url('{{ url('uploads/MPgyjJaUjOEOpDJy9zYq4AEuuCliCdOp6FYhm9IH.jpg') }}') center center;">
 
+                <h3 class="widget-user-username text-left"><span style="font-weight: 600">Doctor :  </span>{{ Auth::user()->name }}</h3>
+            </div>
+            <div class="widget-user-image ">
+                <img height="38" width="38" class="img-circle img-bordered-sm elevation-2"
+                    src="{{ Storage::url(Auth::user()->image) }}" alt="User Avatar">
+            </div>
+            <br>
+            <br>
+ </div>
 
 
         <!-- DataTables -->
