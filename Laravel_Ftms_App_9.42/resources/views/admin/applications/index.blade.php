@@ -39,12 +39,19 @@
                             <td>{{ $application->reason }}</td>
                             <td>{{ $application->status }}</td>
                             <td>
-                                <form class="d-inline" action="#" method="POST">
+
+                                <form class="d-inline" action="{{ route('admin.applications.accept') }}" method="POST">
                                     @csrf
-                                    @method('delete')
-                                    <button onclick="return confirm('Are you sure!?')" class="btn btn-danger btn-sm"><i class="fas fa-times-circle"></i></button>
+                                    <input type="text" hidden id="course_id" value="{{$application->course_id}}" name="course_id"/>
+                                    <input type="text" hidden id="user_id" value="{{$application->user_id}}" name="user_id"/>
+                                    <input type="text" hidden id="application_id" value="{{$application->id}}" name="application_id"/>
+
+                                    <button onclick="return confirm('Are you sure!?')" class="btn btn-success btn-sm">
+                                        <i class="fas fa-check-circle mr-1"></i>accept
+                                    </button>
                                 </form>
-                                <a href="#"  class="btn btn-success btn-sm"> <i class="fas fa-check-circle"></i> </a>
+
+                                <a href="{{ route('admin.applications.reject', $application->id) }}"  class="btn btn-danger btn-sm"><i class="fas fa-times-circle mr-1"></i>reject</a>
 
                             </td>
                         </tr>
@@ -60,4 +67,27 @@
   </div>
 </div>
 
+@stop
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        @if (session('msg'))
+            Toast.fire({
+                icon: '{{ session('status') }}',
+                title: '{{ session('msg') }}'
+            })
+        @endif
+    </script>
 @stop

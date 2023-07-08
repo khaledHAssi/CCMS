@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('course_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('application_id')->constrained()->cascadeOnDelete();
-            $table->integer('student_mark')->max('100');
+            $table->integer('student_mark')->nullable()->max('100');
             $table->text('note')->nullable();
             $table->timestamps();
         });

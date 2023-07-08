@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('course_id')->constrained();
             $table->text('reason')->nullable();
             // $table->string('name');
-            $table->boolean('status')->default(0);
+            $table->boolean('status')->nullable();
             // $table->boolean('status')->default(1);
             $table->timestamps();
         });

@@ -173,7 +173,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         array_push($jsondata, $mdsai);
                                     }
                                 @endphp
-                        
+
                                 @foreach ($jsondata as $key => $notification)
                                     <div class="dropdown-divider"></div>
                                     <a href="#" class="dropdown-item">
@@ -261,8 +261,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                             data-accordion="false">
-                            <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+                            <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                             <li class="nav-item">
                                 <a href="{{ route('admin.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -396,11 +395,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </ul>
                             </li>
 
-
-
-                            </li>
                             <li class="nav-item">
-                                <a href="{{ route('applications.index') }}" class="nav-link">
+                                <a href="{{ route('admin.applications.index') }}" class="nav-link">
                                     <i class="nav-icon fas fa-file-alt"></i>
                                     <p>
                                         {{ __('Applications') }}
@@ -408,19 +404,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </p>
                                 </a>
                             </li>
-
-
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-calendar-alt"></i>
-                                    <p>
-                                        {{ __('Appointments') }}
-
-                                    </p>
-                                </a>
-                            </li>
-
-
+                        </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
                 </div>
