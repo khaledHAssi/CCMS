@@ -36,7 +36,7 @@ class SiteController extends Controller
             'expertsCount' => Expert::count(),
         ];
         $experts = Expert::whereHas('AvailableTime', function(Builder $query) {
-            $query->where('status', 1 )->whereDate('date', '>=', date('Y-m-d') );
+            $query->where('status', 0 )->whereDate('date', '>=', date('Y-m-d') );
         })->latest('id')->get();
         //---------------------------------------------------------------------------------
         //{{-- Wanna Add Social media to expert cards  --}}
@@ -139,7 +139,7 @@ class SiteController extends Controller
 
             DB::beginTransaction();
             try {
-                AvailableTime::find($time_id)->update(['status' => 0]);
+                AvailableTime::find($time_id)->update(['status' => 1]);
 
                 // send notification to expert
                 if(Auth::user()){

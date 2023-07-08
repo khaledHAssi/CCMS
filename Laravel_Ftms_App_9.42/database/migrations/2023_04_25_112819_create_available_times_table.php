@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('date');
             $table->time('hour_from');
             $table->time('hour_to');
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(0);
             $table->double('price', 10, 2)->nullable();
             $table->timestamps();
         });
