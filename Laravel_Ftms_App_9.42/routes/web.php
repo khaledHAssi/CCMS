@@ -61,6 +61,8 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::delete('companies/{id}/forcedelete', [CompanyController::class, 'forcedelete'])->name('companies.forcedelete');
         Route::resource('companies', CompanyController::class);
         Route::resource('courses', CourseController::class);
+        Route::get('delete_student/{id}', [CourseController::class, 'delete_student'])->name('courses.delete_student');
+        Route::post('edit_student', [CourseController::class, 'edit_student'])->name('courses.edit_student');
         Route::resource('tasks', TaskController::class);
         Route::resource('answers', AnswerController::class);
         Route::resource('answer_marks', AnswerMarksController::class);
@@ -76,7 +78,8 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::prefix('applications')->name('applications.')->group(function () {
             Route::get('', [ApplicationController::class, 'index'])->name('index');
             Route::post('accept', [ApplicationController::class, 'application_accept'])->name('accept');
-            Route:: get('reject/{id}', [ApplicationController::class, 'application_reject'])->name('reject');
+            Route::get('reject/{id}', [ApplicationController::class, 'application_reject'])->name('reject');
+            Route::get('restore/{id}', [ApplicationController::class, 'application_restore'])->name('restore');
         });
     });
 

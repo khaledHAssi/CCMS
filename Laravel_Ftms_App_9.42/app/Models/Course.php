@@ -10,7 +10,7 @@ class Course extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function User()
+    public function supervisor()
     {
         return $this->belongsTo(User::class, 'supervisor_id')->withDefault();
     }
@@ -38,8 +38,14 @@ class Course extends Model
 
     public function course_students()
     {
-        return $this->belongsToMany(User::class, Course_student::class, 'course_id', 'user_id');
+        return $this->belongsToMany(User::class, Course_student::class, 'course_id', 'user_id')->withPivot(['created_at','id','student_mark','note']);
     }
 
+    //     public function course_students()
+    // {
+    //     return $this->belongsToMany(User::class, 'course_students', 'course_id', 'user_id')
+    //                 ->withPivot('created_at');
+    // }
+    
     //----------------------------------------------------------------
 }
