@@ -12,8 +12,9 @@ class ApplicationController extends Controller
     public function index()
     {
         //
-
         $applications = Application::all();
+        $applications = $applications->load('user', 'company', 'course');
+
         return response()->view('admin.applications.index', compact('applications'));
     }
 
@@ -37,7 +38,7 @@ class ApplicationController extends Controller
         return redirect()->back()->with(['msg' => 'The student was accepted to the course.', 'status' => 'success']);
     }
 
-    
+
     public function application_reject($id)
     {
         $application = Application::findOrFail($id);
@@ -47,6 +48,30 @@ class ApplicationController extends Controller
             return redirect()->back()->with(['msg' => 'The student was rejected from the course.', 'status' => 'success']);
         } else {
             return redirect()->back()->with(['msg' => 'student rejected is failed.', 'status' => 'error']);
+        }
+    }
+
+
+    public function application_restore($id)
+    {
+        $application = Application::findOrFail($id);
+        $app_status = $application->status;
+        $application->status = null;
+        $saved = $application->save();
+
+        if ($saved & $app_status === 1) {
+            $courseStudent = Course_student::where('application_id', $id)->firstOrFail();
+            $deleted = $courseStudent->delete();
+            if($deleted){
+                return redirect()->back()->with(['msg' => 'The student was restored from the applications accepted.', 'status' => 'success']);
+            }
+        }
+
+
+        if ($saved) {
+            return redirect()->back()->with(['msg' => 'The student was restored from the applications rejected.', 'status' => 'success']);
+        } else {
+            return redirect()->back()->with(['msg' => 'student restored is failed.', 'status' => 'error']);
         }
     }
 }

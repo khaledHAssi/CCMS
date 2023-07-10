@@ -121,16 +121,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
                                 {{--
-         @if ($localeCode == 'pt')
-                    <img width="30" src="{{ asset('adminassets/dist/img/pt.png') }}" alt="">
-                  @elseif ($localeCode == 'en')
-                    <img width="30" src="{{ asset('adminassets/dist/img/uk.png') }}" alt="">
-                  @else
-                    <img width="30" src="{{ asset('adminassets/dist/img/ps.png') }}" alt="">
-                  @endif --}}
-                                {{-- {{ $properties['native'] }} --}}
-                                {{-- __________________________________________________________________________
-                  {{-- Commented not all time --}}
+                                @if ($localeCode == 'pt')
+                                    <img width="30" src="{{ asset('adminassets/dist/img/pt.png') }}" alt="">
+                                @elseif ($localeCode == 'en')
+                                    <img width="30" src="{{ asset('adminassets/dist/img/uk.png') }}" alt="">
+                                @else
+                                    <img width="30" src="{{ asset('adminassets/dist/img/ps.png') }}" alt="">
+                                @endif --}}
+                                                {{-- {{ $properties['native'] }} --}}
+                                                {{-- __________________________________________________________________________
+                                {{-- Commented not all time --}}
                                 {{-- __________________________________________________________________________ --}}
 
                             </a>
@@ -152,10 +152,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <span class="dropdown-header">5 Notifications</span>
 
                             {{-- <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a> --}}
+                                <a href="#" class="dropdown-item">
+                                    <i class="fas fa-envelope mr-2"></i> 4 new messages
+                                    <span class="float-right text-muted text-sm">3 mins</span>
+                                </a> --}}
                             {{-- -------------------------------------------------- --}}
 
 
