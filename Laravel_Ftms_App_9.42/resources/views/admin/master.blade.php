@@ -162,7 +162,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="#" style="inlineblock" class="dropdown-item" style="">
                                 @php
                                     $notifications = App\Models\Notification::latest('id')->paginate(env('PAGINATION_Notification_COUNT'));
-                                    
+
                                     $jsondata = [];
                                     foreach ($notifications as $item) {
                                         $data = json_decode($item->data, true);
@@ -284,16 +284,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ route('admin.companies.index') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-laptop-house"></i>
-                                    <p>
-                                        {{ __('Companies') }}
-                                    </p>
+                                <a href="#" class="nav-link">
+                                  <i class="nav-icon fas fa-laptop-house"></i>
+                                  <p>
+                                    {{ __('main.Companies') }}
+                                    <i class="right fas fa-angle-left"></i>
+                                  </p>
                                 </a>
+                                <ul class="nav nav-treeview">
+                                  <li class="nav-item">
+                                    <a href="{{ route('admin.companies.index') }}" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>
+                                    {{ __('All_Companies') }}
+                                    </p>
 
-                            </li>
+                                    </a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a href="{{ route('admin.companies.trash') }}" class="nav-link">
+                                    {{-- <a href="#" class="nav-link"> --}}
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>
+                                    {{ __('Trash') }}
 
-
+                                      </p>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </li>
 
                             <li class="nav-item">
                                 <a href="{{ route('admin.courses.index') }}" class="nav-link">

@@ -15,9 +15,7 @@
                             @endif
 
                             <h1>All companies experts</h1>
-                            <a href="{{ route('user_dash.doctor.dash.expertCreate') }}"
-                                style="margin-bottom: 5px;margin-top: 5px;;"
-                                class="btn btn-success mr-5">{{ __('Add New') }}</a>
+
                             <table class="table table-bordered">
                                 <thead>
                                     <tr class="bg-dark text-white">
@@ -32,10 +30,10 @@
                                 <tbody>
 
                                     <td>{{ $loop->index + 1 }}</td>
-                                    @if ($expert->image)
+                                    @if ($expert->image != null)
                                         <td>
                                             <img class="img-circle img-bordered-sm" height="65" width="65"
-                                                src="{{ Storage::url($expert->image) }}" alt="expert image">
+                                                src="{{ Storage::url($expert->image) }}">
                                         </td>
                                     @else
                                         <td style="color:red;">No Pic</td>
@@ -64,24 +62,20 @@
             </div>
 
 
-
-        @else
-
-
-
             <div class="content" >
                 <div class="container-fluid">
                     <div class="card mt-4">
-                        <div class="card-body">
+                        <div class="card-body">    <h1>All Freelancer Experts</h1>
+            <a href="{{ route('user_dash.doctor.dash.expertCreate') }}"
+                style="margin-bottom: 5px;margin-top: 5px;;"
+                class="btn btn-success mr-5">{{ __('Add New') }}</a>
 
-                            @if (session('msg'))
-                                <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
-                            @endif
 
-                            <h1>All Freelancer Experts</h1>
-                            <a href="{{ route('user_dash.doctor.dash.expertCreate') }}"
-                                style="margin-bottom: 5px;margin-top: 5px;;"
-                                class="btn btn-success mr-5">{{ __('Add New') }}</a>
+                @else
+
+
+
+
                             <table class="table table-bordered">
                                 <thead>
                                     <tr class="bg-dark text-white">
@@ -93,7 +87,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     @if ($expert->image)
                                         <td>
                                             <img class="img-circle img-bordered-sm" height="65" width="65"

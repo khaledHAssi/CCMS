@@ -12,7 +12,10 @@
         <div class="container-fluid">
             <div class="card mt-4">
                 <div class="card-body">
-
+                    <div class="card-body">
+                    @if (session('msg'))
+                    <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
+                @endif
                     <h1>{{ $title }}</h1>
                     <a href="{{ route('admin.users.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
                         class="btn btn-success mr-5">{{ __('Add New') }}</a>

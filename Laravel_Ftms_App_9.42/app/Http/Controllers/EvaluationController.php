@@ -16,8 +16,8 @@ class EvaluationController extends Controller
     public function index()
     {
         //
-       $evaluation = Evaluation::all();
-        return response()->view('admin.Evaluation.index' , ['evaluation' => $evaluation]);
+        $evaluation = Evaluation::all();
+        return response()->view('admin.Evaluation.index', ['evaluation' => $evaluation]);
     }
 
     /**
@@ -27,10 +27,9 @@ class EvaluationController extends Controller
     {
         //
 
-       $evaluation = Evaluation::all();
-        $companies = DB::select('SELECT `id`, `name` FROM `companies` ');
-        ;
-       return response()->view('admin.Evaluation.create' , ['evaluation' => $evaluation , 'companies'=>$companies]);
+        $evaluation = Evaluation::all();
+        $companies = DB::select('SELECT `id`, `name` FROM `companies` ');;
+        return response()->view('admin.Evaluation.create', ['evaluation' => $evaluation, 'companies' => $companies]);
     }
 
     /**
@@ -38,23 +37,24 @@ class EvaluationController extends Controller
      */
     public function store(Request $request)
     {
-            //
-            $validator = validator($request->all(),[
-                'title' => 'required|string|max:50',
-                'question' => 'required',
-                'company_id' => 'required',
+        //
+        $validator = validator($request->all(), [
+            'title' => 'required|string|max:50',
+            'question' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+        ]);
 
-            ]);
+        if (!$validator->fails()) {
+            $evaluation = new Evaluation();
+            $evaluation->title = $request->input('title');
+            $evaluation->question = $request->input('question');
+            $evaluation->end_date = $request->input('end_date');
+            $evaluation->start_date = $request->input('start_date');
+            $save = $evaluation->save();
+        }
 
-            if (!$validator->fails()) {
-                $evaluation = new Evaluation();
-                $evaluation->title = $request->input('title');
-                $evaluation->question = $request->input('question');
-                $evaluation->company_id = $request->input('company_id');
-                $save = $evaluation->save();
-            }
-
-            return redirect()->route('admin.evaluation.index');
+        return redirect()->route('admin.evaluation.index');
     }
 
     /**
@@ -75,7 +75,7 @@ class EvaluationController extends Controller
         $companies = DB::select('SELECT `id`, `name` FROM `companies` ');
         // $evaluations = DB::select('SELECT * FROM `evaluations` ');
 
-        return response()->view('admin.evaluation.edit' , ['evaluation' => $evaluation,'companies'=>$companies]);
+        return response()->view('admin.evaluation.edit', ['evaluation' => $evaluation]);
     }
 
     /**
@@ -84,22 +84,27 @@ class EvaluationController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $validator = validator($request->all() , [
-            'title' => 'required|string|max:50',
-            'question' => 'required',
-            'company_id' => 'required',
 
+        $evaluation = Evaluation::findOrFail($id);
+        $validator = validator($request->all(), [
+            'title' => 'required|string|max:50',
+            'question' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
         ]);
         if (!$validator->fails()) {  // يعني لو التحقق نجح وما قشل احقظلي البيانات وهكذا
-            $evaluation = Evaluation::findOrFail($id);
             $evaluation->title = $request->input('title');
-
+            $evaluation->end_date = $request->input('end_date');
+            $evaluation->start_date = $request->input('start_date');
             $evaluation->question = $request->input('question');
-            $evaluation->company_id = $request->input('company_id');
-            $save = $evaluation->save();
-
+            // $evaluation->company_id = $request->input('company_id');
+            $saved = $evaluation->save();
+            if ($saved) {
+                return redirect()->route('admin.evaluation.index')->with('msg', 'Evaluation Updated Successfully')->with('type', 'success');
+            }
+        } else {
+            return redirect()->route('admin.evaluation.index')->with('msg', 'Evaluation Update Failed')->with('type', 'danger');
         }
-        return redirect()->route('admin.evaluation.index');
     }
 
 
@@ -110,7 +115,10 @@ class EvaluationController extends Controller
     {
         //
         $deleted = Evaluation::destroy($id);
-        return redirect()->back();
-
+        if ($deleted) {
+            return redirect()->route('admin.evaluation.index')->with('msg', 'Evaluation Deleted Successfully')->with('type', 'success');
+        } else {
+            return redirect()->route('admin.evaluation.index')->with('msg', 'Evaluation Deleted Failed')->with('type', 'danger');
+        }
     }
 }

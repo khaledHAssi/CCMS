@@ -146,9 +146,9 @@ INSERT INTO `payments` (`id`, `user_id`, `time_id`, `total`, `transaction_id`, `
 -- Dumping data for table `profiles`
 --
 
-INSERT INTO `profiles` (`id`, `status`, `bio`, `fb`, `tw`, `in`, `li`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, '0', 'welcome in my page', 'https://www.facebook.com/profile.php?id=100092872626355', 'https://twitter.com/assi_khaledh', 'https://www.instagram.com/khaledhassi/', 'https://www.linkedin.com/in/khaled-hassi-70408220b/', 1, NULL, NULL),
-(2, '1', 'I\'m Khaled Hassuna Abo Assi & I\'m Your Uncle', 'https://www.facebook.com/', 'https://twitter.com/assi_khaledh', 'https://www.instagram.com/', 'https://www.linkedin.com/in/khaled-hassi-70408220b/', 7, '2023-07-02 15:56:00', '2023-07-02 15:56:00');
+INSERT INTO `profiles` (`id`, `bio`, `fb`, `tw`, `in`, `li`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'welcome in my page', 'https://www.facebook.com/profile.php?id=100092872626355', 'https://twitter.com/assi_khaledh', 'https://www.instagram.com/khaledhassi/', 'https://www.linkedin.com/in/khaled-hassi-70408220b/', 1, NULL, NULL),
+(2, 'I\'m Khaled Hassuna Abo Assi & I\'m Your Uncle', 'https://www.facebook.com/', 'https://twitter.com/assi_khaledh', 'https://www.instagram.com/', 'https://www.linkedin.com/in/khaled-hassi-70408220b/', 7, '2023-07-02 15:56:00', '2023-07-02 15:56:00');
 
 
 -- --------------------------------------------------------
@@ -168,6 +168,3 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ph
 (3, 'student3', 'student3@gmail.com', '2023-07-06 17:09:43', '$2y$10$vMff6coQABXG6NbbUCaFVu3OLAG3JeO5yjW/qh.ikxted6Qk0DlBW', '970591231234', 'student_3', 'users/1688577067_imageAbo Naser.jpeg', 1, 'student', NULL, NULL, 'database,broadcast', NULL, NULL);
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -33,7 +33,7 @@
 
                     @forelse ($companies as $company)
                         <tr>
-                            <td>{{ $company->id }}</td>
+                            <td>{{ $loop->index +1  }}</td>
                             <td>{{ $company->name }}</td>
                             <td><img width="150rem" class="rounded float-start" src="{{ asset($company->image) }}" alt=""></td>
                             <td>

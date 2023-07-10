@@ -130,7 +130,7 @@ class DashboardDoctorController extends Controller
         }
 
         $expert->save();
-        return redirect()->route('admin.experts.index')->with('msg', 'Experts Updated Successfully')->with('type', 'warning');
+        return redirect()->route('user_dash.doctor.dash.expertIndex')->with('msg', 'Experts Updated Successfully')->with('type', 'warning');
     }
     /**
      * Display the specified resource.
@@ -207,14 +207,20 @@ class DashboardDoctorController extends Controller
             $expert->image = 'experts/' . $imageName;
         }
 
-        $expert->save();
-        return redirect()->route('user_dash.doctor.dash.expertIndex')->with('msg', 'Company Updated Successfully')->with('type', 'warning');
+        $saved=$expert->save();
+        if($saved){
+        return redirect()->route('user_dash.doctor.dash.expertIndex')->with('msg', 'Expert Updated Successfully')->with('type', 'success');
+    }
+
+        else{
+            return redirect()->route('user_dash.doctor.dash.expertEdit')->with('msg', 'Expert Update Failed')->with('type', 'warning');
+        }
     }
 
     public function availableTimeUpdate(Request $request, $id)
     {
         $validator = $request->validate([
-            "link" => 'nullable|url',
+            "link" =>  $request->input('company_id') ? 'nullable|url' : 'required|url',
             "expert_id" => 'required',
             "date" => 'required|date',
             'price' => 'required|numeric',
@@ -228,13 +234,13 @@ class DashboardDoctorController extends Controller
         $availableTime->price = $request->input('price');
         $availableTime->hour_from = $request->input('hour_from');
         $availableTime->hour_to = $request->input('hour_to');
-        if ($request->status == 'on') {
-            $availableTime->status = 1;
-        } else {
-            $availableTime->status = 0;
-        }
-        $availableTime->save();
-        return redirect()->route('user_dash.doctor.dash.AvailableTimeIndex')->with('msg', 'AvailableTimes Updated Successfully')->with('type', 'warning');
+
+        $saved = $availableTime->save();
+        if($saved){
+        return redirect()->route('user_dash.doctor.dash.AvailableTimeIndex')->with('msg', 'AvailableTimes Updated Successfully')->with('type', 'success');
+    }else{
+        return redirect()->route('user_dash.doctor.dash.AvailableTimeEdit')->with('msg', 'AvailableTimes Update Failed')->with('type', 'warning');
+    }
     }
     /**
      * Remove the specified resource from storage.
@@ -252,9 +258,14 @@ class DashboardDoctorController extends Controller
         $expert = Expert::findOrFail($id);
         $expert->delete();
         if ($expert->image != null) {
-            Storage::delete($expert->image);
+           $deleted =  Storage::delete($expert->image);
+           if($deleted){
+
+               return redirect()->route('user_dash.doctor.dash.expertIndex')->with('msg', 'Expert Deleted Successfully')->with('type', 'danger');
+            }else{
+                return redirect()->route('user_dash.doctor.dash.expertIndex')->with('msg', 'Expert Delete Failed')->with('type', 'warning');
+           }
         }
-        return redirect()->route('user_dash.doctor.dash.expertIndex')->with('msg', 'Company Deleted Successfully')->with('type', 'danger');
     }
     public function availableTimeDestroy($id)
     {

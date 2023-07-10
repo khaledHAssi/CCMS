@@ -147,20 +147,28 @@ class UserController extends Controller
             $user->image = 'users/' . $imageName;
         }
 
-        $user->save();
-        return redirect()->route('admin.users.index')->with('msg', 'Company Updated Successfully')->with('type', 'warning');
+        $saved=$user->save();
+        if($saved){
+
+            return redirect()->route('admin.users.index')->with('msg', 'User Updated Successfully')->with('type', 'success');
+        }else{
+            return redirect()->route('admin.users.edit')->with('msg', 'User Update Failed')->with('type', 'warning');
+
+        }
     }
     public function destroy($id)
     {
-        // File::delete(public_path())
-
-
         $user = User::findOrFail($id);
         $deleted = $user->delete();
         if ($user->image != null & $deleted) {
-            Storage::delete($user->image);
+           $ifDeleted = Storage::delete($user->image);
+           if($ifDeleted){
+           return redirect()->route('admin.users.index')->with('msg', 'User Deleted Successfully')->with('type', 'success');
+        }else{
+               return redirect()->route('admin.users.index')->with('msg', 'User Delete Failed')->with('type', 'danger');
+
+           }
         }
 
-        return redirect()->route('admin.users.index')->with('msg', 'Company Deleted Successfully')->with('type', 'danger');
     }
 }

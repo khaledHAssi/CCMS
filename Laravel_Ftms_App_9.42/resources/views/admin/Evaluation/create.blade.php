@@ -33,12 +33,7 @@
 
                             <div class="mb-3">
                                 <label for="company_id">Company Id</label>
-                                <select name="company_id"id="company_id" class="form-control @error('company_id') is-invalid @enderror">
-                                    @foreach ($companies as $company)
 
-                                    <option  value="{{$company->id}}">{{$company->id .' - '. $company->name}}</option>
-                                    @endforeach
-                                </select>
                                 @error('company_id')
                                     <small class="invalid-feedback">{{ $message }}</small>
                                 @enderror
@@ -51,6 +46,14 @@
                             <div class="form-group">
                                 <label for="title">question</label>
                                 <input type="text" class="form-control" name="question" placeholder="Enter question">
+                              </div>
+                            <div class="form-group">
+                                <label for="title">Start - Date</label>
+                                <input type="date" class="form-control" name="start_date">
+                              </div>
+                              <div class="form-group">
+                                <label for="title">End - Date</label>
+                                <input type="date" class="form-control" name="end_date">
                               </div>
                         </div>
                         <!-- /.card-body -->

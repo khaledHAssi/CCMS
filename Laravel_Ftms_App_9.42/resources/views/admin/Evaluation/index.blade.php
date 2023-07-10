@@ -21,17 +21,24 @@
     <div class="container-fluid">
       <div class="card mt-4">
           <div class="card-body">
+            @if (session('msg'))
+            <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
+        @endif
               <h1>Evaluations</h1>
               <a href="{{ route('admin.evaluation.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
               class="btn btn-success mr-5">{{ __('Add New') }}</a>
 
               <table class="table table-bordered">
+                <div class="card-body">
+
+
                   <thead>
                       <tr  class="bg-dark text-white">
                           <th>ID</th>
-                          <th>Company ID</th>
                           <th>Title </th>
                           <th>question</th>
+                          <th>Start - Date </th>
+                          <th>End - Date </th>
                           <th>Actions</th>
                       </tr>
                   </thead>
@@ -40,15 +47,14 @@
 
           </div><!-- /.row -->
 
-
-
                             <tbody>
                                 @foreach ($evaluation  as $eval) {{-- لفلي على الاريي وحط كل صف في متغير الايتم --}}
                                 <tr>
                                     <td>{{$loop->index +1}}</td>
-                                    <td>{{$eval->company->id}} - {{$eval->company->name}}</td>
                                     <td>{{$eval->title}}</td>
                                     <td>{{$eval->question}}</td>
+                                    <td>{{$eval->start_date}}</td>
+                                    <td>{{$eval->end_date}}</td>
                                     <td>
                                         <a href="{{ route('admin.evaluation.edit', $eval) }}" class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> </a>
                                         <form class="d-inline" action="{{ route('admin.evaluation.destroy', $eval->id) }}" method="POST">

@@ -19,17 +19,9 @@
                         @csrf
                         <div class="card-body">
 
-                           @if ($errors->any())
-                            <div class="alert alert-danger alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <h5><i class="icon fas fa-ban"></i> validation errors</h5>
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                              </div>
-                            @endif
+                            @if (session('msg'))
+            <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
+                        @endif
 
                             <div class="mb-3">
                                 <label for="company_id">Company Id</label>
@@ -69,6 +61,14 @@
                                <label for="main_mark">Main Mark</label>
                                <input type="number" class="form-control" name="main_mark" placeholder="Enter main_mark">
                         </div>
+                        <div class="form-group">
+                               <label for="start_date">Start - Date</label>
+                               <input type="date" class="form-control" name="start_date">
+                        </div>
+                        <div class="form-group">
+                            <label for="end_date">End - Date</label>
+                            <input type="date" class="form-control" name="end_date">
+                     </div>
                         </div>
                         <!-- /.card-body -->
 

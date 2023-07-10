@@ -111,7 +111,6 @@ class CompanyController extends Controller
             File::delete(public_path($company->image));
             $path = $request->file('image')->store('/uploads', 'custom');
         }
-
         $company->update([
             'name' => $request->name,
             'image' => $path,
@@ -130,8 +129,6 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        // File::delete(public_path())
-
         Company::destroy($id);
         return redirect()->route('admin.companies.index')->with('msg', 'Company Deleted Successfully')->with('type', 'danger');
     }

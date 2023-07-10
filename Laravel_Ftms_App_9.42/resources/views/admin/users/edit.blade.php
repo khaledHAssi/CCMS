@@ -28,8 +28,8 @@
                                 @endforeach
                             </ul>
                         </div>
-                    @endif
                 </div>
+                    @endif
 
                 <div class="mb-3">
                     <label for="name">Name</label>

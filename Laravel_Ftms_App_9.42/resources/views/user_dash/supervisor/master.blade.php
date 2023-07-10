@@ -187,9 +187,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="dropdown-divider"></div>
                         <a href="{{ route('logout') }}"
                             onclick="
-          event.preventDefault();
-          document.getElementById('logout-form').submit()
-          "
+                    event.preventDefault();
+                    document.getElementById('logout-form').submit()
+                    "
                             class="dropdown-item">
                             <i class="fas fa-sign-out-alt mr-2"></i> Logout
                         </a>

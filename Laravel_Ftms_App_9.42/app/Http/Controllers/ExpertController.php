@@ -19,8 +19,10 @@ class ExpertController extends Controller
     {
         //
         $experts = Expert::all();
-        $users = User::all();
-
+        $users = User::join('experts', 'users.id', '=', 'experts.doctor_id')
+        ->where('users.type', '=', 'doctor')
+        ->select('users.*')
+        ->get();
         return response()->view('admin.experts.index',compact(['experts','users']));
     }
 
@@ -33,9 +35,7 @@ class ExpertController extends Controller
     {
         $companies = DB::select('SELECT `id`,`name` FROM `companies`');
         $doctors = DB::select('SELECT `id`,`name` FROM `users` Where `type` like "doctor"');
-
         return response()->view('admin.experts.create',compact(['companies','doctors']));
-
     }
 
     /**
@@ -53,7 +53,6 @@ class ExpertController extends Controller
              'hour_price' => 'required|numeric|min:5|max:100|',
              'company_id' => 'required',
              'image' => 'nullable|image|mimes:jpg,png|max:1024',
-
         ]);
 
         $expert = new Expert ;
@@ -72,7 +71,7 @@ class ExpertController extends Controller
         }
 
         $expert->save();
-        return redirect()->route('admin.experts.index')->with('msg', 'Experts Updated Successfully')->with('type', 'warning');
+        return redirect()->route('admin.experts.index')->with('msg', 'Expert Store Successfully')->with('type', 'success');
 
     }
 
@@ -144,7 +143,7 @@ class ExpertController extends Controller
         }
 
             $expert->save();
-        return redirect()->route('admin.experts.index')->with('msg', 'Company Updated Successfully')->with('type', 'warning');
+        return redirect()->route('admin.experts.index')->with('msg', 'Expert Updated Successfully')->with('type', 'success');
 
     }
 
@@ -162,7 +161,7 @@ class ExpertController extends Controller
         if ($expert->image !=null) {
             Storage::delete($expert->image);
         }
-        return redirect()->route('admin.experts.index')->with('msg', 'Company Deleted Successfully')->with('type', 'danger');
+        return redirect()->route('admin.experts.index')->with('msg', 'Expert Deleted Successfully')->with('type', 'success');
 
     }
 }

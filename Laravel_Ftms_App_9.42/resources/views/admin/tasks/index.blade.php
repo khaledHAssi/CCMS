@@ -21,6 +21,9 @@
     <div class="container-fluid">
       <div class="card mt-4">
           <div class="card-body">
+            @if (session('msg'))
+            <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
+        @endif
               <h1>Tasks</h1>
               <a href="{{ route('admin.tasks.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
               class="btn btn-success mr-5">{{ __('Add New') }}</a>
@@ -28,11 +31,13 @@
                   <thead>
                       <tr  class="bg-dark text-white">
                           <th>Id</th>
-                          <th>Company id</th>
-                          <th>User id</th>
+                          <th>Company </th>
+                          <th>User </th>
                           <th>Title</th>
-                          <th>Main mark </th>
+                          <th>mainMark </th>
                           <th>Question</th>
+                          <th>startDate</th>
+                          <th>endDate</th>
                           <th>Actions</th>
                       </tr>
                   </thead>
@@ -49,18 +54,20 @@
                                     <td>{{$loop->index +1}}</td>
                                     @foreach ($companies as $company )
                                     @if ($task->company_id == $company->id)
-                                    <td>{{$company->id}} - {{$company->name}}</td>
+                                    <td>{{$company->name}}</td>
                                     @endif
                                     @endforeach
                                     @foreach ($courses as $course )
                                     @if ($task->course_id == $course->id)
-                                    <td>{{$course->id}} - {{$course->name}}</td>
+                                    <td> {{$course->name}}</td>
                                     @endif
                                     @endforeach
                                     <td>{{$task->title}}</td>
                                     <td>{{$task->main_mark}}</td>
                                     <td>{{$task->question}}</td>
-                                    <td>
+                                    <td>{{$task->start_date}}</td>
+                                    <td>{{$task->end_date}}</td>
+                                    <td class="text-center" style="display: flex;justify-content: space-between">
                                         <a href="{{ route('admin.tasks.edit', $task) }}" class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> </a>
                                         <form class="d-inline" action="{{ route('admin.tasks.destroy', $task->id) }}" method="POST">
                                         @csrf
