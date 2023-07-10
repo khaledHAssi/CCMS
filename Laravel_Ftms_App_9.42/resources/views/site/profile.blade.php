@@ -235,7 +235,7 @@
                                 <nav class="navbar-circle bg-primary" >
                                     <div class="container-fluid" style="display:flex;justify-content: space-around">
                                       <span class="navbar-text text-white text-bold">
-                                        your courses 
+                                        your courses
                                       </span>
                                     </div>
                                   </nav>
@@ -263,6 +263,67 @@
                                                     <h4>{{ $course->name }}</h4>
                                                     <a href="{{ route('ftms.course', $course->id) }}" class="mr-10 btn btn-outline-primary btn-sm">go
                                                         to course <i class="far fa-arrow-alt-circle-right"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="border-bottom mt-4 d-block d-lg-none"></div>
+                                        </div>
+                                    </div>
+                                @empty
+
+                                    <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                                        <div class="h-100">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
+                                                    <i class="fa fa-users text-white"></i>
+                                                </div>
+                                                <div class="ps-3">
+                                                    <h4 class="text-danger">you don,t have any course</h4>
+                                                    {{-- <span>Clita erat ipsum lorem sit sed stet duo justo</span> --}}
+                                                </div>
+                                                <div class="border-end d-none d-lg-block"></div>
+                                            </div>
+                                            <div class="border-bottom mt-4 d-block d-lg-none"></div>
+                                        </div>
+                                    </div>
+                                @endforelse
+
+                            </div>
+                        </div>
+                        <div class="border rounded p-4 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="row g-4">
+                                <nav class="navbar-circle bg-primary" >
+                                    <div class="container-fluid" style="display:flex;justify-content: space-around">
+                                      <span class="navbar-text text-white text-bold">
+                                        your courses
+                                      </span>
+                                    </div>
+                                  </nav>
+                                @forelse ($user->experts as $expert)
+                                    <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                                        <div class="h-100">
+                                            <div class="d-flex">
+                                                <div class="border-end d-none d-lg-block"></div>
+
+                                                @if ($expert->image !== null)
+                                                    <td>
+                                                        <img class="img-circle img-bordered-sm img-profile"
+                                                            width="30%" src="{{ Storage::url($course->image) }}"
+                                                            alt="course image">
+                                                    </td>
+                                                @else
+                                                    <td>
+                                                        <div style="margin-left: 3em !important; position: relative; top: 1em;  right: 1.7em;"
+                                                            class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
+                                                            <i class="fas fa-graduation-cap text-white"></i>
+                                                        </div>
+                                                    </td>
+                                                @endif
+                                                <div class="ps-3">
+                                                    <h4>{{ $expert->name }}</h4>
+                                                    <span>Paid:
+                                                        {{-- {{$payment->total}} --}}
+                                                    </span>
+                                                    {{-- <a href="{{ route('ftms.course', $course->id) }}" class="mr-10 btn btn-outline-primary btn-sm">Paid: <i class="far fa-arrow-alt-circle-right"></i></a> --}}
                                                 </div>
                                             </div>
                                             <div class="border-bottom mt-4 d-block d-lg-none"></div>

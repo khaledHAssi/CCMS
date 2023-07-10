@@ -59,22 +59,19 @@
                             <h4 style="margin-left:0px;" class="Headers4">Name:</h4>
                             <h5 class="Information Headers5" >
                                 {{ $course->name }}
-
                             </h5>
                         </div>
-
                         {{-- <div style="display:flex;">
                                                 <h4 class="Headers4">Company: </h4>
                                                 <h5 class="Headers5">
                                                     {{$course->company_id}} -
                                                         {{$company->name}}
                                                 </h5>
-                                            </div> --}}
+                        </div> --}}
                         <div style="display:flex;">
                             <h4 class="Headers4">Status: </h4>
                             <h5 class="Headers5 text-warning    " >
                                 {{ $course->status }}
-
                             </h5>
                         </div>
                         <div style="display:flex;">
@@ -87,7 +84,6 @@
                             <h4 class="Headers4">Start date: </h4>
                             <h5 class="Headers5">
                                 {{ $course->start_date }}
-
                             </h5>
                         </div>
                         <div style="display:flex;">
@@ -103,7 +99,6 @@
                             </h5>
                         </div>
                         <div class="border rounded p-4">
-
                             <nav>
                                 <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
                                     <button class="nav-link fw-semi-bold active" id="nav-story-tab"
@@ -121,12 +116,8 @@
                                             <p class="mb-0 text-warning">There is no desciption for this course</p>
                                         @endif
                                 </div>
-
                             </div>
                         </div>
-                        <!-- Button trigger modal -->
-
-
                     </div>
                 </div>
             </div>
