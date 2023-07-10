@@ -176,7 +176,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="nav-link" data-toggle="dropdown" href="#">
 
                         <img class="img-circle img-bordered-sm elevation-2" height="38" width="38"
-                            style="margin-top: -5px; " src="{{ Storage::url(Auth::user()->image) }}" alt="user image">
+                            style="margin-top: -5px;" src="{{ Storage::url(Auth::user()->image) }}" alt="user image">
                         {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">

@@ -47,6 +47,22 @@
                                 <label for="title">question</label>
                                 <input type="text" class="form-control" name="question" placeholder="Enter question">
                               </div>
+                              <div class="form-group">
+                                <label>Company</label>
+                                <select class="custom-select" name="company_id">
+                                    @foreach ($companies as $company)
+                                        <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                              <div class="form-group">
+                                <label>Course</label>
+                                <select class="custom-select" name="course_id">
+                                    @foreach ($courses as $course)
+                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="title">Start - Date</label>
                                 <input type="date" class="form-control" name="start_date">

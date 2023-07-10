@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company_evaluations;
 use App\Models\Evaluation;
 use App\Models\EvaluationAnswer;
 use Illuminate\Http\Request;
@@ -28,8 +29,9 @@ class EvaluationController extends Controller
         //
 
         $evaluation = Evaluation::all();
-        $companies = DB::select('SELECT `id`, `name` FROM `companies` ');;
-        return response()->view('admin.Evaluation.create', ['evaluation' => $evaluation, 'companies' => $companies]);
+        $companies = DB::select('SELECT `id`, `name` FROM `companies` ');
+        $courses = DB::select('SELECT `id`, `name` FROM `courses` ');
+        return response()->view('admin.Evaluation.create', ['evaluation' => $evaluation, 'companies' => $companies,'courses' => $courses]);
     }
 
     /**
@@ -47,14 +49,24 @@ class EvaluationController extends Controller
 
         if (!$validator->fails()) {
             $evaluation = new Evaluation();
+            $companies_evaluations = new Company_evaluations();
             $evaluation->title = $request->input('title');
             $evaluation->question = $request->input('question');
             $evaluation->end_date = $request->input('end_date');
             $evaluation->start_date = $request->input('start_date');
+            $companies_evaluations->course_id = $request->input('course_id');
+            $companies_evaluations->company_id = $request->input('company_id');
             $save = $evaluation->save();
+            $companies_evaluations->evaluation_id =$evaluation->id;
+            $saved = $companies_evaluations->save();
+            return redirect()->route('admin.evaluation.index')->with('msg','Evaluation Created Successfully')
+        ->with('type', 'success');
+        }else{
+            return redirect()->route('admin.evaluation.create')->with('msg','Evaluation Create Failed')
+            ->with('type', 'warning');
         }
 
-        return redirect()->route('admin.evaluation.index');
+
     }
 
     /**

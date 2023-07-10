@@ -128,8 +128,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 @else
                                     <img width="30" src="{{ asset('adminassets/dist/img/ps.png') }}" alt="">
                                 @endif --}}
-                                                {{-- {{ $properties['native'] }} --}}
-                                                {{-- __________________________________________________________________________
+                                {{-- {{ $properties['native'] }} --}}
+                                {{-- __________________________________________________________________________
                                 {{-- Commented not all time --}}
                                 {{-- __________________________________________________________________________ --}}
 
@@ -285,34 +285,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                  <i class="nav-icon fas fa-laptop-house"></i>
-                                  <p>
-                                    {{ __('main.Companies') }}
-                                    <i class="right fas fa-angle-left"></i>
-                                  </p>
+                                    <i class="nav-icon fas fa-laptop-house"></i>
+                                    <p>
+                                        {{ __('main.Companies') }}
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
                                 </a>
                                 <ul class="nav nav-treeview">
-                                  <li class="nav-item">
-                                    <a href="{{ route('admin.companies.index') }}" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>
-                                    {{ __('All_Companies') }}
-                                    </p>
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.companies.index') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                {{ __('All_Companies') }}
+                                            </p>
 
-                                    </a>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a href="{{ route('admin.companies.trash') }}" class="nav-link">
-                                    {{-- <a href="#" class="nav-link"> --}}
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>
-                                    {{ __('Trash') }}
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.companies.trash') }}" class="nav-link">
+                                            {{-- <a href="#" class="nav-link"> --}}
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                {{ __('Trash') }}
 
-                                      </p>
-                                    </a>
-                                  </li>
+                                            </p>
+                                        </a>
+                                    </li>
                                 </ul>
-                              </li>
+                            </li>
 
                             <li class="nav-item">
                                 <a href="{{ route('admin.courses.index') }}" class="nav-link">

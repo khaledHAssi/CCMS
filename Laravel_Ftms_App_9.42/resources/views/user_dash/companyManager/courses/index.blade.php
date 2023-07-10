@@ -45,7 +45,7 @@
                             <td style="color:red;">No Pic</td>
                     @endif
 
-                           <td>{{ $course->user->id }} - {{$course->user->name}}</td>
+                           <td>{{ $course->supervisor->id }} - {{$course->supervisor->name}}</td>
                             <td>{{ $course->name }}</td>
                             <td>{{ $course->description }}</td>
                             <td>{{ $course->start_date }}</td>

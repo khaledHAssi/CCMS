@@ -13,7 +13,18 @@
 @stop
 
 @section('content')
+    <style>
+        .Headers4 {
+            margin-left: 0px;
+            margin-right: 10px;
+            font-weight: 600;
+        }
 
+        .Headers5 {
+            margin-left: 0px;
+            margin-top: 1.1% !important;
+        }
+    </style>
     <section style="background-color: blue; padding: 10px" id="reviews">
         <div class="container">
             <h1 class="text-white">Course</h1>
@@ -30,19 +41,100 @@
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-7 py-5">
-                    <h3>Description:</h3>
-                    <br> {!! $course->description !!}
+                    <img class="rounded-circle" width="500" height="400" src="{{ Storage::url($course->image) }}"
+                        alt="">
+
                 </div>
                 <div class="col-lg-4">
                     <br>
                     <br>
-                    <img class="rounded-circle" width="500" height="400" src="{{ Storage::url($course->image) }}"
-                        alt="">
                     <br>
-                    <br>
-                    <br>
+
+                    <div class="row g-4 align-items-end mb-4 flex">
+
+
+                    </div>
+                    <div class="col-lg-12 wow fadeInUp details" style="" data-wow-delay="0.3s">
+                        <div style="display:flex;" >
+                            <h4 style="margin-left:0px;" class="Headers4">Name:</h4>
+                            <h5 class="Information Headers5" >
+                                {{ $course->name }}
+
+                            </h5>
+                        </div>
+
+                        {{-- <div style="display:flex;">
+                                                <h4 class="Headers4">Company: </h4>
+                                                <h5 class="Headers5">
+                                                    {{$course->company_id}} -
+                                                        {{$company->name}}
+                                                </h5>
+                                            </div> --}}
+                        <div style="display:flex;">
+                            <h4 class="Headers4">Status: </h4>
+                            <h5 class="Headers5 text-warning    " >
+                                {{ $course->status }}
+
+                            </h5>
+                        </div>
+                        <div style="display:flex;">
+                            <h4 class="Headers4">Supervisor: </h4>
+                            <h5 class="Headers5">
+                                {{ $course->supervisor->name }}
+                            </h5>
+                        </div>
+                        <div style="display:flex;">
+                            <h4 class="Headers4">Start date: </h4>
+                            <h5 class="Headers5">
+                                {{ $course->start_date }}
+
+                            </h5>
+                        </div>
+                        <div style="display:flex;">
+                            <h4 class="Headers4">End date: </h4>
+                            <h5 class="Headers5">
+                                {{ $course->end_date }}
+                            </h5>
+                        </div>
+                        <div style="display:flex;">
+                            <h4 class="Headers4">Student Count: </h4>
+                            <h5 class="Headers5">
+                                35
+                            </h5>
+                        </div>
+                        <div class="border rounded p-4">
+
+                            <nav>
+                                <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                                    <button class="nav-link fw-semi-bold active" id="nav-story-tab"
+                                        data-bs-toggle="tab" data-bs-target="#nav-story" type="button"
+                                        role="tab" aria-controls="nav-story"
+                                        aria-selected="true">Bio</button>
+                                </div>
+                            </nav>
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-story" role="tabpanel"
+                                    aria-labelledby="nav-story-tab">
+                                        @if ($course->description != null)
+                                            <p class="mb-0">{{ $course->description }}</p>
+                                        @else
+                                            <p class="mb-0 text-warning">There is no desciption for this course</p>
+                                        @endif
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Button trigger modal -->
+
+
+                    </div>
                 </div>
             </div>
+            <br>
+            <br>
+            <br>
+        </div>
+        </div>
         </div>
     </section>
 

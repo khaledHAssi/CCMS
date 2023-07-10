@@ -74,7 +74,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('courses', CourseController::class);
         Route::get('users/sknlk/slkngjo/ksda/{id}', [UserController::class, 'show']);
-        
+
         Route::prefix('applications')->name('applications.')->group(function () {
             Route::get('', [ApplicationController::class, 'index'])->name('index');
             Route::post('accept', [ApplicationController::class, 'application_accept'])->name('accept');

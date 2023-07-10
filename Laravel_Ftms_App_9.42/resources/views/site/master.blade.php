@@ -10,12 +10,13 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
-        href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap"
-        rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap"
+    rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{asset('siteassets/imgFinanza/WhatsApp Image 2023-07-08 at 20.47.52.jpg')}}" type="image/x-icon">
 
     <!-- Libraries Stylesheet -->
     <link href="{{asset('siteassets/lib/animate/animate.min.css')}}" rel="stylesheet">
@@ -69,7 +70,9 @@
 
         <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
             <a href="{{ route('ftms.index') }}" class="navbar-brand ms-4 ms-lg-0">
-                <h1  class="display-5 text-primary m-0" style="font-size:1em">{{env('APP_FULL_NAME')}}</h1>
+                <h1  class="display-5 text-primary m-0" style="font-size:1em">
+                    <img src="{{asset('siteassets/imgFinanza/WhatsApp Image 2023-07-08 at 20.47.52.jpg')}}" width="50" height="50" alt="">
+                    {{env('APP_FULL_NAME')}}</h1>
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
                 data-bs-target="#navbarCollapse">

@@ -30,12 +30,17 @@
         <div class="card card-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header text-white" style="background: url('{{ asset($company->image) }}') center center;">
+                <section class="bg-black text-white" style="opacity:70% ; padding: 1em;">
+                    <div class="container bold " style="text-align:left">
+                        <h3 class="widget-user-username" style="font-weight: bold; ">
+                            {{ $company->name }} <span>Company</span>
+                            </h3>
+                        <h5 class="widget-user-desc" style="margin-top: .5em; font-size: 1em"><span style="display: block;font-weight: bold;">Description :</span>
+                            {{ Str::words(strip_tags($company->description), 10, '...') }}
+                        </h5>
+                    </div>
+                </section>
 
-                <h3 class="widget-user-username text-left">{{ $company->name }}</h3>
-                <h5 class="widget-user-desc text-left">
-                    {{ Str::words(strip_tags($company->description), 10, '...') }}
-
-                </h5>
             </div>
             <div class="widget-user-image"height="38" width="38">
                 <img height="38" width="38" class="img-circle img-bordered-sm elevation-2"

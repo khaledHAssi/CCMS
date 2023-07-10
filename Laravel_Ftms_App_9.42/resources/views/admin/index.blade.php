@@ -6,8 +6,7 @@
 @section('content')
     <div class="content">
         <div class="container-fluid">
-            <h1>Lorem ipsum dolor sit ametss.</h1>
+            <h1 style="font-weight: bold">{{ env('APP_FULL_NAME') }}</h1>
         </div>
     </div>
-
 @stop

@@ -142,11 +142,12 @@
                                 @else
                                     <img class="img-fluid float-right rounded-3 mb-3" style="height: 300px;"
                                         src="{{ asset('siteassets/imgFinanza/userImage.png') }}" alt="">
-                                        
-                                      <div class="alert alert-warning" role="alert" style="width: 58%;">
-                                        Please <a href="#" data-bs-toggle="modal" data-bs-target="#settingProfile" class="alert-link">upload</a> your profile picture.
-                                      </div>
-                                      
+
+                                    <div class="alert alert-warning" role="alert" style="width: 58%;">
+                                        Please <a href="#" data-bs-toggle="modal"
+                                            data-bs-target="#settingProfile" class="alert-link">upload</a> your
+                                        profile picture.
+                                    </div>
                                 @endif
 
 
