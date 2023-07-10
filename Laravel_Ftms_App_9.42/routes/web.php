@@ -62,7 +62,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::resource('companies', CompanyController::class);
         Route::resource('courses', CourseController::class);
         Route::get('delete_student/{id}', [CourseController::class, 'delete_student'])->name('courses.delete_student');
-        Route::post('edit_student', [CourseController::class, 'edit_student'])->name('courses.edit_student');
+        Route::put('edit_student', [CourseController::class, 'edit_student'])->name('courses.edit_student');
         Route::resource('tasks', TaskController::class);
         Route::resource('answers', AnswerController::class);
         Route::resource('answer_marks', AnswerMarksController::class);

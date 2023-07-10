@@ -23,15 +23,21 @@
             <div class="card mt-4">
                 <div class="card-body">
 
-                    <div class="container-xxl py-5 ">
+                    <div class="container-xxl">
                         <div class="container">
-
-                            <div class="row g-4 align-items-end mb-4 flex">
-                                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                                    <img class="img-circle " height="400" width="400"
-                                        src="{{ Storage::url($course->image) }}" alt="user image">
+                            <div class="row g-4 align-items-center mb-4 flex">
+                                <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="d-flex justify-content-center">
+                                        <img class="img-thumbnail" width="450" src="{{ Storage::url($course->image) }}"
+                                            alt="user image">
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <p class="text-warning">
+                                            {{ $course->status }}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6 wow fadeInUp details" style="position: relative;top:-2em;bottom: 1em;"
+                                <div class="col-lg-4 wow fadeInUp details" style="position: relative;top:-2em;bottom: 1em;"
                                     data-wow-delay="0.3s">
                                     <div style="display:flex;">
                                         <h4 class="Headers4">Name: </h4>
@@ -46,18 +52,15 @@
                                         </h5>
                                     </div>
                                     <div style="display:flex;">
-                                        <h4 class="Headers4">Status: </h4>
-                                        <h5 class="Headers5">
-                                            {{ $course->status }}
-
-                                        </h5>
-                                    </div>
-                                    <div style="display:flex;">
                                         <h4 class="Headers4">Supervisor: </h4>
                                         <h5 class="Headers5">
                                             {{ $course->supervisor->name }}
                                         </h5>
                                     </div>
+                                </div>
+
+                                <div class="col-lg-3 wow fadeInUp details" style="position: relative;top:-2em;bottom: 1em;"
+                                    data-wow-delay="0.3s">
                                     <div style="display:flex;">
                                         <h4 class="Headers4">Start date: </h4>
                                         <h5 class="Headers5">
@@ -80,6 +83,9 @@
                                             {{ $courseStudentsCount }}
                                         </h5>
                                     </div>
+
+                                </div>
+                                <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
                                     <nav>
                                         <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
                                             <button class="nav-link fw-semi-bold active text-bold" id="nav-story-tab"
@@ -95,9 +101,7 @@
                                                 {{ $course->description }}
                                             </p>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -122,51 +126,27 @@
                                     <td>{{ $student->name }}</td>
                                     <td>{{ $student->email }}</td>
                                     <td>{{ $student->phone }}</td>
-                                    <td>{{ $student->pivot->student_mark }}</td>
-                                    <td>{{ $student->pivot->note }}</td>
+                                    @if ($student->pivot->student_mark)
+                                        <td>{{ $student->pivot->student_mark }}</td>
+                                    @else
+                                        <td class="text-danger">No Mark</td>
+                                    @endif
+                                    @if ($student->pivot->note)
+                                        <td>{{ $student->pivot->note }}</td>
+                                    @else
+                                        <td class="text-danger">No Note</td>
+                                    @endif
                                     <td>{{ $student->pivot->created_at }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#updateModal{{ $student->pivot->id }}"> <i class="fas fa-edit"></i> </a>
+                                        <a href="#" class="btn btn-warning btn-sm" data-toggle="modal"
+                                            data-target="#updateModal"
+                                            onclick="add_data('{{ $student->pivot->id }}', '{{ $student->pivot->student_mark }}', '{{ $student->pivot->note }}')">
+                                            <i class="fas fa-edit"></i> </a>
 
                                         <a href="{{ route('admin.courses.delete_student', $student->pivot->id) }}"
                                             class="btn btn-danger btn-sm"> <i class="fas fa-trash"></i> </a>
                                     </td>
 
-                                        {{-- ------------------------------- Update Modal------------------------------------ --}}
-
-                                    <div class="modal fade" id="updateModal{{ $student->pivot->id }}" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel{{ $student->pivot->id }}" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <!-- Modal header -->
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="updateModalLabel{{ $student->pivot->id }}">Update Course</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                
-                                                <!-- Modal body -->
-                                                <div class="modal-body">
-                                                    <!-- Add form fields or inputs for updating the row data -->
-                                                    <div class="form-group">
-                                                        <label for="student_mark{{ $student->pivot->id }}">Student Mark:</label>
-                                                        <input type="number" class="form-control" id="student_mark" name="student_mark{{ $student->pivot->id }}" value="{{$student->pivot->student_mark  }}">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="note{{ $student->pivot->id }}">Note:</label>
-                                                        <textarea class="form-control" id="note{{ $student->pivot->id }}" name="note">{{ $student->pivot->note  }}</textarea>
-                                                    </div>
-                                                </div>
-                                                
-                                                <!-- Modal footer -->
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary" onclick="updateRowData({{ $course->id }})">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                 </tr>
                             @endforeach
 
@@ -177,48 +157,44 @@
         </div>
     </div>
 
-    {{-- ------------------------------- Update ------------------------------------ --}}
-    {{-- <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    {{-- ------------------------------- Update Modal------------------------------------ --}}
+
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
+                <!-- Modal header -->
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="updateModalLabel">
-                        Update Student
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="updateModalLabel">Update Course</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <form action="{{ route('admin.courses.delete_student', $student->pivot->id) }}" method="POST">
-                    @csrf
 
-                    <div class="modal-body">
-
-                        <!-- ----------------------Student Mark--------------------- -->
-                        <div class="mb-3">
-                            <label for="update_student_mark" class="form-label">Student Mark</label>
-                            <input type="number" class="form-control mb-2" id="update_student_mark"
-                                placeholder="Student Mark" />
-                        </div>
-                        <!-- ---------------------- Note --------------------- -->
-
-                        <div class="mb-3">
-                            <label for="update_note" class="form-label">Note</label>
-                            <input type="text" class="form-control mb-2" id="update_note" placeholder="Student Mark" />
-                        </div>
-
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="c_s_mark">Student Mark:</label>
+                        <input type="number" class="form-control" id="c_s_mark">
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeUpdateModal">
-                            Close
-                        </button>
-                        <button type="button" class="btn btn-warning">
-                            update
-                        </button>
+                    <div class="form-group">
+                        <label for="c_s_note">Note:</label>
+                        <textarea class="form-control" id="c_s_note"></textarea>
                     </div>
-                </form>
+                    <input hidden type="text" id="c_s_id">
+                </div>
 
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+                    <button type="button" class="btn btn-primary" onclick="updateRowData({{ $course->id }})">Save
+                        changes</button>
+                </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <!-- jQuery -->
     <script src="{{ asset('adminassets/plugins/jquery/jquery.min.js') }}"></script>
@@ -265,6 +241,16 @@
             }
         })
 
+        function showMessage(icon, message) {
+            Swal.fire({
+                icon: icon,
+                title: message,
+                showConfirmButton: false,
+                timer: 3500
+            });
+        }
+
+
         @if (session('msg'))
             Toast.fire({
                 icon: '{{ session('status') }}',
@@ -272,60 +258,40 @@
             })
         @endif
 
-            function updateRowData(courseId) {
-                // Get the updated values from the form inputs
-                var studentMark = document.getElementById('student_mark'.courseId).value;
-                var note = document.getElementById('note'.courseId).value;
-                
-                // Make an Axios request to update the row data
-                axios.put('/update-row-data', {
-                    courseId: courseId,
-                    studentMark: studentMark,
-                    note: note
+        function add_data(courseId, studentMark, studentNote) {
+            // Set the values in the form fields
+            document.getElementById("c_s_mark").value = studentMark;
+            document.getElementById("c_s_note").value = studentNote;
+            document.getElementById("c_s_id").value = courseId;
+        }
+
+        function updateRowData() {
+            var studentMarkElement = document.querySelector('#c_s_mark');
+            var studentNoteElement = document.querySelector('#c_s_note');
+            var studentIdElement = document.querySelector('#c_s_id');
+
+            var student_Mark = studentMarkElement ? studentMarkElement.value : '';
+            var student_Note = studentNoteElement ? studentNoteElement.value : '';
+            var student_Id = studentIdElement ? studentIdElement.value : '';
+            console.log(student_Mark + ' - ' + student_Note + ' - ' + student_Id);
+
+
+            axios.put('/admin/edit_student', {
+                    course_id: student_Id,
+                    student_mark: student_Mark,
+                    note: student_Note
                 })
                 .then(function(response) {
-                    // Handle the success response
                     console.log(response.data);
-                    // Close the modal or perform any other actions
-                    $('#updateModal' + courseId).modal('hide');
+                    showMessage(response.data.status, response.data.message);
+                    window.location.reload();
+                    // $('#updateModal').modal('hide');
                 })
                 .catch(function(error) {
-                    // Handle the error response
                     console.log(error);
-                    // Display an error message or perform any other error handling
+                    showMessage(response.data.status, error.message);
+
                 });
-            }
-
-        // function update_student() {
-
-        //     axios.post(`/admin/edit_student`, {
-        //             id: document.getElementById('coure_id').value,
-        //             student_mark: document.getElementById('student_mark').value,
-        //             note: document.getElementById('note').value
-        //         })
-        //         .then(function(response) {
-        //             if (response.data.data.errors != null) {
-        //                 var errors = response.data.data.errors;
-        //                 for (var key in errors) {
-        //                     Toast.fire({
-        //                         icon: response.data.status,
-        //                         title: errors[key][0],
-        //                     });
-        //                 }
-        //             } else {
-        //                 showMessage('success', response.data.message);
-        //                 window.location.reload();
-        //             }
-
-        //         })
-        //         .catch(function(error) {
-        //             Toast.fire({
-        //                 icon: 'error',
-        //                 title: error.message,
-        //             });
-        //             console.log(error);
-        //         })
-
-        // }
+        }
     </script>
 @stop
