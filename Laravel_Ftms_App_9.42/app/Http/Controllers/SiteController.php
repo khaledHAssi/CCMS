@@ -175,8 +175,9 @@ class SiteController extends Controller
     {
 
         $user = User::findOrFail(Auth::id());
+        $user = $user->load(['student_courses','profile']);
 
-        $user->load('profile');
+        // $user->load('profile');
         return view('site.profile',compact('user'));
     }
     public function authError(){
