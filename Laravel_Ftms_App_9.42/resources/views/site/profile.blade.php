@@ -340,9 +340,14 @@
                                                         {{ $payment->total }}
                                                     </span>
                                                 </div>
-                                                <a href="{{ route('site.course', $course->id) }}"
+                                                @if ($payment->availableTime->link)
+                                                    <a href="{{  $payment->availableTime->link }}"
                                                     class="mr-10 btn btn-outline-primary btn-sm">Meet Link: <i
                                                         class="far fa-arrow-alt-circle-right"></i></a>
+                                                    
+                                                @else
+                                                    <span class="fs-20 text-warning">Not online</span>
+                                                @endif
                                             </div>
                                             <div class="border-bottom mt-4 d-block d-lg-none"></div>
                                         </div>
