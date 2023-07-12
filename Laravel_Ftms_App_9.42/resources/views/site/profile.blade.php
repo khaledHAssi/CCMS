@@ -322,7 +322,8 @@
                                                 @if ($payment->availableTime->expert->image != null)
                                                     <td>
                                                         <img class="img-circle img-bordered-sm img-profile"
-                                                            width="30%" src="{{ Storage::url($payment->availableTime->expert->image) }}"
+                                                            width="30%"
+                                                            src="{{ Storage::url($payment->availableTime->expert->image) }}"
                                                             alt="course image">
                                                     </td>
                                                 @else
@@ -336,14 +337,12 @@
                                                 <div class="ps-3">
                                                     <h4>{{ $payment->availableTime->expert->name }}</h4>
                                                     <span>Paid:
-                                                        {{$payment->total}}
+                                                        {{ $payment->total }}
                                                     </span>
-<<<<<<< HEAD
-                                                    {{-- <a href="{{ route('site.course', $course->id) }}" class="mr-10 btn btn-outline-primary btn-sm">Paid: <i class="far fa-arrow-alt-circle-right"></i></a> --}}
-=======
->>>>>>> eea218ea78984429f530ce5ec435ac9065a1f55b
                                                 </div>
-                                                <a href="{{ route('ftms.course', $course->id) }}" class="mr-10 btn btn-outline-primary btn-sm">Meet Link: <i class="far fa-arrow-alt-circle-right"></i></a>
+                                                <a href="{{ route('site.course', $course->id) }}"
+                                                    class="mr-10 btn btn-outline-primary btn-sm">Meet Link: <i
+                                                        class="far fa-arrow-alt-circle-right"></i></a>
                                             </div>
                                             <div class="border-bottom mt-4 d-block d-lg-none"></div>
                                         </div>
