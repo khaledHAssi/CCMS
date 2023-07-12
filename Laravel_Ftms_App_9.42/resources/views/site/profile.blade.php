@@ -319,7 +319,7 @@
                                             <div class="d-flex">
                                                 <div class="border-end d-none d-lg-block"></div>
 
-                                                @if ($payment->availableTime->expert->image !== null)
+                                                @if ($payment->availableTime->expert->image != null)
                                                     <td>
                                                         <img class="img-circle img-bordered-sm img-profile"
                                                             width="30%" src="{{ Storage::url($payment->availableTime->expert->image) }}"

@@ -55,7 +55,7 @@ class SiteController extends Controller
         $companies = $companies->load('courses');
 
 
-         return view('site.companies.index', compact('companies'));
+        return view('site.companies.index', compact('companies'));
     }
 
     public function course($id)
@@ -63,9 +63,10 @@ class SiteController extends Controller
         $course = Course::findOrFail($id);
         return view('site.courses.course', compact('course'));
     }
-    public function courses(){
+    public function courses()
+    {
         $courses = Course::all();
-        return view('site.courses.courses',compact('courses'));
+        return view('site.courses.courses', compact('courses'));
     }
     public function course_apply(Request $request, $id)
     {
@@ -186,23 +187,15 @@ class SiteController extends Controller
     public function site_profile()
     {
         $user = User::with(['student_courses', 'profile', 'payments', 'payments.availableTime', 'payments.availableTime.expert'])
-        ->findOrFail(Auth::id());
-
-<<<<<<< HEAD
-        $user = User::findOrFail(Auth::id());
-        $user = $user->load(['student_courses', 'profile', 'experts']);
-
-        // $user->load('profile');
+            ->findOrFail(Auth::id());
         return view('site.profile', compact('user'));
-=======
-        return view('site.profile',compact('user'));
->>>>>>> eea218ea78984429f530ce5ec435ac9065a1f55b
     }
     public function authError()
     {
         return view('auth.error');
     }
-    public function JoinUs(){
+    public function JoinUs()
+    {
         return view('site.JoinUs');
     }
 }
