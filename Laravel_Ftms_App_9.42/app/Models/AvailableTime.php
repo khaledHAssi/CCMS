@@ -13,12 +13,20 @@ class AvailableTime extends Model
 
     public function expert()
     {
-        return $this->belongsTo(Expert::class)->withDefault();
+        return $this->belongsTo(Expert::class);
     }
 
-    // Check this method
     public function payment()
     {
-        return $this->hasOne(Expert_payment::class,'payment_id');
+        return $this->hasOne(Payment::class,'time_id');
     }
+    
+    //----------------- ManyToMany relationship ---------------------
+    // Check this method
+    // public function payment()
+    // {
+    //     return $this->hasOne(Expert_payment::class,'payment_id');
+    // }
+    //----------------------------------------------------------------
+
 }

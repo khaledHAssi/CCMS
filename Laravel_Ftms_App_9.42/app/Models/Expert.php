@@ -9,9 +9,9 @@ class Expert extends Model
 {
     use HasFactory;
     protected  $guarded = [];
-    public function AvailableTime()
+    public function availableTime()
     {
-        return $this->hasMany(AvailableTime::class);
+        return $this->hasMany(AvailableTime::class,'expert_id');
     }
     public function User()
     {
@@ -24,15 +24,15 @@ class Expert extends Model
 
     //----------------- ManyToMany relationship ---------------------
 
-    public function _payments()
-    {
-        return $this->hasMany(Expert_payment::class, 'expert_id', 'id');
-    }
+    // public function _payments()
+    // {
+    //     return $this->hasMany(Expert_payment::class, 'expert_id', 'id');
+    // }
 
-    public function payments()
-    {
-        return $this->belongsToMany(Payment::class, Expert_payment::class, 'expert_id', 'payment_id');
-    }
+    // public function payments()
+    // {
+    //     return $this->belongsToMany(Payment::class, Expert_payment::class, 'expert_id', 'payment_id');
+    // }
 
     //----------------------------------------------------------------
 }

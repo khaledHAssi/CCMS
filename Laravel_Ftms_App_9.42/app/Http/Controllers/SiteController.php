@@ -185,12 +185,18 @@ class SiteController extends Controller
 
     public function site_profile()
     {
+        $user = User::with(['student_courses', 'profile', 'payments', 'payments.availableTime', 'payments.availableTime.expert'])
+        ->findOrFail(Auth::id());
 
+<<<<<<< HEAD
         $user = User::findOrFail(Auth::id());
         $user = $user->load(['student_courses', 'profile', 'experts']);
 
         // $user->load('profile');
         return view('site.profile', compact('user'));
+=======
+        return view('site.profile',compact('user'));
+>>>>>>> eea218ea78984429f530ce5ec435ac9065a1f55b
     }
     public function authError()
     {

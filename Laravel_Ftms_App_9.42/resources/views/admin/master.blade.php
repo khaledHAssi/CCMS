@@ -142,14 +142,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
                     <!-- Notifications Dropdown Menu -->
+                            @php
+                                $notifications = App\Models\Notification::latest('id')->paginate(env('PAGINATION_Notification_COUNT'));
+                                $countNotifications = $notifications->count();
+
+                            @endphp
 
                     <li class="nav-item dropdown">
                         <a class="nav-link" data-toggle="dropdown" href="#">
                             <i class="far fa-bell"></i>
-                            <span class="badge badge-warning navbar-badge">5</span>
+                            <span class="badge badge-warning navbar-badge">{{ $countNotifications }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right" style="overflow: hidden">
-                            <span class="dropdown-header">5 Notifications</span>
+                            <span class="dropdown-header">{{ $countNotifications }} Notifications</span>
 
                             {{-- <div class="dropdown-divider"></div>
                                 <a href="#" class="dropdown-item">
@@ -161,7 +166,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                             <a href="#" style="inlineblock" class="dropdown-item" style="">
                                 @php
-                                    $notifications = App\Models\Notification::latest('id')->paginate(env('PAGINATION_Notification_COUNT'));
 
                                     $jsondata = [];
                                     foreach ($notifications as $item) {
