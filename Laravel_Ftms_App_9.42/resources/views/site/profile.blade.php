@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="{{ asset('siteassets/imgFinanze/favicon.ico') }}" rel="icon">
+    <link rel="shortcut icon" href="{{ asset('siteassets/imgFinanza/WhatsApp Image 2023-07-08 at 20.47.52.jpg') }}"
+        type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
@@ -88,8 +90,12 @@
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
-            <a href="{{ route('ftms.index') }}" class="navbar-brand ms-4 ms-lg-0">
-                <h1 class="display-5 text-primary m-0" style="font-size:1em">CorpratesCoursesManagmentSystem</h1>
+            <a href="{{ route('site.index') }}" class="navbar-brand ms-4 ms-lg-0">
+                <h1 class="display-5 text-primary m-0" style="font-size:1em">
+                    <img src="{{ asset('siteassets/imgFinanza/WhatsApp Image 2023-07-08 at 20.47.52.jpg') }}"
+                        width="50" height="50" alt="">
+                    {{ env('APP_FULL_NAME') }}
+                </h1>
             </a>
             <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
                 data-bs-target="#navbarCollapse">
@@ -97,7 +103,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="{{ route('ftms.index') }}" class="nav-item nav-link active">Home</a>
+                    <a href="{{ route('site.index') }}" class="nav-item nav-link active">Home</a>
                 </div>
                 @if (!Auth::check())
                     <a href="{{ route('login') }}"class="nav-item nav-link">Login</a>
@@ -123,8 +129,8 @@
                     <small class="fab fa-linkedin-in text-primary"></small>
                 </a>
             </div>
+        </nav>
     </div>
-    </nav>
     </div>
 
 
@@ -264,7 +270,7 @@
                                                 @endif
                                                 <div class="ps-3">
                                                     <h4>{{ $course->name }}</h4>
-                                                    <a href="{{ route('ftms.course', $course->id) }}"
+                                                    <a href="{{ route('site.course', $course->id) }}"
                                                         class="mr-10 btn btn-outline-primary btn-sm">go
                                                         to course <i class="far fa-arrow-alt-circle-right"></i></a>
                                                 </div>
@@ -298,7 +304,7 @@
                                 <nav class="navbar-circle bg-primary">
                                     <div class="container-fluid" style="display:flex;justify-content: space-around">
                                         <span class="navbar-text text-white text-bold">
-                                            your Expert booked adn payments
+                                            Your booked Experts
                                         </span>
                                     </div>
                                 </nav>
@@ -327,7 +333,7 @@
                                                     <span>Paid:
                                                         {{-- {{$payment->total}} --}}
                                                     </span>
-                                                    {{-- <a href="{{ route('ftms.course', $course->id) }}" class="mr-10 btn btn-outline-primary btn-sm">Paid: <i class="far fa-arrow-alt-circle-right"></i></a> --}}
+                                                    {{-- <a href="{{ route('site.course', $course->id) }}" class="mr-10 btn btn-outline-primary btn-sm">Paid: <i class="far fa-arrow-alt-circle-right"></i></a> --}}
                                                 </div>
                                             </div>
                                             <div class="border-bottom mt-4 d-block d-lg-none"></div>

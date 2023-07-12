@@ -126,10 +126,13 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
             Route::delete('dash/availableTime/{dash}', [DashboardDoctorController::class, 'availableTimeDestroy'])->name('dash.availableTimeDestroy');
         });
     });
-    //change ftms to example name
-    Route::name('ftms.')->group(function () {
+    //change site to example name
+    Route::name('site.')->group(function () {
         Route::get('/', [SiteController::class, 'index'])->name('index');
         Route::get('/company/{id}', [SiteController::class, 'company'])->name('company');
+        Route::get('/companies', [SiteController::class, 'companies'])->name('companies');
+        Route::get('/courses', [SiteController::class, 'courses'])->name('courses');
+        Route::get('/JoinUs', [SiteController::class, 'JoinUs'])->name('JoinUs');
         Route::get('/company/course/{id}', [SiteController::class, 'course'])->name('course');
         Route::post('/company/course/{id}', [SiteController::class, 'course_apply'])->name('course_apply');
         Route::get('/company/course/cancel/{id}', [SiteController::class, 'course_cancel'])->name('course_cancel');

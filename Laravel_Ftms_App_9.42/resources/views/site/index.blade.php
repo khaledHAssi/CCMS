@@ -62,7 +62,7 @@
                     <img class="img-fluid rounded" src="{{ asset('siteassets/imgFinanza/about.jpg') }}">
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <p class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3">About Us</p>
+                    <a href="#" class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3 nav-link">Join Us</a>
                     <h1 class="display-5 mb-4">We Help Our Clients To Grow Their Business</h1>
                     <p class="mb-4">Our platform helps our clients grow their business because we created it with high quality and speed </p>
                     <div class="border rounded p-4">
@@ -243,7 +243,7 @@
                     <div class="project-item pe-5 pb-5">
                         <div class="project-img mb-3">
                             <img class="img-fluid rounded" src="{{ asset($company->image) }}" alt="">
-                            <a href="{{ route('ftms.company', $company->slug) }}"><i
+                            <a href="{{ route('site.company', $company->slug) }}"><i
                                     class="fa fa-link fa-3x text-primary"></i></a>
                         </div>
                         <br>
@@ -284,7 +284,7 @@
                             <p style="color:red;">No Pic</p>
                         @endif
                         <div class="team-text">
-                            <a class="btn btn-brand w-100" href="{{ route('ftms.expert', $expert->id) }}">
+                            <a class="btn btn-brand w-100" href="{{ route('site.expert', $expert->id) }}">
                                 <h4 class="mb-0">{{ $expert->name }}</h4>
                             </a>
             {{-- Add Social media to expert cards  --}}

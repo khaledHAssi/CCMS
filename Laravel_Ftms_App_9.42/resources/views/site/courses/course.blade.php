@@ -153,9 +153,9 @@
                         @if ($ap)
                             {{-- @if (false) --}}
                             <p>Your application under review, we will send a message when we approved it</p>
-                            <a href="{{ route('ftms.course_cancel', $ap->id) }}" class="btn btn-brand">Cancel Request</a>
+                            <a href="{{ route('site.course_cancel', $ap->id) }}" class="btn btn-brand">Cancel Request</a>
                         @else
-                            <form action="{{ route('ftms.course_apply', $course->id) }}" method="POST">
+                            <form action="{{ route('site.course_apply', $course->id) }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="company_id" value="{{ $course->company_id }}">
                                 <div class="row text-start">

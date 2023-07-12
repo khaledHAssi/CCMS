@@ -22,7 +22,7 @@
         <div class="container-fluid">
             <div class="card mt-4">
                 <div class="card-body">
-                
+
                     <div class="card-body">
                         @if (session('msg'))
                             <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
@@ -102,7 +102,7 @@
 @endsection
 
 @section('scripts')
-    <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#users-table').DataTable();
