@@ -302,16 +302,21 @@
                                         </span>
                                     </div>
                                 </nav>
-                                @forelse ($user->experts as $expert)
+                                {{-- @foreach ($user->payments as $payment)
+                                    @if ($payment->availableTime && $payment->availableTime->expert)
+                                        <h4>{{ $payment->availableTime->expert->name }}</h4>
+                                    @endif
+                                @endforeach --}}
+                                @forelse ($user->payments as $payment)
                                     <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
                                         <div class="h-100">
                                             <div class="d-flex">
                                                 <div class="border-end d-none d-lg-block"></div>
 
-                                                @if ($expert->image !== null)
+                                                @if ($payment->availableTime->expert->image !== null)
                                                     <td>
                                                         <img class="img-circle img-bordered-sm img-profile"
-                                                            width="30%" src="{{ Storage::url($expert->image) }}"
+                                                            width="30%" src="{{ Storage::url($payment->availableTime->expert->image) }}"
                                                             alt="course image">
                                                     </td>
                                                 @else
@@ -323,12 +328,12 @@
                                                     </td>
                                                 @endif
                                                 <div class="ps-3">
-                                                    <h4>{{ $expert->name }}</h4>
+                                                    <h4>{{ $payment->availableTime->expert->name }}</h4>
                                                     <span>Paid:
-                                                        {{-- {{$payment->total}} --}}
+                                                        {{$payment->total}}
                                                     </span>
-                                                    {{-- <a href="{{ route('ftms.course', $course->id) }}" class="mr-10 btn btn-outline-primary btn-sm">Paid: <i class="far fa-arrow-alt-circle-right"></i></a> --}}
                                                 </div>
+                                                <a href="{{ route('ftms.course', $course->id) }}" class="mr-10 btn btn-outline-primary btn-sm">Meet Link: <i class="far fa-arrow-alt-circle-right"></i></a>
                                             </div>
                                             <div class="border-bottom mt-4 d-block d-lg-none"></div>
                                         </div>

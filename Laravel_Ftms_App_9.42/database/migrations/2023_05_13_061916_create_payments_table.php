@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');//the buyer of the session
-            $table->foreignId('time_id');
+            $table->foreignId('time_id');//Available time id
             $table->double('total');//total price of the payment operation
             $table->string('transaction_id');
             $table->timestamps();
