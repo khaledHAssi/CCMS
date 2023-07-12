@@ -42,7 +42,7 @@
                             <th>Book</th>
                         </tr>
                         @foreach ($expert->AvailableTime as $item)
-                        @if($item->status == 1)
+                        @if($item->status == 0)
 
                             <tr>
                                 <td>{{ $loop->iteration }}</td>

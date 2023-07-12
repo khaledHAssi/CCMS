@@ -67,7 +67,10 @@
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70">
-
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
 
 
     <!-- Navbar Start -->
@@ -232,13 +235,13 @@
                         </div>
                         <div class="border rounded p-4 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="row g-4">
-                                <nav class="navbar-circle bg-primary" >
+                                <nav class="navbar-circle bg-primary">
                                     <div class="container-fluid" style="display:flex;justify-content: space-around">
-                                      <span class="navbar-text text-white text-bold">
-                                        your courses
-                                      </span>
+                                        <span class="navbar-text text-white text-bold">
+                                            your courses
+                                        </span>
                                     </div>
-                                  </nav>
+                                </nav>
                                 @forelse ($user->student_courses as $course)
                                     <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
                                         <div class="h-100">
@@ -261,7 +264,8 @@
                                                 @endif
                                                 <div class="ps-3">
                                                     <h4>{{ $course->name }}</h4>
-                                                    <a href="{{ route('ftms.course', $course->id) }}" class="mr-10 btn btn-outline-primary btn-sm">go
+                                                    <a href="{{ route('ftms.course', $course->id) }}"
+                                                        class="mr-10 btn btn-outline-primary btn-sm">go
                                                         to course <i class="far fa-arrow-alt-circle-right"></i></a>
                                                 </div>
                                             </div>
@@ -291,13 +295,13 @@
                         </div>
                         <div class="border rounded p-4 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="row g-4">
-                                <nav class="navbar-circle bg-primary" >
+                                <nav class="navbar-circle bg-primary">
                                     <div class="container-fluid" style="display:flex;justify-content: space-around">
-                                      <span class="navbar-text text-white text-bold">
-                                        your courses
-                                      </span>
+                                        <span class="navbar-text text-white text-bold">
+                                            your Expert booked adn payments
+                                        </span>
                                     </div>
-                                  </nav>
+                                </nav>
                                 @forelse ($user->experts as $expert)
                                     <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
                                         <div class="h-100">
@@ -307,7 +311,7 @@
                                                 @if ($expert->image !== null)
                                                     <td>
                                                         <img class="img-circle img-bordered-sm img-profile"
-                                                            width="30%" src="{{ Storage::url($course->image) }}"
+                                                            width="30%" src="{{ Storage::url($expert->image) }}"
                                                             alt="course image">
                                                     </td>
                                                 @else

@@ -95,6 +95,14 @@
                         <a href="{{ route('ftms.site_profile') }}" class="nav-item nav-link" >
                         Profile
                     </a>
+
+                    <a href="{{ route('logout') }}" data-bs-toggle="modal"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
+                    class="nav-item nav-link">
+                    </i>Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                </form>
                 @endif
 
                 </div>

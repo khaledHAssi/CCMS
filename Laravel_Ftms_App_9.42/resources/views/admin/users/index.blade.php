@@ -6,24 +6,23 @@
 
 @section('title', $title)
 
+
+
 @section('content')
+<style>
+    .dataTables_length {
+    display: none;
+}
+    .dataTables_filter {
+    display: none;
+}
+
+</style>
     <div class="content">
         <div class="container-fluid">
             <div class="card mt-4">
                 <div class="card-body">
-                    <div class="card-header bg-gray">
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input id="user-search" type="text" class="form-control float-right"
-                                    placeholder="Search users">
-                                <div class="input-group-append">
-                                    <button id="search-button" class="btn btn-default">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
                     <div class="card-body">
                         @if (session('msg'))
                             <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
@@ -32,7 +31,20 @@
                         <h1>{{ $title }}</h1>
                         <a href="{{ route('admin.users.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
                             class="btn btn-success mr-5">{{ __('Add New') }}</a>
-                        <table class="table table-bordered" id="users-table">
+                            <div class="card-header bg-dark">
+                                <div class="card-tools">
+                                    <div class="input-group input-group-sm" style="width: 150px;">
+                                        <input id="user-search" type="text" class="form-control float-right"
+                                            placeholder="Search users">
+                                        <div class="input-group-append">
+                                            <button id="search-button" class="btn btn-default">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-bordered" id="users-table">
                             <thead>
                                 <tr class="bg-dark text-white">
                                     <th>ID</th>
@@ -87,20 +99,6 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#users-table').DataTable();
-
-            $('#search-button').on('click', function() {
-                var searchValue = $('#user-search').val().trim();
-                $('#users-table').DataTable().search(searchValue).draw();
-            });
-        });
-    </script>
 @endsection
 
 @section('scripts')

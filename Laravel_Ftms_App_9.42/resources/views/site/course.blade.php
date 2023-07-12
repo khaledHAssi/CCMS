@@ -98,13 +98,13 @@
                                 35
                             </h5>
                         </div>
-                        <div class="border rounded p-4">
+                        <div>
                             <nav>
                                 <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
                                     <button class="nav-link fw-semi-bold active" id="nav-story-tab"
                                         data-bs-toggle="tab" data-bs-target="#nav-story" type="button"
                                         role="tab" aria-controls="nav-story"
-                                        aria-selected="true">Bio</button>
+                                        aria-selected="true">Description</button>
                                 </div>
                             </nav>
                             <div class="tab-content" id="nav-tabContent">
