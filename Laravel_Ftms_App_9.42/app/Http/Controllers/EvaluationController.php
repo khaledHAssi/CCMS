@@ -31,7 +31,7 @@ class EvaluationController extends Controller
         $evaluation = Evaluation::all();
         $companies = DB::select('SELECT `id`, `name` FROM `companies` ');
         $courses = DB::select('SELECT `id`, `name` FROM `courses` ');
-        return response()->view('admin.Evaluation.create', ['evaluation' => $evaluation, 'companies' => $companies,'courses' => $courses]);
+        return response()->view('admin.Evaluation.create', ['evaluation' => $evaluation, 'companies' => $companies, 'courses' => $courses]);
     }
 
     /**
@@ -39,34 +39,49 @@ class EvaluationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
         $validator = validator($request->all(), [
             'title' => 'required|string|max:50',
-            'question' => 'required',
+            'question' => 'required|string',
+            'company_id' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
         ]);
 
+        // $companies_evaluations->course_id = $request->input('course_id');
         if (!$validator->fails()) {
             $evaluation = new Evaluation();
-            $companies_evaluations = new Company_evaluations();
             $evaluation->title = $request->input('title');
             $evaluation->question = $request->input('question');
             $evaluation->end_date = $request->input('end_date');
             $evaluation->start_date = $request->input('start_date');
-            $companies_evaluations->course_id = $request->input('course_id');
-            $companies_evaluations->company_id = $request->input('company_id');
-            $save = $evaluation->save();
-            $companies_evaluations->evaluation_id =$evaluation->id;
-            $saved = $companies_evaluations->save();
-            return redirect()->route('admin.evaluation.index')->with('msg','Evaluation Created Successfully')
-        ->with('type', 'success');
-        }else{
-            return redirect()->route('admin.evaluation.create')->with('msg','Evaluation Create Failed')
-            ->with('type', 'warning');
+            $savedEvaluation = $evaluation->save();
+            if ($savedEvaluation) {
+                $companies_evaluations = new Company_evaluations();
+                $companies_evaluations->company_id = $request->input('company_id');
+                $companies_evaluations->evaluation_id = $evaluation->id;
+                $saved = $companies_evaluations->save();
+                if ($saved) {
+                    return redirect()->route('admin.evaluation.index')->with('msg', 'Evaluation Created Successfully')
+                        ->with('type', 'success');
+                } else {
+                    $deleted = Evaluation::destroy($evaluation->id);
+                    if ($deleted) {
+                        return redirect()->route('admin.evaluation.create')->with('msg', 'Evaluation Create Failed')
+                            ->with('type', 'warning');
+                    } else {
+                        return redirect()->route('admin.evaluation.create')->with('msg', 'The evaluation was created but there is a problem in linking the evaluation to your company, please contact technical support')
+                            ->with('type', 'warning');
+                    }
+                }
+            } else {
+                return redirect()->route('admin.evaluation.create')->with('msg', 'Evaluation Create Failed')
+                    ->with('type', 'warning');
+            }
+        } else {
+            return redirect()->route('admin.evaluation.create')->with('msg', 'Failed to enter Evaluation data')
+                ->with('type', 'warning');
         }
-
-
     }
 
     /**

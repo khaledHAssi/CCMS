@@ -7,15 +7,23 @@
     <header class="bg-primary py-5">
         <div class="container px-5">
             <div class="row gx-5 align-items-center justify-content-center">
-                <div class="col-lg-8 col-xl-7 col-xxl-6">
+                <div class="col-lg-6 col-xl-6 col-xxl-6">
                     <div class="my-5 text-center text-xl-start">
-                        <h1 class="display-5 fw-bolder text-white mb-2">{{ $company->name }} Company</h1>
+                        <div class="col-xl-8 col-xxl-8 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-3"
+                                src="{{ asset($company->image) }}" alt="..."></div>
+                        <h1 class="display-8 fw-bolder text-white mb-2">{{ $company->name }} Company</h1>
                         <p class="lead fw-normal text-white-50 mb-4">
                             {{ Str::words(strip_tags($company->description), 10, '...') }}</p>
                     </div>
                 </div>
-                <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5"
-                        src="{{ asset($company->image) }}" alt="..."></div>
+                <div class="col-lg-6 col-xl-6 col-xxl-6 align-items-center ">
+                    <div class="mb-1">
+                        {!! $company->location !!}
+                    </div>
+                    <h5 class="text-white-50 pt-3">company <span class="text-white text-bold">location</span> on the map</h5>
+                </div>
+                {{-- <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5"
+                        src="{{ asset($company->image) }}" alt="..."></div> --}}
             </div>
         </div>
     </header>
@@ -57,14 +65,14 @@
             </div>
         </div>
     </div>
-    <section class="text-center bg-light">
+    {{-- <section class="text-center bg-light">
         <div class="container">
             <h3 class="text-primary text-center pt-3 bold">Company location on the map</h3>
             <div class="p-4">
                 {!! $company->location !!}
             </div>
         </div>
-    </section>
+    </section> --}}
 
 
 @stop
