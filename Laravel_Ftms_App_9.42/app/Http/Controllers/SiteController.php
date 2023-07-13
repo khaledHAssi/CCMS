@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
-use App\Models\AppliedEvaluation;
 use App\Models\AvailableTime;
 use App\Notifications\AppliedNotification;
 use App\Models\Company;
 use App\Models\User;
 use App\Models\Course;
-use App\Models\Evaluation;
 use App\Models\Expert;
 use App\Models\Payment;
-use App\Models\Profile;
+use App\Models\Report;
 use Exception;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -194,8 +192,61 @@ class SiteController extends Controller
     {
         return view('auth.error');
     }
-    public function JoinUs()
+    public function contact()
     {
-        return view('site.JoinUs');
+        return view('site.contact');
+    }
+    public function store_contact(Request $request)
+    {
+        // 'image' => 'nullable|required_if:type,doctor,companyManager|mimes:jpg,png',
+        $validator = validator($request->all(), [
+            'name' => 'required|string|min:3|max:20',
+            'email' => 'required|string|email',
+            'description' => 'required|string|min:10',
+            'type' => 'required',
+            "link" =>  $request->input('type') !==  'companyManager' || $request->input('type') ==  'doctor' ? 'nullable|url' : 'required|url',
+            'hour_price' => $request->input('type') !==  'doctor' ? 'nullable|int' : 'required|int',
+            'image' => $request->input('type') !==  'companyManager' || $request->input('type') ==  'doctor' ? 'nullable' : 'required|mimes:jpg,png',
+            'content' => $request->input('type') !==  'companyManager' || $request->input('type') ==  'doctor' ? 'nullable' : 'required|file|mimes:pdf,doc,docx,txt',
+        ]);
+
+
+        if (!$validator->fails()) {
+            $report = new Report();
+            $report->name = $request->input('name');
+            $report->email = $request->input('email');
+            $report->description = $request->input('description');
+            $report->type = $request->input('type');
+
+            if (Auth::user() != null) {
+                $report->user_id = Auth::user()->id;
+            }
+
+            if ($request->input('type')) {
+                if ($request->type == 'doctor') {
+                    $report->hour_price = $request->input('hour_price');
+                }
+                $report->link = $request->input('link');
+                if ($request->hasFile('image')) {
+                    $reportImg = $request->file('image');
+                    $imageName = time() . '_image' . $report->name . '.' . $reportImg->getClientOriginalExtension();
+                    $reportImg->storePubliclyAs('reports', $imageName, ['disk' => 'public']);
+                    $report->image = 'imgReports/' . $imageName;
+                }
+                if ($request->hasFile('content')) {
+                    $file = $request->file('content');
+                    $fileName = $file->getClientOriginalName();
+                    $report->content->storeAs('reportsFiles', $fileName); // Adjust the storage directory as needed
+                }
+            }
+
+            $saved = $report->save();
+            if ($saved) {
+                return redirect()->back()->with('msg', 'Join Us Successfully');
+                dd($report);
+            }
+        }else{
+            return redirect()->back()->with('msg', $validator->getMessageBag()->first());
+        }
     }
 }

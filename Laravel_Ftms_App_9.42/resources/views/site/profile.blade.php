@@ -313,66 +313,74 @@
                                         <h4>{{ $payment->availableTime->expert->name }}</h4>
                                     @endif
                                 @endforeach --}}
+                                <section class="py-5">
+                                    <div class="container px-4 px-lg-5 mt-5">
+                                        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                                 @forelse ($user->payments as $payment)
-                                    <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-                                        <div class="h-100">
-                                            <div class="d-flex">
-                                                <div class="border-end d-none d-lg-block"></div>
+                                            <div class="col mb-5">
+                                                <div class="card h-100">
+                                                    <!-- Sale badge-->
+                                                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">{{ $payment->total }}$</div>
 
-                                                @if ($payment->availableTime->expert->image != null)
-                                                    <td>
-                                                        <img class="img-circle img-bordered-sm img-profile"
-                                                            width="30%"
-                                                            src="{{ Storage::url($payment->availableTime->expert->image) }}"
-                                                            alt="course image">
-                                                    </td>
-                                                @else
+                                                    <!-- Product image-->
+                                                    @if ($payment->availableTime->expert->image != null)
+                                                    <img class="img-circle img-bordered-sm img-profile"
+                                                    width="100%"
+                                                    src="{{ Storage::url($payment->availableTime->expert->image) }}"
+                                                    alt="course image">
+                                                    @else
                                                     <td>
                                                         <div style="margin-left: 3em !important; position: relative; top: 1em;  right: 1.7em;"
                                                             class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
                                                             <i class="fas fa-graduation-cap text-white"></i>
                                                         </div>
                                                     </td>
-                                                @endif
-                                                <div class="ps-3">
-                                                    <h4>{{ $payment->availableTime->expert->name }}</h4>
-                                                    <span>Paid:
-                                                        {{ $payment->total }}
-                                                    </span>
+                                                    @endif
+                                                    <!-- Product details-->
+                                                    <div class="card-body p-4">
+                                                        <div class="text-center">
+                                                            <!-- Product name-->
+                                                            <h5 class="fw-bolder">{{ $payment->availableTime->expert->name }}</h5>
+                                                        </div>
+
+                                                    </div>
+                                                    <!-- Product actions-->
+                                                    <div class="text-center mb-2">                                                        @if ($payment->availableTime->link)
+                                                        <a href="{{ $payment->availableTime->link }}"
+                                                            class="mr-10 btn btn-outline-primary btn-sm">Meet Link: <i
+                                                                class="far fa-arrow-alt-circle-right  outline-primary  mt-auto"></i></a>
+                                                     @else
+                                                        <span class="fs-20 text-warning text-right mb-2">Not online</span>
+                                                    @endif
+                                                    </div>
                                                 </div>
-                                                @if ($payment->availableTime->link)
-                                                    <a href="{{  $payment->availableTime->link }}"
-                                                    class="mr-10 btn btn-outline-primary btn-sm">Meet Link: <i
-                                                        class="far fa-arrow-alt-circle-right"></i></a>
-                                                    
-                                                @else
-                                                    <span class="fs-20 text-warning">Not online</span>
-                                                @endif
                                             </div>
-                                            <div class="border-bottom mt-4 d-block d-lg-none"></div>
+                                            @empty
+                                            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                                                <div class="h-100">
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
+                                                            <i class="fa fa-users text-white"></i>
+                                                        </div>
+                                                        <div class="ps-3">
+                                                            <h4 class="text-danger">you don,t have any course</h4>
+                                                            {{-- <span>Clita erat ipsum lorem sit sed stet duo justo</span> --}}
+                                                        </div>
+                                                        <div class="border-end d-none d-lg-block"></div>
+                                                    </div>
+                                                    <div class="border-bottom mt-4 d-block d-lg-none"></div>
+                                                </div>
                                         </div>
                                     </div>
-                                @empty
+                                    @endforelse
+                                </section>
 
-                                    <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
-                                        <div class="h-100">
-                                            <div class="d-flex">
-                                                <div class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
-                                                    <i class="fa fa-users text-white"></i>
-                                                </div>
-                                                <div class="ps-3">
-                                                    <h4 class="text-danger">you don,t have any course</h4>
-                                                    {{-- <span>Clita erat ipsum lorem sit sed stet duo justo</span> --}}
-                                                </div>
-                                                <div class="border-end d-none d-lg-block"></div>
-                                            </div>
-                                            <div class="border-bottom mt-4 d-block d-lg-none"></div>
-                                        </div>
+
+
                                     </div>
-                                @endforelse
 
+                                </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>

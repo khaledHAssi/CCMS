@@ -62,7 +62,7 @@
                     <img class="img-fluid rounded" src="{{ asset('siteassets/imgFinanza/about.jpg') }}">
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <a href="#" class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3 nav-link">Join Us</a>
+                    <a href="{{route('site.contact')}}" class="d-inline-block border rounded text-primary fw-semi-bold py-1 px-3 nav-link">Contact</a>
                     <h1 class="display-5 mb-4">We Help Our Clients To Grow Their Business</h1>
                     <p class="mb-4">Our platform helps our clients grow their business because we created it with high quality and speed </p>
                     <div class="border rounded p-4">

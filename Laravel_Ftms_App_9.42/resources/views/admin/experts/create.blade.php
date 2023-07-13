@@ -64,7 +64,6 @@
                     <h1>{{ $title }}</h1>
                     <form action="{{ route('admin.experts.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-
                         <div class="mb-3">
                             <label for="name">Name</label>
                             <input id="name" name="name" type="text" placeholder="Name"
@@ -127,7 +126,7 @@
 
 
 
-                        <button class="btn btn-success px-5"><i class="fas fa-save"></i> Edit</button>
+                        <button class="btn btn-success px-5"><i class="fas fa-save"></i>Add</button>
 
                     </form>
                 </div>

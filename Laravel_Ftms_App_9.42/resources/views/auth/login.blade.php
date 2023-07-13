@@ -68,7 +68,6 @@
                                                 <span></span>
                                                 {{ __('Login') }}
                                             </button>
-                                            <hr>
                                             {{-- <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
@@ -79,15 +78,14 @@
                                         <hr>
                                         <div class="text-center">
                                             @if (Route::has('password.request'))
-                                                <a style="text-decoration: none" href="{{ route('password.request') }}"
-                                                    class="small">
+                                                <a  class="text-decoration-none small" href="{{ route('password.request') }}">
                                                     {{ __('Forgot Password') }}?
                                                 </a>
                                         </div>
                                         @endif
                                         <div class="text-center">
-                                            <a style="text-decoration: none" href="{{ route('register') }}" class="small">
-                                                {{ __('SignUp') }}?
+                                            <a  href="{{ route('register') }}" class="text-decoration-none small">
+                                                {{ __('SignUp As Student') }}?
                                             </a>
                                         </div>
                                     </div>
