@@ -12,6 +12,7 @@ use App\Models\Expert;
 use App\Models\Payment;
 use App\Models\Report;
 use Exception;
+use Illuminate\Support\Str;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -199,54 +200,53 @@ class SiteController extends Controller
     public function store_contact(Request $request)
     {
         // 'image' => 'nullable|required_if:type,doctor,companyManager|mimes:jpg,png',
-        $validator = validator($request->all(), [
+        // $validator = validator($request->all(), [
+        $request->validate([
             'name' => 'required|string|min:3|max:20',
             'email' => 'required|string|email',
             'description' => 'required|string|min:10',
             'type' => 'required',
-            "link" =>  $request->input('type') !==  'companyManager' || $request->input('type') ==  'doctor' ? 'nullable|url' : 'required|url',
-            'hour_price' => $request->input('type') !==  'doctor' ? 'nullable|int' : 'required|int',
+            "link" =>  $request->input('type') !==  'companyManager' || $request->input('type') ==  'doctor' ? 'nullable' : 'required|url',
+            'hour_price' => $request->input('type') !==  'doctor' ? 'nullable' : 'required|int',
             'image' => $request->input('type') !==  'companyManager' || $request->input('type') ==  'doctor' ? 'nullable' : 'required|mimes:jpg,png',
             'content' => $request->input('type') !==  'companyManager' || $request->input('type') ==  'doctor' ? 'nullable' : 'required|file|mimes:pdf,doc,docx,txt',
         ]);
 
+        $report = new Report();
+        if (Auth::user() != null) {
+            $report->user_id = Auth::user()->id;
+        }
+        $report->name = $request->input('name');
+        $report->email = $request->input('email');
+        $report->description = $request->input('description');
+        $report->type = $request->input('type');
 
-        if (!$validator->fails()) {
-            $report = new Report();
-            $report->name = $request->input('name');
-            $report->email = $request->input('email');
-            $report->description = $request->input('description');
-            $report->type = $request->input('type');
+        // if ($request->input('type') == 'companyManager' || $request->input('type') == 'doctor') {
+        if (in_array($report->type, ['companyManager', 'doctor'])) {
 
-            if (Auth::user() != null) {
-                $report->user_id = Auth::user()->id;
+            $report->link = $request->input('link');
+            if ($request->type == 'doctor') {
+                $report->hour_price = $request->input('hour_price');
             }
-
-            if ($request->input('type')) {
-                if ($request->type == 'doctor') {
-                    $report->hour_price = $request->input('hour_price');
-                }
-                $report->link = $request->input('link');
-                if ($request->hasFile('image')) {
-                    $reportImg = $request->file('image');
-                    $imageName = time() . '_image' . $report->name . '.' . $reportImg->getClientOriginalExtension();
-                    $reportImg->storePubliclyAs('reports', $imageName, ['disk' => 'public']);
-                    $report->image = 'imgReports/' . $imageName;
-                }
-                if ($request->hasFile('content')) {
-                    $file = $request->file('content');
-                    $fileName = $file->getClientOriginalName();
-                    $report->content->storeAs('reportsFiles', $fileName); // Adjust the storage directory as needed
-                }
+            if ($request->hasFile('image')) {
+                $reportImg = $request->file('image');
+                $imageName = time() . '_image' . $report->name . '.' . $reportImg->getClientOriginalExtension();
+                $reportImg->storePubliclyAs('reports/images', $imageName, ['disk' => 'public']);
+                $report->image = 'imgReports/' . $imageName;
             }
-
-            $saved = $report->save();
-            if ($saved) {
-                return redirect()->back()->with('msg', 'Join Us Successfully');
-                dd($report);
+            if ($request->hasFile('content')) {
+                $reportContent = $request->file('content');
+                $contentName = time() . '_content' . $report->name . '.' . $reportContent->getClientOriginalExtension();
+                $reportContent->storePubliclyAs('reports/files', $contentName, ['disk' => 'public']);
+                $report->content = 'filesReports/' . $contentName;
             }
+        }
+
+        $saved = $report->save();
+        if ($saved) {
+            return redirect()->back()->with('msg', 'submitted Successfully')->with('type', 'success');
         }else{
-            return redirect()->back()->with('msg', $validator->getMessageBag()->first());
+            return redirect()->back()->with('msg', 'submitted Failed')->with('type', 'warning');
         }
     }
 }

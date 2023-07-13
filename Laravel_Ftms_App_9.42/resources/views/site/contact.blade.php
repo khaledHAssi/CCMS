@@ -26,18 +26,32 @@
     <link href="{{ asset('siteassets/css/startBootstrapStyles.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('adminassets/dist/css/adminlte.min.css') }}">
     <section class="py-5">
-        @if (session('msg'))
-        <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
-                    @endif
-
         <div class="container px-5">
             <!-- Contact form-->
             <div class="bg-light rounded-4 py-5 px-4 px-md-5">
-                <div class="text-center mb-5">
+                <div class="text-center mb-1">
                     <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-3"><i
-                            class="bi bi-envelope"></i></div>
-                    <h1 class="fw-bolder">Get in touch</h1>
-                    <p class="lead fw-normal text-muted mb-0">Let's work together!</p>
+                        class="bi bi-envelope"></i></div>
+                        <h1 class="fw-bolder">Get in touch</h1>
+                        <p class="lead fw-normal text-muted mb-0">Let's work together!</p>
+                    </div>
+                <div class="mb-1 mt-5" >
+                    @if (session('msg'))
+                        <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
+                    @endif
+                    @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert"
+                            aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-ban"></i>validation error</h5>
+
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 </div>
                 <div class="row gx-5 justify-content-lg-around">
                     <div class="col-lg-6 col-xl-12">
@@ -60,7 +74,7 @@
                                         </div>
                                     </nav>
                                     <div class="tab-content" id="nav-tabContent">
-                                        {{-- contact form--}}
+                                        {{-- contact form --}}
                                         <div class="tab-pane fade show active" id="nav-story" role="tabpanel"
                                             aria-labelledby="nav-story-tab">
                                             <form action="{{ route('site.store_contact') }}" id="contactForm"
@@ -198,7 +212,9 @@
                                         {{-- companyManger form --}}
                                         <div class="tab-pane fade" id="nav-vision" role="tabpanel"
                                             aria-labelledby="nav-vision-tab">
-                                            <form method="POST" action="{{ route('site.store_contact')}}" id="companyManagerForm">
+                                            <form method="POST" action="{{ route('site.store_contact') }}"
+                                                id="companyManagerForm"
+                                                enctype="multipart/form-data">
                                                 @csrf
                                                 <input type="hidden" value="companyManager" name="type">
 
@@ -271,7 +287,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="d-grid"><button class="btn btn-primary btn-lg"
-                                                    id="submitButton" type="submit">Submit</button></div>
+                                                        id="submitButton" type="submit">Submit</button></div>
                                             </form>
                                         </div>
                                     </div>
