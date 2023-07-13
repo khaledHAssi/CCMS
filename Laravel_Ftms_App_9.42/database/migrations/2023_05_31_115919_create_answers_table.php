@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('task_id')->constrained('tasks','id');
             $table->foreignId('user_id')->constrained('users','id');
             $table->string('solution');
+            $table->integer('student_mark');
             $table->timestamps();
         });
     }

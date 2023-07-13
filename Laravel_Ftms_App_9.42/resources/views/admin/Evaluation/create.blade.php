@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('content')
-    <section class="content">
+    <section class="content pt-4">
         <div class="container-fluid">
             <div class="row">
                 <!-- left column -->
@@ -9,104 +9,67 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Create </h3>
+                            <h3 class="card-title">Create</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-
                         <form method="POST" action="{{ route('admin.evaluation.store') }}">
-                            <form>
-                                @csrf
-                                <div class="card-body">
+                            @csrf
 
-                                    @if ($errors->any())
-                                        <div class="alert alert-danger alert-dismissible">
-                                            <button type="button" class="close" data-dismiss="alert"
-                                                aria-hidden="true">×</button>
-                                            <h5><i class="icon fas fa-ban"></i> validation errors</h5>
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
 
-                                    <div class="mb-3">
-                                        <label for="company_id">Company Id</label>
+                            <div class="card-body">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">×</button>
+                                        <h5><i class="icon fas fa-ban"></i>validation error</h5>
 
-                                        @error('company_id')
-                                            <small class="invalid-feedback">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="title">title</label>
-                                        <input type="text" class="form-control" name="title" placeholder="Enter title">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="title">question</label>
-                                        <input type="text" class="form-control" name="question"
-                                            placeholder="Enter question">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Company</label>
-                                        {{-- <select name="items[]" multiple> --}}
-                                        {{-- <select id="my-select" name="items[]" multiple> --}}
-                                        <select id="my-select" class="custom-select" name="company_id[]" multiple>
-                                            @foreach ($companies as $company)
-                                                <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
                                             @endforeach
-                                        </select>
+                                        </ul>
                                     </div>
+                                @endif
 
-                                    {{-- ------------------------------------------------------------ --}}
+                                <div class="form-group">
+                                    <label for="title">title</label>
+                                    <input type="text" value="{{ old('title') }}" class="form-control" name="title" placeholder="Enter title">
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">question</label>
+                                    <input type="text" value="{{ old('question') }}" class="form-control" name="question" placeholder="Enter question">
+                                </div>
 
-
-                                    <div class="form-group">
-                                        <label for="skills">Skills</label><br>
+                                {{-- ------------------------------------------------------------ --}}
+                                <div class="form-group">
+                                    <label for="companies">Company</label><br>
+                                    @foreach ($companies as $company)
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skill1" name="skills[]"
-                                                value="HTML">
-                                            <label class="form-check-label" for="skill1">HTML</label>
+                                            <input class="form-check-input" type="checkbox" id="company{{ $company->id }}"
+                                                name="companies[]" value="{{ $company->id }}">
+                                            <label class="form-check-label"
+                                                for="company{{ $company->id }}">{{ $company->name }}</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skill2" name="skills[]"
-                                                value="CSS">
-                                            <label class="form-check-label" for="skill2">CSS</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="skill3" name="skills[]"
-                                                value="JavaScript">
-                                            <label class="form-check-label" for="skill3">JavaScript</label>
-                                        </div>
-                                        <!-- Add more skills as needed -->
-                                    </div>
-                                    {{-- ------------------------------------------------------------ --}}
-
-                                    {{-- <div class="form-group">
-                                <label>Course</label>
-                                <select class="custom-select" name="course_id">
-                                    @foreach ($courses as $course)
-                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
                                     @endforeach
-                                </select>
-                            </div> --}}
-                                    <div class="form-group">
-                                        <label for="title">Start - Date</label>
-                                        <input type="date" class="form-control" name="start_date">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="title">End - Date</label>
-                                        <input type="date" class="form-control" name="end_date">
-                                    </div>
                                 </div>
-                                <!-- /.card-body -->
+                                {{-- ------------------------------------------------------------ --}}
 
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="form-group">
+                                    <label for="title">Start - Date</label>
+                                    <input type="date" value="{{ old('start_date') }}" class="form-control" name="start_date">
                                 </div>
-                            </form>
+                                <div class="form-group">
+                                    <label for="title">End - Date</label>
+                                    <input type="date" value="{{ old('end_date') }}" class="form-control" name="end_date">
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
                     </div>
                     <!-- /.card -->
                 </div>
