@@ -17,11 +17,10 @@ class AnswerController extends Controller
     public function index()
     {
         //
-        $answers =Answer::all();
+        $answers = Answer::all();
         $tasks = DB::select('SELECT `id`, `title` FROM `tasks` ');
         $users = DB::select('SELECT `id`, `name` FROM `users` ');
-        return response()->view('admin.answers.index',compact(['tasks','answers','users']));
-
+        return response()->view('admin.answers.index', compact(['tasks', 'answers', 'users']));
     }
 
     /**
@@ -32,11 +31,10 @@ class AnswerController extends Controller
     public function create()
     {
         //
-        $answers =Answer::all();
+        $answers = Answer::all();
         $tasks = DB::select('SELECT `id`, `title` FROM `tasks` ');
         $users = DB::select('SELECT `id`, `name` FROM `users` ');
-        return response()->view('admin.answers.create',compact(['tasks','answers','users']));
-
+        return response()->view('admin.answers.create', compact(['tasks', 'answers', 'users']));
     }
 
     /**
@@ -48,19 +46,20 @@ class AnswerController extends Controller
     public function store(Request $request)
     {
         //
-        $validator = validator($request->all(),[
-            'solution'=>'required'
+        $request->validate([
+            'solution' => 'required',
+            'student_mark' => 'required|min:1|max:100'
         ]);
 
-        if (!$validator->fails()) {
-            $answers = new Answer();
-            $answers->user_id = $request->input('user_id');
-            $answers->task_id  = $request->input('task_id');
-            $answers->solution   = $request->input('solution');
-            $answers->save();
-        }
+        $answer = new Answer();
+        $answer->user_id = $request->input('user_id');
+        $answer->task_id = $request->input('task_id');
+        $answer->solution = $request->input('solution');
+        $answer->student_mark = $request->input('student_mark');
 
-        return redirect()->route('admin.answers.index');
+        $answer->save();
+
+        return redirect()->route('admin.answers.index')->with('msg', 'Answer created Successfully')->with('type', 'success');
     }
 
     /**
@@ -83,10 +82,10 @@ class AnswerController extends Controller
     public function edit($id)
     {
         //
-        $answer= Answer::findOrFail($id);
+        $answer = Answer::findOrFail($id);
         $users = DB::select('SELECT `id`, `name` FROM `users` ');
         $tasks = DB::select('SELECT `id`, `title` FROM `tasks` ');
-        return response()->view('admin.answers.edit',compact(['tasks','users','answer']));
+        return response()->view('admin.answers.edit', compact(['tasks', 'users', 'answer']));
     }
 
     /**
@@ -99,19 +98,19 @@ class AnswerController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $validator = validator($request->all(),[
-            'solution'=>'required'
+        $request->validate([
+            'solution' => 'required',
+            'student_mark' => 'required|min:1|max:100'
+
         ]);
+        $answer = Answer::findOrFail($id);
+        $answer->user_id = $request->input('user_id');
+        $answer->task_id = $request->input('task_id');
+        $answer->solution = $request->input('solution');
+        $answer->student_mark = $request->input('student_mark');
 
-        if (!$validator->fails()) {
-            $answers = Answer::findOrFail($id);
-            $answers->user_id = $request->input('user_id');
-            $answers->task_id  = $request->input('task_id');
-            $answers->solution   = $request->input('solution');
-            $answers->save();
-            return redirect()->route('admin.answers.index');
-
-        }
+        $answer->save();
+        return redirect()->route('admin.answers.index')->with('msg', 'Answer updated Successfully')->with('type', 'success');
     }
 
     /**
@@ -125,6 +124,5 @@ class AnswerController extends Controller
         //
         $deleted = Answer::destroy($id);
         return redirect()->back();
-
     }
 }

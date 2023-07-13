@@ -7,15 +7,24 @@
     <header class="bg-primary py-5">
         <div class="container px-5">
             <div class="row gx-5 align-items-center justify-content-center">
-                <div class="col-lg-8 col-xl-7 col-xxl-6">
+                <div class="col-lg-6 col-xl-6 col-xxl-6">
                     <div class="my-5 text-center text-xl-start">
-                        <h1 class="display-5 fw-bolder text-white mb-2">{{ $company->name }} Company</h1>
+                        <div class="col-xl-8 col-xxl-8 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-3"
+                                src="{{ asset($company->image) }}" alt="..."></div>
+                        <h1 class="display-8 fw-bolder text-white mb-2">{{ $company->name }} Company</h1>
                         <p class="lead fw-normal text-white-50 mb-4">
                             {{ Str::words(strip_tags($company->description), 10, '...') }}</p>
                     </div>
                 </div>
-                <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5"
-                        src="{{ asset($company->image) }}" alt="..."></div>
+                <div class="col-lg-6 col-xl-6 col-xxl-6 align-items-center ">
+                    <div class="mb-1">
+                        {!! $company->location !!}
+                    </div>
+                    <h5 class="text-white-50 pt-3">company <span class="text-white text-bold">location</span> on the map
+                    </h5>
+                </div>
+                {{-- <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5"
+                        src="{{ asset($company->image) }}" alt="..."></div> --}}
             </div>
         </div>
     </header>
@@ -23,7 +32,7 @@
         <div class="container">
             {{-- <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
             <h1 class="display-5 mb-5">Our courses</h1>
-        </div> --}}
+                 </div> --}}
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.3s">
 
                 @foreach ($company->courses as $course)
@@ -56,15 +65,45 @@
                 @endforeach
             </div>
         </div>
+
+        @if ($company->company_evaluations)
+
+            <div class="container">
+                @if (Auth::check())
+                    @foreach ($company->company_evaluations as $evaluation)
+                        {{-- <form action="{{ route('site.course_apply', $course->id) }}" method="POST"> --}}
+                        <form action="#" method="POST">
+                            @csrf
+                            {{-- <input type="hidden" name="company_id" value="{{ $course->company_id }}"> --}}
+                            <label for="customRange3" class="form-label">Evaluation</label>
+                            <input type="range" class="form-range" min="10" max="100" step="10"
+                                id="customRange3">
+                            <p id="rangeValue"></p>
+                        </form>
+                    @endforeach
+                @else
+                    <p>Please go to <a href="{{ route('login') }}">login</a> first</p>
+                @endif
+            </div>
+            
+        @endif
     </div>
-    <section class="text-center bg-light">
+    <script>
+        const rangeInput = document.getElementById("customRange3");
+        const rangeValue = document.getElementById("rangeValue");
+
+        rangeInput.addEventListener("input", function() {
+            rangeValue.textContent = "Selected value: " + rangeInput.value;
+        });
+    </script>
+    {{-- <section class="text-center bg-light">
         <div class="container">
             <h3 class="text-primary text-center pt-3 bold">Company location on the map</h3>
             <div class="p-4">
                 {!! $company->location !!}
             </div>
         </div>
-    </section>
+    </section> --}}
 
 
 @stop

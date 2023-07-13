@@ -97,22 +97,16 @@
                         </div>
                     </div>
 
-                     </div>
                     @if (!Auth::check())
                         <a href="{{ route('login') }}"class="nav-item nav-link">Login</a>
                     @else
-                        {{-- <a href="{{ route('logout') }}" data-bs-toggle="modal"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
-                        class="nav-item nav-link" >
-                        <i class="fas fa-sign-out-alt mr-2" ></i>Logout</a> --}}
                         <a href="{{ route('site.site_profile') }}" class="nav-item nav-link">
                             Profile
                         </a>
 
                         <a href="{{ route('logout') }}" data-bs-toggle="modal"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
-                            class="nav-item nav-link">
-                            </i>Logout</a>
+                            class="nav-item nav-link"></i>Logout</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
                         </form>

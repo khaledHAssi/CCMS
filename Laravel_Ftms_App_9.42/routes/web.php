@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\AnswerController;
-use App\Http\Controllers\AnswerMarksController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\AvailableTimeController;
 use App\Http\Controllers\CompanyController;
@@ -65,7 +64,6 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::put('edit_student', [CourseController::class, 'edit_student'])->name('courses.edit_student');
         Route::resource('tasks', TaskController::class);
         Route::resource('answers', AnswerController::class);
-        Route::resource('answer_marks', AnswerMarksController::class);
         Route::resource('experts', ExpertController::class);
         Route::resource('evaluation', EvaluationController::class);
         Route::resource('evaluationAnswer', EvaluationAnswerController::class);
