@@ -15,6 +15,11 @@ class Evaluation extends Model
         return $this->belongsTo(Course::class);
     }
 
+    public function evaluationAnswers()
+    {
+        return $this->hasMany(EvaluationAnswer::class);
+    }
+
     //----------------- ManyToMany relationship ---------------------
     public function _evaluation_companies()
     {

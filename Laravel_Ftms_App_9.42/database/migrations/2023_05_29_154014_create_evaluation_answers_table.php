@@ -15,10 +15,9 @@ return new class extends Migration
         Schema::create('evaluation_answers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('evaluation_id')->constrained();
-           //// // $table->string('evaluation_id');
-            // $table->foreignId('user_id');
-            $table->integer('answer_type')->max('100');
-            $table->string('reason');
+            $table->foreignId('user_id')->constrained();
+            $table->integer('rate')->max('100');
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }
