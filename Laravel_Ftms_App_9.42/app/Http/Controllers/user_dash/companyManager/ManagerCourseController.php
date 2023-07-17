@@ -55,12 +55,6 @@ class ManagerCourseController extends Controller
         $course->start_date = $request->input('start_date');
         $course->end_date = $request->input('end_date');
         $course->supervisor_id = $request->input('supervisor_id');
-        if ($request->status == 'on') {
-            $course->status = 1;
-        } else {
-            $course->status = 0;
-        }
-
         if ($request->hasFile('course_image')) {
             $CourseImg = $request->file('course_image');
             $imageName = time() . '_image' . $course->name . '.' . $CourseImg->getClientOriginalExtension();
@@ -108,20 +102,12 @@ class ManagerCourseController extends Controller
                 'start_date' => 'required|date',
                 'end_date' => 'required|date',
                 'image' => 'nullable|image|mimes:jpg,png|max:1024',
-                'status' => 'nullable|string|in:on',
                 'supervisor_id' => 'required',
-
             ]);
         $course = Course::findOrFail($id);
 
         $course->supervisor_id = $request->input('supervisor_id');
         $course->name = $request->input('name');
-        if ($request->status == 'on') {
-            $course->status = 1;
-        } else {
-            $course->status = 0;
-        }
-
         $course->description = $request->input('description');
         $course->start_date = $request->input('start_date');
         $course->end_date = $request->input('end_date');

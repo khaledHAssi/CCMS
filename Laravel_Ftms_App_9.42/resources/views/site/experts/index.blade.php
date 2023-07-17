@@ -141,34 +141,32 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="intro center mb-5" style="text-align: center;">
-                        <h6 style="font-size: 150%; font-weight: bold">Companies</h6>
+                    <div class="intro center" style="text-align: center;">
+                        <h6 class="h2 fs-1 mb-4">Experts</h6>
                     </div>
                 </div>
             </div>
             <div class="row">
-                @foreach ($companies as $company)
+                @foreach ($experts as $expert)
                     <div class="col-md-3">
                         <article class="blog-post">
-                            <img src="{{ asset($company->image) }}" alt="">
-                            <a href="{{ route('site.company', $company->slug) }}" class="tag"
+                            <img src="{{ asset(Storage::url($expert->image)) }}" alt="">
+                            <a href="{{ route('site.expert', $expert->id) }}" class="tag"
                                 style="background-color: blue">
                                 <i class="fa fa-arrow-alt-circle-right"></i>
                             </a>
                             <div class="content">
                                 @php
-                                    $courseCount = $company->courses()->count();
-                                    $activeCourseCount = $company
-                                        ->courses()
-                                        ->where('end_date', '>', now())
+                                    $availableTime = $expert->availableTime()->count();
+                                    $activeAvailableTimeCount = $expert
+                                        ->availableTime()
+                                        ->where('status', '=', 1)
                                         ->count();
                                 @endphp
-                                <h2> {{ $company->name }}
-                                    Company
-                                </h2>
-                                <span>{{ Str::words(strip_tags($company->description), 4, '...') }}</span>
-                                <span class="d-block">Courses count :{{ $courseCount }}</span>
-                                <span class="d-block">Active courses count : {{ $activeCourseCount }}</span>
+                                <h6 class="h5 text-bold">{{ $expert->name }}</h6>
+                                <span>{{ Str::words(strip_tags($expert->description), 4, '...') }}</span>
+                                <span class="d-block">AvailableTime count :{{ $availableTime }}</span>
+                                <span class="d-block">Active AvailableTime count : {{ $activeAvailableTimeCount }}</span>
                             </div>
                         </article>
                     </div>

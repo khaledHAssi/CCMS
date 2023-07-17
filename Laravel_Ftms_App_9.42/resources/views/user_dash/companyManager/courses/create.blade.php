@@ -133,10 +133,10 @@
 
                 </div>
 
-                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                {{-- <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                     <input type="checkbox" class="custom-control-input"id="status"name="status">
                     <label class="custom-control-label" for="status">Course Active Status</label>
-                </div>
+                </div> --}}
 
                 <button class="btn btn-success px-5"><i class="fas fa-save"></i> Add</button>
 

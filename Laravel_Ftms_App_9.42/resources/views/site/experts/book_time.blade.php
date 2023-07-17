@@ -21,7 +21,7 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-7 py-5">
                     <script src="https://eu-test.oppwa.com/v1/paymentWidgets.js?checkoutId={{ $id }}"></script>
-                    <form action="{{ route('ftms.book_time_status', $time->id) }}" class="paymentWidgets"
+                    <form action="{{ route('site.book_time_status', $time->id) }}" class="paymentWidgets"
                         data-brands="VISA MASTER">
                     </form>
                 </div>

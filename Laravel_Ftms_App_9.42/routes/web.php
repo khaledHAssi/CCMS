@@ -48,13 +48,10 @@ Route::get('/student_courses/{id}', [RelationController::class, 'student_courses
 //------------------------------------------------------
 
 Route::prefix(LaravelLocalization::setLocale())->group(function () {
-
-
     Route::prefix('admin')->middleware(['auth', 'verified', 'check_admin'])->name('admin.')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('index');
         Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
         Route::post('/settings', [AdminController::class, 'settings_store'])->name('settings_store');
-
         Route::get('companies/trash', [CompanyController::class, 'trash'])->name('companies.trash');
         Route::get('companies/{id}/restore', [CompanyController::class, 'restore'])->name('companies.restore');
         Route::delete('companies/{id}/forcedelete', [CompanyController::class, 'forcedelete'])->name('companies.forcedelete');
@@ -67,12 +64,10 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::resource('experts', ExpertController::class);
         Route::resource('evaluation', EvaluationController::class);
         Route::resource('evaluationAnswer', EvaluationAnswerController::class);
-
         Route::resource('AvailableTimes', AvailableTimeController::class);
         Route::resource('users', UserController::class);
         Route::resource('courses', CourseController::class);
         Route::get('users/sknlk/slkngjo/ksda/{id}', [UserController::class, 'show']);
-
         Route::prefix('applications')->name('applications.')->group(function () {
             Route::get('', [ApplicationController::class, 'index'])->name('index');
             Route::post('accept', [ApplicationController::class, 'application_accept'])->name('accept');
@@ -94,6 +89,10 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
             Route::resource('Experts', ManagerExpertController::class);
             Route::resource('Applications', ManagerApplicationController::class);
             Route::get('course_details', [ManagerCourseController::class, 'course_details'])->name('course_details');
+            Route::post('accept', [ManagerApplicationController::class, 'application_accept'])->name('accept');
+            Route::get('reject/{id}', [ManagerApplicationController::class, 'application_reject'])->name('reject');
+            Route::get('restore/{id}', [ApplicationController::class, 'application_restore'])->name('restore');
+
         });
         // }
 
@@ -130,7 +129,8 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::get('/company/{id}', [SiteController::class, 'company'])->name('company');
         Route::get('/companies', [SiteController::class, 'companies'])->name('companies');
         Route::get('/courses', [SiteController::class, 'courses'])->name('courses');
-        Route::get('/contact', [SiteController::class, 'Contact'])->name('contact');
+        Route::get('/experts', [SiteController::class, 'experts'])->name('experts');
+        Route::get('/contact', [SiteController::class, 'contact'])->name('contact');
         Route::post('/store_contact', [SiteController::class, 'store_contact'])->name('store_contact');
         Route::get('/company/course/{id}', [SiteController::class, 'course'])->name('course');
         Route::post('/company/course/{id}', [SiteController::class, 'course_apply'])->name('course_apply');

@@ -96,7 +96,6 @@
                             <a href="#" class="dropdown-item">About</a>
                         </div>
                     </div>
-
                     @if (!Auth::check())
                         <a href="{{ route('login') }}"class="nav-item nav-link">Login</a>
                     @else
@@ -104,23 +103,23 @@
                             Profile
                         </a>
 
-                        <a href="{{ route('logout') }}" data-bs-toggle="modal"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
-                            class="nav-item nav-link"></i>Logout</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                        </form>
+                            <a href="{{ route('logout') }}" data-bs-toggle="modal"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
+                                class="nav-item nav-link ">Logout <i class="fas fa-sign-out-alt ml-auto mt-1 "></i></a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                            </form>
                     @endif
 
                 </div>
                 <div class="d-none d-lg-flex ms-2">
-                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="">
+                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="#">
                         <small class="fab fa-facebook-f text-primary"></small>
                     </a>
-                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="">
+                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="#">
                         <small class="fab fa-twitter text-primary"></small>
                     </a>
-                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="">
+                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="#">
                         <small class="fab fa-linkedin-in text-primary"></small>
                     </a>
                 </div>

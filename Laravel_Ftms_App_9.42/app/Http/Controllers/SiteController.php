@@ -85,7 +85,12 @@ class SiteController extends Controller
         $expert = Expert::findOrFail($id);
         return view('site.experts.expert', compact('expert'));
     }
-
+    public function experts()
+    {
+        $experts = Expert::all();
+        $experts = $experts->load('availableTime');
+        return view('site.experts.index', compact('experts'));
+    }
     public function book_time(Request $request)
     {
         $time = AvailableTime::findOrFail($request->time_id);
@@ -116,7 +121,7 @@ class SiteController extends Controller
         $responseData = json_decode($responseData, true);
         $id = $responseData['id'];
 
-        return view('site.book_time', compact('time', 'id'));
+        return view('site.experts.book_time', compact('time', 'id'));
     }
 
     public function book_time_status(Request $request, $time_id)

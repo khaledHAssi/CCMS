@@ -51,7 +51,7 @@
                                 <td>{{ $item->hour_to }}</td>
                                 <td>${{ $item->price ? $item->price : $expert->hour_price }}</td>
                                 <td>
-                                    <form action="{{ route('ftms.book_time') }}" method="POST">
+                                    <form action="{{ route('site.book_time') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="time_id" value="{{ $item->id }}">
                                         <button class="btn btn-sm btn-outline-dark ms-3">Book</button>

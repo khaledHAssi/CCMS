@@ -37,8 +37,6 @@ class ApplicationController extends Controller
 
         return redirect()->back()->with(['msg' => 'The student was accepted to the course.', 'status' => 'success']);
     }
-
-
     public function application_reject($id)
     {
         $application = Application::findOrFail($id);
@@ -62,7 +60,7 @@ class ApplicationController extends Controller
         if ($saved & $app_status === 1) {
             $courseStudent = Course_student::where('application_id', $id)->firstOrFail();
             $deleted = $courseStudent->delete();
-            if($deleted){
+            if ($deleted) {
                 return redirect()->back()->with(['msg' => 'The student was restored from the applications accepted.', 'status' => 'success']);
             }
         }
