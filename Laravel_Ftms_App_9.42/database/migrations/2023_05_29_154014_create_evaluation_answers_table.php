@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('evaluation_answers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('evaluation_id')->constrained();
+            $table->foreignId('company_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->integer('rate')->max('100');
             $table->string('note')->nullable();

@@ -45,26 +45,35 @@ class SiteController extends Controller
 
     public function company($slug)
     {
-        // $companies = Company::whereHas('courses', function (Builder $query) {
-            // $query->whereDate('start_date', '>=', date('Y-m-d'));
-        // })->latest('id')->get();
-
-            // --------------------------------
-            //                         $experts = Expert::where('company_id', '=', Auth::user()->company_id)->get();
-            // $expertIds = $experts->pluck('id');
-            // $times = AvailableTime::whereIn('expert_id', $expertIds)->get();
-            // $experts = $times->load('expert');
-            // --------------------------------
-            //                     $users = User::where('company_id', Auth::user()->company_id)
-            // ->where('type', 'companySupervisor')
-            // ->get();
-            // --------------------------------
         $company = Company::with('courses')->whereSlug($slug)->firstOrFail();
-        $evaluations = $company->company_evaluations()->whereDate('start_date', '>=', date('Y-m-d'))->get();
-        // $evaluationAnswers = Auth::user()->evaluationAnswers;
-        // dd($evaluations , $evaluationAnswers);
-        return view('site.companies.company', compact(['company','evaluations']));
+        $studentEvaluations = Auth::user()->evaluationAnswers->pluck('evaluation_id');
+        // --------------------------------
+        $evaluations = $company->company_evaluations()
+            ->whereDate('start_date', '<=', date('Y-m-d'))
+            ->whereDate('end_date', '>', date('Y-m-d'))
+            ->whereNotIn('evaluations.id', $studentEvaluations)
+            ->get();
+
+        // dd($company, $studentEvaluations, $evaluations);
+        return view('site.companies.company', compact(['company', 'evaluations']));
     }
+
+    public function company_evaluation(Request $request)
+    {
+        $evaluationAnswer = new EvaluationAnswer();
+        $evaluationAnswer->evaluation_id = $request->evaluation_id;
+        $evaluationAnswer->company_id = $request->company_id;
+        $evaluationAnswer->user_id = Auth::id();
+        $evaluationAnswer->rate = $request->rate;
+        $evaluationAnswer->note = $request->note;
+        $saved = $evaluationAnswer->save();
+        if($saved){
+            return redirect()->back()->with('msg', 'The company has been successfully evaluated')->with('type', 'success');
+        }else{
+            return redirect()->back()->with('msg', 'The company has not been evaluated')->with('type', 'warning');
+        }
+    }
+
 
     public function companies()
     {
@@ -268,7 +277,7 @@ class SiteController extends Controller
         $saved = $report->save();
         if ($saved) {
             return redirect()->back()->with('msg', 'submitted Successfully')->with('type', 'success');
-        }else{
+        } else {
             return redirect()->back()->with('msg', 'submitted Failed')->with('type', 'warning');
         }
     }
