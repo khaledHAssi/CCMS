@@ -66,27 +66,92 @@
             </div>
         </div>
 
-        @if ($company->company_evaluations)
-
+        {{-- ----------------------------------start evaluation answer-------------------------------------------------- --}}
+        <section id="services" class="text-center bg-light">
             <div class="container">
-                @if (Auth::check())
-                    @foreach ($company->company_evaluations as $evaluation)
-                        {{-- <form action="{{ route('site.course_apply', $course->id) }}" method="POST"> --}}
-                        <form action="#" method="POST">
-                            @csrf
-                            {{-- <input type="hidden" name="company_id" value="{{ $course->company_id }}"> --}}
-                            <label for="customRange3" class="form-label">Evaluation</label>
-                            <input type="range" class="form-range" min="10" max="100" step="10"
-                                id="customRange3">
-                            <p id="rangeValue"></p>
-                        </form>
-                    @endforeach
-                @else
-                    <p>Please go to <a href="{{ route('login') }}">login</a> first</p>
-                @endif
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="intro">
+                            <br>
+
+                            <h6>Evaluations</h6>
+                            <h1>Please rate the company</h1>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+                        @if (Auth::check())
+                            {{-- @php
+                            @endphp --}}
+                            @if (!$evaluations)
+                                <p>this company not have any available Evaluation</p>
+                                <a href="{{ route('site.course_cancel', $ap->id) }}" class="btn btn-brand">Cancel
+                                    Request</a>
+                            @else
+                                <div class="row text-start">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label>Name</label>
+                                            <input type="text" name="name" value="{{ Auth::user()->name }}"
+                                                class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label>Email</label>
+                                            <input type="email" name="email" value="{{ Auth::user()->email }}"
+                                                class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+                                @foreach ($evaluations as $evaluation)
+                                    {{-- <form action="{{ route('site.course_apply', $course->id) }}" method="POST" class="mt-5"> --}}
+                                    <form action="#" method="POST" class="mt-5">
+                                        @csrf
+
+                                        <hr>
+                                        <h6>{{ $evaluation->title }}</h6>
+                                        <p>{{ $evaluation->question }}</p>
+                                        <input type="hidden" name="evaluation_id" value="{{ $evaluation->id }}">
+                                        <div class="row text-start">
+                                            <div class="col-12">
+                                                <div class="mb-3">
+                                                    <label for="customRange3" class="form-label">Evaluation</label>
+                                                    <input type="range" class="form-range" name="rate" min="0"
+                                                        max="100" step="5" id="customRange3">
+                                                    <p id="rangeValue"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="mb-3">
+                                                    <label for="name">Note</label>
+                                                    <input class="form-control" id="name" name="note" type="text"
+                                                        placeholder="Enter your note..." data-sb-validations="required"
+                                                        data-sb-can-submit="no">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div style="background-color:blue; text-align: center;">
+                                                    <button class="btn" style="color:white;">Add</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                @endforeach
+                            @endif
+                            <br>
+                            <br>
+                            <br>
+                        @else
+                            <p>Please go to <a href="{{ route('login') }}">login</a> first</p>
+                        @endif
+                    </div>
+                </div>
+
             </div>
-            
-        @endif
+        </section>
+        {{-- ----------------------------------end evaluation answer---------------------------------------------------- --}}
     </div>
     <script>
         const rangeInput = document.getElementById("customRange3");

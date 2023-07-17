@@ -8,6 +8,7 @@ use App\Notifications\AppliedNotification;
 use App\Models\Company;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\EvaluationAnswer;
 use App\Models\Expert;
 use App\Models\Payment;
 use App\Models\Report;
@@ -44,8 +45,25 @@ class SiteController extends Controller
 
     public function company($slug)
     {
+        // $companies = Company::whereHas('courses', function (Builder $query) {
+            // $query->whereDate('start_date', '>=', date('Y-m-d'));
+        // })->latest('id')->get();
+
+            // --------------------------------
+            //                         $experts = Expert::where('company_id', '=', Auth::user()->company_id)->get();
+            // $expertIds = $experts->pluck('id');
+            // $times = AvailableTime::whereIn('expert_id', $expertIds)->get();
+            // $experts = $times->load('expert');
+            // --------------------------------
+            //                     $users = User::where('company_id', Auth::user()->company_id)
+            // ->where('type', 'companySupervisor')
+            // ->get();
+            // --------------------------------
         $company = Company::with('courses')->whereSlug($slug)->firstOrFail();
-        return view('site.companies.company', compact('company'));
+        $evaluations = $company->company_evaluations()->whereDate('start_date', '>=', date('Y-m-d'))->get();
+        // $evaluationAnswers = Auth::user()->evaluationAnswers;
+        // dd($evaluations , $evaluationAnswers);
+        return view('site.companies.company', compact(['company','evaluations']));
     }
 
     public function companies()
