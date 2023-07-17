@@ -67,27 +67,21 @@
         </div>
 
         {{-- ----------------------------------start evaluation answer-------------------------------------------------- --}}
-        <section id="services" class="text-center bg-light">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12">
-                        <div class="intro">
-                            <br>
+        @if (!$evaluations->isEmpty())
+            <section id="services" class="text-center bg-light">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <div class="intro">
+                                <br>
 
-                            <h6>Evaluations</h6>
-                            <h1>Please rate the company</h1>
+                                <h6>Evaluations</h6>
+                                <h1>Please rate the company</h1>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-8">
-                        @if (Auth::check())
-                            {{-- @php
-                            @endphp --}}
-                            @if (!$evaluations)
-                                <p>this company not have any available Evaluation</p>
-                                <a href="{{ route('site.course_cancel', $ap->id) }}" class="btn btn-brand">Cancel
-                                    Request</a>
-                            @else
+                        <div class="col-md-8">
+                            @if (Auth::check())
                                 <div class="row text-start">
                                     <div class="col-6">
                                         <div class="mb-3">
@@ -105,14 +99,15 @@
                                     </div>
                                 </div>
                                 @foreach ($evaluations as $evaluation)
-                                    {{-- <form action="{{ route('site.course_apply', $course->id) }}" method="POST" class="mt-5"> --}}
-                                    <form action="#" method="POST" class="mt-5">
+                                    {{-- <form action="#" method="POST" class="mt-5"> --}}
+                                    <form action="{{ route('site.company_evaluation') }}" method="POST" class="mt-5">
                                         @csrf
 
                                         <hr>
                                         <h6>{{ $evaluation->title }}</h6>
                                         <p>{{ $evaluation->question }}</p>
                                         <input type="hidden" name="evaluation_id" value="{{ $evaluation->id }}">
+                                        <input type="hidden" name="company_id" value="{{ $company->id }}">
                                         <div class="row text-start">
                                             <div class="col-12">
                                                 <div class="mb-3">
@@ -139,28 +134,22 @@
 
                                     </form>
                                 @endforeach
-                            @endif
-                            <br>
-                            <br>
-                            <br>
-                        @else
-                            <p>Please go to <a href="{{ route('login') }}">login</a> first</p>
-                        @endif
-                    </div>
-                </div>
 
-            </div>
-        </section>
+                                <br>
+                                <br>
+                                <br>
+                            @else
+                                <p>Please go to <a href="{{ route('login') }}">login</a> first</p>
+                            @endif
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        @endif
         {{-- ----------------------------------end evaluation answer---------------------------------------------------- --}}
     </div>
-    <script>
-        const rangeInput = document.getElementById("customRange3");
-        const rangeValue = document.getElementById("rangeValue");
 
-        rangeInput.addEventListener("input", function() {
-            rangeValue.textContent = "Selected value: " + rangeInput.value;
-        });
-    </script>
     {{-- <section class="text-center bg-light">
         <div class="container">
             <h3 class="text-primary text-center pt-3 bold">Company location on the map</h3>
@@ -170,5 +159,36 @@
         </div>
     </section> --}}
 
+@stop
 
+@section('scripts')
+    <script>
+        const rangeInput = document.getElementById("customRange3");
+        const rangeValue = document.getElementById("rangeValue");
+
+        rangeInput.addEventListener("input", function() {
+            rangeValue.textContent = "Selected value: " + rangeInput.value;
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        @if (session('msg'))
+            Toast.fire({
+                icon: '{{ session('type') }}',
+                title: '{{ session('msg') }}'
+            })
+        @endif
+    </script>
 @stop

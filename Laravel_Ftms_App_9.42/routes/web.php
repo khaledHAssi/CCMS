@@ -128,6 +128,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
     Route::name('site.')->group(function () {
         Route::get('/', [SiteController::class, 'index'])->name('index');
         Route::get('/company/{id}', [SiteController::class, 'company'])->name('company');
+        Route::post('/company_evaluation', [SiteController::class, 'company_evaluation'])->name('company_evaluation');
         Route::get('/companies', [SiteController::class, 'companies'])->name('companies');
         Route::get('/courses', [SiteController::class, 'courses'])->name('courses');
         Route::get('/contact', [SiteController::class, 'Contact'])->name('contact');
