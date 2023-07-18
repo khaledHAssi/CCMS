@@ -67,6 +67,20 @@
                 <small><i class="fa fa-envelope text-primary me-2"></i>{{ env('APP_CONTACT_EMAIL') }}</small>
                 <small class="ms-4"><i
                         class="fa fa-phone-alt text-primary me-2"></i>+{{ env('APP_CONTACT_PHONE') }}</small>
+
+                {{-- start logout --}}
+                @if (!Auth::check())
+                    <a href="{{ route('login') }}"class="ms-4 btn btn-outline-primary btn-sm"><i class="fas fa-sign-in-alt ml-auto me-1"></i>Login</a>
+                @else
+                    <a class="ms-4 btn btn-outline-primary btn-sm" href="{{ route('logout') }}" data-bs-toggle="modal"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
+                        <i class="fas fa-sign-out-alt ml-auto me-1"></i>Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                    </form>
+                @endif
+                {{-- end logout --}}
             </div>
         </div>
 
@@ -85,9 +99,16 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a href="{{ route('site.index') }}" class="nav-item nav-link active">Home</a>
-                    <a href="{{route('site.companies')}}" class="nav-item nav-link">Companies</a>
-                    <a href="{{route('site.courses')}}" class="nav-item nav-link">Courses</a>
+                    <a href="{{ route('site.companies') }}" class="nav-item nav-link">Companies</a>
+                    <a href="{{ route('site.courses') }}" class="nav-item nav-link">Courses</a>
+                    <a href="{{ route('site.experts') }}" class="nav-item nav-link">Experts</a>
 
+                    @if (Auth::check())
+                    <a href="{{ route('site.site_profile') }}" class="nav-item nav-link">
+                        Profile
+                    </a>
+                    @endif
+                    
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Other</a>
                         <div class="dropdown-menu border-brown m-0">
@@ -96,21 +117,6 @@
                             <a href="#" class="dropdown-item">About</a>
                         </div>
                     </div>
-                    @if (!Auth::check())
-                        <a href="{{ route('login') }}"class="nav-item nav-link">Login</a>
-                    @else
-                        <a href="{{ route('site.site_profile') }}" class="nav-item nav-link">
-                            Profile
-                        </a>
-
-                            <a href="{{ route('logout') }}" data-bs-toggle="modal"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
-                                class="nav-item nav-link ">Logout <i class="fas fa-sign-out-alt ml-auto mt-1 "></i></a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                @csrf
-                            </form>
-                    @endif
-
                 </div>
                 <div class="d-none d-lg-flex ms-2">
                     <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="#">

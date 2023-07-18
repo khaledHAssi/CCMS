@@ -253,7 +253,7 @@
                 @endforeach
             </div>
         </div>
-        <a class="float-start text-decoration-none text-primary fs-5" href="{{ route('site.companies') }}">
+        <a class="float-start text-decoration-none text-primary fs-5 mt-4" href="{{ route('site.companies') }}">
             <small>All companies <i class="fas fa-long-arrow-alt-right m-auto"></i></small>
         </a>
     </div>
