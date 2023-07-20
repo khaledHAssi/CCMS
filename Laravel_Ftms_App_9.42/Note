@@ -44,11 +44,10 @@ composer dump-autoload -->
  * available times number from the expert
  * Booked number of expert available times
  * details of the expert available time number(btn)
- *  */
+ * 
+*/
 
-    /*
-
+/**
  * the name of the page : expert operations details(details btn)
  * display available time table (id,date,hour_form,hour_to,user_name that buy ,total )
-
  */

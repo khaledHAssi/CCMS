@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Course_student;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class CourseController extends Controller
@@ -179,48 +177,4 @@ class CourseController extends Controller
         return redirect()->route('admin.courses.index')->with('msg', 'Company Deleted Successfully')->with('type', 'danger');
     }
 
-    public function delete_student($id)
-    {
-        $courseStudent = Course_student::findOrFail($id);
-        $deleted = $courseStudent->delete();
-        if ($deleted) {
-            return redirect()->back()->with(['msg' => 'The student was deleted from the course.', 'status' => 'success']);
-        } else {
-            return redirect()->back()->with(['msg' => 'Failed to delete the student in the course.', 'status' => 'error']);
-        }
-    }
-
-
-
-    public function edit_student(Request $request)
-    {
-        $courseStudent = Course_student::findOrFail($request->course_id);
-        $courseStudent->student_mark = $request->student_mark;
-        $courseStudent->note = $request->note;
-        $saved = $courseStudent->save();
-
-
-        if ($saved) {
-            return response()->json([
-                "status" => 'success',
-                "message" => "Data entered successfully",
-                "data" => [
-                    "status" =>  $saved
-                ]
-            ]);
-        } else {
-            return response()->json([
-                "status" => 'error',
-                "message" => "Data entered failed",
-                "data" => [
-                    "status" =>  $saved
-                ]
-            ]);
-        }
-        // $id = $request->course_id;
-        // $mark = $request->student_mark;
-        // $note = $request->note;
-
-        // return [$id, $mark, $note,'from controller'];
-    }
 }

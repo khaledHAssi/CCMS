@@ -7,25 +7,18 @@ use App\Models\Course;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ManagerCourseController extends Controller
 {
     public function index()
     {
-        $courses = Course::where('company_id', '=', Auth::user()->company_id)->Get();
+        $courses = Course::where('company_id', '=', Auth::user()->company_id)->get();
 
-        $courses = $courses->load('company', 'supervisor');
+        $courses = $courses->load('supervisor');
         return response()->view('user_dash.companyManager.courses.index', compact(['courses']));
     }
-    public function course_details()
-    {
-        // $students = courseStudent::all();
-
-        // return response()->view('user_dash.companyManager.courses.course_details',compact(['students']));
-        return response()->view('user_dash.companyManager.courses.course_details');
-    }
+    
     public function create(Request $request)
     {
         $users = User::where('company_id', Auth::user()->company_id)
@@ -66,9 +59,18 @@ class ManagerCourseController extends Controller
         $course->save();
         return redirect()->route('user_dash.cmCourses.index')->with('msg', 'Course Updated Successfully')->with('type', 'warning');
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
-        //
+        $course = Course::findOrFail($id);
+        $course = $course->load(['course_students', 'supervisor']);
+        return response()->view('user_dash.companyManager.courses.show', compact('course'));
     }
 
     /**

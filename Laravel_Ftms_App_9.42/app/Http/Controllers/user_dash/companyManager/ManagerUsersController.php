@@ -3,14 +3,10 @@
 namespace App\Http\Controllers\user_dash\companyManager;
 
 use App\Http\Controllers\Controller;
-use App\Models\Course;
-use App\Models\Expert;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 
 class ManagerUsersController extends Controller
@@ -28,7 +24,7 @@ class ManagerUsersController extends Controller
         // //when the user_id equal the supervisor id or the expert id;
         // $users = User::whereIn('id', $userIds)->get();
 
-       $users = User::where('company_id', '=',Auth::user()->company_id)->get();
+        $users = User::where('company_id', '=', Auth::user()->company_id)->get();
 
         return view('user_dash.companyManager.users.index', ['users' => $users]);
     }
@@ -36,11 +32,7 @@ class ManagerUsersController extends Controller
     {
         return view('user_dash.companyManager.users.create');
     }
-    public function show()
-    {
-    }
     public function store(Request $request)
-    // public function store(Request $request)
     {
 
         $user = new User;
@@ -57,16 +49,16 @@ class ManagerUsersController extends Controller
                 'password' => [
                     'required', 'string',
                     Password::min(8)
-                    ->numbers()
-                    ->letters()
-                    ->symbols()
-                    ->mixedCase()
-                    ->uncompromised()
+                        ->numbers()
+                        ->letters()
+                        ->symbols()
+                        ->mixedCase()
+                        ->uncompromised()
                 ],
             ]);
 
 
-// dd($request->status);
+        // dd($request->status);
         $user->name = $request->input('name');
         $user->username = $request->input('username');
         $user->phone = $request->input('phone');
@@ -79,7 +71,7 @@ class ManagerUsersController extends Controller
 
         if ($request->status == 'on') {
             $user->status = 1;
-        }else{
+        } else {
             $user->status = 0;
         }
 
@@ -93,6 +85,4 @@ class ManagerUsersController extends Controller
 
         return redirect()->route('user_dash.cmUsers.index')->with('msg', 'Student Account Created Successfully')->with('type', 'success');
     }
-
-
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\EvaluationAnswerController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\ExpertController;
+use App\Http\Controllers\JointController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
@@ -57,8 +58,8 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::delete('companies/{id}/forcedelete', [CompanyController::class, 'forcedelete'])->name('companies.forcedelete');
         Route::resource('companies', CompanyController::class);
         Route::resource('courses', CourseController::class);
-        Route::get('delete_student/{id}', [CourseController::class, 'delete_student'])->name('courses.delete_student');
-        Route::put('edit_student', [CourseController::class, 'edit_student'])->name('courses.edit_student');
+        Route::get('delete_student/{id}', [JointController::class, 'delete_student'])->name('courses.delete_student');
+        Route::put('edit_student', [JointController::class, 'edit_student'])->name('courses.edit_student');
         Route::resource('tasks', TaskController::class);
         Route::resource('answers', AnswerController::class);
         Route::resource('experts', ExpertController::class);
@@ -78,26 +79,24 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
 
 
     Route::prefix('user_dash')->middleware(['auth', 'verified'])->name('user_dash.')->group(function () {
-        // if (Auth::user()->type=="companyManager"){
         Route::prefix('/cm')->name('cm')->middleware('check_companyManager')->group(function () {
             Route::get('/', [ManagerCompanyController::class, 'index'])->name('index');
             Route::resource('Users', ManagerUsersController::class);
             Route::resource('AvailableTimes', ManagerAvailableTimeController::class);
             Route::get('/AvailableTimes/createWithId/{id}', [ManagerAvailableTimeController::class, 'createWithId'])->name('AvailableTimes.createWithId');
             Route::resource('Courses', ManagerCourseController::class);
+            Route::get('delete_student/{id}', [JointController::class, 'delete_student'])->name('.courses.delete_student');
+            Route::put('edit_student', [JointController::class, 'edit_student'])->name('.courses.edit_student');
             Route::resource('Company', ManagerCompanyController::class);
             Route::resource('Experts', ManagerExpertController::class);
             Route::resource('Applications', ManagerApplicationController::class);
-            Route::get('course_details', [ManagerCourseController::class, 'course_details'])->name('course_details');
             Route::post('accept', [ManagerApplicationController::class, 'application_accept'])->name('accept');
             Route::get('reject/{id}', [ManagerApplicationController::class, 'application_reject'])->name('reject');
             Route::get('restore/{id}', [ApplicationController::class, 'application_restore'])->name('restore');
 
         });
-        // }
 
         Route::prefix('supervisor')->name('supervisor.')->middleware('check_supervisor')->group(function () {
-
             Route::resource('sApplications', SupervisorManagerApplicationController::class);
             Route::resource('', supervisorCourseController::class);
             Route::get('/master', [supervisorCourseController::class, 'master'])->name('master');
@@ -105,6 +104,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
             Route::get('/courses/{id}', [supervisorCourseController::class, 'show'])->name('courses.show');
             Route::get('/sCourse_details', [supervisorCourseController::class, 'course_details'])->name('sCourse_details');
         });
+
         Route::prefix('doctor')->name('doctor.')->middleware('CheckDoctor')->group(function () {
             Route::resource('/dash', DashboardDoctorController::class);
             Route::get('dash/expert/index', [DashboardDoctorController::class, 'expertIndex'])->name('dash.expertIndex');
@@ -123,6 +123,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
             Route::delete('dash/availableTime/{dash}', [DashboardDoctorController::class, 'availableTimeDestroy'])->name('dash.availableTimeDestroy');
         });
     });
+    
     //change site to example name
     Route::name('site.')->group(function () {
         Route::get('/', [SiteController::class, 'index'])->name('index');
@@ -145,6 +146,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::post('site-profile/update-profile', [ProfileController::class, 'update_profile'])->name('site-profile.update_profile');
     });
 
+    // ---------------------------------------------------------------- 
     Route::get('send-notify', [NotifyController::class, 'send']);
     Route::get('notify/{id}', [NotifyController::class, 'notify'])->name('mark-read');
     Route::get('read-notify', [NotifyController::class, 'read'])->name('ReadNotification');
@@ -152,18 +154,8 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
     Auth::routes(['verify' => true]);
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
-
-
-
-    // Route::prefix('user-dash')->middleware(['auth', 'verified', 'check_user'])->name('user_dash.')->group(function () {
-    //     Route::get('/', [AdminController::class, 'index'])->name('index');
-    // });
 });
 
-
-
-
-Route::get('posts_api', [TestAPI::class, 'posts_api']);
 
 Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
