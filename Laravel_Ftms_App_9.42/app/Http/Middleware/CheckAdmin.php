@@ -17,7 +17,22 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->type != 'super-admin') {return redirect()->back();}
+        if (Auth::user()->type != 'super-admin') {
+            switch (Auth::user()->type) {
+                case 'companyManager':
+                    return redirect()->route('user_dash.cmindex');
+                    break;
+                case 'companySupervisor':
+                    return redirect()->route('user_dash.supervisor.index');
+                    break;
+                case 'doctor':
+                    return redirect()->route('user_dash.doctor.dash.index');
+                    break;
+                default:
+                    return redirect()->route('site.index');
+            }
+        }
         return $next($request);
+        // if (Auth::user()->type != 'super-admin') {return redirect()->back();}
     }
 }

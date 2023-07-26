@@ -13,7 +13,6 @@ use App\Models\Expert;
 use App\Models\Payment;
 use App\Models\Report;
 use Exception;
-use Illuminate\Support\Str;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +34,7 @@ class SiteController extends Controller
             'companiesCount' => Company::count(),
             'expertsCount' => Expert::count(),
         ];
-        $experts = Expert::whereHas('AvailableTime', function (Builder $query) {
+        $experts = Expert::whereHas('AvailableTimes', function (Builder $query) {
             $query->where('status', 0)->whereDate('date', '>=', date('Y-m-d'));
         })->latest('id')->get();
         //---------------------------------------------------------------------------------
@@ -115,7 +114,7 @@ class SiteController extends Controller
     public function experts()
     {
         $experts = Expert::all();
-        $experts = $experts->load('availableTime');
+        $experts = $experts->load('availableTimes');
         return view('site.experts.index', compact('experts'));
     }
     public function book_time(Request $request)

@@ -9,7 +9,7 @@ class Expert extends Model
 {
     use HasFactory;
     protected  $guarded = [];
-    public function availableTime()
+    public function availableTimes()
     {
         return $this->hasMany(AvailableTime::class,'expert_id');
     }

@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-12">
                     <div class="intro">
-                        <br>     <br>
+                        <br> <br>
 
                         <h6>Need Session?</h6>
                         <h1>This is Available Times For Me</h1>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-md-8">
                     <br>
-                    <br>     <br>
+                    <br> <br>
                     <table class="table">
                         <tr>
                             <th>#</th>
@@ -41,23 +41,22 @@
                             <th>Price</th>
                             <th>Book</th>
                         </tr>
-                        @foreach ($expert->AvailableTime as $item)
-                        @if($item->status == 0)
-
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->date }}</td>
-                                <td>{{ $item->hour_from }}</td>
-                                <td>{{ $item->hour_to }}</td>
-                                <td>${{ $item->price ? $item->price : $expert->hour_price }}</td>
-                                <td>
-                                    <form action="{{ route('site.book_time') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="time_id" value="{{ $item->id }}">
-                                        <button class="btn btn-sm btn-outline-dark ms-3">Book</button>
-                                    </form>
-                                </td>
-                            </tr>
+                        @foreach ($expert->AvailableTimes as $item)
+                            @if ($item->status == 0)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->date }}</td>
+                                    <td>{{ $item->hour_from }}</td>
+                                    <td>{{ $item->hour_to }}</td>
+                                    <td>${{ $item->price ? $item->price : $expert->hour_price }}</td>
+                                    <td>
+                                        <form action="{{ route('site.book_time') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="time_id" value="{{ $item->id }}">
+                                            <button class="btn btn-sm btn-outline-dark ms-3">Book</button>
+                                        </form>
+                                    </td>
+                                </tr>
                             @endif
                         @endforeach
 
@@ -75,25 +74,25 @@
 @stop
 
 @section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    })
-
-    @if (session('msg'))
-        Toast.fire({
-            icon: 'success',
-            title: '{{ session("msg") }}'
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
         })
-    @endif
-</script>
+
+        @if (session('msg'))
+            Toast.fire({
+                icon: 'success',
+                title: '{{ session('msg') }}'
+            })
+        @endif
+    </script>
 @stop

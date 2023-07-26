@@ -157,16 +157,16 @@
                             </a>
                             <div class="content">
                                 @php
-                                    $availableTime = $expert->availableTime()->count();
+                                    $availableTime = $expert->availableTimes()->count();
                                     $activeAvailableTimeCount = $expert
-                                        ->availableTime()
-                                        ->where('status', '=', 1)
+                                        ->availableTimes()
+                                        ->where('status', '=', 0)
                                         ->count();
                                 @endphp
                                 <h6 class="h5 text-bold">{{ $expert->name }}</h6>
                                 <span>{{ Str::words(strip_tags($expert->description), 4, '...') }}</span>
-                                <span class="d-block">AvailableTime count :{{ $availableTime }}</span>
-                                <span class="d-block">Active AvailableTime count : {{ $activeAvailableTimeCount }}</span>
+                                <span class="d-block">Times count :{{ $availableTime }}</span>
+                                <span class="d-block">Available Times count : {{ $activeAvailableTimeCount }}</span>
                             </div>
                         </article>
                     </div>

@@ -83,7 +83,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
             Route::get('/', [ManagerCompanyController::class, 'index'])->name('index');
             Route::resource('Users', ManagerUsersController::class);
             Route::resource('AvailableTimes', ManagerAvailableTimeController::class);
-            Route::get('/AvailableTimes/createWithId/{id}', [ManagerAvailableTimeController::class, 'createWithId'])->name('AvailableTimes.createWithId');
+            Route::get('/AvailableTimes/create/{id}', [ManagerAvailableTimeController::class, 'create'])->name('AvailableTimes.create');
             Route::resource('Courses', ManagerCourseController::class);
             Route::get('delete_student/{id}', [JointController::class, 'delete_student'])->name('.courses.delete_student');
             Route::put('edit_student', [JointController::class, 'edit_student'])->name('.courses.edit_student');

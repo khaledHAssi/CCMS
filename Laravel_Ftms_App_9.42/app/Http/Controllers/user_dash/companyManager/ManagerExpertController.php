@@ -84,7 +84,11 @@ class ManagerExpertController extends Controller
      */
     public function show($id)
     {
-        //
+        $expert = Expert::findOrFail($id);
+        $expert = $expert->load(['availableTimes', 'User']);
+        // dd($expert); 
+        return response()->view('user_dash.companyManager.experts.show', compact('expert'));
+        
     }
 
     /**

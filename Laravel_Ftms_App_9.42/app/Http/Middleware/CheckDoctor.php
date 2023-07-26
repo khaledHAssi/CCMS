@@ -17,7 +17,22 @@ class CheckDoctor
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->type != 'doctor') {return redirect()->back();}
+        if (Auth::user()->type != 'doctor') {
+            switch (Auth::user()->type) {
+                case 'super-admin':
+                    return redirect()->route('admin.index');
+                    break;
+                case 'companyManager':
+                    return redirect()->route('user_dash.cmindex');
+                    break;
+                case 'companySupervisor':
+                    return redirect()->route('user_dash.supervisor.index');
+                    break;
+                default:
+                    return redirect()->route('site.index');
+            }
+        }
         return $next($request);
+        // if (Auth::user()->type != 'doctor') {return redirect()->back();}
     }
 }

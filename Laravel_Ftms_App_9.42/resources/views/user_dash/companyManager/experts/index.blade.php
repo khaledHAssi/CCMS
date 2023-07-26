@@ -4,9 +4,9 @@
 
 @section('content')
 
-    <div class="content">
+    <div class="content py-4">
         <div class="container-fluid">
-            <div class="card mt-4">
+            <div class="card">
                 <div class="card-body">
 
                     @if (session('msg'))
@@ -22,7 +22,7 @@
                                 <th>ID</th>
                                 <th>Expert Img</th>
                                 <th>Name</th>
-                                <th>Expert Id&Name</th>
+                                <th>Doctor Name</th>
                                 <th>Hour Price</th>
                                 <th>Actions</th>
                             </tr>
@@ -43,15 +43,17 @@
 
                                     <td>{{ $expert->name }}</td>
 
-                                    @if ($expert->doctor_id == $expert->user->id)
-                                        <td>{{ $expert->doctor_id }} - {{ $expert->user->name }}</td>
-                                    @endif
+                                    {{-- @if ($expert->doctor_id == $expert->user->id)
+                                    @endif --}}
+                                    <td>{{ $expert->user->name }}</td>
                                     <td>{{ $expert->hour_price }}</td>
 
-                                    <td>
-                                        <a href="{{ route('user_dash.cmAvailableTimes.createWithId', $expert->id) }}"
+                                    <td class="text-center">
+                                        <a href="{{ route('user_dash.cmExperts.show', $expert->id) }}"
+                                            class="btn btn-primary btn-sm mr-1"> <i class="fas fa-eye"></i> </a>
+                                        <a href="{{ route('user_dash.cmAvailableTimes.create', ['id' => $expert->id]) }}"
                                             class="btn btn-primary btn-sm">{{ __('Add available time') }} <i
-                                                class="fas fa-edit"></i> </a>
+                                                class="fas fa-plus ml-1"></i> </a>
                                         <a href="{{ route('user_dash.cmExperts.edit', $expert) }}"
                                             class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> </a>
                                         <form class="d-inline"

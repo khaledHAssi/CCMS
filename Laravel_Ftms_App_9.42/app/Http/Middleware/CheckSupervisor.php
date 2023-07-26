@@ -17,7 +17,22 @@ class CheckSupervisor
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->type != 'companySupervisor') {return redirect()->back();}
+        if (Auth::user()->type != 'companySupervisor') {
+            switch (Auth::user()->type) {
+                case 'super-admin':
+                    return redirect()->route('admin.index');
+                    break;
+                case 'companyManager':
+                    return redirect()->route('user_dash.cmindex');
+                    break;
+                case 'doctor':
+                    return redirect()->route('user_dash.doctor.dash.index');
+                    break;
+                default:
+                    return redirect()->route('site.index');
+            }
+        }
         return $next($request);
+        // if (Auth::user()->type != 'companySupervisor') {return redirect()->back();}
     }
 }

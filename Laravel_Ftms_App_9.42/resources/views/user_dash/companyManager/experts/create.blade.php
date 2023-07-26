@@ -7,7 +7,6 @@
 @section('title', $title)
 
 @section('styles')
-
     <style>
         .questions_wrapper div {
             position: relative;
@@ -39,29 +38,26 @@
             background: #f00;
         }
     </style>
-
 @stop
 
 @section('content')
-    <div class="card-body">
-        @if ($errors->any())
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h5><i class="icon fas fa-ban"></i>validation error</h5>
-
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-    </div>
-    @endif
-    <div class="content">
+    <div class="content py-4">
         <div class="container-fluid">
-            <div class="card mt-4">
+            <div class="card">
                 <div class="card-body">
                     <h1>{{ $title }}</h1>
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-ban"></i>validation error</h5>
+
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form action="{{ route('user_dash.cmExperts.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
@@ -84,7 +80,8 @@
                             </div>
                         </div>
 
-                <input type="text" hidden id="company_id" value="{{Auth::user()->company_id}}" class="form-control" name="company_id"/>
+                        <input type="text" hidden id="company_id" value="{{ Auth::user()->company_id }}"
+                            class="form-control" name="company_id" />
 
                         <div class="mb-3">
                             <label for="doctor_id">Doctor</label>
@@ -98,9 +95,6 @@
                             @enderror
                         </div>
 
-
-
-
                         <div class="mb-3">
                             <label for="hour_price">Hour Price</label>
                             <input id="hour_price" name="hour_price" type="numeric" placeholder="Enter your hour price "
@@ -111,11 +105,6 @@
 
                         </div>
 
-
-
-
-
-
                         <button class="btn btn-success px-5"><i class="fas fa-save"></i> Edit</button>
 
                     </form>
@@ -123,18 +112,13 @@
             </div>
         </div>
     </div>
-
 @stop
 
-
 @section('scripts')
-
-
     <script src="{{ asset('adminassets\plugins\bs-custom-file-input\bs-custom-file-input.min.js') }}"></script>
     <script>
         $(function() {
             bsCustomFileInput.init();
         });
     </script>
-
 @stop

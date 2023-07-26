@@ -267,6 +267,49 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         </li>
 
+                        {{-- <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-tie"></i>
+                                <p>
+                                    {{ __('Tasks') }}
+
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.tasks.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ _('Tasks') }}</p>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+
+                        </li> --}}
+
+                        <li class="nav-item">
+                            <a href="{{ route('user_dash.cmExperts.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-user-tie"></i>
+                                <p>
+                                    {{ __('Experts') }}
+
+                                </p>
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('user_dash.cmApplications.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-file-alt"></i>
+                                <p>
+                                    {{ __('Applications') }}
+
+                                </p>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
 
@@ -295,83 +338,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                             </ul> --}}
                         </li>
-
-
-
-                        {{-- <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-tie"></i>
-                                <p>
-                                    {{ __('Tasks') }}
-
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.tasks.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('Tasks') }}</p>
-                                    </a>
-                                </li>
-
-
-                            </ul>
-
-                        </li> --}}
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-tie"></i>
-                                <p>
-                                    {{ __('Experts') }}
-
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-
-                                <li class="nav-item">
-                                    <a href="{{ route('user_dash.cmExperts.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('Experts') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('user_dash.cmAvailableTimes.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('AvailableTimes') }}</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-
-
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('user_dash.cmApplications.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-file-alt"></i>
-                                <p>
-                                    {{ __('Applications') }}
-
-                                </p>
-                            </a>
-                        </li>
-
-                        {{-- Appointments Btn For The Future --}}
-                        {{-- <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-calendar-alt"></i>
-                                <p>
-                                    {{ __('Appointments') }}
-
-                                </p>
-                            </a>
-                        </li> --}}
-
-
+                    </ul>
                 </nav>
                 <!--SidebarMenu -->
             </div>
