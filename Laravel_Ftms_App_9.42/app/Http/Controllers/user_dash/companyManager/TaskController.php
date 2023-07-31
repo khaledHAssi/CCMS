@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\user_dash\companyManager;
 
+
+use App\Http\Controllers\Controller;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +21,7 @@ class TaskController extends Controller
         $tasks = Task::all();
         $courses = DB::select('SELECT `id`, `name` FROM `courses` ');
         $companies = DB::select('SELECT `id`, `name` FROM `companies` ');
-        return response()->view('admin.tasks.index', compact(['tasks', 'courses', 'companies']));
+        return response()->view('user_dash.companyManager.tasks.index', compact(['tasks', 'courses', 'companies']));
     }
 
     /**
@@ -33,7 +35,7 @@ class TaskController extends Controller
         $tasks = Task::all();
         $courses = DB::select('SELECT `id`, `name` FROM `courses` ');
         $companies = DB::select('SELECT `id`, `name` FROM `companies` ');
-        return response()->view('admin.tasks.create', compact(['tasks', 'courses', 'companies']));
+        return response()->view('user_dash.companyManager.tasks.create', compact(['tasks', 'courses', 'companies']));
     }
 
     /**
@@ -63,9 +65,9 @@ class TaskController extends Controller
             $tasks->end_date  = $request->input('end_date');
             $tasks->title  = $request->input('title');
             $tasks->save();
-            return redirect()->route('admin.tasks.index')->with('msg', 'Task Stored Successfully')->with('type', 'success');
+            return redirect()->route('user_dash.cmtasks.index')->with('msg', 'Task Stored Successfully')->with('type', 'success');
         }else{
-            return redirect()->route('admin.tasks.create')->with('msg', 'Task Store Failed')->with('type', 'danger');
+            return redirect()->route('user_dash.cmtasks.create')->with('msg', 'Task Store Failed')->with('type', 'danger');
 
         }
 
@@ -94,7 +96,7 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $courses = DB::select('SELECT `id`, `name` FROM `courses` ');
         $companies = DB::select('SELECT `id`, `name` FROM `companies` ');
-        return response()->view('admin.tasks.edit', compact(['task', 'courses', 'companies']));
+        return response()->view('user_dash.companyManager.tasks.edit', compact(['task', 'courses', 'companies']));
     }
 
     /**
@@ -121,7 +123,7 @@ class TaskController extends Controller
             $tasks->main_mark  = $request->input('main_mark');
             $tasks->title  = $request->input('title');
             $save = $tasks->save();
-            return redirect()->route('admin.tasks.index')->with('msg', 'Task Updated successfully')->with('type', 'success');
+            return redirect()->route('user_dash.cmtasks.index')->with('msg', 'Task Updated successfully')->with('type', 'success');
 
         }else{
         return redirect()->back()->with('msg', 'Task Update Failed')->with('type', 'danger');

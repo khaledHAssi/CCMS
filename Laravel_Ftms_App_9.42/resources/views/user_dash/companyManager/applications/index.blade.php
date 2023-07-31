@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="content pt-3">
+    <div class="content py-4">
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
@@ -33,7 +33,7 @@
                             @endphp
 
                             <tr class="bg-warning text-white">
-                                <td colspan="12" class="text-center text-bold">UnAnswered applications - it count :
+                                <td colspan="12" class="text-center text-bold">UnAnswered applications - count it :
                                     {{ $statusNullCount }}</td>
                             </tr>
 
@@ -81,7 +81,7 @@
                             @endphp
 
                             <tr class="bg-success text-white">
-                                <td colspan="12" class="text-center text-bold">Accepted Applications - it count :
+                                <td colspan="12" class="text-center text-bold">Accepted Applications - count it :
                                     {{ $status1Count }}</td>
                             </tr>
 
@@ -119,7 +119,7 @@
                             @endphp
 
                             <tr class="bg-danger text-white">
-                                <td colspan="12" class="text-center text-bold">rejected applications - it count :
+                                <td colspan="12" class="text-center text-bold">rejected applications - count it :
                                     {{ $status0Count }}</td>
                             </tr>
 

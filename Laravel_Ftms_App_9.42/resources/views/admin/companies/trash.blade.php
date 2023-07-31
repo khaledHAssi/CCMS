@@ -4,9 +4,9 @@
 
 @section('content')
 
-<div class="content">
+<div class="content  py-4">
   <div class="container-fluid">
-    <div class="card mt-4">
+    <div class="card">
         <div class="card-body">
 
             @if (session('msg'))

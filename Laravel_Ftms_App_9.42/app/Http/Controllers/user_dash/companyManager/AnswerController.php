@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\user_dash\companyManager;
 
+
+use App\Http\Controllers\Controller;
 use App\Models\Answer;
 use App\Models\Task;
 use Illuminate\Http\Request;

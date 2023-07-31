@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('user_dash.companyManager.master')
 
 @section('content')
 <section class="content">

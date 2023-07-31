@@ -267,9 +267,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         </li>
 
-                        {{-- <li class="nav-item">
+                        
+                        <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-tie"></i>
+                                <i class="nav-icon fas fa-tasks"></i>
                                 <p>
                                     {{ __('Tasks') }}
 
@@ -279,16 +280,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <ul class="nav nav-treeview">
 
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.tasks.index') }}" class="nav-link">
+                                    <a href="{{ route('user_dash.cmtasks.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>{{ _('Tasks') }}</p>
                                     </a>
                                 </li>
 
-
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                    {{-- <a href="{{ route('admin.answers.index') }}" class="nav-link"> --}}
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>{{ _('Answers') }}</p>
+                                    </a>
+                                </li>
                             </ul>
-
-                        </li> --}}
+                        </li>
 
                         <li class="nav-item">
                             <a href="{{ route('user_dash.cmExperts.index') }}" class="nav-link">

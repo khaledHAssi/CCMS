@@ -304,72 +304,16 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('admin.courses.index') }}" class="nav-link">
-                                <i class="nav-icon fab fa-wpforms"></i>
-                                <p>
-                                    {{ __('Courses') }}
-
-                                </p>
-                            </a>
-
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.evaluation.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-star-half-alt"></i>
                                 <p>
                                     {{ __('Evaluations') }}
 
-                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.evaluation.index') }}" class="nav-link">
-                                        <i class="fas fa-list-ul nav-icon"></i>
-                                        <p>{{ _('All Evaluations') }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.evaluationAnswer.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('All Answers') }}</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tasks"></i>
-                                <p>
-                                    {{ __('Tasks') }}
-
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.tasks.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('Tasks') }}</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.answers.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>{{ _('Answers') }}</p>
-                                    </a>
-                                </li>
-                            </ul>
 
                         </li>
+
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-tie"></i>

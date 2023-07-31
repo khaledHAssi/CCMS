@@ -18,9 +18,9 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('adminassets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('adminassets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-    <div class="content">
+    <div class="content py-4">
         <div class="container-fluid">
-            <div class="card mt-4">
+            <div class="card">
                 <div class="card-body">
 
                     <div class="container-xxl">

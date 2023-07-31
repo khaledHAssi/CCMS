@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('user_dash.companyManager.master')
 @section('style')
     <style>
         .style-delete {
@@ -26,7 +26,7 @@
                             <div class="alert alert-{{ session('type') }}">{{ session('msg') }}</div>
                         @endif
                         <h1>Tasks</h1>
-                        <a href="{{ route('admin.tasks.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
+                        <a href="{{ route('user_dash.cmtasks.create') }}" style="margin-bottom: 5px;margin-top: 5px;;"
                             class="btn btn-success mr-5">{{ __('Add New') }}</a>
                         <table class="table table-bordered">
                             <thead>
@@ -64,9 +64,9 @@
                                         <td>{{ $task->start_date }}</td>
                                         <td>{{ $task->end_date }}</td>
                                         <td class="text-center" style="display: flex;justify-content: space-between">
-                                            <a href="{{ route('admin.tasks.edit', $task) }}"
+                                            <a href="{{ route('user_dash.cmtasks.edit', $task) }}"
                                                 class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> </a>
-                                            <form class="d-inline" action="{{ route('admin.tasks.destroy', $task->id) }}"
+                                            <form class="d-inline" action="{{ route('user_dash.cmtasks.destroy', $task->id) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')
