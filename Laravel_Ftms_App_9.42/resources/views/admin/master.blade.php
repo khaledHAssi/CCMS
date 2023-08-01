@@ -135,7 +135,7 @@
                 @php
                     $notifications = App\Models\Notification::latest('id')->paginate(env('PAGINATION_Notification_COUNT'));
                     $countNotifications = $notifications->count();
-                    
+
                 @endphp
 
                 <li class="nav-item dropdown">
@@ -156,7 +156,7 @@
 
                         <a href="#" style="inlineblock" class="dropdown-item" style="">
                             @php
-                                
+
                                 $jsondata = [];
                                 foreach ($notifications as $item) {
                                     $data = json_decode($item->data, true);
@@ -302,6 +302,44 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-laptop-house"></i>
+                                <p>
+                                    {{ __('Reports') }}
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.reports.contacts') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            {{ __('Contacts') }}
+                                        </p>
+
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.reports.doctors') }}" class="nav-link">
+                                        {{-- <a href="#" class="nav-link"> --}}
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            {{ __('Doctors') }}
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.reports.companyManagers') }}" class="nav-link">
+                                        {{-- <a href="#" class="nav-link"> --}}
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            {{ __('Company Manager') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
                         <li class="nav-item">
                             <a href="{{ route('admin.evaluation.index') }}" class="nav-link">
@@ -339,16 +377,6 @@
                                 </li>
 
                             </ul>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="{{ route('admin.applications.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-file-alt"></i>
-                                <p>
-                                    {{ __('Applications') }}
-
-                                </p>
-                            </a>
                         </li>
                     </ul>
                 </nav>

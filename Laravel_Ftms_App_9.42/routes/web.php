@@ -12,6 +12,7 @@ use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\JointController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\user_dash\companyManager\AnswerController;
@@ -59,12 +60,15 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::resource('evaluation', EvaluationController::class);
         Route::resource('AvailableTimes', AvailableTimeController::class);
         Route::resource('users', UserController::class);
+        Route::get('/companyCourse/{id}', [CompanyController::class, 'showCourse'])->name('showCourse');
         Route::get('users/sknlk/slkngjo/ksda/{id}', [UserController::class, 'show']);
-        Route::prefix('applications')->name('applications.')->group(function () {
-            Route::get('', [ApplicationController::class, 'index'])->name('index');
-            Route::post('accept', [ApplicationController::class, 'application_accept'])->name('accept');
-            Route::get('reject/{id}', [ApplicationController::class, 'application_reject'])->name('reject');
-            Route::get('restore/{id}', [ApplicationController::class, 'application_restore'])->name('restore');
+        Route::prefix('reports')->name('reports.')->group(function () {
+            Route::get('/contacts', [ReportsController::class, 'contacts'])->name('contacts');
+            Route::get('/doctors', [ReportsController::class, 'doctors'])->name('doctors');
+            Route::get('/companyManagers', [ReportsController::class, 'companyManager'])->name('companyManagers');
+            Route::post('accept', [ReportsController::class, 'application_accept'])->name('accept');
+            Route::get('reject/{id}', [ReportsController::class, 'application_reject'])->name('reject');
+            Route::get('restore/{id}', [ReportsController::class, 'application_restore'])->name('restore');
         });
     });
 
@@ -85,9 +89,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
             Route::post('accept', [ManagerApplicationController::class, 'application_accept'])->name('accept');
             Route::get('reject/{id}', [ManagerApplicationController::class, 'application_reject'])->name('reject');
             Route::get('restore/{id}', [ApplicationController::class, 'application_restore'])->name('restore');
-
         });
-
         Route::prefix('supervisor')->name('supervisor.')->middleware('check_supervisor')->group(function () {
             Route::resource('sApplications', SupervisorManagerApplicationController::class);
             Route::resource('', supervisorCourseController::class);
@@ -96,7 +98,6 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
             Route::get('/courses/{id}', [supervisorCourseController::class, 'show'])->name('courses.show');
             Route::get('/sCourse_details', [supervisorCourseController::class, 'course_details'])->name('sCourse_details');
         });
-
         Route::prefix('doctor')->name('doctor.')->middleware('CheckDoctor')->group(function () {
             Route::resource('/dash', DashboardDoctorController::class);
             Route::get('dash/expert/index', [DashboardDoctorController::class, 'expertIndex'])->name('dash.expertIndex');
@@ -115,7 +116,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
             Route::delete('dash/availableTime/{dash}', [DashboardDoctorController::class, 'availableTimeDestroy'])->name('dash.availableTimeDestroy');
         });
     });
-    
+
     //change site to example name
     Route::name('site.')->group(function () {
         Route::get('/', [SiteController::class, 'index'])->name('index');
@@ -138,7 +139,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
         Route::post('site-profile/update-profile', [ProfileController::class, 'update_profile'])->name('site-profile.update_profile');
     });
 
-    // ---------------------------------------------------------------- 
+    // ----------------------------------------------------------------
     Route::get('send-notify', [NotifyController::class, 'send']);
     Route::get('notify/{id}', [NotifyController::class, 'notify'])->name('mark-read');
     Route::get('read-notify', [NotifyController::class, 'read'])->name('ReadNotification');

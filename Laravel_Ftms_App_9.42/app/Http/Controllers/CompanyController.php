@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\CompanyRequest;
+use App\Models\Course;
 
 class CompanyController extends Controller
 {
@@ -81,7 +82,14 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        return $id;
+        $company = Company::with(['courses'])->findOrFail($id);
+        return response()->view('admin.companies.showCompany', compact('company'));
+    }
+    public function showCourse($id)
+    {
+        $course = Course::findOrFail($id);
+        $course = $course->load(['course_students', 'supervisor']);
+        return response()->view('admin.companies.showCourse', compact('course'));
     }
 
     /**

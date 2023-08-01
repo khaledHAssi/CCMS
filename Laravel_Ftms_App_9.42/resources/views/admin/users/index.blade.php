@@ -18,9 +18,9 @@
 }
 
 </style>
-    <div class="content">
+    <div class="content py-4">
         <div class="container-fluid">
-            <div class="card mt-4">
+            <div class="card">
                 <div class="card-body">
 
                     <div class="card-body">
@@ -58,7 +58,7 @@
                             <tbody>
                                 @forelse ($users as $user)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $loop->index +1 }}</td>
                                         @if ($user->image)
                                             <td>
                                                 <img class="img-circle img-bordered-sm img-profile" height="100"
@@ -71,9 +71,9 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->phone }}</td>
-                                        <td>
+                                        <td class="d-flex">
                                             <a href="{{ route('admin.users.edit', $user) }}"
-                                                class="btn btn-primary btn-sm">
+                                                class="mr-2 btn btn-primary btn-sm">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <form class="d-inline"
@@ -105,8 +105,6 @@
 <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#users-table').DataTable();
-
             $('#search-button').on('click', function() {
                 var searchValue = $('#user-search').val().trim();
                 $('#users-table').DataTable().search(searchValue).draw();

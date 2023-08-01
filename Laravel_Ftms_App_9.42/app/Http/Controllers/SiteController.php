@@ -263,13 +263,13 @@ class SiteController extends Controller
                 $reportImg = $request->file('image');
                 $imageName = time() . '_image' . $report->name . '.' . $reportImg->getClientOriginalExtension();
                 $reportImg->storePubliclyAs('reports/images', $imageName, ['disk' => 'public']);
-                $report->image = 'imgReports/' . $imageName;
+                $report->image = 'reports/images' . $imageName;
             }
             if ($request->hasFile('content')) {
                 $reportContent = $request->file('content');
                 $contentName = time() . '_content' . $report->name . '.' . $reportContent->getClientOriginalExtension();
                 $reportContent->storePubliclyAs('reports/files', $contentName, ['disk' => 'public']);
-                $report->content = 'filesReports/' . $contentName;
+                $report->content = 'reports/files' . $contentName;
             }
         }
 

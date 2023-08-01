@@ -18,7 +18,7 @@ class ManagerCourseController extends Controller
         $courses = $courses->load('supervisor');
         return response()->view('user_dash.companyManager.courses.index', compact(['courses']));
     }
-    
+
     public function create(Request $request)
     {
         $users = User::where('company_id', Auth::user()->company_id)
