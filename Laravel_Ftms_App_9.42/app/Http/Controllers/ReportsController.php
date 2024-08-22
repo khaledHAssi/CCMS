@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Models\Course_student;
 use App\Models\Report;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ReportsController extends Controller
@@ -33,10 +34,11 @@ class ReportsController extends Controller
     public function application_accept(Request $request)
     {
         // dd($request->all());
-        $saved = Course_student::create([
-            'course_id' => $request->course_id,
+        $saved = User::create([
             'user_id' => $request->user_id,
-            'application_id' => $request->application_id
+            'name' => $request->name,
+            'email' => $request->email,
+            // 'email' => $request->email,
         ]);
         if ($saved) {
             $application = Application::findOrFail($request->application_id);

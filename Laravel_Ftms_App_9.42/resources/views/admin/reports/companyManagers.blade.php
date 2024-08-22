@@ -65,12 +65,8 @@
                                                 <form class="d-inline" action="{{ route('user_dash.cmaccept') }}"
                                                     method="POST">
                                                     @csrf
-                                                    <input type="text" hidden id="course_id"
-                                                        value="{{ $companyManager->course_id }}" name="course_id" />
                                                     <input type="text" hidden id="user_id"
                                                         value="{{ $companyManager->user_id }}" name="user_id" />
-                                                    <input type="text" hidden id="application_id"
-                                                        value="{{ $companyManager->id }}" name="application_id" />
                                                     <button onclick="return confirm('Are you sure!?')"
                                                         class="btn btn-success btn-sm">
                                                         <i class="fas fa-check-circle mr-1"></i>accept

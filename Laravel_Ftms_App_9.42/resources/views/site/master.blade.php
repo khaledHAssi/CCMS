@@ -108,7 +108,7 @@
                         Profile
                     </a>
                     @endif
-                    
+
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Other</a>
                         <div class="dropdown-menu border-brown m-0">
